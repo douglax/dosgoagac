@@ -1,0 +1,24 @@
+/* 
+    Document   : main
+    Created on : 7/07/2009, 03:56:37 PM
+    Author     : caguirre
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+* {margin:0; padding:0;}
+body, div, span, p, a, img, ul, ol, li, caption, table, thead, tbody, tfoot, tr, th, td, form, fieldset, legend, label, dl, dt, dd, blockquote, applet, object, h1, h2, h3, h4, h5 {border:0;}
+
+body {
+    padding:40px 0;
+    font:0.9em/1.5 "calibri", serif;
+    text-align:center;
+}
+
+a {text-decoration:none;}
+

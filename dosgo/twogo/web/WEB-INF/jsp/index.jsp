@@ -11,9 +11,26 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <link rel="stylesheet" media="screen,projection" type="text/css" href="css/main.css" />
+        <title>::: www.2go.com.mx :::</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <div><img src="images/logo_letras.png" width="582" height="97" alt="logo_letras"/>
+        </div>
+        <div><img src="images/logo2go.png" width="573" height="256" alt="logo2go"/>
+        </div>
+        <div><img src="images/chuletas.png" width="611" height="124" alt="chuletas"/>
+        </div>
+        <div>
+            BIENVENIDO<br/>
+            Selecciona tu ciudad:
+        </div>
+        <div>
+            <ul>
+                <li><a href="#">Chihuahua</a></li>
+                <li><a href="#">Juaréz</a></li>
+                <li><a href="#">Monterrey</a></li>
+            </ul>
+        </div>
     </body>
 </html>
