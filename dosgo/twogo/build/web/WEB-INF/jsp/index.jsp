@@ -12,6 +12,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" media="screen,projection" type="text/css" href="css/main.css" />
+        
         <script src="js/jquery-latest.js" type="text/javascript"></script>
         <script type="text/javascript">
             $(document).ready(function(){
@@ -21,7 +22,7 @@
             
         </script>
 
-        <title>::: www.2go.com.mx :::</title>
+        <title>::: www.2go.com.mx ::: Comida en un clíc!</title>
     </head>
     <body>
         <div><img src="images/logo_letras.png" width="582" height="97" alt="logo_letras"/>

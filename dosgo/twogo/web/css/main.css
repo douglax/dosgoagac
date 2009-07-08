@@ -26,6 +26,16 @@ table#locations{
     display:none;
     padding:0;
     width:40%;
-    margin: 15px auto;
+    margin: 15px auto;    
+}
+
+table#locations tr td{
+    background-image:url('../images/fondo_loc.png');
+    background-repeat:no-repeat;
+    background-position:center;
+    padding:4px 5px;    
+}
+table#locations tr td a{
+    color:#fff;
 }
 
