@@ -17,9 +17,7 @@
         <script type="text/javascript">
             $(document).ready(function(){
                 $("table#locations").fadeIn("slow");
-            }
-            );
-            
+            });            
         </script>
 
         <title>::: www.2go.com.mx ::: Comida en un clíc!</title>
