@@ -11,9 +11,35 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <link rel="stylesheet" media="screen,projection" type="text/css" href="css/main.css" />
+        <script src="js/jquery-latest.js" type="text/javascript"></script>
+        <script type="text/javascript">
+            $(document).ready(function(){
+                $("table#locations").fadeIn("slow");
+            }
+            );
+            
+        </script>
+
+        <title>::: www.2go.com.mx :::</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <div><img src="images/logo_letras.png" width="582" height="97" alt="logo_letras"/>
+        </div>
+        <div><img src="images/logo2go.png" width="573" height="256" alt="logo2go"/>
+        </div>
+        <div><img src="images/chuletas.png" width="611" height="124" alt="chuletas"/>
+        </div>
+        <div>
+            BIENVENIDO<br/>
+            Selecciona tu ciudad:
+        </div>
+        <table id="locations">
+            <tr>
+                <td><a href="#">Chihuahua</a></td>
+                <td><a href="#">Juaréz</a></td>
+                <td><a href="#">Monterrey</a></td>
+            </tr>
+        </table>
     </body>
 </html>

@@ -22,3 +22,10 @@ body {
 
 a {text-decoration:none;}
 
+table#locations{
+    display:none;
+    padding:0;
+    width:40%;
+    margin: 15px auto;
+}
+

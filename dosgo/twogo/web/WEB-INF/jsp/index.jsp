@@ -12,6 +12,15 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" media="screen,projection" type="text/css" href="css/main.css" />
+        <script src="js/jquery-latest.js" type="text/javascript"></script>
+        <script type="text/javascript">
+            $(document).ready(function(){
+                $("table#locations").fadeIn("slow");
+            }
+            );
+            
+        </script>
+
         <title>::: www.2go.com.mx :::</title>
     </head>
     <body>
@@ -25,12 +34,12 @@
             BIENVENIDO<br/>
             Selecciona tu ciudad:
         </div>
-        <div>
-            <ul>
-                <li><a href="#">Chihuahua</a></li>
-                <li><a href="#">Juaréz</a></li>
-                <li><a href="#">Monterrey</a></li>
-            </ul>
-        </div>
+        <table id="locations">
+            <tr>
+                <td><a href="#">Chihuahua</a></td>
+                <td><a href="#">Juaréz</a></td>
+                <td><a href="#">Monterrey</a></td>
+            </tr>
+        </table>
     </body>
 </html>
