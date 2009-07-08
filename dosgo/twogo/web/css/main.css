@@ -20,6 +20,7 @@ body {
     text-align:center;
 }
 
+
 a {text-decoration:none;}
 
 table#locations{
@@ -37,5 +38,9 @@ table#locations tr td{
 }
 table#locations tr td a{
     color:#fff;
+}
+
+div#welcome{
+    font: large calibri, serif
 }
 

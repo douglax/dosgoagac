@@ -29,7 +29,7 @@
         </div>
         <div><img src="images/chuletas.png" width="611" height="124" alt="chuletas"/>
         </div>
-        <div>
+        <div id="welcome">
             BIENVENIDO<br/>
             Selecciona tu ciudad:
         </div>
