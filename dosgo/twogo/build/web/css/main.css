@@ -48,10 +48,10 @@ div#welcome{
     ------------- Layout de principal.jsp --------------
 */
 
-#main{width: 960px; margin: 0 auto; text-align:left;}
+#main{width: 960px; margin: 0 auto; text-align:left;border:2px solid teal}
 
-    #banner{}
-    #heather{position:relative; padding-bottom:15px}
-    #content{}
-    #footer{clear: both; font-size:85%;}
-
+    #banner{position: relative; padding-bottom:5px; border:2px solid fuchsia  }
+    #heather{position:relative; padding-bottom:15px; border:2px solid red}
+    #content{position:relative; padding:10px 0 30px 0; overflow:hidden;border:2px solid blue}
+    #footer{clear: both; font-size:85%;border:2px solid lime}
+    

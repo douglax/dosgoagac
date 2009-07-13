@@ -35,7 +35,7 @@
         </div>
         <table id="locations">
             <tr>
-                <td><a href="#">Chihuahua</a></td>
+                <td><a href="principal.htm?loc=chihuahua">Chihuahua</a></td>
                 <td><a href="#">Juaréz</a></td>
                 <td><a href="#">Monterrey</a></td>
             </tr>

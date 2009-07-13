@@ -11,11 +11,23 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" type="text/css" href="css/main.css"/>
         <title>Bienvenido!!</title>
     </head>
     <body>
         <div id="main">
-            
+            <div id="banner">
+                banner
+            </div>
+            <div id="heather">
+                heather
+            </div>
+            <div id="content">
+                content
+            </div>
+            <div id="footer">
+                footer
+            </div>
         </div>
     </body>
 </html>
