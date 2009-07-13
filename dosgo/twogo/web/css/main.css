@@ -48,10 +48,19 @@ div#welcome{
     ------------- Layout de principal.jsp --------------
 */
 
-#main{width: 960px; margin: 0 auto; text-align:left;border:2px solid teal}
+#main{width: 960px; margin: 0 auto; text-align:left;background-color:white;}
 
-    #banner{position: relative; padding-bottom:5px; border:2px solid fuchsia  }
-    #heather{position:relative; padding-bottom:15px; border:2px solid red}
+    #banner{position: relative; padding-bottom:5px; border-bottom:5px solid gray}
+
+    #heather{position:relative; padding-bottom:5px; border-bottom:5px solid gray}
+        #logo_principal{margin-left:20px; border: 1px solid black; width:300px;}
+        #menu{float: right;clear:both; padding: 5px 0; border-left:0 !important; border-right: 0 !important; margin-right:15px; margin-top:20px;}
+            #menu ul{margin: 0; padding: 0; list-style:none}
+            #menu ul li{display:inline; margin: 0; padding:0}
+            #menu ul li a{letter-spacing:2px; display: block; float:left; padding: 10px 20px; border:0; background-color:gray; color: white}
+        #contacto{width:100px;border:2px solid black}
+
     #content{position:relative; padding:10px 0 30px 0; overflow:hidden;border:2px solid blue}
+
     #footer{clear: both; font-size:85%;border:2px solid lime}
     
