@@ -44,3 +44,14 @@ div#welcome{
     font: large calibri, serif
 }
 
+/*
+    ------------- Layout de principal.jsp --------------
+*/
+
+#main{width: 960px; margin: 0 auto; text-align:left;}
+
+    #banner{}
+    #heather{position:relative; padding-bottom:15px}
+    #content{}
+    #footer{clear: both; font-size:85%;}
+
