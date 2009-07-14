@@ -17,13 +17,18 @@
                 background-image:url('images/bg.png');
             }
         </style>
-
+        <script src="js/jquery-latest.js" type="text/javascript"></script>
+        <script type="text/javascript">
+            $(document).ready(function(){
+                $("div#banner").fadeIn("slow");
+            });
+        </script>
         <title>Bienvenido!!</title>
     </head>
     <body>
         <div id="main">
             <div id="banner">
-                banner
+                <img src="images/banner.png" width="750" height="90" alt="banner"/>
             </div>
             <div id="heather">                
                 
@@ -33,17 +38,17 @@
                         <li><a href="#">Promociones</a></li>
                         <li><a href="#">Lo mas nuevo</a></li>
                         <li><a href="#">Anunciate aquí</a></li>
+                        <li><a href="#">Contáctanos</a></li>
                     </ul>                
                 </div>
 
                 <div id="logo_principal">
                     <img src="images/logo2go_chico.png" alt="Logo 2Go"/>
-                </div>
+                </div>               
 
-                <div id="contacto">
-                    Contacto
-                </div>
-
+            </div>
+            <div id="flash">
+                    <img src="images/flash.png" width="756" height="230" alt="flash"/>
             </div>
             <div id="content">
                 content
