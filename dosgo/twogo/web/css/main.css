@@ -16,7 +16,7 @@ body, div, span, p, a, img, ul, ol, li, caption, table, thead, tbody, tfoot, tr,
 
 body {
     padding:0;
-    font:0.9em/1.5 "calibri", serif;
+    font:0.9em/1.5 "calibri", sans;
     text-align:center;
 }
 
@@ -41,7 +41,7 @@ table#locations tr td a{
 }
 
 div#welcome{
-    font: large calibri, serif
+    font: large calibri, sans
 }
 
 /*
@@ -53,6 +53,8 @@ div#welcome{
 }
 
     #banner{position: relative; padding:10px 0; /*border-bottom:15px solid gray;*/ text-align:center}
+
+    #session{position:relative; text-align:right; background-color:gray; margin-top:3px; color: #fff; padding-right:10px }
 
     #header{position:relative; padding-bottom:0; border-bottom:15px solid gray; height: 120px; background:#fff url('../images/shadow_bg.png') repeat-y scroll left;}
         #logo_principal{margin:5px 0 0px 20px;width:160px;}
