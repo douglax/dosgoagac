@@ -30,7 +30,7 @@
             <div id="banner">
                 <img src="images/banner.png" width="750" height="90" alt="banner"/>
             </div>
-            <div id="heather">                
+            <div id="header">
                 
                 <div id="menu">
                     <ul>
