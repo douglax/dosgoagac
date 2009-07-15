@@ -36,7 +36,7 @@
         <table id="locations">
             <tr>
                 <td><a href="principal.htm?loc=chihuahua">Chihuahua</a></td>
-                <td><a href="http://www.google.com">Juaréz</a></td>
+                <td><a href="busqueda.htm">Juaréz</a></td>
                 <td><a href="#">Monterrey</a></td>
             </tr>
         </table>
