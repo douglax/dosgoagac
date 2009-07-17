@@ -65,8 +65,12 @@ div#welcome{
         #menu ul li a:hover{background-color:#f7a100}
         
     #flash{text-align:center;/*border-bottom:15px solid gray*/}
-    #content{position:relative; padding:5px 0; overflow:hidden;border-bottom:15px solid gray;
+        #content{position:relative; padding-left:25px; /*padding:5px 0;*/ overflow:hidden;border-bottom:15px solid gray;
         background: inherit}
+
+    #lowerband{background: repeat-y 0% 0%; }
+        #leftcol{ float:left; width:50%; text-align:center}
+        #rightcol{ margin-left:50%; width:50%; text-align:center}
     
 
     #footer{clear: both; font-size:85%;border:2px solid lime}
