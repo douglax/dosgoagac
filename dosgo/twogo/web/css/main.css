@@ -68,7 +68,7 @@ div#welcome{
         #content{position:relative; padding-left:25px; /*padding:5px 0;*/ overflow:hidden;border-bottom:15px solid gray;
         background: inherit}
 
-    #lowerband{background: repeat-y 0% 0%; }
+    #lowerband{background: repeat-y 0% 0%; border-bottom:15px solid gray; }
         #leftcol{ float:left; width:50%; text-align:center}
         #rightcol{ margin-left:50%; width:50%; text-align:center}
     
