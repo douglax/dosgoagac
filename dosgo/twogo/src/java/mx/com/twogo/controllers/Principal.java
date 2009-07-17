@@ -26,6 +26,7 @@ public class Principal extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
+        
             getServletContext().getRequestDispatcher("/WEB-INF/jsp/principal.jsp").forward(request, response);
     }
      

@@ -48,16 +48,16 @@ div#welcome{
     ------------- Layout de principal.jsp --------------
 */
 
-#main{width: 1000px; margin: 0 auto; text-align:left;
-      background:#fff url('../images/shadow_bg.png') repeat-y scroll left;
-}
+#main{width: 1000px; margin: 0 auto; text-align:left; background-color:#fff}
 
     #banner{position: relative; padding:10px 0; /*border-bottom:15px solid gray;*/ text-align:center}
 
     #session{position:relative; text-align:right; background-color:gray; margin-top:3px; color: #fff; padding-right:10px }
+    #session a{color: #fff }
+    #session a:hover{color: #f77300; text-decoration: underline}
 
-    #header{position:relative; padding-bottom:0; border-bottom:15px solid gray; height: 120px; background:#fff url('../images/shadow_bg.png') repeat-y scroll left;}
-        #logo_principal{margin:5px 0 0px 20px;width:160px;}
+    #header{position:relative; padding-bottom:0; border-bottom:15px solid gray; height: 120px;}
+        #logo_principal{margin:0 0 0 20px;width:160px;}
         #menu{float:right; width: 70%; position:relative;margin-top:9.2%}
         #menu ul{clear: left; float: left; list-style:none; margin: 0; padding: 0; position:relative; left:50%; text-align:center}
         #menu ul li{display: block; float: left; list-style:none; margin: 0; padding: 0; position:relative; right:50%; text-align:center}
@@ -65,8 +65,12 @@ div#welcome{
         #menu ul li a:hover{background-color:#f7a100}
         
     #flash{text-align:center;/*border-bottom:15px solid gray*/}
-    #content{position:relative; padding:5px 0; overflow:hidden;border-bottom:15px solid gray;
-        background: inherit}
+        #content{position:relative; padding-left:25px; /*padding:5px 0;*/ overflow:hidden;border-bottom:15px solid gray;
+        /*background: inherit;*/ background-color:#fffee5}
+
+    #lowerband{background: repeat-y 0% 0%; background-color:silver; border-bottom:15px solid gray; }
+        #leftcol{ float:left; width:50%; text-align:center}
+        #rightcol{ margin-left:50%; width:50%; text-align:center}
     
 
     #footer{clear: both; font-size:85%;border:2px solid lime}

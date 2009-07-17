@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib tagdir="/WEB-INF/tags" prefix="twogo" %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
    "http://www.w3.org/TR/html4/loose.dtd">
 
@@ -27,26 +28,9 @@
     </head>
     <body>
         <div id="main">
-            <div id="banner">
-                <img src="images/banner.png" width="750" height="90" alt="banner"/>
-            </div>
-            <div id="header">
-                
-                <div id="menu">
-                    <ul>
-                        <li><a href="#">Inicio</a></li>
-                        <li><a href="#">Promociones</a></li>
-                        <li><a href="#">Lo mas nuevo</a></li>
-                        <li><a href="#">Anunciate aquí</a></li>
-                        <li><a href="#">Contáctanos</a></li>
-                    </ul>                
-                </div>
 
-                <div id="logo_principal">
-                    <img src="images/logo2go_chico.png" alt="Logo 2Go"/>
-                </div>               
+            <twogo:header/>
 
-            </div>
             <div id="flash">
                     <img src="images/flash.png" width="756" height="230" alt="flash"/>
             </div>
