@@ -52,8 +52,36 @@
             </div>
             
             <div id="content">
-                content
+               Aqui va el resultado de las busquedas<br>
+               linea<br>
+               linea<br>
+               linea<br>
+               linea<br>
+
+
+
             </div>
+
+
+            <div id="lowerband">
+                <div id="leftcol">
+                    lineas<br>
+                    lineas<br>
+                    lineas<br>
+                    lineas<br>
+                    lineas<br>
+                </div>
+                <div id="rightcol">
+                    lineas<br>
+                    lineas<br>
+                    lineas<br>
+                    lineas<br>
+                    lineas<br>
+                </div>
+                
+
+            </div>
+
             <div id="footer">
                 footer
             </div>
