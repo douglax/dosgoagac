@@ -56,11 +56,14 @@
                            <hr>
                            <strong>Sitio web:</strong><br>
                            <a href="http://www.dominospizza.com.mx">http://www.dominospizza.com.mx</a>
-                           
 
+                           <!-- si agregamos estas lineas se fastidia el layout
+                           <br> otra linea y
+                           <br> otra linea 
+                           -->
                        </div>
-                       <div id="rest_picture">
-                           <img src="testimages/dominospic.png"><br>
+                       <div id="rest_picture"
+                           <img src="testimages/dominospic.png"/><br>
                            Teléfonos: (614) 410-7035<br>
                            01-800-DOMINOS
                        </div>
@@ -70,14 +73,14 @@
 
             </div>  
 
-
+<br>
             <div id="onlinemenucategories">
                 
-                <div id="logo_menuonline">
-                    <img src="images/btn_menuonline.png">
-                </div>
+            <div id="logomenuonline">
+                    <img src="images/btn_menuonline.png"/>
+            </div>
                 
-                <div id="category">
+            <div id="category">
                 <ul>
                     <li><a href="#">Entradas</a>
                     <li><a href="#">Pizzas</a>
@@ -85,11 +88,11 @@
                     <li><a href="#">Postres</a>
                     <li><a href="#">Bebidas</a>
                 </ul>
-                </div>
+            </div>
 
             </div>
            
-                
+            <hr>
 
 Contenido<br>
     Contenido<br>
