@@ -31,11 +31,10 @@
             <twogo:header/>
 
             <div id="detail">
-               <div id="logoandrate">
+
+                                  <div id="logoandrate">
                    <img src="testimages/logodominos.png">
-
                </div>
-
                <div id="info">
                    <div id="description">
                        Bajo la premisa de "Si no te llega en 30 minutos es grátis"
@@ -67,33 +66,36 @@
                        </div>
                    </div>
 
-
-
                </div>
 
+            </div>  
 
 
-            </div>
-
-
-            <div id="lowerband">
-                <div id="leftcol">
-                    lineas<br>
-                    lineas<br>
-                    lineas<br>
-                    lineas<br>
-                    lineas<br>
+            <div id="onlinemenucategories">
+                
+                <div id="logo_menuonline">
+                    <img src="images/btn_menuonline.png">
                 </div>
-                <div id="rightcol">
-                    lineas<br>
-                    lineas<br>
-                    lineas<br>
-                    lineas<br>
-                    lineas<br>
+                
+                <div id="category">
+                <ul>
+                    <li><a href="#">Entradas</a>
+                    <li><a href="#">Pizzas</a>
+                    <li><a href="#">Pastas</a>
+                    <li><a href="#">Postres</a>
+                    <li><a href="#">Bebidas</a>
+                </ul>
                 </div>
 
-
             </div>
+           
+                
+
+Contenido<br>
+    Contenido<br>
+        Contenido<br>
+            Contenido<br>
+                Contenido<br>
 
             <div id="footer">
                 footer
