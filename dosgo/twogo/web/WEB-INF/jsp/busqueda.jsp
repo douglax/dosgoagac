@@ -32,7 +32,7 @@
             
             <div id="content">
                Aqui va el resultado de las busquedas<br>
-               linea<br>
+               <a href="restaurant.htm"> Domino's pizza</a><br>
                linea<br>
                linea<br>
                linea<br>
