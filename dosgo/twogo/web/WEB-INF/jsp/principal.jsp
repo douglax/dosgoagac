@@ -35,7 +35,8 @@
                     <img src="images/flash.png" width="756" height="230" alt="flash"/>
             </div>
             <div id="content">
-                content
+                content<br>
+                <a href="busqueda.htm">Busqueda</a>  
             </div>
             <div id="footer">
                 footer
