@@ -12,6 +12,10 @@
         <servlet-name>Busqueda</servlet-name>
         <servlet-class>mx.com.twogo.controllers.Busqueda</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Restaurant</servlet-name>
+        <servlet-class>mx.com.twogo.controllers.Restaurant</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>IndexServlet</servlet-name>
         <url-pattern>/index.htm</url-pattern>
@@ -23,6 +27,10 @@
     <servlet-mapping>
         <servlet-name>Busqueda</servlet-name>
         <url-pattern>/busqueda.htm</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Restaurant</servlet-name>
+        <url-pattern>/restaurant.htm</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
