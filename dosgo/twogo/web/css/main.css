@@ -88,9 +88,8 @@ div#welcome{
 
     #lowerband{background: repeat-y 0% 0%; background-color:silver; border-bottom:15px solid gray; }
         #leftcol{ float:left; width:50%; text-align:center}
-        #rightcol{ margin-left:50%; width:50%; text-align:center}
+        #rightcol{ margin-left:50%; width:50%; text-align:center}    
     
-    #content #leftcol{ float: left}
 
     #footer{clear: both; font-size:85%;border:2px solid lime}
 
@@ -99,7 +98,15 @@ div#welcome{
     .menu-right-side{background: #fff url('../images/rnd-rt.png') no-repeat scroll right  }
     .gray-bar{background-color:gray; height:15px; clear:both}
 
-    .titlebox{background-color:#f77300; padding:10px 15px;margin: 10px; width:10em; color:white}
-    .contentbox{background-color:#fff; padding:10px 15px;margin: 10px; width:90%; border: 1px solid black}
+    .titlebox{background-color:#f77300; width:12em; color: #fff; margin:15px 0}
+    .rtop, .rbottom{display:block; background-color:lightyellow}
+    .rtop *, .rbottom *{display: block; height: 1px; overflow: hidden; background-color:#f77300}
+    .r1{margin: 0 5px}
+    .r2{margin: 0 3px}
+    .r3{margin: 0 2px}
+    .r4{margin: 0 1px; height: 2px}
+
+    .contentbox{background-color:#fff; padding:10px 15px;margin: 10px; width:80%; border: 1px solid black}
+    .cleared{clear:both}
 
 

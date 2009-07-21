@@ -37,7 +37,21 @@
             <div class="gray-bar"></div>
             <div id="content">
                 <div id="leftcol">
-                    <div class="titlebox">B&uacute;squeda R&aacute;pida</div>
+                    <div class="titlebox">
+                        <b class="rtop">
+                            <b class="r1"></b>
+                            <b class="r2"></b>
+                            <b class="r3"></b>
+                            <b class="r4"></b>
+                        </b>
+                        B&uacute;squeda R&aacute;pida
+                        <b class="rbottom">
+                            <b class="r4"></b>
+                            <b class="r3"></b>
+                            <b class="r2"></b>
+                            <b class="r1"></b>
+                        </b>
+                    </div>
                     <div class="contentbox">
                         <form>
                             <table>
@@ -49,14 +63,27 @@
                                     <tr>
                                         <td>Alg&uacute;n antojo?</td>
                                         <td><input type="text" name="some" value="" size="20" /></td>
-                                    </tr>                                    
+                                    </tr>
                                 </tbody>
                             </table>
                             <input type="submit" value="Buscar" />
                         </form>
                     </div>
-
-                    <div class="titlebox">B&uacute;squeda por zona</div>
+                    <div class="titlebox">
+                        <b class="rtop">
+                            <b class="r1"></b>
+                            <b class="r2"></b>
+                            <b class="r3"></b>
+                            <b class="r4"></b>
+                        </b>
+                        B&uacute;squeda por zona
+                        <b class="rbottom">
+                            <b class="r4"></b>
+                            <b class="r3"></b>
+                            <b class="r2"></b>
+                            <b class="r1"></b>
+                        </b>
+                    </div>
                 </div>
                 <div>
 
