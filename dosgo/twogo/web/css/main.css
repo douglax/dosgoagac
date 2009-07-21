@@ -58,9 +58,9 @@ div#welcome{
 
     #header{position:relative; padding-bottom:0; border-bottom:15px solid gray; height: 120px;}
         #logo_principal{margin:0 0 0 20px;width:160px;}
-        #menu{float:right; width: 70%; position:relative;margin-top:9.2%}
-        #menu ul{clear: left; float: left; list-style:none; margin: 0; padding: 0; position:relative; left:50%; text-align:center}
-        #menu ul li{display: block; float: left; list-style:none; margin: 0; padding: 0; position:relative; right:50%; text-align:center}
+        #menu{float:right; width: 70%; position:relative;margin-top:9.2%;overflow:hidden}
+        #menu ul{clear: left; float: left; list-style:none; margin: 0; padding: 0; position:relative; left:50%; text-align:center; }
+        #menu ul li{display: block; float: left; list-style:none; margin: 0; padding: 0; position:relative; right:50%; text-align:center;}
         #menu ul li a{display: block; margin: 0; padding: 5px 25px; line-height:1.3em; background-color:#f77300; color: #fff}
         #menu ul li a:hover{background-color:#f7a100}
 
@@ -82,13 +82,24 @@ div#welcome{
 
 
     #flash{text-align:center;/*border-bottom:15px solid gray*/}
-        #content{position:relative; padding-left:25px; /*padding:5px 0;*/ overflow:hidden;border-bottom:15px solid gray;
+
+    #content{position:relative; padding-left:25px; /*padding:5px 0;*/ overflow:hidden;border-bottom:15px solid gray;
         /*background: inherit;*/ background-color:#fffee5}
 
     #lowerband{background: repeat-y 0% 0%; background-color:silver; border-bottom:15px solid gray; }
         #leftcol{ float:left; width:50%; text-align:center}
         #rightcol{ margin-left:50%; width:50%; text-align:center}
     
+    #content #leftcol{ float: left}
 
     #footer{clear: both; font-size:85%;border:2px solid lime}
-    
+
+/* :::::::::::::::::::: Otros :::::::::::::::::::::::::::::::*/
+    .menu-left-side{background: #fff url('../images/rnd-lt.png') no-repeat scroll left  }
+    .menu-right-side{background: #fff url('../images/rnd-rt.png') no-repeat scroll right  }
+    .gray-bar{background-color:gray; height:15px; clear:both}
+
+    .titlebox{background-color:#f77300; padding:10px 15px;margin: 10px; width:10em; color:white}
+    .contentbox{background-color:#fff; padding:10px 15px;margin: 10px; width:90%; border: 1px solid black}
+
+

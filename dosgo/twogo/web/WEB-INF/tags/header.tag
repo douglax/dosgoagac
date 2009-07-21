@@ -20,11 +20,11 @@
 
     <div id="menu">
         <ul>
-            <li><a href="#">Inicio</a></li>
+            <li><a href="#" class="menu-left-side">Inicio</a></li>
             <li><a href="#">Promociones</a></li>
             <li><a href="#">Lo mas nuevo</a></li>
             <li><a href="#">Anunciate aquí</a></li>
-            <li><a href="#">Contáctanos</a></li>
+            <li><a href="#" class="menu-right-side">Contáctanos</a></li>
         </ul>
     </div>
 
