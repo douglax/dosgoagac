@@ -85,8 +85,34 @@
                         </b>
                     </div>
                 </div>
-                <div>
-
+                <div id="rightcol">
+                    <div class="titlebox">
+                        <b class="rtop">
+                            <b class="r1"></b>
+                            <b class="r2"></b>
+                            <b class="r3"></b>
+                            <b class="r4"></b>
+                        </b>
+                        B&uacute;squeda por categor&iacute;a
+                        <b class="rbottom">
+                            <b class="r4"></b>
+                            <b class="r3"></b>
+                            <b class="r2"></b>
+                            <b class="r1"></b>
+                        </b>
+                    </div>
+                    <div class="contentbox">
+                        <ul>
+                            <li>Alta Cocina</li>
+                            <li>Argentina</li>
+                            <li>Asiatica</li>
+                            <li>Casera</li>
+                            <li>China</li>
+                            <li>Cortes Finos</li>
+                            <li>Ensaladas</li>
+                            <li>Europeas</li>
+                        </ul>
+                    </div>
                 </div>
                 <br/>
                 <a href="busqueda.htm">Busqueda</a>

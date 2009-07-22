@@ -99,14 +99,15 @@ div#welcome{
     .gray-bar{background-color:gray; height:15px; clear:both}
 
     .titlebox{background-color:#f77300; width:12em; color: #fff; margin:15px 0}
-    .rtop, .rbottom{display:block; background-color:lightyellow}
+    .rtop, .rbottom{display:block; background-color:#fffee5}
     .rtop *, .rbottom *{display: block; height: 1px; overflow: hidden; background-color:#f77300}
     .r1{margin: 0 5px}
     .r2{margin: 0 3px}
     .r3{margin: 0 2px}
     .r4{margin: 0 1px; height: 2px}
 
-    .contentbox{background-color:#fff; padding:10px 15px;margin: 10px; width:80%; border: 1px solid black}
+    .contentbox{background-color:#fff; padding:10px 15px;margin: 10px; 
+            width:80%; border: 1px solid black; text-align:left; min-height:100px}    
     .cleared{clear:both}
 
 
