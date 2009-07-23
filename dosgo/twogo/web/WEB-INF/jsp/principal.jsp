@@ -19,9 +19,10 @@
             }
         </style>
         <script src="js/jquery-latest.js" type="text/javascript"></script>
+        <script src="js/round.js" type="text/javascript"></script>
         <script type="text/javascript">
             $(document).ready(function(){
-                $("div#banner").fadeIn("slow");
+                $("div#banner").fadeIn("slow");                
             });
         </script>
         <title>Bienvenido!!</title>
@@ -37,20 +38,8 @@
             <div class="gray-bar"></div>
             <div id="content">
                 <div id="leftcol">
-                    <div class="titlebox">
-                        <b class="rtop">
-                            <b class="r1"></b>
-                            <b class="r2"></b>
-                            <b class="r3"></b>
-                            <b class="r4"></b>
-                        </b>
-                        B&uacute;squeda R&aacute;pida
-                        <b class="rbottom">
-                            <b class="r4"></b>
-                            <b class="r3"></b>
-                            <b class="r2"></b>
-                            <b class="r1"></b>
-                        </b>
+                    <div class="round">
+                        B&uacute;squeda R&aacute;pida                        
                     </div>
                     <div class="contentbox">
                         <form>
@@ -69,53 +58,29 @@
                             <input type="submit" value="Buscar" />
                         </form>
                     </div>
-                    <div class="titlebox">
-                        <b class="rtop">
-                            <b class="r1"></b>
-                            <b class="r2"></b>
-                            <b class="r3"></b>
-                            <b class="r4"></b>
-                        </b>
-                        B&uacute;squeda por zona
-                        <b class="rbottom">
-                            <b class="r4"></b>
-                            <b class="r3"></b>
-                            <b class="r2"></b>
-                            <b class="r1"></b>
-                        </b>
+                    <div class="round">
+                        B&uacute;squeda por zona                        
                     </div>
                 </div>
                 <div id="rightcol">
-                    <div class="titlebox">
-                        <b class="rtop">
-                            <b class="r1"></b>
-                            <b class="r2"></b>
-                            <b class="r3"></b>
-                            <b class="r4"></b>
-                        </b>
-                        B&uacute;squeda por categor&iacute;a
-                        <b class="rbottom">
-                            <b class="r4"></b>
-                            <b class="r3"></b>
-                            <b class="r2"></b>
-                            <b class="r1"></b>
-                        </b>
+                    <div class="round">
+                        B&uacute;squeda por categor&iacute;a                        
                     </div>
                     <div class="contentbox">
-                        <ul>
-                            <li>Alta Cocina</li>
-                            <li>Argentina</li>
-                            <li>Asiatica</li>
-                            <li>Casera</li>
-                            <li>China</li>
-                            <li>Cortes Finos</li>
-                            <li>Ensaladas</li>
-                            <li>Europeas</li>
-                        </ul>
+                        
+                            <span>Alta Cocina</span><br/>
+                            <span>Argentina</span><br/>
+                            <span>Asiatica</span><br/>
+                            <span>Casera</span><br/>
+                            <span>China</span><br/>
+                            <span>Cortes Finos</span><br/>
+                            <span>Ensaladas</span><br/>
+                            <span>Europeas</span><br/>
+                       
                     </div>
                 </div>
                 <br/>
-                <a href="busqueda.htm">Busqueda</a>
+                <a href="busqueda.htm">Busqueda</a>                
             </div>
             <div id="footer">
                 footer

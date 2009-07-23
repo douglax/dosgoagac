@@ -64,12 +64,12 @@ div#welcome{
         #menu ul li a{display: block; margin: 0; padding: 5px 25px; line-height:1.3em; background-color:#f77300; color: #fff}
         #menu ul li a:hover{background-color:#f7a100}
 
-    #detail{background: repeat-y 0% 0%; background-color:silver; border-bottom:15px solid gray; }
-        #logoandrate{ float:left; width:20%; text-align:left; background-color: blue; }
-        #info{ margin-left:20%; width:80%; text-align:left; font-size:smaller; }
-            #description{background: repeat-y 0% 0%; background-color:red;}
-            #directions{float:left; width:50%; text-align:left; background-color: green;}
-            #rest_picture{margin-left:50%; width:50%; text-align:left; background-color: yellow;}
+    #detail{background-color:#fff; border:1px solid black; }
+        #logoandrate{ float:left; width:20%; text-align:left;margin: 5px  }
+        #info{ float:left; width:75%; text-align:left; font-size:smaller; }
+            #description{padding: 15px 5px}
+            #directions{float:left; width:50%; text-align:left; }
+            #rest_picture{ float:left; margin:10px 25px}
 
 
     #onlinemenucategories{border-bottom:5px solid gray; height:53px; font-size:x-small;}
@@ -83,12 +83,12 @@ div#welcome{
 
     #flash{text-align:center;/*border-bottom:15px solid gray*/}
 
-    #content{position:relative; padding-left:25px; /*padding:5px 0;*/ overflow:hidden;border-bottom:15px solid gray;
+    #content{position:relative; padding:0 25px; /*padding:5px 0;*/ overflow:hidden;border-bottom:15px solid gray;
         /*background: inherit;*/ background-color:#fffee5}
 
     #lowerband{background: repeat-y 0% 0%; background-color:silver; border-bottom:15px solid gray; }
         #leftcol{ float:left; width:50%; text-align:center}
-        #rightcol{ margin-left:50%; width:50%; text-align:center}    
+        #rightcol{ float:left; width:50%; text-align:center}
     
 
     #footer{clear: both; font-size:85%;border:2px solid lime}
@@ -108,7 +108,7 @@ div#welcome{
 
     .contentbox{background-color:#fff; padding:10px 15px;margin: 10px; 
             width:70%; border: 1px solid black; text-align:left;
-            min-height:100px
+            max-height:100px
      }
     .cleared{clear:both}
 
