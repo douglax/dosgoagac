@@ -107,7 +107,9 @@ div#welcome{
     .r4{margin: 0 1px; height: 2px}
 
     .contentbox{background-color:#fff; padding:10px 15px;margin: 10px; 
-            width:80%; border: 1px solid black; text-align:left; min-height:100px}    
+            width:70%; border: 1px solid black; text-align:left;
+            min-height:100px
+     }
     .cleared{clear:both}
 
 
