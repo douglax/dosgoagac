@@ -91,7 +91,7 @@
                         </div>
 
                     </div>
-                
+                <div id="content"
                 <table border=2 width="100%" align="center">
                     <tr>
                         <td>A</td>
@@ -108,14 +108,19 @@
                         <td>H</td>
                         <td>I</td>
                     </tr>
-                </table>
-
+                </table><br>
+                    
+            </div>
 
           <div id="lowerband">
                 <div id="leftcol">
 
                      <form>
-                            <table>
+                         <br>
+                         <img src="images/btn_busquedarapida.png" alt="botonbusquedarapida" align="left">
+                         <br>
+                         <br>
+                         <table bgcolor="white" align="center">
                                 <tbody>
                                     <tr>
                                         <td>Restaurante</td>
@@ -125,9 +130,12 @@
                                         <td>Alg&uacute;n antojo?</td>
                                         <td><input type="text" name="some" value="" size="20" /></td>
                                     </tr>
+                                    <tr>
+                                        <td colspan="2"><input type="submit" value="Buscar" /></td>
+                                    </tr>
                                 </tbody>
                             </table>
-                            <input type="submit" value="Buscar" />
+                            
                         </form>
 
 
@@ -136,7 +144,7 @@
                 <div id="rightcol">
                     <img align="center" src="images/losmas2go.png" alt="losmas2go" height="50" ><br>
 
-                    <table align="center" width="100%" >
+                    <table align="center" width="100%" bgcolor="white" >
                         <tr align="center" bgcolor="lightgrey">
                             <td><b>Los más visitados</b></td>
                         <td><b>Los más nuevos</b></td>
