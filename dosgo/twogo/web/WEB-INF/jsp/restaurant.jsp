@@ -91,12 +91,88 @@
                         </div>
 
                     </div>
-                    <hr>
-                    Contenido<br>
-                    Contenido<br>
-                    Contenido<br>
-                    Contenido<br>
-                    Contenido<br>
+                
+                <table border=2 width="100%" align="center">
+                    <tr>
+                        <td>A</td>
+                        <td>B</td>
+                        <td>C</td>
+                    </tr>
+                    <tr>
+                        <td>D</td>
+                        <td>E</td>
+                        <td>F</td>
+                    </tr>
+                    <tr>
+                        <td>G</td>
+                        <td>H</td>
+                        <td>I</td>
+                    </tr>
+                </table>
+
+
+          <div id="lowerband">
+                <div id="leftcol">
+
+                     <form>
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td>Restaurante</td>
+                                        <td><input type="text" name="rest" value="" size="20" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Alg&uacute;n antojo?</td>
+                                        <td><input type="text" name="some" value="" size="20" /></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <input type="submit" value="Buscar" />
+                        </form>
+
+
+                </div>
+
+                <div id="rightcol">
+                    <img align="center" src="images/losmas2go.png" alt="losmas2go" height="50" ><br>
+
+                    <table align="center" width="100%" >
+                        <tr align="center" bgcolor="lightgrey">
+                            <td><b>Los más visitados</b></td>
+                        <td><b>Los más nuevos</b></td>
+                        <td><b>Los más comentados</b></td>
+                        </tr>
+                        <tr>
+                            <!-- los mas visitados -->
+                            <td><a href="#">Barrigas </a><br>
+                                <a href="#">Applebee's </a><br>
+                                <a href="#">Chilangos </a><br>
+                                <a href="#">Rosa Canela </a><br>
+                                <a href="#">Sushi Land </a><br></td>
+
+                            <!-- los mas nuevos -->
+                            <td><a href="#">DiMerlo</a><br>
+                                <a href="#">ComeCamila </a><br>
+                                <a href="#">Burger King </a><br>
+                                <a href="#">Starbucks </a><br>
+                                <a href="#">Bernardis </a><br></td>
+
+                            <!-- los mas comentados -->
+                            <td><a href="#">El Portón </a><br>
+                                <a href="#">Applebee's </a><br>
+                                <a href="#">Las Tapas </a><br>
+                                <a href="#">Rosa Canela </a><br>
+                                <a href="#">La Casa del Dragón </a><br></td>
+                        </tr>
+                    </table>
+
+                </div>
+
+
+            </div>
+
+
+ 
                     <div class="cleared"></div>
                 
             </div>
