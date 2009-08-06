@@ -37,11 +37,18 @@
             </div>
             <div class="gray-bar"></div>
             <div id="content">
+
+                 
+
                 <div id="leftcol">
                     <div class="round">
                         B&uacute;squeda R&aacute;pida                        
                     </div>
                     <div class="contentbox">
+
+                            
+
+
                         <form>
                             <table>
                                 <tbody>
@@ -57,6 +64,9 @@
                             </table>
                             <input type="submit" value="Buscar" />
                         </form>
+
+
+
                     </div>
                     <div class="round">
                         B&uacute;squeda por zona                        

@@ -98,7 +98,7 @@ div#welcome{
         #rightcol{ width:45%; text-align:center; font-size:x-small; margin: 10px 10px; float:right;  }
 
 
-    
+
 
     #footer{clear: both; font-size:85%;border:2px solid lime}
 
@@ -120,5 +120,4 @@ div#welcome{
             max-height:100px
      }
     .cleared{clear:both}
-
 

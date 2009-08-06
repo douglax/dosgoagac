@@ -30,7 +30,7 @@
     <body>
         <div id="main">
             <twogo:header/>
-            <div id="content">
+            <div id="lowerband">
                 <div class="round" style="text-align:center">
                     Domino's Pizza
                 </div>
@@ -78,7 +78,12 @@
                 </div>
                 <div id="onlinemenucategories">
                     <div id="logomenuonline">
-                        <img src="images/btn_menuonline.png"/>
+                       <img src="images/btn_menuonline.png"/> 
+
+   <!--                 <div class="round">
+                        Men&uacute; Online
+                    </div>  -->
+
                     </div>
                     <div id="category">
                         <ul>
