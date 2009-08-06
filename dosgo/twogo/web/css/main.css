@@ -79,7 +79,7 @@ div#welcome{
             #rest_picture{ float:left; margin:10px 25px}
 
 
-    #onlinemenucategories{border-bottom:5px solid gray; height:53px; font-size:x-small;}
+    #onlinemenucategories{border-bottom:5px solid gray; height:53px; font-size:small;}
         #logo_menuonline{ margin-top: 35px;}
         #category{float:right; width: 70%; }
         #category ul{clear: left; float: left; list-style:none; margin: 0; padding: 0; position:relative; left:50%; text-align:center}
@@ -95,7 +95,7 @@ div#welcome{
 
     #lowerband{background: repeat-y 0% 0%; background-color:silver; border-bottom:15px solid gray; height:160px; }
         #leftcol{  width:45%; text-align:center; margin:10px 10px; float:left;}
-        #rightcol{ width:45%; text-align:center; font-size:x-small; margin: 10px 10px; float:right;  }
+        #rightcol{ width:45%; text-align:center; font-size:small; margin: 10px 10px; float:right;  }
 
 
 
@@ -116,8 +116,19 @@ div#welcome{
     .r4{margin: 0 1px; height: 2px}
 
     .contentbox{background-color:#fff; padding:10px 15px;margin: 10px; 
-            width:70%; border: 1px solid black; text-align:left;
-            max-height:100px
+            border: 1px solid black; text-align:left;
+            max-height:230px;max-width:390px;
+     }
+     .contentbox table{
+         width: 100%;
+         line-height: 12px;
+     }
+     .contentbox table a{
+         color: #f77300;
+         text-decoration:underline;
      }
     .cleared{clear:both}
+    .round{
+        font-size:large;
+    }
 

@@ -7,7 +7,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib tagdir="/WEB-INF/tags" prefix="twogo" %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-"http://www.w3.org/TR/html4/loose.dtd">
+    "http://www.w3.org/TR/html4/loose.dtd">
 
 <html>
     <head>
@@ -71,26 +71,121 @@
                     <div class="round">
                         B&uacute;squeda por zona                        
                     </div>
+                    <div class="contentbox">
+                        <img src="images/mapa.png" width="372" height="225" alt="mapa"/>
+
+                    </div>
                 </div>
                 <div id="rightcol">
                     <div class="round">
                         B&uacute;squeda por categor&iacute;a                        
                     </div>
                     <div class="contentbox">
-                        
-                            <span>Alta Cocina</span><br/>
-                            <span>Argentina</span><br/>
-                            <span>Asiatica</span><br/>
-                            <span>Casera</span><br/>
-                            <span>China</span><br/>
-                            <span>Cortes Finos</span><br/>
-                            <span>Ensaladas</span><br/>
-                            <span>Europeas</span><br/>
-                       
+                        <table>
+                            <tr>
+                                <td>
+                                    <a href="#">Asiatica</a>
+                                </td>
+                                <td>
+                                    <a href="#">Mexicana</a>
+                                </td>                                    
+                                <td>
+                                    <a href="#">Italiana</a>
+                                </td>                                
+                            </tr>
+                            <tr>
+                                
+                                <td>
+                                    <a href="#">Rapida</a>
+                                </td>
+                                <td>
+                                    <a href="#">Vegetariana</a>
+                                </td>
+                                <td>
+                                    <a href="#">Hamburguesas</a>
+                                </td>
+                               
+                            </tr>
+                            <tr>
+                                <td>
+                                    <a href="#">Hamburguesas</a>
+                                </td>
+                                <td>
+                                    <a href="#">Pizzas</a>
+                                </td>
+                                <td>
+                                    <a href="#">Casera</a>
+                                </td>  
+                            </tr>
+                            <tr>
+                                <td>
+                                    <a href="#">Naturista</a>
+                                </td>
+                                <td>
+                                    <a href="#">Oriental</a>
+                                </td>
+                                <td>
+                                    <a href="#">Postres</a>
+                                </td>
+                            </tr>
+                             <tr>
+                                <td>
+                                    <a href="#">Saludable</a>
+                                </td>
+                                <td>
+                                    <a href="#">Sushi</a>
+                                </td>
+                                <td>
+                                    <a href="#">Mediterraneo</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <a href="#">Francesa</a>
+                                </td>
+                                <td>
+                                    <a href="#">Saluble</a>
+                                </td>
+                                <td>
+                                    <a href="#">Pollo</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <a href="#">Francesa</a>
+                                </td>
+                                <td>
+                                    <a href="#">Saluble</a>
+                                </td>
+                                <td>
+                                    <a href="#">Pollo</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <a href="#">Japonesa</a>
+                                </td>
+                                <td>
+                                    <a href="#">Pastas</a>
+                                </td>
+                                <td>
+                                    <a href="#">Cortes Finos</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <a href="#">Tostadas</a>
+                                </td>
+                                <td>
+                                    <a href="#">Pannini</a>
+                                </td>
+
+                            </tr>
+                        </table>
+
                     </div>
                 </div>
                 <br/>
-                <a href="busqueda.htm">Busqueda</a>                
             </div>
             <div id="footer">
                 footer
