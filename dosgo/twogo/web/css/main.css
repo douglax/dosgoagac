@@ -40,6 +40,13 @@ table#locations tr td a{
     color:#fff;
 }
 
+
+table#rounded{
+    border:1px solid black ;
+   
+}
+
+
 div#welcome{
     font: large calibri, sans
 }

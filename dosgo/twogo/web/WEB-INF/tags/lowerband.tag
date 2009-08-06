@@ -25,54 +25,80 @@
                             <table width="350" cellpadding="0" cellspacing="0" border="0"
                                    style="background-color: #FFFFFF">
                                 <tr>
-                                    <td width="14" bgcolor="silver"><img src="images/wtcorner1.png" width="14"
-                                                        height="14" border="0" alt="..." /></td>
+                                    <td width="16" bgcolor="silver"><img src="images/wbcorner1.png" width="16"
+                                                        height="16" border="0" alt="..." /></td>
 
-                                    <td width="322" colspan="2"></td>
+                                    <td width="318" colspan="2" style="background-image: url('images/topmargin.png');"  >
+                                        <img src="images/blank.png" width="1" height="16" border="0" alt="..." />
+                                    </td>
 
-                                    <td width="14" bgcolor="silver"><img src="images/wtcorner2.png" width="14"
-                                                        height="14" border="0" alt="..." /></td>
+                                    <td width="16" bgcolor="silver"><img src="images/wbcorner2.png" width="16"
+                                                        height="16" border="0" alt="..." /></td>
 
                                 </tr>
+
+
+
+
                                 <tr>
 
-                                    <td></td>
+                                    <td style="background-image: url('images/ltmargin.png');">
+                                        <img src="images/blank.png" width="16" height="1" border="0" alt="..." />
+                                    </td>
 
                                     <td>Restaurante</td>
                                     <td><input type="text" name="rest" value="" size="20" /></td>
 
-                                    <td></td>
+                                    <td style="background-image: url('images/rtmargin.png');">
+                                       <img src="images/blank.png" width="16" height="1" border="0" alt="..." />
+                                    </td>
 
                                 </tr>
 
+
+
                                 <tr>
 
-                                    <td></td>
+                                    <td style="background-image: url('images/ltmargin.png');">
+                                       <img src="images/blank.png" width="16" height="1" border="0" alt="..." />
+                                    </td>
                                     <td>Alg&uacute;n antojo?</td>
                                     <td><input type="text" name="some" value="" size="20" /></td>
 
-                                    <td></td>
+                                    <td style="background-image: url('images/rtmargin.png');">
+                                       <img src="images/blank.png" width="16" height="1" border="0" alt="..." />
+                                    </td>
 
                                 </tr>
 
                                 <tr>
 
-                                    <td></td>
+                                    <td style="background-image: url('images/ltmargin.png');">
+                                       <img src="images/blank.png" width="16" height="1" border="0" alt="..." />
+                                    </td>
 
                                     <td colspan="2"><input type="submit" value="Buscar" /></td>
 
-                                    <td></td>
+                                    <td style="background-image: url('images/rtmargin.png');">
+                                       <img src="images/blank.png" width="16" height="1" border="0" alt="..." />
+                                    </td>
 
                                 </tr>
 
+
+                                
+
+
                                 <tr>
 
-                                    <td bgcolor="silver"><img src="images/wtcorner3.png" width="14" height="14"
+                                    <td bgcolor="silver"><img src="images/wbcorner3.png" width="16" height="16"
                                              border="0" alt="..." /></td>
 
-                                    <td colspan="2"></td>
+                                    <td colspan="2" style="background-image: url('images/botmargin.png');">
+                                        <img src="images/blank.png" width="1" height="16" border="0" alt="..." />
+                                    </td>
 
-                                    <td bgcolor="silver"><img src="images/wtcorner4.png" width="14" height="14"
+                                    <td bgcolor="silver"><img src="images/wbcorner4.png" width="16" height="16"
                                              border="0" alt="..." /></td>
 
                                 </tr>
@@ -93,13 +119,14 @@
                         <table width="350" cellpadding="0" cellspacing="0" border="0"
                                    style="background-color: #FFFFFF">
                                 <tr>
-                                    <td width="14" bgcolor="silver"><img src="images/wtcorner1.png" width="14"
-                                                        height="14" border="0" alt="..." /></td>
+                                    <td width="14" bgcolor="silver"><img src="images/wbcorner1.png" width="16"
+                                                        height="16" border="0" alt="..." /></td>
 
-                                    <td width="322">  </td>
-
-                                    <td width="14" bgcolor="silver"><img src="images/wtcorner2.png" width="14"
-                                                        height="14" border="0" alt="..." /></td>
+                                    <td width="322" style="background-image: url('images/topmargin.png');">
+                                        <img src="images/blank.png" width="1" height="16" border="0" alt="..." />
+                                    </td>
+                                    <td width="16" bgcolor="silver"><img src="images/wbcorner2.png" width="16"
+                                                        height="16" border="0" alt="..." /></td>
 
                                 </tr>
 
@@ -107,9 +134,11 @@
 
                                 <tr>
 
-                                    <td></td>
+                                    <td style="background-image: url('images/ltmargin.png');">
+                                        <img src="images/blank.png" width="16" height="1" border="0" alt="..." />
+                                    </td>
 
-                                    <td >
+                                    <td>
 
                         <table  width="100%" bgcolor="white" >
                             <tr align="center" bgcolor="lightgrey">
@@ -143,17 +172,21 @@
 
                                         </td>
 
-                                        <td></td>
+                                        <td style="background-image: url('images/rtmargin.png');">
+                                            <img src="images/blank.png" width="16" height="1" border="0" alt="..." />
+                                        </td>
                                 </tr>
 
                                  <tr>
 
-                                    <td bgcolor="silver"><img src="images/wtcorner3.png" width="14" height="14"
+                                    <td bgcolor="silver"><img src="images/wbcorner3.png" width="16" height="16"
                                              border="0" alt="..." /></td>
 
-                                    <td></td>
+                                    <td style="background-image: url('images/botmargin.png');">
+                                        <img src="images/blank.png" width="1" height="16" border="0" alt="..." />
+                                    </td>
 
-                                    <td bgcolor="silver"><img src="images/wtcorner4.png" width="14" height="14"
+                                    <td bgcolor="silver"><img src="images/wbcorner4.png" width="16" height="16"
                                              border="0" alt="..." /></td>
 
                                 </tr>

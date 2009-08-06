@@ -42,24 +42,7 @@
             </div>
 
 
-            <div id="lowerband">
-                <div id="leftcol">
-                    lineas<br>
-                    lineas<br>
-                    lineas<br>
-                    lineas<br>
-                    lineas<br>
-                </div>
-                <div id="rightcol">
-                    lineas<br>
-                    lineas<br>
-                    lineas<br>
-                    lineas<br>
-                    lineas<br>
-                </div>
-                
-
-            </div>
+            <twogo:lowerband/>
 
             <div id="footer">
                 footer
