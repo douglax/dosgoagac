@@ -38,7 +38,7 @@
 
             <div id="detail">
                 <div id="logoandrate">
-                    <img src="testimages/logodominos.png">
+                    <img src="testimages/logodominos.png" alt="logodelrestaurant" />
                 </div>
                 <div id="info">
                     <div id="description">
@@ -120,7 +120,7 @@
 
                         <div id="singledish">
                             <div id="dishphoto">
-                                <img src="testimages/pizzathumb.png" height="60" width="100" alt="thumb" />
+                                <img src="testimages/pizzathumb.png" alt="thumb" />
                             </div>
                             <div id="dishname">
                                 Pizza Italiana
@@ -135,7 +135,7 @@
 
                         <div id="singledish">
                             <div id="dishphoto">
-                                <img src="testimages/pizzathumb.png" height="60" width="100" alt="thumb" />
+                                <img src="testimages/pizzathumb.png"  alt="thumb" />
                             </div>
                             <div id="dishname">
                                 Dominator

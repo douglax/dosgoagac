@@ -99,7 +99,7 @@ div#welcome{
 
 
     #dishes{text-align:left}
-        #singledish{border-bottom:2px solid gray;}
+        #singledish{border-bottom:2px solid gray; margin-top:4px;}
         #dishphoto{float:left; width:100px; height:60px;  }
         #dishname{font-style:oblique; font-size:larger}
         #dishdescription{}
