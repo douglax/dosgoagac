@@ -79,7 +79,7 @@ div#welcome{
             #rest_picture{ float:left; margin:10px 25px}
 
 
-    #onlinemenucategories{border-bottom:5px solid gray; height:53px; font-size:small;}
+    #onlinemenucategories{border-bottom:5px solid gray; height:58px; font-size:small;}
         #logo_menuonline{ margin-top: 35px;}
         #category{float:right; width: 70%; }
         #category ul{clear: left; float: left; list-style:none; margin: 0; padding: 0; position:relative; left:50%; text-align:center}
@@ -88,12 +88,25 @@ div#welcome{
         #category ul li a:hover{background-color:#f7a100}
 
 
+        
+
+
+
     #flash{text-align:center;/*border-bottom:15px solid gray*/}
 
     #content{position:relative; padding:0 25px; /*padding:5px 0;*/ overflow:hidden; border-bottom:15px solid gray;
         /*background: inherit;*/ background-color:#fffee5}
 
-    #lowerband{background: repeat-y 0% 0%; background-color:silver; border-bottom:15px solid gray; height:160px; }
+
+    #dishes{text-align:left}
+        #singledish{border-bottom:2px solid gray;}
+        #dishphoto{float:left; width:100px; height:60px;  }
+        #dishname{font-style:oblique; font-size:larger}
+        #dishdescription{}
+        #dishdetails{}
+
+
+    #lowerband{background: repeat-y 0% 0%; background-color:silver; border-bottom:15px solid gray; height:205px; }
         #leftcol{  width:45%; text-align:center; margin:10px 10px; float:left;}
         #rightcol{ width:45%; text-align:center; font-size:small; margin: 10px 10px; float:right;  }
 

@@ -30,59 +30,61 @@
     <body>
         <div id="main">
             <twogo:header/>
-            <div id="lowerband">
-                <div class="round" style="text-align:center">
-                    Domino's Pizza
-                </div>
-                <div>
-                    <div id="detail">
-                        <div id="logoandrate">
-                            <img src="testimages/logodominos.png">
-                        </div>
-                        <div id="info">
-                            <div id="description">
-                                <p><b>Descripcion General:</b></p>
-                                <p/>
-                                Bajo la premisa de "Si no te llega en 30 minutos es grátis"
-                                Dominos Pizza se ha convertido en uno de los restaurantes de
-                                comida rápida preferidos de los chihuahuenses en lo que a pizzas se refiere.
-                                Con su gran variedad de pizzas y postres, Domino's Pizza
-                                es una excelente opción para ese antojo delicioso y sin duda rápido! <br/>
-                                <hr>
-                                <div id="directions">
-                                    <strong>Sucursal:</strong><br>
-                                    <strong>Dirección:</strong><br>
-                                    Av. Mirador #1234<br>
-                                    Col. Mirador<br>
-                                    <hr>
-                                    <strong>Horarios:</strong><br>
-                                    lunes a viernes de 11:00 a 22:00<br>
-                                    <hr>
-                                    Si cuenta con servicio a domicilio<br>
-                                    <hr>
-                                    <strong>Sitio web:</strong><br>
-                                    <a href="http://www.dominospizza.com.mx">http://www.dominospizza.com.mx</a>
-                                    <br> otra linea y
-                                    <br> otra linea
-                                </div>
-                                <div id="rest_picture">
-                                    <img src="testimages/dominospic.png"/><br>
-                                    Teléfonos: (614) 410-7035<br>
-                                    01-800-DOMINOS
-                                </div>
-                            </div>
-                        </div>
-                        <div class="cleared"></div>
-                    </div>
+            <div class="round" style="text-align:center">
+                Domino's Pizza
+            </div>
 
+
+
+            <div id="detail">
+                <div id="logoandrate">
+                    <img src="testimages/logodominos.png">
                 </div>
+                <div id="info">
+                    <div id="description">
+                        <p><b>Descripcion General:</b></p>
+                        <p/>
+                        Bajo la premisa de "Si no te llega en 30 minutos es grátis"
+                        Dominos Pizza se ha convertido en uno de los restaurantes de
+                        comida rápida preferidos de los chihuahuenses en lo que a pizzas se refiere.
+                        Con su gran variedad de pizzas y postres, Domino's Pizza
+                        es una excelente opción para ese antojo delicioso y sin duda rápido! <br/>
+                        <hr>
+                        <div id="directions">
+                            <strong>Sucursal:</strong><br>
+                            <strong>Dirección:</strong><br>
+                            Av. Mirador #1234<br>
+                            Col. Mirador<br>
+                            <hr>
+                            <strong>Horarios:</strong><br>
+                            lunes a viernes de 11:00 a 22:00<br>
+                            <hr>
+                            Si cuenta con servicio a domicilio<br>
+                            <hr>
+                            <strong>Sitio web:</strong><br>
+                            <a href="http://www.dominospizza.com.mx">http://www.dominospizza.com.mx</a>
+                            <br> otra linea y
+                            <br> otra linea
+                        </div>
+                        <div id="rest_picture">
+                            <img src="testimages/dominospic.png"/><br>
+                            Teléfonos: (614) 410-7035<br>
+                            01-800-DOMINOS
+                        </div>
+                    </div>
+                </div>
+            </div>    <!-- detail -->
+
+
+                <div class="cleared"></div>
+
                 <div id="onlinemenucategories">
                     <div id="logomenuonline">
-                       <img src="images/btn_menuonline.png"/> 
+                        <img src="images/btn_menuonline.png"/>
 
-   <!--                 <div class="round">
-                        Men&uacute; Online
-                    </div>  -->
+                        <!--                 <div class="round">
+                                             Men&uacute; Online
+                                         </div>  -->
 
                     </div>
                     <div id="category">
@@ -95,34 +97,77 @@
                         </ul>
                     </div>
 
-                </div>
-                <div id="content"
-                     <table border=2 width="100%" align="center">
-                        <tr>
-                            <td>A</td>
-                            <td>B</td>
-                            <td>C</td>
-                        </tr>
-                        <tr>
-                            <td>D</td>
-                            <td>E</td>
-                            <td>F</td>
-                        </tr>
-                        <tr>
-                            <td>G</td>
-                            <td>H</td>
-                            <td>I</td>
-                        </tr>
-                    </table><br>
-
-                </div>
+                </div>     <!-- onlinemenucategories -->
 
 
-                <twogo:lowerband/>
+                <div id="content">
 
-                                <div class="cleared"></div>
+                    <div id="dishes">
+                        <div id="singledish">
+                            <div id="dishphoto">
+                                <img  src="testimages/pizzathumb.png" alt="thumb" >
+                            </div>
+                            <div id="dishname">
+                                Pizza Mexicana
+                            </div>
+                            <div id="dishdescription">
+                                Nuestra exquisita pizza con un toque de lo nuestro: Chile, tomate y cebolla
+                            </div>
+                            <div id="dishdetails">
+                                Chica $25 Mediana $35 Grande $42
+                            </div>
+                        </div>  <!--singledish-->
 
-            </div>
+                        <div id="singledish">
+                            <div id="dishphoto">
+                                <img src="testimages/pizzathumb.png" height="60" width="100" alt="thumb" />
+                            </div>
+                            <div id="dishname">
+                                Pizza Italiana
+                            </div>
+                            <div id="dishdescription">
+                                Nuestra original pizza con peperoni, tomates deshidratados y albahaca
+                            </div>
+                            <div id="dishdetails">
+                                Chica $25 Mediana $35 Grande $42
+                            </div>
+                        </div>  <!--singledish-->
+
+                        <div id="singledish">
+                            <div id="dishphoto">
+                                <img src="testimages/pizzathumb.png" height="60" width="100" alt="thumb" />
+                            </div>
+                            <div id="dishname">
+                                Dominator
+                            </div>
+                            <div id="dishdescription">
+                                La mas grande y deliciosa pizza que jamás encontrarás, ármala tu mismo eligiendo 4 ingredientes de nuestro menú
+                            </div>
+                            <div id="dishdetails">
+                                Chica $25 Mediana $35 Grande $42
+                            </div>
+                        </div>  <!--singledish-->
+
+                    </div>  <!--dishes-->
+
+
+                    <br>
+
+                </div> <!-- content -->
+
+
+
+
+
+
+
+
+
+            <twogo:lowerband/>
+
+            <div class="cleared"></div>
+
+
 
             <div id="footer">
                 <!--<div>
