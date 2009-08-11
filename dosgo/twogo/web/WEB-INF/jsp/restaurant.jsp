@@ -78,6 +78,9 @@
 
                 <div class="cleared"></div>
 
+                
+                <twogo:outer_round_opens/>
+
                 <div id="onlinemenucategories">
                     <div id="logomenuonline">
                         <img src="images/btn_menuonline.png"/>
@@ -151,14 +154,114 @@
                     </div>  <!--dishes-->
 
 
-                    <br>
 
                 </div> <!-- content -->
 
 
+                <br>
+            <div class="round" style="text-align:center">
+                Calificaciones
+            </div>
+
+
+            <!-- Recuadro de última calificación -->
+
+            <table width="400" cellpadding="0" cellspacing="0" border="0"
+                                   style="background-color: #FFFFFF">
+                                <tr>
+                                    <td width="16"><img src="images/wbcorner1.png" width="16"
+                                                        height="16" border="0" alt="..." /></td>
+
+                                    <td width="368"  style="background-image: url('images/topmargin.png');"  >
+                                        <img src="images/blank.png" width="1" height="16" border="0" alt="..." />
+                                    </td>
+
+                                    <td width="16"><img src="images/wbcorner2.png" width="16"
+                                                        height="16" border="0" alt="..." /></td>
+
+                                </tr>
 
 
 
+
+                                <tr>
+
+                                    <td style="background-image: url('images/ltmargin.png');">
+                                        <img src="images/blank.png" width="16" height="1" border="0" alt="..." />
+                                    </td>
+
+                                    <td><font color="purple">Martín Domínguez</font>   </td>
+
+                                    <td style="background-image: url('images/rtmargin.png');">
+                                       <img src="images/blank.png" width="16" height="1" border="0" alt="..." />
+                                    </td>
+
+                                </tr>
+
+
+
+                                <tr>
+
+                                    <td style="background-image: url('images/ltmargin.png');">
+                                       <img src="images/blank.png" width="16" height="1" border="0" alt="..." />
+                                    </td>
+                                    <td>Lunes 15 de Junio de 2009 a las 15:53:30</td>
+
+
+                                    <td style="background-image: url('images/rtmargin.png');">
+                                       <img src="images/blank.png" width="16" height="1" border="0" alt="..." />
+                                    </td>
+
+                                </tr>
+
+                                
+
+
+
+
+
+                                <tr>
+
+                                    <td><img src="images/wbcorner3.png" width="16" height="16"
+                                             border="0" alt="..." /></td>
+
+                                    <td style="background-image: url('images/botmargin.png');">
+                                        <img src="images/blank.png" width="1" height="16" border="0" alt="..." />
+                                    </td>
+
+                                    <td><img src="images/wbcorner4.png" width="16" height="16"
+                                             border="0" alt="..." /></td>
+
+                                </tr>
+                            </table>
+
+
+            <!-- termina recuadro de última calificación -->
+
+         <table width="650">
+             <tr><td width="75%">
+            Muy buena la comida pero el restaurant se ve viejo y en mal estado, urge una remodelación
+            </td>
+            <td>
+                <img src="testimages/stars.png" alt="stars" />
+            </td>
+            </tr>
+        </table>
+            <br>
+
+
+        <!-- comienza Servicios que se ofrecen -->
+
+
+
+
+
+        <!-- termina Servicios que se ofrecen -->
+        <br>
+
+            <twogo:outer_round_closes/>
+                
+<br>
 
 
 
