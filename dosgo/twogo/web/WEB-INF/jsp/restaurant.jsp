@@ -176,7 +176,7 @@
                                                         height="16" border="0" alt="..." /></td>
 
                                     <td width="368"  style="background-image: url('images/topmargin.png');"  >
-                                        <img src="images/blank.png" width="1" height="16" border="0" alt="..." />
+                              <!--           <img src="images/blank.png" width="1" height="16" border="0" alt="..." />     -->
                                     </td>
 
                                     <td width="16"><img src="images/wbcorner2.png" width="16"
@@ -229,7 +229,7 @@
                                              border="0" alt="..." /></td>
 
                                     <td style="background-image: url('images/botmargin.png');">
-                                        <img src="images/blank.png" width="1" height="16" border="0" alt="..." />
+                                <!--         <img src="images/blank.png" width="1" height="16" border="0" alt="..." />   -->
                                     </td>
 
                                     <td><img src="images/wbcorner4.png" width="16" height="16"
@@ -254,6 +254,7 @@
 
 
         <!-- comienza Servicios que se ofrecen -->
+
 
         <div class="fourcols" >
 
@@ -300,7 +301,7 @@
             
 
         </div>  <!-- multicols -->
-
+        
         <!-- termina Servicios que se ofrecen -->
 
 

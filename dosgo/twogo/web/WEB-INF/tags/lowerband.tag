@@ -29,7 +29,7 @@
                                                         height="16" border="0" alt="..." /></td>
 
                                     <td width="318" colspan="2" style="background-image: url('images/topmargin.png');"  >
-                                        <img src="images/blank.png" width="1" height="16" border="0" alt="..." />
+                              <!--          <img src="images/blank.png" width="1" height="16" border="0" alt="..." />  -->
                                     </td>
 
                                     <td width="16" bgcolor="silver"><img src="images/wbcorner2.png" width="16"
@@ -95,7 +95,7 @@
                                              border="0" alt="..." /></td>
 
                                     <td colspan="2" style="background-image: url('images/botmargin.png');">
-                                        <img src="images/blank.png" width="1" height="16" border="0" alt="..." />
+                                    <!--    <img src="images/blank.png" width="1" height="16" border="0" alt="..." />    -->
                                     </td>
 
                                     <td bgcolor="silver"><img src="images/wbcorner4.png" width="16" height="16"
@@ -123,7 +123,7 @@
                                                         height="16" border="0" alt="..." /></td>
 
                                     <td width="322" style="background-image: url('images/topmargin.png');">
-                                        <img src="images/blank.png" width="1" height="16" border="0" alt="..." />
+                            <!--            <img src="images/blank.png" width="1" height="16" border="0" alt="..." />  -->
                                     </td>
                                     <td width="16" bgcolor="silver"><img src="images/wbcorner2.png" width="16"
                                                         height="16" border="0" alt="..." /></td>
@@ -183,7 +183,7 @@
                                              border="0" alt="..." /></td>
 
                                     <td style="background-image: url('images/botmargin.png');">
-                                        <img src="images/blank.png" width="1" height="16" border="0" alt="..." />
+                           <!--             <img src="images/blank.png" width="1" height="16" border="0" alt="..." />  -->
                                     </td>
 
                                     <td bgcolor="silver"><img src="images/wbcorner4.png" width="16" height="16"

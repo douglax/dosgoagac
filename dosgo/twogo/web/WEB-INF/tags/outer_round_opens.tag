@@ -19,7 +19,7 @@
                                                         height="16" border="0" alt="..." /></td>
 
                                     <td width="928" style="background-image: url('images/topmargin.png');"  >
-                                        <img src="images/blank.png" width="1" height="16" border="0" alt="..." />
+                            <!--            <img src="images/blank.png" width="1" height="16" border="0" alt="..." />  -->
                                     </td>
 
                                     <td width="16"><img src="images/wbcorner2.png" width="16"

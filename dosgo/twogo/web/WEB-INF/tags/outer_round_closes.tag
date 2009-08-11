@@ -28,7 +28,7 @@
                                              border="0" alt="..." /></td>
 
                                     <td style="background-image: url('images/botmargin.png');">
-                                        <img src="images/blank.png" width="1" height="16" border="0" alt="..." />
+                               <!--         <img src="images/blank.png" width="1" height="16" border="0" alt="..." />     -->
                                     </td>
 
                                     <td><img src="images/wbcorner4.png" width="16" height="16"
