@@ -119,6 +119,22 @@ div#welcome{
      #multicols a:hover{text-decoration: underline;}
 
 
+     #searchresultspanel{
+         margin:20px 100px;
+         width:800px;
+     }
+
+     #searchresults {
+     text-align: left;
+     -moz-column-count: 2;
+     -moz-column-gap: 1.5em;
+     -moz-column-rule: none;
+     -webkit-column-count: 2;
+     -webkit-column-gap: 1.5em;
+     -webkit-column-rule: none;
+     }
+     #searchresults a{color: #f77300;}
+     #searchresults a:hover{text-decoration: underline;}
 
 
 

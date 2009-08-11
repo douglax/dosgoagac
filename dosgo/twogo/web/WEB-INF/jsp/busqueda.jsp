@@ -29,17 +29,27 @@
     <body>
         <div id="main">
             <twogo:header/>
-            
-            <div id="content">
-               Aqui va el resultado de las busquedas<br>
-               <a href="restaurant.htm"> Domino's pizza</a><br>
-               linea<br>
-               linea<br>
-               linea<br>
 
 
+            <div id="searchresultspanel">
 
-            </div>
+                <div id ="searchresults">
+
+                    <img src ="testimages/searchresult1.png" alt="searchresults" /><br><br>
+                    <img src ="testimages/searchresult2.png" alt="searchresults" /><br><br>
+                    <img src ="testimages/searchresult3.png" alt="searchresults" /><br><br>
+                    <img src ="testimages/searchresult4.png" alt="searchresults" /><br><br>
+                    <img src ="testimages/searchresult4.png" alt="searchresults" /><br><br>
+                    <img src ="testimages/searchresult1.png" alt="searchresults" /><br><br>
+                    <img src ="testimages/searchresult2.png" alt="searchresults" /><br><br>
+                   <!--
+                    <img src ="testimages/searchresult3.png" alt="searchresults" /><br><br>
+                   -->
+
+                </div>  <!-- searchresults -->
+
+            </div> <!-- searchresultspanel -->
+
 
 
             <twogo:lowerband/>
