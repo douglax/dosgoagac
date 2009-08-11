@@ -105,7 +105,19 @@ div#welcome{
         #dishdescription{}
         #dishdetails{}
 
+     #searchresultspanel{
+         margin:20px 100px;
+         width:800px;
+     }
 
+
+
+
+    
+
+
+        
+/*
      #multicols {
      text-align: left;
      -moz-column-count: 4;
@@ -136,7 +148,7 @@ div#welcome{
      #searchresults a{color: #f77300;}
      #searchresults a:hover{text-decoration: underline;}
 
-
+*/
 
     #lowerband{background: repeat-y 0% 0%; background-color:silver; border-bottom:15px solid gray; height:205px; }
         #leftcol{  width:45%; text-align:center; margin:10px 10px; float:left;}
@@ -148,6 +160,11 @@ div#welcome{
     #footer{clear: both; font-size:85%;border:2px solid lime}
 
 /* :::::::::::::::::::: Otros :::::::::::::::::::::::::::::::*/
+
+
+
+
+
     .menu-left-side{background: #fff url('../images/rnd-lt.png') no-repeat scroll left  }
     .menu-right-side{background: #fff url('../images/rnd-rt.png') no-repeat scroll right  }
     .gray-bar{background-color:gray; height:15px; clear:both}

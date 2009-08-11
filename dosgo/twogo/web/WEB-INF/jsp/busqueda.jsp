@@ -13,11 +13,14 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" type="text/css" href="css/main.css"/>
+        <link rel="stylesheet" type="text/css" href="css/multicolumns.css"/>
+
         <style type="text/css">
             body{
                 background-image:url('images/bg.png');
             }
         </style>
+        <script src="js/css3-multi-column.js" type="text/javascript"></script>
         <script src="js/jquery-latest.js" type="text/javascript"></script>
         <script type="text/javascript">
             $(document).ready(function(){
@@ -33,7 +36,7 @@
 
             <div id="searchresultspanel">
 
-                <div id ="searchresults">
+                <div class="twocols">
 
                     <img src ="testimages/searchresult1.png" alt="searchresults" /><br><br>
                     <img src ="testimages/searchresult2.png" alt="searchresults" /><br><br>

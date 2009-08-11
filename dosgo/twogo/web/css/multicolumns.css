@@ -1,0 +1,49 @@
+/* 
+    Document   : multicolumns
+    Created on : Aug 11, 2009, 11:48:19 AM
+    Author     : alex
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+root { 
+    display: block;
+}
+
+.fourcols {
+	column-count: 4;
+	column-gap: 20px;
+	column-rule: none;
+	background-color: #FFFFFF;
+	border-top: 1px solid #999;
+	border-bottom: 1px solid #999;
+	padding: 8px;
+	text-align: justify;
+
+}
+
+.fourcols a{color: #f77300;}
+.fourcols a:hover{text-decoration: underline;}
+
+
+
+
+.twocols {
+	column-count: 2;
+	column-gap: 20px;
+	column-rule: none;
+	background-color: #FFFFFF;
+	border-top: 1px solid #999;
+	border-bottom: 1px solid #999;
+	padding: 8px;
+	text-align: justify;
+
+}
+
+.twocols a{color: #f77300;}
+.twocols a:hover{text-decoration: underline;}
