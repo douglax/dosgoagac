@@ -55,7 +55,7 @@ div#welcome{
     ------------- Layout de principal.jsp --------------
 */
 
-#main{width: 1000px; margin: 0 auto; text-align:left; background-color:#fff}
+#main{width: 1000px; margin: 0 auto; text-align:left; background-color:#fff; }
 
     #banner{position: relative; padding:10px 0; /*border-bottom:15px solid gray;*/ text-align:center}
 
@@ -106,7 +106,17 @@ div#welcome{
         #dishdetails{}
 
 
-
+     #multicols {
+     text-align: left;
+     -moz-column-count: 4;
+     -moz-column-gap: 1.5em;
+     -moz-column-rule: none;
+     -webkit-column-count: 4;
+     -webkit-column-gap: 1.5em;
+     -webkit-column-rule: none;
+     }
+     #multicols a{color: #f77300;}
+     #multicols a:hover{text-decoration: underline;}
 
 
 

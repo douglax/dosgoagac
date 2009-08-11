@@ -83,7 +83,7 @@
 
                 <div id="onlinemenucategories">
                     <div id="logomenuonline">
-                        <img src="images/btn_menuonline.png"/>
+                        <img src="images/btn_menuonline.png" alt="boton"/>
 
                         <!--                 <div class="round">
                                              Men&uacute; Online
@@ -252,16 +252,65 @@
 
         <!-- comienza Servicios que se ofrecen -->
 
+        <div id="multicols">
 
+            <strong>Estilos de Cocina</strong><br>
+            <a href="restaurant#">Italiana</a><br>
+            <a href="restaurant#">Pizzas</a><br>
+            <a href="restaurant#">Carnes</a><br>
+            <a href="restaurant#">Ensaladas</a><br>
+            <a href="restaurant#">Pastas</a><br>
+            <br>
+            <strong>Ocasiones Especiales</strong><br>
+            <a href="restaurant#">Romántica</a><br>
+            <a href="restaurant#">Familiar</a><br>
+            <a href="restaurant#">Negocios</a><br>
+            <br>
+            <strong>Servicios</strong><br>
+            <a href="restaurant#">Banquetes</a><br>
+            <a href="restaurant#">Comedor</a><br>
+            <a href="restaurant#">Servicio a Domicilio</a><br>
+            <a href="restaurant#">Para llevar</a><br>
+            <a href="restaurant#">Servicio de Bar</a><br>
+            <a href="restaurant#">Carta de Vinos</a><br>
+            <a href="restaurant#">Salones para eventos</a><br>
+            <a href="restaurant#">Servicio de Catering</a><br>
+            <br>
+            <strong>Necesidades Especiales</strong><br>
+            <a href="restaurant#">Internet inalámbrico</a><br>
+            <a href="restaurant#">Área para fumadores</a><br>
+            <a href="restaurant#">Platillos Vegetarianos</a><br>
+            <a href="restaurant#">Periqueras</a><br>
+            <br>
+            <strong>Formas de Pago</strong><br>
+            <a href="restaurant#">Visa</a><br>
+            <a href="restaurant#">MasterCard</a><br>
+            <a href="restaurant#">American Express</a><br>
+            <br>
+            <strong>Entretenimiento</strong><br>
+            <a href="restaurant#">Música ambiental</a><br>
+            <a href="restaurant#">Televisión</a><br>
+            <br>
+            <strong>Vestimenta</strong><br>
+            <a href="restaurant#">Casual</a><br>
 
+            
 
+        </div>  <!-- multicols -->
 
         <!-- termina Servicios que se ofrecen -->
+
+
         <br>
 
             <twogo:outer_round_closes/>
                 
 <br>
+
+
+
+ <div class="gray-bar"></div>
+
 
 
 
