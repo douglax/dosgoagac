@@ -20,6 +20,12 @@
         </style>
         <script src="js/jquery-latest.js" type="text/javascript"></script>
         <script src="js/round.js" type="text/javascript"></script>
+        <script src="js/niftycube.js" type="text/javascript"></script>
+        <script type="text/javascript">
+            window.onload=function(){
+                Nifty("div.round-gray","big");
+            }
+        </script>
         <script type="text/javascript">
             $(document).ready(function(){
                 $("div#banner").fadeIn("slow");                
@@ -37,44 +43,34 @@
             </div>
             <div class="gray-bar"></div>
             <div id="content">
-
-                 
-
                 <div id="leftcol">
                     <div class="round">
                         B&uacute;squeda R&aacute;pida                        
                     </div>
                     <div class="contentbox">
-
-                            
-
-
                         <form>
                             <table>
                                 <tbody>
                                     <tr>
-                                        <td>Restaurante</td>
+                                        <td style="font-size:large; font-weight:bold">Restaurante</td>
                                         <td><input type="text" name="rest" value="" size="20" /></td>
                                     </tr>
                                     <tr>
-                                        <td>Alg&uacute;n antojo?</td>
+                                        <td style="font-size:large; font-weight:bold">Alg&uacute;n antojo?</td>
                                         <td><input type="text" name="some" value="" size="20" /></td>
                                     </tr>
                                 </tbody>
                             </table>
                             <input type="submit" value="Buscar" />
                         </form>
-
-
-
                     </div>
                     <div class="round">
                         B&uacute;squeda por zona                        
                     </div>
                     <div class="contentbox">
                         <img src="images/mapa.png" width="372" height="225" alt="mapa"/>
-
                     </div>
+                    <div class="round">Restaurante del Mes</div>
                 </div>
                 <div id="rightcol">
                     <div class="round">
@@ -94,7 +90,7 @@
                                 </td>                                
                             </tr>
                             <tr>
-                                
+
                                 <td>
                                     <a href="#">Rapida</a>
                                 </td>
@@ -104,7 +100,7 @@
                                 <td>
                                     <a href="#">Hamburguesas</a>
                                 </td>
-                               
+
                             </tr>
                             <tr>
                                 <td>
@@ -128,7 +124,7 @@
                                     <a href="#">Postres</a>
                                 </td>
                             </tr>
-                             <tr>
+                            <tr>
                                 <td>
                                     <a href="#">Saludable</a>
                                 </td>
@@ -183,12 +179,78 @@
                             </tr>
                         </table>
 
+                    </div><!-- Content Box -->
+                    <div class="round-gray">Los mas Visitados</div>
+                    <div class="contentbox">
+                        <table>
+                            <tr>
+                                <td>
+                                    <a href="#">Asiatica</a>
+                                </td>
+                                <td>
+                                    <a href="#">Mexicana</a>
+                                </td>
+                                <td>
+                                    <a href="#">Italiana</a>
+                                </td>
+                            </tr>
+                            <tr>
+
+                                <td>
+                                    <a href="#">Rapida</a>
+                                </td>
+                                <td>
+                                    <a href="#">Vegetariana</a>
+                                </td>
+                                <td>
+                                    <a href="#">Hamburguesas</a>
+                                </td>
+
+                            </tr>
+                        </table>
+                    </div>
+                    <div>Los mas Nuevos</div>
+                    <div class="contentbox">
+                        <table>
+                            <tr>
+                                <td>
+                                    <a href="#">Barrigas</a>
+                                </td>
+                                <td>
+                                    <a href="#">Apple's Bees</a>
+                                </td>                                
+                            </tr>
+                            <tr>
+                                <td>
+                                    <a href="#">Garufa</a>
+                                </td>
+
+                            </tr>
+                        </table>
+                    </div>
+                    <div>Los mas Comentados</div>
+                    <div class="contentbox">
+                        <table>
+                            <tr>
+                                <td>
+                                    <a href="#">Barrigas</a>
+                                </td>
+                                <td>
+                                    <a href="#">Apple's Bees</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <a href="#">Garufa</a>
+                                </td>
+                            </tr>
+                        </table>
                     </div>
                 </div>
                 <br/>
             </div>
             <div id="footer">
-                footer
+                2Go&reg; Es una marca registra. Todos los derechos reservados 2009.
             </div>
         </div>
     </body>

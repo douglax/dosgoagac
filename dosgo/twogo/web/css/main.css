@@ -152,13 +152,14 @@ div#welcome{
 */
 
     #lowerband{background: repeat-y 0% 0%; background-color:silver; border-bottom:15px solid gray; height:205px; }
-        #leftcol{  width:45%; text-align:center; margin:10px 10px; float:left;}
-        #rightcol{ width:45%; text-align:center; font-size:small; margin: 10px 10px; float:right;  }
+    #leftcol{  width:45%; text-align:center; margin:10px 10px; float:left;}
+    #rightcol{ width:45%; text-align:center; font-size:small; margin: 10px 10px; float:right;  }
 
 
 
 
-    #footer{clear: both; font-size:85%;border:2px solid lime}
+    #footer{text-align:center; clear: both; font-size:110%;height:70px;
+        color:#ffffff;padding-top:15px; background: #f77300 url("../images/shadow-footer.png") repeat-x}
 
 /* :::::::::::::::::::: Otros :::::::::::::::::::::::::::::::*/
 
@@ -184,7 +185,7 @@ div#welcome{
      }
      .contentbox table{
          width: 100%;
-         line-height: 12px;
+         line-height: 15px;
      }
      .contentbox table a{
          color: #f77300;
@@ -193,5 +194,9 @@ div#welcome{
     .cleared{clear:both}
     .round{
         font-size:large;
+    }
+    .round-gray{
+        width: 18em;padding:20px;margin:0 auto;
+        background:#E6E6E6;color:#000
     }
 
