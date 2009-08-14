@@ -315,24 +315,9 @@
 
  <div class="gray-bar"></div>
 
-
-
-
-
             <twogo:lowerband/>
-
             <div class="cleared"></div>
-
-
-
-            <div id="footer">
-                <!--<div>
-                    <b class="rbottom"><b class="r1"/><b class="r2"/><b class="r3"/><b class="r4"/></b>
-                    uy uy
-                    <b class="rbottom"><b class="r4"/><b class="r3"/><b class="r2"/><b class="r1"/></b>
-                </div>-->
-                footer
-            </div>
+            <twogo:footer/>
         </div>
     </body>
 </html>

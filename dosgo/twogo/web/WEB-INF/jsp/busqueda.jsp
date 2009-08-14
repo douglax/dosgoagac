@@ -57,9 +57,7 @@
 
             <twogo:lowerband/>
 
-            <div id="footer">
-                footer
-            </div>
+            <twogo:footer/>
         </div>
     </body>
 </html>
