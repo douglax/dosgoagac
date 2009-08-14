@@ -187,7 +187,7 @@
                         </div>
                         <b class="bc"><b class="L3"></b><b class="L2"></b><b class="L1"></b></b>
                     </div>
-                    <div class="round-gray">Los mas Visitados</div>
+                    <div class="round-gray" style="margin-top:15px">Los mas Visitados</div>
                     <div class="box" style="width:350px">
                         <b class="tc"><b class="L1"></b><b class="L2"></b><b class="L3"></b></b>
                         <div class="content">
@@ -220,7 +220,7 @@
                         </div>
                         <b class="bc"><b class="L3"></b><b class="L2"></b><b class="L1"></b></b>
                     </div>
-                    <div>Los mas Nuevos</div>
+                    <div class="round-gray">Los mas Nuevos</div>
                     <div class="box" style="width:350px">
                         <b class="tc"><b class="L1"></b><b class="L2"></b><b class="L3"></b></b>
                         <div class="content">
@@ -243,7 +243,7 @@
                         </div>
                         <b class="bc"><b class="L3"></b><b class="L2"></b><b class="L1"></b></b>
                     </div>
-                    <div>Los mas Comentados</div>
+                    <div class="round-gray">Los mas Comentados</div>
                     <div class="box" style="width:350px">
                         <b class="tc"><b class="L1"></b><b class="L2"></b><b class="L3"></b></b>
                         <div class="content">

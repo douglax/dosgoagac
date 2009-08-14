@@ -192,8 +192,11 @@ div#welcome{
         font-size:large;
     }
     .round-gray{
-        width: 18em;padding:20px;margin:0 auto;
-        background:#E6E6E6;color:#000
+        font-size:120%;
+        background:gray;color:#fff;
+        
+        width:350px;
+
     }
     /*************************************
         ESQUINAS REDONDIADAS CON BORDE
@@ -243,7 +246,10 @@ div#welcome{
 /* -- Default params for where content is ---- */
 	.box .content { background:#fff; }
 	.box b b.L2, .box b b.L3 {background-color:#fff;}
-	.box { margin:5px;}
+	.box { margin:0px;}
 	.box .content { padding:5px; }
+    /*************************************
+        ESQUINAS REDONDIADAS CON BORDE end
+    *************************************/
 
 
