@@ -113,7 +113,7 @@
                                         <a href="#">Hamburguesas</a>
                                     </td>
                                     <td>
-                                        <a href="#">Pizzas</a>
+                                        <a href="busqueda.htm">Pizzas</a>
                                     </td>
                                     <td>
                                         <a href="#">Casera</a>

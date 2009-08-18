@@ -94,7 +94,7 @@
                                 <hr>
                                 Tel.- 410-70-35<br>
                                 <hr>
-                                <a href="busqueda.htm#">Ver micrositio</a>
+                                <a href="restaurant.htm">Ver micrositio</a>
                             </td>
 
                             <td style="background-image: url('images/rtmargin.png');">

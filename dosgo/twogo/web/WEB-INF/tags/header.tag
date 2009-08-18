@@ -14,7 +14,7 @@
     <img src="images/banner.png" width="750" height="90" alt="banner"/>
 </div>
 <div id="session">
-                Bienvenido, Regístrate <a href="#">aquí</a>, Ingresa a tu cuenta <a href="#">aquí</a>
+                Bienvenido, Regístrate <a href="registro.htm">aquí</a>, Ingresa a tu cuenta <a href="#">aquí</a>
             </div>
 <div id="header">
 
@@ -29,7 +29,7 @@
     </div>
 
     <div id="logo_principal">
-        <img src="images/logo2go_chico.png" alt="Logo 2Go"/>
+        <a href="index.htm"><img src="images/logo2go_chico.png" alt="Logo 2Go"/></a>
     </div>
 
 </div>

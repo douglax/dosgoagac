@@ -16,6 +16,10 @@
         <servlet-name>Restaurant</servlet-name>
         <servlet-class>mx.com.twogo.controllers.Restaurant</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>registro</servlet-name>
+        <servlet-class>mx.com.twogo.controllers.Registro</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>IndexServlet</servlet-name>
         <url-pattern>/index.htm</url-pattern>
@@ -31,6 +35,10 @@
     <servlet-mapping>
         <servlet-name>Restaurant</servlet-name>
         <url-pattern>/restaurant.htm</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>registro</servlet-name>
+        <url-pattern>/registro.htm</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
