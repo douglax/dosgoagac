@@ -1,2 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Context antiJARLocking="true" path="/twogo"/>
+<Context antiJARLocking="true" path="/twogo">
+
+    <Resource auth="Container" description="DB Connection"
+    driverClass="com.mysql.jdbc.Driver" maxPoolSize="10"
+    minPoolSize="2" acquireIncrement="1"
+    name="jdbc/TwoGo" user="twogo"
+    password="ready2go" factory="org.apache.naming.factory.BeanFactory"
+    type="com.mchange.v2.c3p0.ComboPooledDataSource"
+    jdbcUrl="jdbc:mysql://localhost:3306/twogo?autoReconnect=true" />
+    
+</Context>
