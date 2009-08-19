@@ -6,7 +6,6 @@ package mx.com.twogo.dao;
 
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -39,6 +38,7 @@ public class GenericDao {
         Connection cn = null;
         try {
             cn = ds.getConnection();
+            cn.close();
         } catch (SQLException ex) {
             Logger.getLogger(GenericDao.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -59,28 +59,9 @@ public class GenericDao {
         }
     }
 
-    @SuppressWarnings("unchecked")
-    public List<T> findList(final String qry, final Map<String, ?> params) {
-        return (List<T>) find(qry, params);
-    }
-
     public Object find(final String qry, final Map<String, ?> params) {
 
-        return execute(new ExecuteCallback() {
-
-            @SuppressWarnings("unchecked")
-            @Override
-            public Object execute(Connection em) throws Exception {
-                if (params != null) {
-                    for (Map.Entry<String, ?> entry : params.entrySet()) {
-                        query.setParameter(entry.getKey(), entry.getValue());
-                    }
-                }
-                List<T> l = query.getResultList();
-                l.size();
-                return l;
-            }
-        });
+        return null;
     }
 
     public void save(final Object object) {
@@ -88,20 +69,13 @@ public class GenericDao {
 
             @Override
             public Object execute(Connection em) throws Exception {
-                
+
                 return null;
             }
         });
     }
 
     public void delete(final Object object) {
-        execute(new ExecuteCallback() {
 
-            @Override
-            public Object execute(EntityManager em) throws Exception {
-                em.remove(object);
-                return null;
-            }
-        });
     }
 }

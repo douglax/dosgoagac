@@ -6,10 +6,17 @@
 package mx.com.twogo.controllers;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.sql.DataSource;
+import org.springframework.beans.factory.BeanFactory;
+import org.springframework.web.context.support.WebApplicationContextUtils;
 
 /**
  *
@@ -26,7 +33,16 @@ public class Principal extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        
+            BeanFactory bf =
+                WebApplicationContextUtils.getWebApplicationContext(getServletContext());
+            DataSource ds = (DataSource)bf.getBean("dataSource");
+        try {
+            Connection cn = ds.getConnection();
+            Logger.getLogger(Principal.class.getName()).log(Level.INFO, "Conexion establecida");
+            cn.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+        }
             getServletContext().getRequestDispatcher("/WEB-INF/jsp/principal.jsp").forward(request, response);
     }
      

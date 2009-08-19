@@ -25,7 +25,8 @@ public class IndexServlet extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
+    throws ServletException, IOException {        
+
         getServletContext().getRequestDispatcher("/WEB-INF/jsp/index.jsp").forward(request, response);
     } 
 
