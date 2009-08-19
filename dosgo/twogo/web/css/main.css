@@ -165,7 +165,7 @@ div#welcome{
     .menu-right-side{background: #fff url('../images/rnd-rt.png') no-repeat scroll right  }
     .gray-bar{background-color:gray; height:15px; clear:both}
     .round{text-align:center}
-    .titlebox{background-color:#f77300; width:12em; color: #fff; margin:15px 0}
+    .titlebox{background-color:#f77300; width:15em; color: #fff; margin:10px 0}
     .rtop, .rbottom{display:block; background-color:#fffee5}
     .rtop *, .rbottom *{display: block; height: 1px; overflow: hidden; background-color:#f77300}
     .r1{margin: 0 5px}
