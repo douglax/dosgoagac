@@ -4,15 +4,44 @@
  */
 package mx.com.twogo.dao;
 
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.List;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.sql.DataSource;
+import org.apache.juli.logging.Log;
+import org.apache.juli.logging.LogFactory;
+
 /**
  *
  * @author Carlos Aguirre
  */
 public class GenericDao {
 
+    private DataSource ds;
+
+    public GenericDao() throws NamingException {
+        InitialContext ic = null;
+        try {
+            ic = new InitialContext();
+        } catch (NamingException ex) {
+            Logger.getLogger(GenericDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        ds = (DataSource) ic.lookup("java:comp/env/jdbc/TwoGo");
+    }
+
     protected Object execute(ExecuteCallback callback) {
         Log log = LogFactory.getLog(getClass());
-        Connection cn = EMF.get().createEntityManager();
+        Connection cn = null;
+        try {
+            cn = ds.getConnection();
+        } catch (SQLException ex) {
+            Logger.getLogger(GenericDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
         try {
             Object o = callback.execute(cn);
             return o;
@@ -20,8 +49,12 @@ public class GenericDao {
             log.error(e.getMessage());
             return null;
         } finally {
-            if (em.isOpen()) {
-                em.close();
+            try {
+                if (!cn.isClosed()) {
+                    cn.close();
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(GenericDao.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }
@@ -37,8 +70,7 @@ public class GenericDao {
 
             @SuppressWarnings("unchecked")
             @Override
-            public Object execute(EntityManager em) throws Exception {
-                Query query = em.createQuery(qry);
+            public Object execute(Connection em) throws Exception {
                 if (params != null) {
                     for (Map.Entry<String, ?> entry : params.entrySet()) {
                         query.setParameter(entry.getKey(), entry.getValue());
@@ -55,8 +87,8 @@ public class GenericDao {
         execute(new ExecuteCallback() {
 
             @Override
-            public Object execute(EntityManager em) throws Exception {
-                em.persist(object);
+            public Object execute(Connection em) throws Exception {
+                
                 return null;
             }
         });
