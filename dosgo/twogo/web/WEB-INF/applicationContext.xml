@@ -27,6 +27,9 @@
             p:maxPoolSize="5"
             p:minPoolSize="2" />
 
+           <bean id="categoriaDao" class="mx.com.twogo.dao.CategoriaDao"
+            p:dataSource-ref="dataSource"/>
+
 
 
 </beans>

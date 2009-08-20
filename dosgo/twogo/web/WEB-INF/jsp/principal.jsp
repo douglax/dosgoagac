@@ -6,13 +6,15 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib tagdir="/WEB-INF/tags" prefix="twogo" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
     "http://www.w3.org/TR/html4/loose.dtd">
 
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" type="text/css" href="css/main.css"/>
+        <link rel="stylesheet" type="text/css" href="css/main.css">
         <style type="text/css">
             body{
                 background-image:url('images/bg.png');
@@ -84,105 +86,20 @@
                         <b class="tc"><b class="L1"></b><b class="L2"></b><b class="L3"></b></b>
                         <div class="content">
                             <table>
+                                <c:forEach var="cat" items="${categorias}"  varStatus="i">
                                 <tr>
                                     <td>
-                                        <a href="#">Asiatica</a>
+                                        <a href="#">${cat.descripcion}</a>
                                     </td>
                                     <td>
-                                        <a href="#">Mexicana</a>
+                                        <a href="#">${cat.descripcion}</a>
                                     </td>
                                     <td>
-                                        <a href="#">Italiana</a>
+                                        <a href="#">${cat.descripcion}</a>
                                     </td>
                                 </tr>
-                                <tr>
-
-                                    <td>
-                                        <a href="#">Rapida</a>
-                                    </td>
-                                    <td>
-                                        <a href="#">Vegetariana</a>
-                                    </td>
-                                    <td>
-                                        <a href="#">Hamburguesas</a>
-                                    </td>
-
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <a href="#">Hamburguesas</a>
-                                    </td>
-                                    <td>
-                                        <a href="busqueda.htm">Pizzas</a>
-                                    </td>
-                                    <td>
-                                        <a href="#">Casera</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <a href="#">Naturista</a>
-                                    </td>
-                                    <td>
-                                        <a href="#">Oriental</a>
-                                    </td>
-                                    <td>
-                                        <a href="#">Postres</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <a href="#">Saludable</a>
-                                    </td>
-                                    <td>
-                                        <a href="#">Sushi</a>
-                                    </td>
-                                    <td>
-                                        <a href="#">Mediterraneo</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <a href="#">Francesa</a>
-                                    </td>
-                                    <td>
-                                        <a href="#">Saluble</a>
-                                    </td>
-                                    <td>
-                                        <a href="#">Pollo</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <a href="#">Francesa</a>
-                                    </td>
-                                    <td>
-                                        <a href="#">Saluble</a>
-                                    </td>
-                                    <td>
-                                        <a href="#">Pollo</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <a href="#">Japonesa</a>
-                                    </td>
-                                    <td>
-                                        <a href="#">Pastas</a>
-                                    </td>
-                                    <td>
-                                        <a href="#">Cortes Finos</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <a href="#">Tostadas</a>
-                                    </td>
-                                    <td>
-                                        <a href="#">Pannini</a>
-                                    </td>
-
-                                </tr>
+                                </c:forEach>
+                                
                             </table>
                         </div>
                         <b class="bc"><b class="L3"></b><b class="L2"></b><b class="L1"></b></b>
