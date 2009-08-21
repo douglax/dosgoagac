@@ -148,7 +148,11 @@ div#welcome{
     #lowerband{background: repeat-y 0% 0%; background-color:silver; border-bottom:15px solid gray; height:205px; }
     #leftcol{  width:45%; text-align:center; margin:10px; float:left;}
     #rightcol{ width:45%; text-align:center; font-size:small; margin: 10px; float:right;  }
-    #delmes{background-color:#fffee5}
+    #delmes{float:left; width:100%; margin-bottom:15px}
+    #delmes .box{float:left;}
+    #delmes #review{float: right; margin:10px 20px 0 0; width:400px}
+    #delmes #review h2{color:red}
+    #delmes #promo{float:left; margin-left:50px}
 
 
 

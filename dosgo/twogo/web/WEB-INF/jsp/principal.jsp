@@ -105,8 +105,6 @@
                     <div class="round-gray">
                         Los mas Visitados
                     </div>
-
-
                     <div class="box" style="width:350px; background-color:#fff">
                         <div class="content">
                             <table>
@@ -122,7 +120,6 @@
                                     </td>
                                 </tr>
                                 <tr>
-
                                     <td>
                                         <a href="#">Rapida</a>
                                     </td>
@@ -132,7 +129,6 @@
                                     <td>
                                         <a href="#">Hamburguesas</a>
                                     </td>
-
                                 </tr>
                             </table>
                         </div>
@@ -140,7 +136,6 @@
                     </div>
                     <div class="round-gray">Los mas Nuevos</div>
                     <div class="box" style="width:350px">
-
                         <div class="content">
                             <table>
                                 <tr>
@@ -187,12 +182,35 @@
                         <b class="bc"><b class="L3"></b><b class="L2"></b><b class="L1"></b></b>
                     </div>
                 </div>
-                <br/>                
-            </div>
-            <div id="delmes">
-                <div class="round">
-                    More Content...
+                <div id="delmes">
+                    <div class="round">
+                        Restaurante del mes
+                    </div>
+                    <div class="box" style="width:600px">
+                        <b class="tc"><b class="L1"></b><b class="L2"></b><b class="L3"></b></b>
+                        <div class="content">
+                            <img src="images/apple.png" width="156" height="152" alt="apple"/>
+                            <div id="review">
+                                <h2>Apple's Bees: Neighborhood & Friends</h2>
+                                <p>
+                                    &nbsp;
+                                </p>
+                                <p>
+                                    Con una variedad de platillos muy extensa y un ambiente
+                                    inigualable, este mes nos dimos a la tarea de ir con ojo
+                                    crítico a uno de los restaurantes preferidos de los chihuahuenses
+                                    y nos llevamos varias sorpresas! te invitamos a conocerlas...
+                                    <a href="#">Seguir leyendo</a>
+                                </p>
+                            </div>
+                        </div>
+                        <b class="bc"><b class="L3"></b><b class="L2"></b><b class="L1"></b></b>
+                    </div>
+                    <div id="promo">
+                        <img src="images/promo-free.png" width="196" height="140" alt="promo-free"/>
+                    </div>
                 </div>
+                <br/>                
             </div>
             <twogo:footer/>
         </div>
