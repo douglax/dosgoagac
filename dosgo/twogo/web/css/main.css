@@ -146,8 +146,9 @@ div#welcome{
 */
 
     #lowerband{background: repeat-y 0% 0%; background-color:silver; border-bottom:15px solid gray; height:205px; }
-    #leftcol{  width:45%; text-align:center; margin:10px 10px; float:left;}
-    #rightcol{ width:45%; text-align:center; font-size:small; margin: 10px 10px; float:right;  }
+    #leftcol{  width:45%; text-align:center; margin:10px; float:left;}
+    #rightcol{ width:45%; text-align:center; font-size:small; margin: 10px; float:right;  }
+    #delmes{background-color:#fffee5}
 
 
 
@@ -194,7 +195,7 @@ div#welcome{
     .round-gray{
         font-size:120%;
         background:gray;color:#fff;
-        
+        margin-top:10px;
         width:350px;
 
     }
@@ -208,7 +209,7 @@ div#welcome{
 	.box b.tc b.L1,.box b.tc b.L2,.box b.bc b.L1,.box b.bc b.L2 {
 		height:1px; line-height:1px; overflow:hidden;
 	}
-	.box b.tc b.L1,.box b.bc b.L1 { margin: 0 4px; }
+	.box b.tc b.L1,.box b.bc b.L1 { margin: 0 4px;}
 	.box b.tc b.L2,.box b.bc b.L2 {
 		margin: 0 2px;
 		border-width:0 2px;
@@ -226,28 +227,29 @@ div#welcome{
 	}
 /* Left-side border color */
 	.box .content {
-		border-left-color:#000;
-		border-right-color:#000;
+		border-left-color:#c0c0c0;
+		border-right-color:#c0c0c0;
 	}
 /* Top border color */
 	.box b.tc b.L1 {
-		background-color:#000;
+		background-color:#c0c0c0;
 	}
 	.box b.tc b.L2,.box b.tc b.L3 {
-		border-color:#000;
+		border-color:#c0c0c0;
 	}
 /* bottom border color */
 	.box b.bc b.L1 {
-		background-color:#000;
+		background-color:#c0c0c0;
 	}
 	.box b.bc b.L2,.box b.bc b.L3 {
-		border-color:#000;
+		border-color:#c0c0c0;
 	}
 /* -- Default params for where content is ---- */
 	.box .content { background:#fff; }
 	.box b b.L2, .box b b.L3 {background-color:#fff;}
 	.box { margin:0px;}
 	.box .content { padding:5px; }
+
     /*************************************
         ESQUINAS REDONDIADAS CON BORDE end
     *************************************/

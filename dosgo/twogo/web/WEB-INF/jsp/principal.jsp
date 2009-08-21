@@ -45,7 +45,7 @@
                     <div class="round">
                         B&uacute;squeda R&aacute;pida                        
                     </div>
-                    <div class="box" style="width:350px">
+                    <div class="box" style="width:350px; background-color:#fff">
                         <b class="tc"><b class="L1"></b><b class="L2"></b><b class="L3"></b></b>
                         <div class="content">
                             <form>
@@ -69,44 +69,45 @@
                     <div class="round">
                         B&uacute;squeda por zona                        
                     </div>
-                    <div class="box">
+                    <div class="box" style="background-color:#fff">
                         <b class="tc"><b class="L1"></b><b class="L2"></b><b class="L3"></b></b>
                         <div class="content">
                             <img src="images/mapa.png" width="372" height="225" alt="mapa"/>
                         </div>
                         <b class="bc"><b class="L3"></b><b class="L2"></b><b class="L1"></b></b>
-                    </div>
-                    <div class="round">Restaurante del Mes</div>
+                    </div>                    
                 </div>
                 <div id="rightcol">
                     <div class="round">
                         B&uacute;squeda por categor&iacute;a                        
                     </div>
-                    <div class="box">
+                    <div class="box" style="width:350px; background-color:#fff">
                         <b class="tc"><b class="L1"></b><b class="L2"></b><b class="L3"></b></b>
                         <div class="content">
                             <table>
-                                <c:forEach var="cat" items="${categorias}"  varStatus="i">
                                 <tr>
-                                    <td>
-                                        <a href="#">${cat.descripcion}</a>
-                                    </td>
-                                    <td>
-                                        <a href="#">${cat.descripcion}</a>
-                                    </td>
-                                    <td>
-                                        <a href="#">${cat.descripcion}</a>
-                                    </td>
+                                    <c:forEach var="cat" items="${categorias}"  varStatus="i">
+                                        <c:if test="${(i.index mod 3) eq 0}">
+                                        </tr>
+                                        <tr>
+                                        </c:if>
+                                        <td>
+                                            <a href="busqueda.htm?cat=${cat.id}">${cat.descripcion}</a>
+                                        </td>
+                                    </c:forEach>
                                 </tr>
-                                </c:forEach>
-                                
                             </table>
                         </div>
                         <b class="bc"><b class="L3"></b><b class="L2"></b><b class="L1"></b></b>
                     </div>
-                    <div class="round-gray" style="margin-top:15px">Los mas Visitados</div>
-                    <div class="box" style="width:350px">
-                        <b class="tc"><b class="L1"></b><b class="L2"></b><b class="L3"></b></b>
+
+
+                    <div class="round-gray">
+                        Los mas Visitados
+                    </div>
+
+
+                    <div class="box" style="width:350px; background-color:#fff">
                         <div class="content">
                             <table>
                                 <tr>
@@ -139,7 +140,7 @@
                     </div>
                     <div class="round-gray">Los mas Nuevos</div>
                     <div class="box" style="width:350px">
-                        <b class="tc"><b class="L1"></b><b class="L2"></b><b class="L3"></b></b>
+
                         <div class="content">
                             <table>
                                 <tr>
@@ -160,9 +161,12 @@
                         </div>
                         <b class="bc"><b class="L3"></b><b class="L2"></b><b class="L1"></b></b>
                     </div>
-                    <div class="round-gray">Los mas Comentados</div>
-                    <div class="box" style="width:350px">
+                    <div class="round-gray">
                         <b class="tc"><b class="L1"></b><b class="L2"></b><b class="L3"></b></b>
+                        Los mas Comentados
+                    </div>
+                    <div class="box" style="width:350px">
+
                         <div class="content">
                             <table>
                                 <tr>
@@ -183,7 +187,12 @@
                         <b class="bc"><b class="L3"></b><b class="L2"></b><b class="L1"></b></b>
                     </div>
                 </div>
-                <br/>
+                <br/>                
+            </div>
+            <div id="delmes">
+                <div class="round">
+                    More Content...
+                </div>
             </div>
             <twogo:footer/>
         </div>
