@@ -186,12 +186,12 @@
                     <div class="round">
                         Restaurante del mes
                     </div>
-                    <div class="box" style="width:600px">
+                    <div class="box" style="width:650px">
                         <b class="tc"><b class="L1"></b><b class="L2"></b><b class="L3"></b></b>
                         <div class="content">
                             <img src="images/apple.png" width="156" height="152" alt="apple"/>
                             <div id="review">
-                                <h2>Apple's Bees: Neighborhood & Friends</h2>
+                                <h2>Applebee's: Neighborhood & Friends</h2>
                                 <p>
                                     &nbsp;
                                 </p>
