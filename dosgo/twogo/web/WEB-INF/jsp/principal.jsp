@@ -37,7 +37,7 @@
             <twogo:header/>
 
             <div id="flash">
-                <twogo:flash/>
+                <a href="http://dimerlo.com"><twogo:flash/></a>
             </div>
             <div class="gray-bar"></div>
             <div id="content">

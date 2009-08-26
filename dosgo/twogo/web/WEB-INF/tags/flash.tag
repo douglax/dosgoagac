@@ -1,7 +1,7 @@
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="es" lang="es">
+<!--<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="es" lang="es">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-<title>flash</title>
+<title>flash</title>-->
 <script language="JavaScript" type="text/javascript">
 <!--
 //v1.7
@@ -278,8 +278,8 @@ function AC_GetArgs(args, ext, srcParamName, classid, mimeType){
 }
 // -->
 </script>
-</head>
-<body bgcolor="#ffffff">
+<!-- </head> -->
+<!--<body bgcolor="#ffffff">-->
 <!--URL utilizadas en la película-->
 <!--Texto utilizado en la película-->
 <!-- saved from url=(0013)about:internet -->
@@ -314,5 +314,5 @@ function AC_GetArgs(args, ext, srcParamName, classid, mimeType){
 	<param name="movie" value="flash.swf" /><param name="quality" value="high" /><param name="bgcolor" value="#ffffff" />	<embed src="flash.swf" quality="high" bgcolor="#ffffff" width="756" height="230" name="flash" align="middle" allowScriptAccess="sameDomain" allowFullScreen="false" type="application/x-shockwave-flash" pluginspage="http://www.adobe.com/go/getflashplayer_es" />
 	</object>
 </noscript>
-</body>
-</html>
+<!--</body>
+</html>-->
