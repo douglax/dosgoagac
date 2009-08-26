@@ -37,7 +37,7 @@
             <twogo:header/>
 
             <div id="flash">
-                <img src="images/flash.png" width="756" height="230" alt="flash"/>
+                <twogo:flash/>
             </div>
             <div class="gray-bar"></div>
             <div id="content">
