@@ -15,6 +15,8 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" type="text/css" href="css/main.css">
+        <link rel="shortcut icon" href="images/favicon.ico">
+
         <style type="text/css">
             body{
                 background-image:url('images/bg.png');
@@ -101,7 +103,9 @@
                         <b class="bc"><b class="L3"></b><b class="L2"></b><b class="L1"></b></b>
                     </div>
 
-
+                    <b style="background-color:gray; width:342px; height:1px; display:block;margin: 15px 4px 0 4px"></b>
+                    <b style="background-color:gray; width:346px; height:1px; display:block;margin: 0 2px"></b>
+                    <b style="background-color:gray; width:348px; height:1px; display:block;margin: 0 1px"></b>
                     <div class="round-gray">
                         Los mas Visitados
                     </div>
@@ -134,6 +138,9 @@
                         </div>
                         <b class="bc"><b class="L3"></b><b class="L2"></b><b class="L1"></b></b>
                     </div>
+                    <b style="background-color:gray; width:342px; height:1px; display:block;margin: 15px 4px 0 4px"></b>
+                    <b style="background-color:gray; width:346px; height:1px; display:block;margin: 0 2px"></b>
+                    <b style="background-color:gray; width:348px; height:1px; display:block;margin: 0 1px"></b>
                     <div class="round-gray">Los mas Nuevos</div>
                     <div class="box" style="width:350px">
                         <div class="content">
@@ -156,6 +163,9 @@
                         </div>
                         <b class="bc"><b class="L3"></b><b class="L2"></b><b class="L1"></b></b>
                     </div>
+                    <b style="background-color:gray; width:342px; height:1px; display:block;margin: 15px 4px 0 4px"></b>
+                    <b style="background-color:gray; width:346px; height:1px; display:block;margin: 0 2px"></b>
+                    <b style="background-color:gray; width:348px; height:1px; display:block;margin: 0 1px"></b>
                     <div class="round-gray">
                         <b class="tc"><b class="L1"></b><b class="L2"></b><b class="L3"></b></b>
                         Los mas Comentados
