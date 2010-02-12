@@ -6,11 +6,17 @@
 package com.agac.test;
 
 import com.agac.bo.Comprobante;
+import com.agac.bo.Concepto;
+import com.agac.bo.CuentaPredial;
 import com.agac.bo.Emisor;
+import com.agac.bo.InformacionAduanera;
 import com.agac.bo.Receptor;
 import com.agac.bo.Ubicacion;
 import com.agac.bo.UbicacionFiscal;
 import java.io.StringWriter;
+import java.sql.Date;
+import java.util.ArrayList;
+
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
@@ -87,6 +93,16 @@ public class TestMarshallComprobante {
         Comprobante c = new Comprobante();
         c.setEmisor(e);
         c.setReceptor(r);
+        c.setConceptos(new ArrayList<Concepto>());
+        Concepto con = new Concepto();
+        InformacionAduanera ia = new InformacionAduanera();
+        con.setInfoAduanera(new ArrayList<InformacionAduanera>());        
+        ia.setAduana("Aduana");
+        ia.setFecha(new Date(System.currentTimeMillis()));
+        ia.setNumero("ASKDH654654654");
+        con.getInfoAduanera().add(ia);
+        con.setCuentaPredial(new CuentaPredial("CuentaPredial"));
+        c.getConceptos().add(con);
 
         Marshaller m = ctx.createMarshaller();
         StringWriter writer = new StringWriter();
