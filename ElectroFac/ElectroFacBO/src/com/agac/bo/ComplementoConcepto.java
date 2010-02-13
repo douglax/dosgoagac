@@ -1,47 +1,43 @@
 /*
- *Nodo opcional para asentar el número de cuenta predial con el que fue
- *registrado el inmueble, en el sistema catastral de la entidad federativa
- *de que trate.
+ * Nodo opcional donde se incluirán los nodos complementarios de extensión al
+ * concepto, definidos por el SAT, de acuerdo a disposiciones particulares a
+ * un sector o actividad especifica.
  */
 
 package com.agac.bo;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import java.util.ArrayList;
+import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlAnyElement;
 import javax.xml.bind.annotation.XmlTransient;
-import javax.xml.bind.annotation.XmlType;
 
 /**
  *
- * @author Carlos Aguirre 12 Feb 2010
+ * @author Carlos Aguirre 13 Feb 2010
  */
-@XmlType
 @XmlAccessorType(XmlAccessType.FIELD)
-public class CuentaPredial {
+public class ComplementoConcepto {
 
-    public CuentaPredial() {
+    @XmlAnyElement(lax=true)
+    private List<Object> any;
+
+
+    public List<Object> getAny() {
+        if(any == null)
+            any = new ArrayList<Object>();
+        return any;
     }
 
-    public CuentaPredial(String numero) {
-        this.numero = numero;
+    public void setAny(List<Object> any) {
+        List<Object> oldAny = this.any;
+        this.any = any;
+        propertyChangeSupport.firePropertyChange("any", oldAny, any);
     }
 
-    @XmlAttribute
-    private String numero;
-
-    public String getNumero() {
-        return numero;
-    }
-
-    public void setNumero(String numero) {
-        String oldNumero = this.numero;
-        this.numero = numero;
-        propertyChangeSupport.firePropertyChange("numero", oldNumero, numero);
-    }
-    
     @XmlTransient
     private PropertyChangeSupport propertyChangeSupport = new PropertyChangeSupport(this);
 
@@ -52,4 +48,5 @@ public class CuentaPredial {
     public void removePropertyChangeListener(PropertyChangeListener listener) {
         propertyChangeSupport.removePropertyChangeListener(listener);
     }
+
 }

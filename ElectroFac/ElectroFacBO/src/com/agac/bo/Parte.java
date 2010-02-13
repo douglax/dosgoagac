@@ -1,6 +1,6 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * Nodo opcional para expresar las partes o componentes que integran la
+ * totalidad del concepto expresado en el comprobante fiscal digital
  */
 
 package com.agac.bo;
@@ -15,35 +15,25 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlTransient;
-import javax.xml.bind.annotation.XmlType;
 
 /**
  *
- * @author Carlos Aguirre 12 Feb 2010
+ * @author Carlos Aguirre 13 Feb 2010
  */
-@XmlType(propOrder={"infoAduanera", "cuentaPredial", "complemento", "parte"})
 @XmlAccessorType(XmlAccessType.FIELD)
-public class Concepto {
+public class Parte {
 
     @XmlElement(name="InformacionAduanera")
     private List<InformacionAduanera> infoAduanera;
-    @XmlElement(name="CuentaPredial")
-    private CuentaPredial cuentaPredial;
-    @XmlElement(name="ComplementoConcepto")
-    private ComplementoConcepto complemento;
-    @XmlElement(name="Parte")
-    private List<Parte> parte;
     @XmlAttribute(required=true)
-    private double cantidad;
+    private BigDecimal cantidad;
     @XmlAttribute
     private String unidad;
     @XmlAttribute
     private String noIdentificacion;
-    @XmlAttribute(required=true)
-    private String descripcion;
-    @XmlAttribute(required=true)
+    @XmlAttribute
     private BigDecimal valorUnitario;
-    @XmlAttribute(required=true)
+    @XmlAttribute
     private BigDecimal importe;
 
     public BigDecimal getImporte() {
@@ -66,16 +56,6 @@ public class Concepto {
         propertyChangeSupport.firePropertyChange("valorUnitario", oldValorUnitario, valorUnitario);
     }
 
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        String oldDescripcion = this.descripcion;
-        this.descripcion = descripcion;
-        propertyChangeSupport.firePropertyChange("descripcion", oldDescripcion, descripcion);
-    }
-
     public String getNoIdentificacion() {
         return noIdentificacion;
     }
@@ -96,51 +76,14 @@ public class Concepto {
         propertyChangeSupport.firePropertyChange("unidad", oldUnidad, unidad);
     }
 
-    public double getCantidad() {
+    public BigDecimal getCantidad() {
         return cantidad;
     }
 
-    public void setCantidad(double cantidad) {
-        double oldCantidad = this.cantidad;
+    public void setCantidad(BigDecimal cantidad) {
+        BigDecimal oldCantidad = this.cantidad;
         this.cantidad = cantidad;
         propertyChangeSupport.firePropertyChange("cantidad", oldCantidad, cantidad);
-    }
-
-    public List<Parte> getParte() {
-        if(parte == null)
-            parte = new ArrayList<Parte>();
-        return parte;
-    }
-
-    public void setParte(List<Parte> parte) {
-        List<Parte> oldParte = this.parte;
-        this.parte = parte;
-        propertyChangeSupport.firePropertyChange("parte", oldParte, parte);
-    }
-
-
-    public ComplementoConcepto getComplemento() {
-        if(complemento == null)
-            complemento = new ComplementoConcepto();
-        return complemento;
-    }
-
-    public void setComplemento(ComplementoConcepto complemento) {
-        ComplementoConcepto oldComplemento = this.complemento;
-        this.complemento = complemento;
-        propertyChangeSupport.firePropertyChange("complemento", oldComplemento, complemento);
-    }
-
-    public CuentaPredial getCuentaPredial() {
-        if(cuentaPredial == null)
-            cuentaPredial = new CuentaPredial();
-        return cuentaPredial;
-    }
-
-    public void setCuentaPredial(CuentaPredial cuentaPredial) {
-        CuentaPredial oldCuentaPredial = this.cuentaPredial;
-        this.cuentaPredial = cuentaPredial;
-        propertyChangeSupport.firePropertyChange("cuentaPredial", oldCuentaPredial, cuentaPredial);
     }
 
     public List<InformacionAduanera> getInfoAduanera() {
@@ -165,5 +108,4 @@ public class Concepto {
     public void removePropertyChangeListener(PropertyChangeListener listener) {
         propertyChangeSupport.removePropertyChangeListener(listener);
     }
-
 }

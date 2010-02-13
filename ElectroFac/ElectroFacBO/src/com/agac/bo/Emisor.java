@@ -24,8 +24,7 @@ import javax.xml.bind.annotation.XmlType;
     })
 public class Emisor {
     @XmlAttribute(name = "nombre", required = true)
-    private String nombre;
-    public static final String PROP_NOMBRE = "nombre";
+    private String nombre;    
 
     public String getNombre() {
         return nombre;
@@ -34,11 +33,10 @@ public class Emisor {
     public void setNombre(String nombre) {
         String oldNombre = this.nombre;
         this.nombre = nombre;
-        propertyChangeSupport.firePropertyChange(PROP_NOMBRE, oldNombre, nombre);
+        propertyChangeSupport.firePropertyChange("nombre", oldNombre, nombre);
     }
     @XmlAttribute(name = "rfc", required = true)
-    private String rfc;
-    public static final String PROP_RFC = "rfc";
+    private String rfc;    
 
     public String getRfc() {
         return rfc;
@@ -47,34 +45,36 @@ public class Emisor {
     public void setRfc(String rfc) {
         String oldRfc = this.rfc;
         this.rfc = rfc;
-        propertyChangeSupport.firePropertyChange(PROP_RFC, oldRfc, rfc);
+        propertyChangeSupport.firePropertyChange( "rfc", oldRfc, rfc);
     }
     @XmlElement(name="ExpedidoEn", required=true)
-    private Ubicacion expedidoEn;
-    public static final String PROP_EXPEDIDOEN = "expedidoEn";
+    private Ubicacion expedidoEn;    
 
     public Ubicacion getExpedidoEn() {
+        if(expedidoEn == null)
+            expedidoEn = new Ubicacion();
         return expedidoEn;
     }
 
     public void setExpedidoEn(Ubicacion expedidoEn) {
         Ubicacion oldExpedidoEn = this.expedidoEn;
         this.expedidoEn = expedidoEn;
-        propertyChangeSupport.firePropertyChange(PROP_EXPEDIDOEN, oldExpedidoEn, expedidoEn);
+        propertyChangeSupport.firePropertyChange("expedidoEn", oldExpedidoEn, expedidoEn);
     }
 
     @XmlElement(name="DomicilioFiscal", required=true)
-    private UbicacionFiscal domicilioFiscal;
-    public static final String PROP_DOMICILIOFISCAL = "domicilioFiscal";
+    private UbicacionFiscal domicilioFiscal;    
 
     public UbicacionFiscal getDomicilioFiscal() {
+        if(domicilioFiscal == null)
+            domicilioFiscal = new UbicacionFiscal();
         return domicilioFiscal;
     }
 
     public void setDomicilioFiscal(UbicacionFiscal domicilioFiscal) {
         UbicacionFiscal oldDomicilioFiscal = this.domicilioFiscal;
         this.domicilioFiscal = domicilioFiscal;
-        propertyChangeSupport.firePropertyChange(PROP_DOMICILIOFISCAL, oldDomicilioFiscal, domicilioFiscal);
+        propertyChangeSupport.firePropertyChange("domicilioFiscal", oldDomicilioFiscal, domicilioFiscal);
     }
 
     @XmlTransient

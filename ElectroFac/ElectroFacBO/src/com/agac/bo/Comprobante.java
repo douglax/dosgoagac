@@ -2,6 +2,7 @@ package com.agac.bo;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import java.util.ArrayList;
 import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -28,6 +29,8 @@ public class Comprobante {
     private List<Concepto> conceptos;
 
     public List<Concepto> getConceptos() {
+        if(conceptos == null)
+            conceptos = new ArrayList<Concepto>();
         return conceptos;
     }
 
@@ -39,6 +42,8 @@ public class Comprobante {
 
 
     public Receptor getReceptor() {
+        if(receptor == null)
+            receptor = new Receptor();
         return receptor;
     }
 
@@ -49,6 +54,8 @@ public class Comprobante {
     }
 
     public Emisor getEmisor() {
+        if(emisor == null)
+            emisor = new Emisor();
         return emisor;
     }
     public void setEmisor(Emisor emisor) {

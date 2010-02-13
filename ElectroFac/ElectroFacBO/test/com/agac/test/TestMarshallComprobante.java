@@ -10,12 +10,13 @@ import com.agac.bo.Concepto;
 import com.agac.bo.CuentaPredial;
 import com.agac.bo.Emisor;
 import com.agac.bo.InformacionAduanera;
+import com.agac.bo.Parte;
 import com.agac.bo.Receptor;
 import com.agac.bo.Ubicacion;
 import com.agac.bo.UbicacionFiscal;
 import java.io.StringWriter;
+import java.math.BigDecimal;
 import java.sql.Date;
-import java.util.ArrayList;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -57,10 +58,11 @@ public class TestMarshallComprobante {
     @Test
     public void testMarshall() throws JAXBException {
         JAXBContext ctx = JAXBContext.newInstance(Comprobante.class);
-        Emisor e = new Emisor();
+        Comprobante c = new Comprobante();
+        Emisor e = c.getEmisor();
         e.setNombre("EMPRESA XYZ");
         e.setRfc("FYAC010101AAA");
-        Ubicacion u = new Ubicacion();
+        Ubicacion u = e.getExpedidoEn();
         u.setCalle("Calle 25");
         u.setCodigoPostal("31170");
         u.setColonia("Colonia Centro");
@@ -70,10 +72,9 @@ public class TestMarshallComprobante {
         u.setNoExterior("2255");
         u.setNoInterior("A");
         u.setPais("Mexico");
-        u.setReferencia("Entre calle X y calle Y");
-        e.setExpedidoEn(u);
+        u.setReferencia("Entre calle X y calle Y");        
         
-        UbicacionFiscal uf = new UbicacionFiscal();
+        UbicacionFiscal uf = e.getDomicilioFiscal();
         uf.setCalle("Calle 123");
         uf.setCodigoPostal("31000");
         uf.setColonia("Colonia Centro");
@@ -84,24 +85,36 @@ public class TestMarshallComprobante {
         uf.setNoInterior("100-A");
         uf.setPais("Mexico");
         uf.setReferencia("Entre calle X y calle Y");
-        e.setDomicilioFiscal(uf);
-        Receptor r = new Receptor();
+        
+        Receptor r = c.getReceptor();
         r.setNombre("Cliente XYZ");
         r.setRfc("ABCD010101AAA");
-        r.setDomicilio(u);
-        
-        Comprobante c = new Comprobante();
-        c.setEmisor(e);
-        c.setReceptor(r);
-        c.setConceptos(new ArrayList<Concepto>());
+        r.setDomicilio(u);                
         Concepto con = new Concepto();
-        InformacionAduanera ia = new InformacionAduanera();
-        con.setInfoAduanera(new ArrayList<InformacionAduanera>());        
+        InformacionAduanera ia = new InformacionAduanera();        
         ia.setAduana("Aduana");
         ia.setFecha(new Date(System.currentTimeMillis()));
         ia.setNumero("ASKDH654654654");
         con.getInfoAduanera().add(ia);
         con.setCuentaPredial(new CuentaPredial("CuentaPredial"));
+        Parte par = new Parte();
+        par.setCantidad(new BigDecimal(1.325));
+        par.setImporte(new BigDecimal(6546.6541));
+        par.setNoIdentificacion("ABDCS293879824");
+        par.getInfoAduanera().add(ia);
+        par.setUnidad("PZ");
+        par.setValorUnitario(new BigDecimal(52.36));
+        con.getParte().add(par);
+        con.getParte().add(par);
+        con.getParte().add(par);
+        con.getParte().add(par);
+        con.setCantidad(5.23);
+        con.setDescripcion("Cuaderno Scribe");
+        con.setImporte(new BigDecimal(52.30));
+        con.setNoIdentificacion("123465A");
+        con.setUnidad("PZ");
+        con.setValorUnitario(new BigDecimal(23.50));
+        c.getConceptos().add(con);
         c.getConceptos().add(con);
 
         Marshaller m = ctx.createMarshaller();

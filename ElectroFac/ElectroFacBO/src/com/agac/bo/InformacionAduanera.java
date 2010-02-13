@@ -11,7 +11,9 @@ import java.sql.Date;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 /**
  *
@@ -24,6 +26,7 @@ public class InformacionAduanera {
     @XmlAttribute(required=true)
     private String numero;
     @XmlAttribute(required=true)
+    @XmlJavaTypeAdapter(SqlDateAdapter.class)
     private Date fecha;
     @XmlAttribute(required=true)
     private String aduana;
@@ -58,6 +61,7 @@ public class InformacionAduanera {
         propertyChangeSupport.firePropertyChange("numero", oldNumero, numero);
     }
 
+    @XmlTransient
     private PropertyChangeSupport propertyChangeSupport = new PropertyChangeSupport(this);
 
     public void addPropertyChangeListener(PropertyChangeListener listener) {
