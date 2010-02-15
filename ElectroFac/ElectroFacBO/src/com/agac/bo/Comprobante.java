@@ -15,7 +15,7 @@ import javax.xml.bind.annotation.XmlTransient;
  *
  * @author Carlos Aguirre 12 Feb 2010
  */
-@XmlRootElement(name = "Comprobante")
+@XmlRootElement(name = "Comprobante", namespace="http://www.sat.gob.mx/cfd/2")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Comprobante {
 
