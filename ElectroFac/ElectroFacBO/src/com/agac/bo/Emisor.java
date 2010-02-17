@@ -6,6 +6,15 @@ package com.agac.bo;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import java.io.Serializable;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.Transient;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
@@ -22,8 +31,24 @@ import javax.xml.bind.annotation.XmlType;
         "domicilioFiscal",
         "expedidoEn"        
     })
-public class Emisor {
+@Entity
+public class Emisor implements Serializable {
+
+    @XmlTransient
+    @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
+    private Long id;
+
+    public Long getId() {
+        return id;
+    }
+    public void setId(Long id) {
+        Long oldId = this.id;
+        this.id = id;
+        propertyChangeSupport.firePropertyChange("id", oldId, id);
+    }
     @XmlAttribute(name = "nombre", required = true)
+    @Column(nullable = false)
     private String nombre;    
 
     public String getNombre() {
@@ -36,6 +61,7 @@ public class Emisor {
         propertyChangeSupport.firePropertyChange("nombre", oldNombre, nombre);
     }
     @XmlAttribute(name = "rfc", required = true)
+    @Column(nullable = false)
     private String rfc;    
 
     public String getRfc() {
@@ -47,7 +73,9 @@ public class Emisor {
         this.rfc = rfc;
         propertyChangeSupport.firePropertyChange( "rfc", oldRfc, rfc);
     }
+
     @XmlElement(name="ExpedidoEn", required=true)
+    @OneToOne(cascade=CascadeType.ALL)
     private Ubicacion expedidoEn;    
 
     public Ubicacion getExpedidoEn() {
@@ -63,6 +91,7 @@ public class Emisor {
     }
 
     @XmlElement(name="DomicilioFiscal", required=true)
+    @OneToOne(cascade=CascadeType.ALL)
     private UbicacionFiscal domicilioFiscal;    
 
     public UbicacionFiscal getDomicilioFiscal() {
@@ -78,6 +107,7 @@ public class Emisor {
     }
 
     @XmlTransient
+    @Transient
     private PropertyChangeSupport propertyChangeSupport = new PropertyChangeSupport(this);
 
     public void addPropertyChangeListener(PropertyChangeListener listener) {

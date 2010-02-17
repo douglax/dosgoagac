@@ -6,7 +6,7 @@
             <file name="com-agac-gui-actions-NewEmisor.instance">
                 <attr name="delegate" newvalue="com.agac.gui.actions.NewEmisor"/>
                 <attr name="displayName" bundlevalue="com.agac.gui.actions.Bundle#CTL_NewEmisor"/>
-                <attr name="iconBase" stringvalue="com/agac/gui/document-new.png"/>
+                <attr name="iconBase" stringvalue="com/agac/gui/resourses/filenew.png"/>                
                 <attr name="instanceCreate" methodvalue="org.openide.awt.Actions.alwaysEnabled"/>
                 <attr name="noIconInMenu" boolvalue="false"/>
             </file>
@@ -22,9 +22,6 @@
     </folder>
     <folder name="Toolbars">
         <folder name="File">
-            <file name="com-agac-gui-actions-NewEmisor.shadow" url="com-agac-gui-actions-NewEmisor.shadow">
-                <attr name="originalFile" stringvalue="Actions/BpelNodes/com-agac-gui-actions-NewEmisor.instance"/>
-            </file>
             <file name="org-openide-actions-SaveAction.instance"/>
             <file name="org-openide-actions-SaveAllAction.shadow_hidden"/>
         </folder>

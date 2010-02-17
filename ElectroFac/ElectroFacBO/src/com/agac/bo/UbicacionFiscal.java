@@ -5,9 +5,16 @@
 
 package com.agac.bo;
 
+import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 
 /**
@@ -16,9 +23,24 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "t_UbicacionFiscal")
-public class UbicacionFiscal {
+@Entity
+public class UbicacionFiscal implements Serializable {
+
+    @XmlTransient
+    @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
+    private Long id;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     @XmlAttribute(required=true)
+    @Column(nullable=false)
     private String calle;
     @XmlAttribute
     private String noExterior; //Opcional
@@ -31,12 +53,16 @@ public class UbicacionFiscal {
     @XmlAttribute
     private String referencia; //Opcional
     @XmlAttribute(required=true)
+    @Column(nullable=false)
     private String municipio;
     @XmlAttribute(required=true)
+    @Column(nullable=false)
     private String estado;
     @XmlAttribute(required=true)
+    @Column(nullable=false)
     private String pais;
     @XmlAttribute(required=true)
+    @Column(nullable=false)
     private String codigoPostal;
 
     public String getCalle() {

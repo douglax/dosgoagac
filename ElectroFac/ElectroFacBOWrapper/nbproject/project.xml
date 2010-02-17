@@ -5,9 +5,36 @@
         <data xmlns="http://www.netbeans.org/ns/nb-module-project/3">
             <code-name-base>com.agac</code-name-base>
             <suite-component/>
-            <module-dependencies/>
+            <module-dependencies>
+                <dependency>
+                    <code-name-base>oracle.toplink</code-name-base>
+                    <build-prerequisite/>
+                    <compile-dependency/>
+                    <run-dependency>
+                        <specification-version>1.0</specification-version>
+                    </run-dependency>
+                </dependency>
+                <dependency>
+                    <code-name-base>org.openide.modules</code-name-base>
+                    <build-prerequisite/>
+                    <compile-dependency/>
+                    <run-dependency>
+                        <specification-version>7.13.1</specification-version>
+                    </run-dependency>
+                </dependency>
+                <dependency>
+                    <code-name-base>org.openide.util</code-name-base>
+                    <build-prerequisite/>
+                    <compile-dependency/>
+                    <run-dependency>
+                        <specification-version>7.31.1.1</specification-version>
+                    </run-dependency>
+                </dependency>
+            </module-dependencies>
             <public-packages>
+                <package>com.agac</package>
                 <package>com.agac.bo</package>
+                <package>com.agac.services</package>
             </public-packages>
             <class-path-extension>
                 <runtime-relative-path>ext/ElectroFacBO.jar</runtime-relative-path>

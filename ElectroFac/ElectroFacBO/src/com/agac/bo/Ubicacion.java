@@ -5,9 +5,16 @@
 
 package com.agac.bo;
 
+import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 
 /**
@@ -21,7 +28,21 @@ import javax.xml.bind.annotation.XmlType;
         "codigoPostal"
     }
 )
-public class Ubicacion {
+@Entity
+public class Ubicacion implements Serializable {
+
+    @XmlTransient
+    @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
+    private Long id;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     @XmlAttribute
     private String calle; //Opcional en TUbicacion Mandatorio en TUbicacionFiscal
@@ -40,6 +61,7 @@ public class Ubicacion {
     @XmlAttribute
     private String estado; //Opcional en TUbicacion Mandatorio en TUbicacionFiscal
     @XmlAttribute(required=true)
+    @Column(nullable=false)
     private String pais; //Mandatorio
     @XmlAttribute
     private String codigoPostal; //Opcional en TUbicacion Mandatorio en TUbicacionFiscal

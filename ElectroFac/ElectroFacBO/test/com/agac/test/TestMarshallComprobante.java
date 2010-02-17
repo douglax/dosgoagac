@@ -14,9 +14,12 @@ import com.agac.bo.Parte;
 import com.agac.bo.Receptor;
 import com.agac.bo.Ubicacion;
 import com.agac.bo.UbicacionFiscal;
+import com.agac.services.DbServices;
 import java.io.StringWriter;
 import java.math.BigDecimal;
 import java.sql.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -124,4 +127,44 @@ public class TestMarshallComprobante {
 
     }
 
+    @Test
+    public void testJpa(){        
+
+        Emisor e = new Emisor();
+        e.setNombre("EMPRESA XYZ");
+        e.setRfc("FYAC010101AAA");
+        Ubicacion u = e.getExpedidoEn();
+        u.setCalle("Calle 25");
+        u.setCodigoPostal("31170");
+        u.setColonia("Colonia Centro");
+        u.setEstado("Chihuahua");
+        u.setLocalidad("Chihuahua");
+        u.setMunicipio("Chihuahua");
+        u.setNoExterior("2255");
+        u.setNoInterior("A");
+        u.setPais("Mexico");
+        u.setReferencia("Entre calle X y calle Y");
+
+        UbicacionFiscal uf = e.getDomicilioFiscal();
+        uf.setCalle("Calle 123");
+        uf.setCodigoPostal("31000");
+        uf.setColonia("Colonia Centro");
+        uf.setEstado("Chihuahua");
+        uf.setLocalidad("Chihuahua");
+        uf.setMunicipio("Chihuahua");
+        uf.setNoExterior("100");
+        uf.setNoInterior("100-A");
+        uf.setPais("Mexico");
+        uf.setReferencia("Entre calle X y calle Y");
+        try {
+            e = DbServices.saveObject(e);
+            System.out.println(e.getId());
+            e.setNombre("Otro");
+            DbServices.saveObject(e);
+            
+            DbServices.closeDbServices();
+        } catch (Exception ex) {
+            Logger.getLogger(TestMarshallComprobante.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }

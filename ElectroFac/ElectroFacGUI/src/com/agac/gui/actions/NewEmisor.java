@@ -10,6 +10,7 @@ import java.awt.event.ActionListener;
 
 public final class NewEmisor implements ActionListener {
 
+    @Override
     public void actionPerformed(ActionEvent e) {
         EmisorTopComponent top = new EmisorTopComponent();
         top.open();

@@ -1,18 +1,16 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.agac.gui;
 
 import com.agac.bo.Emisor;
+import com.agac.services.DbServices;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.IOException;
 import java.util.logging.Logger;
+import org.openide.util.Exceptions;
 import org.openide.util.NbBundle;
 import org.openide.windows.TopComponent;
 import org.openide.windows.WindowManager;
-//import org.openide.util.ImageUtilities;
 import org.netbeans.api.settings.ConvertAsProperties;
 import org.openide.DialogDisplayer;
 import org.openide.NotifyDescriptor;
@@ -21,13 +19,15 @@ import org.openide.cookies.SaveCookie;
 import org.openide.nodes.AbstractNode;
 import org.openide.nodes.Children;
 import org.openide.nodes.Node;
+import org.openide.util.Utilities;
 
 /**
  * Top component which displays something.
+ * @author Carlos Aguirre
  */
 @ConvertAsProperties(dtd = "-//com.agac.gui//Emisor//EN",
 autostore = false)
-public final class EmisorTopComponent extends TopComponent {
+public final class EmisorTopComponent extends TopComponent implements PropertyChangeListener{
 
     private static EmisorTopComponent instance;
     /** path to the icon used by the component and its open action */
@@ -41,12 +41,7 @@ public final class EmisorTopComponent extends TopComponent {
 //        setIcon(ImageUtilities.loadImage(ICON_PATH, true));
         putClientProperty(TopComponent.PROP_DRAGGING_DISABLED, Boolean.TRUE);
         putClientProperty(TopComponent.PROP_UNDOCKING_DISABLED, Boolean.TRUE);
-        emisor.addPropertyChangeListener(new PropertyChangeListener() {
-            public void propertyChange(PropertyChangeEvent evt) {
-                saveNode.enableSave(true);
-            }
-        });
-
+        emisor.addPropertyChangeListener(this);
     }
     private Emisor emisor = new Emisor();
 
@@ -546,8 +541,8 @@ public final class EmisorTopComponent extends TopComponent {
     public int getPersistenceType() {
         return TopComponent.PERSISTENCE_ALWAYS;
     }
-
     private NodeForSave saveNode;
+
     @Override
     public void componentOpened() {
         setActivatedNodes(new Node[]{saveNode = new NodeForSave()});
@@ -583,6 +578,11 @@ public final class EmisorTopComponent extends TopComponent {
         return PREFERRED_ID;
     }
 
+    @Override
+    public void propertyChange(PropertyChangeEvent evt) {
+        saveNode.enableSave(true);
+    }
+
     private class NodeForSave extends AbstractNode {
 
         SaveCookieImpl impl;
@@ -593,28 +593,38 @@ public final class EmisorTopComponent extends TopComponent {
             getCookieSet().assign(SaveCookie.class);
         }
 
-        public void enableSave(boolean modified){
-            if(modified)
+        public void enableSave(boolean modified) {
+            if (modified) {
                 getCookieSet().assign(SaveCookie.class, impl);
-            else
+            } else {
                 getCookieSet().assign(SaveCookie.class);
+            }
         }
 
         private class SaveCookieImpl implements SaveCookie {
 
+            @Override
             public void save() throws IOException {
                 Confirmation msg = new NotifyDescriptor.Confirmation(
                         "Desea guardar los cambios del nuevo emisor?",
                         NotifyDescriptor.OK_CANCEL_OPTION,
                         NotifyDescriptor.QUESTION_MESSAGE);
 
-                Object result = DialogDisplayer.getDefault().notify(msg);
-                //When user clicks "Yes", indicating they really want to save,
-                //we need to disable the Save button and Save menu item,
-                //so that it will only be usable when the next change is made
-                //to the text field:
+                Object result = DialogDisplayer.getDefault().notify(msg);                
                 if (NotifyDescriptor.YES_OPTION.equals(result)) {
-                    enableSave(false);
+                    try {
+                        EmisorTopComponent.this.setCursor(
+                                Utilities.createProgressCursor(EmisorTopComponent.this));
+                        emisor = DbServices.saveObject(emisor);
+                        emisor.addPropertyChangeListener(EmisorTopComponent.this);
+                        enableSave(false);
+                        EmisorTopComponent.this.setDisplayName(emisor.getNombre());
+                    } catch (Exception ex) {
+                        Exceptions.printStackTrace(ex);
+                    } finally {
+                        EmisorTopComponent.this.setCursor(null);
+                    }
+
                 }
             }
         }
