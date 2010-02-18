@@ -1,4 +1,3 @@
-
 package com.agac.gui;
 
 import com.agac.bo.Emisor;
@@ -19,6 +18,7 @@ import org.openide.cookies.SaveCookie;
 import org.openide.nodes.AbstractNode;
 import org.openide.nodes.Children;
 import org.openide.nodes.Node;
+import org.openide.util.RequestProcessor;
 import org.openide.util.Utilities;
 
 /**
@@ -27,7 +27,7 @@ import org.openide.util.Utilities;
  */
 @ConvertAsProperties(dtd = "-//com.agac.gui//Emisor//EN",
 autostore = false)
-public final class EmisorTopComponent extends TopComponent implements PropertyChangeListener{
+public final class EmisorTopComponent extends TopComponent implements PropertyChangeListener {
 
     private static EmisorTopComponent instance;
     /** path to the icon used by the component and its open action */
@@ -601,6 +601,11 @@ public final class EmisorTopComponent extends TopComponent implements PropertyCh
             }
         }
 
+        private void enableDisableComponents(boolean b) {
+            txtNombre.setEditable(b);
+            txtRFC.setEnabled(b);
+        }
+
         private class SaveCookieImpl implements SaveCookie {
 
             @Override
@@ -610,21 +615,32 @@ public final class EmisorTopComponent extends TopComponent implements PropertyCh
                         NotifyDescriptor.OK_CANCEL_OPTION,
                         NotifyDescriptor.QUESTION_MESSAGE);
 
-                Object result = DialogDisplayer.getDefault().notify(msg);                
+                Object result = DialogDisplayer.getDefault().notify(msg);
                 if (NotifyDescriptor.YES_OPTION.equals(result)) {
+                    enableDisableComponents(false);
                     try {
                         EmisorTopComponent.this.setCursor(
                                 Utilities.createProgressCursor(EmisorTopComponent.this));
-                        emisor = DbServices.saveObject(emisor);
-                        emisor.addPropertyChangeListener(EmisorTopComponent.this);
-                        enableSave(false);
+                        RequestProcessor rp = new RequestProcessor("processor");
+                        rp.post(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        try {
+                                            emisor = DbServices.saveObject(emisor);
+                                            enableDisableComponents(true);
+                                        } catch (Exception ex) {
+                                            Exceptions.printStackTrace(ex);
+                                        }
+                                        emisor.addPropertyChangeListener(EmisorTopComponent.this);
+                                    }
+                                });
                         EmisorTopComponent.this.setDisplayName(emisor.getNombre());
+                        enableSave(false);
                     } catch (Exception ex) {
                         Exceptions.printStackTrace(ex);
                     } finally {
                         EmisorTopComponent.this.setCursor(null);
                     }
-
                 }
             }
         }
