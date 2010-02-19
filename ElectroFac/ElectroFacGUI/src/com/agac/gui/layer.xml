@@ -6,25 +6,66 @@
             <file name="com-agac-gui-actions-NewEmisor.instance">
                 <attr name="delegate" newvalue="com.agac.gui.actions.NewEmisor"/>
                 <attr name="displayName" bundlevalue="com.agac.gui.actions.Bundle#CTL_NewEmisor"/>
-                <attr name="iconBase" stringvalue="com/agac/gui/resourses/filenew.png"/>                
+                <attr name="iconBase" stringvalue="com/agac/gui/resourses/filenew.png"/>
+                <attr name="instanceCreate" methodvalue="org.openide.awt.Actions.alwaysEnabled"/>
+                <attr name="noIconInMenu" boolvalue="false"/>
+            </file>
+            <file name="com-agac-gui-actions-NuevoCliente.instance">
+                <attr name="delegate" newvalue="com.agac.gui.actions.NuevoCliente"/>
+                <attr name="displayName" bundlevalue="com.agac.gui.actions.Bundle#CTL_NuevoCliente"/>
+                <attr name="iconBase" stringvalue="com/agac/gui/resourses/user_suit.png"/>
+                <attr name="instanceCreate" methodvalue="org.openide.awt.Actions.alwaysEnabled"/>
+                <attr name="noIconInMenu" boolvalue="false"/>
+            </file>
+            <file name="com-agac-gui-actions-VerEmisores.instance">
+                <attr name="delegate" newvalue="com.agac.gui.actions.VerEmisores"/>
+                <attr name="displayName" bundlevalue="com.agac.gui.actions.Bundle#CTL_VerEmisores"/>
+                <attr name="iconBase" stringvalue="com/agac/gui/resourses/filenew.png"/>
                 <attr name="instanceCreate" methodvalue="org.openide.awt.Actions.alwaysEnabled"/>
                 <attr name="noIconInMenu" boolvalue="false"/>
             </file>
         </folder>
-        </folder>
+    </folder>
     <folder name="Menu">
+        <file name="Edit_hidden"/>
         <folder name="File">
-            <attr name="com-agac-gui-actions-NewEmisor.shadow/EmisorAction.shadow" boolvalue="true"/>
             <file name="com-agac-gui-actions-NewEmisor.shadow">
                 <attr name="originalFile" stringvalue="Actions/BpelNodes/com-agac-gui-actions-NewEmisor.instance"/>
+                <attr name="position" intvalue="300"/>
+            </file>
+            <file name="com-agac-gui-actions-NuevoCliente-separatorBefore.instance">
+                <attr name="instanceClass" stringvalue="javax.swing.JSeparator"/>
+                <attr name="position" intvalue="0"/>
+            </file>
+            <file name="com-agac-gui-actions-NuevoCliente.shadow">
+                <attr name="originalFile" stringvalue="Actions/BpelNodes/com-agac-gui-actions-NuevoCliente.instance"/>
+                <attr name="position" intvalue="100"/>
+            </file>
+        </folder>
+        <folder name="View">
+            <file name="com-agac-gui-actions-VerEmisores.shadow">
+                <attr name="originalFile" stringvalue="Actions/BpelNodes/com-agac-gui-actions-VerEmisores.instance"/>
+                <attr name="position" intvalue="100"/>
             </file>
         </folder>
     </folder>
     <folder name="Toolbars">
         <folder name="File">
-            <file name="org-openide-actions-SaveAction.instance"/>
+            <file name="org-openide-actions-SaveAction.instance">
+                <attr name="displayName" intvalue="Guardar"/>
+                <attr name="position" intvalue="0"/>
+            </file>            
+            <file name="com-agac-gui-actions-NuevoCliente.shadow">
+                <attr name="originalFile" stringvalue="Actions/BpelNodes/com-agac-gui-actions-NuevoCliente.instance"/>
+                <attr name="position" intvalue="1"/>
+            </file>
+            <file name="com-agac-gui-actions-NewEmisor.shadow">
+                <attr name="originalFile" stringvalue="Actions/BpelNodes/com-agac-gui-actions-NewEmisor.instance"/>
+                <attr name="position" intvalue="2"/>
+            </file>
             <file name="org-openide-actions-SaveAllAction.shadow_hidden"/>
         </folder>
+        <file name="UndoRedo_hidden"/>
     </folder>
     <folder name="Windows2">
         <folder name="Components">

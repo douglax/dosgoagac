@@ -5,12 +5,13 @@
     <class>com.agac.bo.Emisor</class>
     <class>com.agac.bo.UbicacionFiscal</class>
     <class>com.agac.bo.Ubicacion</class>
+    <class>com.agac.bo.Receptor</class>
     <properties>
       <property name="toplink.jdbc.user" value=""/>
       <property name="toplink.jdbc.password" value=""/>
       <property name="toplink.jdbc.url" value="jdbc:derby:efactura;create=true"/>
       <property name="toplink.jdbc.driver" value="org.apache.derby.jdbc.EmbeddedDriver"/>
-      <property name="toplink.ddl-generation" value="create-tables"/>
+      <property name="toplink.ddl-generation" value="drop-and-create-tables"/>
     </properties>
   </persistence-unit>
 </persistence>

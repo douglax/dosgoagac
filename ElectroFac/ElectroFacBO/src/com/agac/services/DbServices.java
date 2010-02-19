@@ -25,9 +25,12 @@ public class DbServices {
             em.getTransaction().commit();
             em.close();
         } catch (Exception e) {
-            em.getTransaction().rollback();
+            if (em.getTransaction().isActive())
+                    em.getTransaction().rollback();
             em.close();
-            throw new Exception("Ocurrio un error al guadar los datos", e);
+            throw new Exception(
+                    "Ocurrio un error al guadar los datos, verifique que todos los campos requeridos estan llenos",
+                    e);
         }
         return u;
     }
