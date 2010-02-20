@@ -28,6 +28,19 @@ public class Comprobante {
     @XmlElement(name="Concepto")
     private List<Concepto> conceptos;
 
+    
+    @XmlElement(name="Impuestos", required=true)
+    private Impuesto impuesto;
+
+    public Impuesto getImpuesto() {
+        return impuesto;
+    }
+
+    public void setImpuesto(Impuesto impuesto) {
+        this.impuesto = impuesto;
+    }
+
+
     public List<Concepto> getConceptos() {
         if(conceptos == null)
             conceptos = new ArrayList<Concepto>();

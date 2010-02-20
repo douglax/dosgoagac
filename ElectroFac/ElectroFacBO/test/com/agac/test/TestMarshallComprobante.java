@@ -14,6 +14,7 @@ import com.agac.bo.Parte;
 import com.agac.bo.Receptor;
 import com.agac.bo.Ubicacion;
 import com.agac.bo.UbicacionFiscal;
+import com.agac.bo.Impuesto;
 import com.agac.services.DbServices;
 import java.io.StringWriter;
 import java.math.BigDecimal;
@@ -119,6 +120,14 @@ public class TestMarshallComprobante {
         con.setValorUnitario(new BigDecimal(23.50));
         c.getConceptos().add(con);
         c.getConceptos().add(con);
+
+
+        /* aqui me quedé */
+        Impuesto imp = c.getImpuesto();
+        
+
+
+
 
         Marshaller m = ctx.createMarshaller();
         StringWriter writer = new StringWriter();
