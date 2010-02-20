@@ -633,7 +633,7 @@ public final class EmisorTopComponent extends TopComponent implements PropertyCh
             @Override
             public void save() throws IOException {
                 Confirmation msg = new NotifyDescriptor.Confirmation(
-                        "Desea guardar los cambios del nuevo emisor?", "Guardar Emisor",
+                        "Desea guardar los cambios?", "Guardar Cambios",
                         NotifyDescriptor.OK_CANCEL_OPTION,
                         NotifyDescriptor.QUESTION_MESSAGE);
                 Object result = DialogDisplayer.getDefault().notify(msg);

@@ -2,15 +2,17 @@
  * Esta clase representa los tipos t_UbicacionFiscal
  * Tipo definido para expresar domicilios o direcciones
  */
-
 package com.agac.bo;
 
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Transient;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
@@ -28,7 +30,7 @@ public class UbicacionFiscal implements Serializable {
 
     @XmlTransient
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     public Long getId() {
@@ -38,9 +40,8 @@ public class UbicacionFiscal implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
-
-    @XmlAttribute(required=true)
-    @Column(nullable=false)
+    @XmlAttribute(required = true)
+    @Column(nullable = false)
     private String calle;
     @XmlAttribute
     private String noExterior; //Opcional
@@ -52,17 +53,17 @@ public class UbicacionFiscal implements Serializable {
     private String localidad; //Opcional
     @XmlAttribute
     private String referencia; //Opcional
-    @XmlAttribute(required=true)
-    @Column(nullable=false)
+    @XmlAttribute(required = true)
+    @Column(nullable = false)
     private String municipio;
-    @XmlAttribute(required=true)
-    @Column(nullable=false)
+    @XmlAttribute(required = true)
+    @Column(nullable = false)
     private String estado;
-    @XmlAttribute(required=true)
-    @Column(nullable=false)
+    @XmlAttribute(required = true)
+    @Column(nullable = false)
     private String pais;
-    @XmlAttribute(required=true)
-    @Column(nullable=false)
+    @XmlAttribute(required = true)
+    @Column(nullable = false)
     private String codigoPostal;
 
     public String getCalle() {
@@ -71,6 +72,7 @@ public class UbicacionFiscal implements Serializable {
 
     public void setCalle(String calle) {
         this.calle = calle;
+        propertyChangeSupport.firePropertyChange("calle", null, calle);
     }
 
     public String getCodigoPostal() {
@@ -79,6 +81,7 @@ public class UbicacionFiscal implements Serializable {
 
     public void setCodigoPostal(String codigoPostal) {
         this.codigoPostal = codigoPostal;
+        propertyChangeSupport.firePropertyChange("codigoPostal", null, codigoPostal);
     }
 
     public String getColonia() {
@@ -87,6 +90,7 @@ public class UbicacionFiscal implements Serializable {
 
     public void setColonia(String colonia) {
         this.colonia = colonia;
+        propertyChangeSupport.firePropertyChange("colonia", null, colonia);
     }
 
     public String getEstado() {
@@ -95,6 +99,7 @@ public class UbicacionFiscal implements Serializable {
 
     public void setEstado(String estado) {
         this.estado = estado;
+        propertyChangeSupport.firePropertyChange("estado", null, estado);
     }
 
     public String getLocalidad() {
@@ -103,6 +108,7 @@ public class UbicacionFiscal implements Serializable {
 
     public void setLocalidad(String localidad) {
         this.localidad = localidad;
+        propertyChangeSupport.firePropertyChange("localidad", null, localidad);
     }
 
     public String getMunicipio() {
@@ -111,6 +117,7 @@ public class UbicacionFiscal implements Serializable {
 
     public void setMunicipio(String municipio) {
         this.municipio = municipio;
+        propertyChangeSupport.firePropertyChange("municipio", null, municipio);
     }
 
     public String getNoExterior() {
@@ -119,6 +126,7 @@ public class UbicacionFiscal implements Serializable {
 
     public void setNoExterior(String noExterior) {
         this.noExterior = noExterior;
+        propertyChangeSupport.firePropertyChange("noExterior", null, noExterior);
     }
 
     public String getNoInterior() {
@@ -127,6 +135,7 @@ public class UbicacionFiscal implements Serializable {
 
     public void setNoInterior(String noInterior) {
         this.noInterior = noInterior;
+        propertyChangeSupport.firePropertyChange("noInterior", null, noInterior);
     }
 
     public String getPais() {
@@ -135,6 +144,7 @@ public class UbicacionFiscal implements Serializable {
 
     public void setPais(String pais) {
         this.pais = pais;
+        propertyChangeSupport.firePropertyChange("pais", null, pais);
     }
 
     public String getReferencia() {
@@ -143,6 +153,18 @@ public class UbicacionFiscal implements Serializable {
 
     public void setReferencia(String referencia) {
         this.referencia = referencia;
+        propertyChangeSupport.firePropertyChange("referencia", null, referencia);
+    }
+    @XmlTransient
+    @Transient
+    private PropertyChangeSupport propertyChangeSupport = new PropertyChangeSupport(this);
+
+    public void addPropertyChangeListener(PropertyChangeListener listener) {
+        propertyChangeSupport.addPropertyChangeListener(listener);
+    }
+
+    public void removePropertyChangeListener(PropertyChangeListener listener) {
+        propertyChangeSupport.removePropertyChangeListener(listener);
     }
 }
 

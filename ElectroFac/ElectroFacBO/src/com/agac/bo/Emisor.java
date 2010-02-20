@@ -1,7 +1,6 @@
 /*
  * Nodo requerido para expresar la información del contribuyente emisor del comprobante.
  */
-
 package com.agac.bo;
 
 import java.beans.PropertyChangeListener;
@@ -27,21 +26,22 @@ import javax.xml.bind.annotation.XmlType;
  * @author Carlos Aguirre 12 Febrero 2010
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-    @XmlType(propOrder = {        
-        "domicilioFiscal",
-        "expedidoEn"        
-    })
+@XmlType(propOrder = {
+    "domicilioFiscal",
+    "expedidoEn"
+})
 @Entity
 public class Emisor implements Serializable {
 
     @XmlTransient
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     public Long getId() {
         return id;
     }
+
     public void setId(Long id) {
         Long oldId = this.id;
         this.id = id;
@@ -49,7 +49,7 @@ public class Emisor implements Serializable {
     }
     @XmlAttribute(name = "nombre", required = true)
     @Column(nullable = false)
-    private String nombre;    
+    private String nombre;
 
     public String getNombre() {
         return nombre;
@@ -62,7 +62,7 @@ public class Emisor implements Serializable {
     }
     @XmlAttribute(name = "rfc", required = true)
     @Column(nullable = false)
-    private String rfc;    
+    private String rfc;
 
     public String getRfc() {
         return rfc;
@@ -71,16 +71,13 @@ public class Emisor implements Serializable {
     public void setRfc(String rfc) {
         String oldRfc = this.rfc;
         this.rfc = rfc;
-        propertyChangeSupport.firePropertyChange( "rfc", oldRfc, rfc);
+        propertyChangeSupport.firePropertyChange("rfc", oldRfc, rfc);
     }
-
-    @XmlElement(name="ExpedidoEn", required=true)
-    @OneToOne(cascade=CascadeType.ALL)
-    private Ubicacion expedidoEn;    
+    @XmlElement(name = "ExpedidoEn", required = true)
+    @OneToOne(cascade = CascadeType.ALL)
+    private Ubicacion expedidoEn = new Ubicacion();
 
     public Ubicacion getExpedidoEn() {
-        if(expedidoEn == null)
-            expedidoEn = new Ubicacion();
         return expedidoEn;
     }
 
@@ -89,14 +86,11 @@ public class Emisor implements Serializable {
         this.expedidoEn = expedidoEn;
         propertyChangeSupport.firePropertyChange("expedidoEn", oldExpedidoEn, expedidoEn);
     }
-
-    @XmlElement(name="DomicilioFiscal", required=true)
-    @OneToOne(cascade=CascadeType.ALL)
-    private UbicacionFiscal domicilioFiscal;    
+    @XmlElement(name = "DomicilioFiscal", required = true)
+    @OneToOne(cascade = CascadeType.ALL)
+    private UbicacionFiscal domicilioFiscal = new UbicacionFiscal();
 
     public UbicacionFiscal getDomicilioFiscal() {
-        if(domicilioFiscal == null)
-            domicilioFiscal = new UbicacionFiscal();
         return domicilioFiscal;
     }
 
@@ -105,17 +99,23 @@ public class Emisor implements Serializable {
         this.domicilioFiscal = domicilioFiscal;
         propertyChangeSupport.firePropertyChange("domicilioFiscal", oldDomicilioFiscal, domicilioFiscal);
     }
-
     @XmlTransient
     @Transient
     private PropertyChangeSupport propertyChangeSupport = new PropertyChangeSupport(this);
 
     public void addPropertyChangeListener(PropertyChangeListener listener) {
         propertyChangeSupport.addPropertyChangeListener(listener);
+        domicilioFiscal.addPropertyChangeListener(listener);
+        expedidoEn.addPropertyChangeListener(listener);
     }
 
     public void removePropertyChangeListener(PropertyChangeListener listener) {
         propertyChangeSupport.removePropertyChangeListener(listener);
+        if (domicilioFiscal != null) {
+            domicilioFiscal.removePropertyChangeListener(listener);
+        }
+        if (expedidoEn != null) {
+            expedidoEn.removePropertyChangeListener(listener);
+        }
     }
-
 }
