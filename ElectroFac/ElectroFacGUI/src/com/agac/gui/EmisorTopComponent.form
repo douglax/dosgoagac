@@ -61,7 +61,7 @@
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="txtNombre" pref="932" max="32767" attributes="0"/>
+                      <Component id="txtNombre" pref="948" max="32767" attributes="0"/>
                       <Component id="txtRFC" min="-2" pref="171" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -173,7 +173,7 @@
                               </Group>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="txtCalle" alignment="0" pref="913" max="32767" attributes="0"/>
+                                  <Component id="txtCalle" alignment="0" pref="932" max="32767" attributes="0"/>
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="txtNoInterior" min="-2" pref="68" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -181,7 +181,7 @@
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                       <Component id="noExterior" min="-2" pref="88" max="-2" attributes="0"/>
                                   </Group>
-                                  <Component id="txtColonia" alignment="0" pref="913" max="32767" attributes="0"/>
+                                  <Component id="txtColonia" alignment="0" pref="932" max="32767" attributes="0"/>
                                   <Component id="txtLocalidad" alignment="0" min="-2" pref="430" max="-2" attributes="0"/>
                                   <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
                                       <Component id="jScrollPane2" alignment="0" min="-2" pref="526" max="-2" attributes="1"/>
@@ -255,7 +255,7 @@
                           </Group>
                           <Component id="txtCp" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="54" max="32767" attributes="0"/>
+                      <EmptySpace pref="100" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -455,7 +455,7 @@
                               </Group>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="txtCalleExp" alignment="0" pref="913" max="32767" attributes="0"/>
+                                  <Component id="txtCalleExp" alignment="0" pref="932" max="32767" attributes="0"/>
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="txtNoInteriorExp" min="-2" pref="68" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -463,7 +463,7 @@
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                       <Component id="txtNoExteriorExp" min="-2" pref="88" max="-2" attributes="0"/>
                                   </Group>
-                                  <Component id="txtColoniaExp" alignment="0" pref="913" max="32767" attributes="0"/>
+                                  <Component id="txtColoniaExp" alignment="0" pref="932" max="32767" attributes="0"/>
                                   <Component id="txtLocalidadExp" alignment="0" min="-2" pref="430" max="-2" attributes="0"/>
                                   <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
                                       <Component id="jScrollPane3" alignment="0" min="-2" pref="526" max="-2" attributes="1"/>
@@ -538,7 +538,7 @@
                           </Group>
                           <Component id="txtCpExp" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace pref="57" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>

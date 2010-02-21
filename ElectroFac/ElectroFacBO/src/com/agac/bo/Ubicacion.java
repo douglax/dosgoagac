@@ -62,7 +62,7 @@ public class Ubicacion implements Serializable {
     private String estado; //Opcional en TUbicacion Mandatorio en TUbicacionFiscal
     @XmlAttribute(required = true)
     @Column(nullable = false)
-    private String pais; //Mandatorio
+    private String pais = "Mexico"; //Mandatorio
     @XmlAttribute
     private String codigoPostal; //Opcional en TUbicacion Mandatorio en TUbicacionFiscal
 

@@ -1,5 +1,6 @@
 package com.agac.services;
 
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -33,6 +34,18 @@ public class DbServices {
                     e);
         }
         return u;
+    }
+
+    public static <U> List<U> getList(String s){
+         if (emf == null) {
+            emf = Persistence.createEntityManagerFactory("ElectroFacBOPU");
+        }
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        List<U> l = em.createQuery(s).getResultList();
+        em.getTransaction().commit();
+        em.close();
+        return l;
     }
 
     public static void closeDbServices(){

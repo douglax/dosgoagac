@@ -19,6 +19,7 @@ import com.agac.services.DbServices;
 import java.io.StringWriter;
 import java.math.BigDecimal;
 import java.sql.Date;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -170,7 +171,10 @@ public class TestMarshallComprobante {
             System.out.println(e.getId());
             e.setNombre("Otro");
             DbServices.saveObject(e);
-            
+
+            List<Emisor> l = DbServices.getList("Select e from Emisor e");
+            for(Emisor emi : l)
+                System.out.println(emi.getNombre());
             DbServices.closeDbServices();
         } catch (Exception ex) {
             Logger.getLogger(TestMarshallComprobante.class.getName()).log(Level.SEVERE, null, ex);

@@ -25,6 +25,19 @@
                 <attr name="noIconInMenu" boolvalue="false"/>
             </file>
         </folder>
+        <folder name="Window">
+            <file name="com-agac-gui-MenuAction.instance">
+                <attr name="component" methodvalue="com.agac.gui.MenuTopComponent.findInstance"/>
+                <attr name="displayName" bundlevalue="com.agac.gui.Bundle#CTL_MenuAction"/>
+                <attr name="instanceCreate" methodvalue="org.openide.windows.TopComponent.openAction"/>
+            </file>
+            <file name="com-agac-gui-ReceptorAction.instance">
+                <attr name="component" methodvalue="com.agac.gui.ReceptorTopComponent.findInstance"/>
+                <attr name="displayName" bundlevalue="com.agac.gui.Bundle#CTL_ReceptorAction"/>
+                <attr name="iconBase" stringvalue="com/agac/gui/resourses/user_suit.png"/>
+                <attr name="instanceCreate" methodvalue="org.openide.windows.TopComponent.openAction"/>
+            </file>
+        </folder>
     </folder>
     <folder name="Menu">
         <file name="Edit_hidden"/>
@@ -46,6 +59,14 @@
             <file name="com-agac-gui-actions-VerEmisores.shadow">
                 <attr name="originalFile" stringvalue="Actions/BpelNodes/com-agac-gui-actions-VerEmisores.instance"/>
                 <attr name="position" intvalue="100"/>
+            </file>
+        </folder>
+        <folder name="Window">
+            <file name="MenuAction.shadow">
+                <attr name="originalFile" stringvalue="Actions/Window/com-agac-gui-MenuAction.instance"/>
+            </file>
+            <file name="ReceptorAction.shadow">
+                <attr name="originalFile" stringvalue="Actions/Window/com-agac-gui-ReceptorAction.instance"/>
             </file>
         </folder>
     </folder>
@@ -70,10 +91,16 @@
     <folder name="Windows2">
         <folder name="Components">
             <file name="EmisorTopComponent.settings" url="EmisorTopComponentSettings.xml"/>
+            <file name="MenuTopComponent.settings" url="MenuTopComponentSettings.xml"/>
+            <file name="ReceptorTopComponent.settings" url="ReceptorTopComponentSettings.xml"/>
         </folder>
         <folder name="Modes">
             <folder name="editor">
                 <file name="EmisorTopComponent.wstcref" url="EmisorTopComponentWstcref.xml"/>
+                <file name="ReceptorTopComponent.wstcref" url="ReceptorTopComponentWstcref.xml"/>
+            </folder>
+            <folder name="leftSlidingSide">
+                <file name="MenuTopComponent.wstcref" url="MenuTopComponentWstcref.xml"/>
             </folder>
         </folder>
     </folder>

@@ -48,7 +48,7 @@ public class Receptor implements Serializable {
 
     @OneToOne(cascade=CascadeType.ALL)
     @XmlElement(name="Domicilio", required=true)
-    private Ubicacion domicilio;
+    private Ubicacion domicilio = new Ubicacion();
     @XmlAttribute(name = "rfc", required = true)
     private String rfc;
     @XmlAttribute
@@ -89,9 +89,15 @@ public class Receptor implements Serializable {
     private PropertyChangeSupport propertyChangeSupport = new PropertyChangeSupport(this);
     public void addPropertyChangeListener(PropertyChangeListener listener) {
         propertyChangeSupport.addPropertyChangeListener(listener);
+        if(domicilio != null){
+            domicilio.addPropertyChangeListener(listener);
+        }
     }
 
     public void removePropertyChangeListener(PropertyChangeListener listener) {
         propertyChangeSupport.removePropertyChangeListener(listener);
+         if(domicilio != null){
+            domicilio.removePropertyChangeListener(listener);
+        }
     }
 }
