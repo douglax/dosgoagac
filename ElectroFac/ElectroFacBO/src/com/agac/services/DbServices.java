@@ -53,4 +53,10 @@ public class DbServices {
             emf.close();
         }
     }
+    public static void openDbServices(){
+        try{
+            if (emf == null)
+                emf = Persistence.createEntityManagerFactory("ElectroFacBOPU");
+        }catch(Exception e){}
+    }
 }

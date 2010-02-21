@@ -5,12 +5,8 @@ package com.agac.gui.nodes;
 import com.agac.bo.Emisor;
 import com.agac.services.DbServices;
 import java.util.List;
-import org.openide.nodes.AbstractNode;
 import org.openide.nodes.ChildFactory;
-import org.openide.nodes.Children;
 import org.openide.nodes.Node;
-import org.openide.util.Exceptions;
-import org.openide.util.lookup.Lookups;
 
 /**
  *
@@ -28,15 +24,7 @@ public class EmpresaNodeFactory extends ChildFactory<Emisor>{
 
     @Override
     protected Node createNodeForKey(Emisor t) {
-        try {
-            AbstractNode n = new AbstractNode(Children.LEAF, Lookups.singleton(t));
-            n.setDisplayName(t.getNombre());
-            n.setIconBaseWithExtension("com/agac/gui/resourses/filenew.png");
-            return n;
-        } catch (Exception ex) {
-            Exceptions.printStackTrace(ex);
-            return null;
-        }
+        return new EmpresaNode(t);
     }
 
 }

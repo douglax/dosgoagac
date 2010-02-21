@@ -54,6 +54,9 @@ public final class EmisorTopComponent extends TopComponent implements PropertyCh
 
     public void setEmisor(Emisor emisor) {
         this.emisor = emisor;
+        this.emisor.addPropertyChangeListener(this);
+        setDisplayName(emisor.getNombre());
+        firePropertyChange("emisor", null, emisor);
     }
 
     /** This method is called from within the constructor to

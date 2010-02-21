@@ -57,6 +57,8 @@ public final class MenuTopComponent extends TopComponent implements ExplorerMana
         beanTreeView1 = new org.openide.explorer.view.BeanTreeView();
 
         setLayout(new java.awt.BorderLayout());
+
+        beanTreeView1.setDefaultActionAllowed(true);
         add(beanTreeView1, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
 
