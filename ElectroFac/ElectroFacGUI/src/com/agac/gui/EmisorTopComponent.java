@@ -7,6 +7,8 @@ import java.beans.PropertyChangeListener;
 import java.io.IOException;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.logging.Logger;
+import org.netbeans.api.progress.ProgressHandle;
+import org.netbeans.api.progress.ProgressHandleFactory;
 import org.netbeans.api.progress.ProgressUtils;
 import org.openide.util.Exceptions;
 import org.openide.util.NbBundle;
@@ -644,6 +646,8 @@ public final class EmisorTopComponent extends TopComponent implements PropertyCh
 
                                     @Override
                                     public void run() {
+                                        ProgressHandle p = ProgressHandleFactory.createHandle("My Task");
+                                        p.start();
                                         try {
                                             emisor = DbServices.saveObject(emisor);
                                         } catch (Exception ex) {
@@ -652,6 +656,7 @@ public final class EmisorTopComponent extends TopComponent implements PropertyCh
                                                     NotifyDescriptor.ERROR_MESSAGE));
                                         }
                                         emisor.addPropertyChangeListener(EmisorTopComponent.this);
+                                        p.finish();
                                         
                                     }
                                 }, "Guardando Datos", new AtomicBoolean(false), true);
