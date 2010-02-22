@@ -17,6 +17,7 @@ import com.agac.bo.UbicacionFiscal;
 import com.agac.bo.Impuesto;
 import com.agac.bo.Retencion;
 import com.agac.bo.Traslado;
+import com.agac.bo.Complemento;
 import com.agac.services.DbServices;
 import java.io.StringWriter;
 import java.math.BigDecimal;
@@ -129,21 +130,21 @@ public class TestMarshallComprobante {
         Impuesto imp = new Impuesto();
 
         Retencion rete = new Retencion();
-        rete.setImpuesto("ret1");
+        rete.setImpuesto("IVA");
         rete.setImporte(new BigDecimal(12.34));
         imp.getRetenciones().add(rete);
         
-        rete.setImpuesto("ret2");
+        rete.setImpuesto("ISR");
         rete.setImporte(new BigDecimal(56.78));
         imp.getRetenciones().add(rete);
 
         Traslado tras = new Traslado();
-        tras.setImpuesto("tras1");
+        tras.setImpuesto("IVA");
         tras.setTasa(new BigDecimal(.0123));
         tras.setImporte(new BigDecimal(1000));
         imp.getTraslados().add(tras);
 
-        tras.setImpuesto("tras2");
+        tras.setImpuesto("IEPS");
         tras.setTasa(new BigDecimal(.4567));
         tras.setImporte(new BigDecimal(2000));
         imp.getTraslados().add(tras);
@@ -151,7 +152,12 @@ public class TestMarshallComprobante {
         imp.setTotalImpuestosRetenidos(new BigDecimal(10.101));
         imp.setTotalImpuestosTrasladados(new BigDecimal(20.202));
 
-        
+        Complemento compl = new Complemento();
+        compl.getAny().add(new String("complemento1"));
+        compl.getAny().add(new String("complemento2"));
+        compl.getAny().add(new String("complemento3"));
+
+
 
         Marshaller m = ctx.createMarshaller();
         StringWriter writer = new StringWriter();

@@ -47,16 +47,17 @@ import javax.xml.bind.annotation.XmlType;
              *
              *
              */
+
             @XmlAccessorType(XmlAccessType.FIELD)
             @XmlType(name = "")
             public class Traslado {
 
                 @XmlAttribute(required = true)
-                protected String impuesto;
+                private String impuesto;
                 @XmlAttribute(required = true)
-                protected BigDecimal tasa;
+                private BigDecimal tasa;
                 @XmlAttribute(required = true)
-                protected BigDecimal importe;
+                private BigDecimal importe;
 
                 /**
                  * Gets the value of the impuesto property.

@@ -12,9 +12,11 @@ import javax.xml.bind.annotation.XmlType;
 public class Retencion {
 
     @XmlAttribute(required = true)
-    protected String impuesto;
+    private String impuesto;
+
+
     @XmlAttribute(required = true)
-    protected BigDecimal importe;
+    private BigDecimal importe;
 
     /**
      * Gets the value of the impuesto property.

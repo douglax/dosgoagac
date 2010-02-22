@@ -20,8 +20,11 @@ import javax.xml.bind.annotation.XmlType;
  *
  * @author alex
  */
-@XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(propOrder = {"retenciones","traslados"})
+    @XmlAccessorType(XmlAccessType.FIELD)
+    @XmlType(name = "", propOrder = {
+        "retenciones",
+        "traslados"
+    })
 public class Impuesto {
 
     @XmlElement(name = "Retenciones")
@@ -29,9 +32,9 @@ public class Impuesto {
     @XmlElement(name = "Traslados")
     private List<Traslado> traslados;
     @XmlAttribute
-    protected BigDecimal totalImpuestosRetenidos;
+    private BigDecimal totalImpuestosRetenidos;
     @XmlAttribute
-    protected BigDecimal totalImpuestosTrasladados;
+    private BigDecimal totalImpuestosTrasladados;
 
     /**
      * Gets the value of the retenciones property.
