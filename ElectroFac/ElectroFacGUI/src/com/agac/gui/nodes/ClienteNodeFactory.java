@@ -3,11 +3,8 @@ package com.agac.gui.nodes;
 import com.agac.bo.Receptor;
 import com.agac.services.DbServices;
 import java.util.List;
-import org.openide.nodes.AbstractNode;
 import org.openide.nodes.ChildFactory;
-import org.openide.nodes.Children;
 import org.openide.nodes.Node;
-import org.openide.util.lookup.Lookups;
 
 /**
  *
@@ -26,9 +23,6 @@ public class ClienteNodeFactory extends ChildFactory<Receptor> {
 
     @Override
     protected Node createNodeForKey(Receptor t) {
-        AbstractNode n = new AbstractNode(Children.LEAF, Lookups.singleton(t));
-        n.setDisplayName(t.getNombre());
-        n.setIconBaseWithExtension("com/agac/gui/resourses/user_suit.png");
-        return n;
+        return new ClienteNode(t);
     }
 }

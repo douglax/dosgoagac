@@ -56,6 +56,9 @@ public final class ReceptorTopComponent extends TopComponent implements Property
 
     public void setReceptor(Receptor receptor) {
         this.receptor = receptor;
+        setDisplayName(receptor.getNombre());
+        this.receptor.addPropertyChangeListener(this);
+        firePropertyChange("receptor", null, receptor);
     }
 
     /** This method is called from within the constructor to
@@ -374,7 +377,7 @@ public final class ReceptorTopComponent extends TopComponent implements Property
 
     @Override
     public void componentClosed() {
-        // TODO add custom code on component closing
+        this.receptor.removePropertyChangeListener(this);
     }
 
     void writeProperties(java.util.Properties p) {

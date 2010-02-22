@@ -99,6 +99,33 @@ public class Emisor implements Serializable {
         this.domicilioFiscal = domicilioFiscal;
         propertyChangeSupport.firePropertyChange("domicilioFiscal", oldDomicilioFiscal, domicilioFiscal);
     }
+
+    @XmlTransient
+    private String rutaCertificado;
+
+    public String getRutaCertificado() {
+        return rutaCertificado;
+    }
+
+    public void setRutaCertificado(String rutaCertificado) {
+        String oldRutaCertificado = this.rutaCertificado;
+        this.rutaCertificado = rutaCertificado;
+        propertyChangeSupport.firePropertyChange("rutaCertificado", oldRutaCertificado, rutaCertificado);
+    }
+
+    @XmlTransient
+    private String rutaLlave;
+
+    public String getRutaLlave() {
+        return rutaLlave;
+    }
+
+    public void setRutaLlave(String rutaLlave) {
+        String oldRutaLlave = this.rutaLlave;
+        this.rutaLlave = rutaLlave;
+        propertyChangeSupport.firePropertyChange("rutaLlave", oldRutaLlave, rutaLlave);
+    }
+
     @XmlTransient
     @Transient
     private PropertyChangeSupport propertyChangeSupport = new PropertyChangeSupport(this);
