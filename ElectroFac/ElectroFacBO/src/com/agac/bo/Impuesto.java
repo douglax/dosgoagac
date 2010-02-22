@@ -21,10 +21,7 @@ import javax.xml.bind.annotation.XmlType;
  * @author alex
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "", propOrder = {
-    "retenciones",
-    "traslados"
-})
+@XmlType(propOrder = {"retenciones","traslados"})
 public class Impuesto {
 
     @XmlElement(name = "Retenciones")
