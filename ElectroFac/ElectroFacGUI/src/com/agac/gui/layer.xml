@@ -73,18 +73,22 @@
     <folder name="Toolbars">
         <folder name="File">
             <file name="org-openide-actions-SaveAction.instance">
-                <attr name="displayName" intvalue="Guardar"/>
-                <attr name="position" intvalue="0"/>
-            </file>            
+                <attr name="position" intvalue="10"/>
+            </file>           
+            <file name="org-openide-actions-PrintAction.instance">
+                <attr name="position" intvalue="15"/>
+            </file>
+            <file name="org-openide-actions-SaveAllAction.shadow_hidden"/>
+        </folder>
+        <folder name="Efac">
             <file name="com-agac-gui-actions-NuevoCliente.shadow">
                 <attr name="originalFile" stringvalue="Actions/BpelNodes/com-agac-gui-actions-NuevoCliente.instance"/>
-                <attr name="position" intvalue="1"/>
+                <attr name="position" intvalue="30"/>
             </file>
             <file name="com-agac-gui-actions-NewEmisor.shadow">
                 <attr name="originalFile" stringvalue="Actions/BpelNodes/com-agac-gui-actions-NewEmisor.instance"/>
-                <attr name="position" intvalue="2"/>
+                <attr name="position" intvalue="40"/>
             </file>
-            <file name="org-openide-actions-SaveAllAction.shadow_hidden"/>
         </folder>
         <file name="UndoRedo_hidden"/>
     </folder>

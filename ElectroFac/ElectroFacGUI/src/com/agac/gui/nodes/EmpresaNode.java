@@ -62,9 +62,13 @@ public class EmpresaNode extends AbstractNode {
 
             Property noExt = new PropertySupport.Reflection<String>(e.getDomicilioFiscal(), String.class,
                     "getNoExterior", null);
+            Property noInt = new PropertySupport.Reflection<String>(e.getDomicilioFiscal(), String.class,
+                    "getNoInterior", null);
 
             noExt.setName("noExterior");
             noExt.setDisplayName("Número Exterioir");
+            noInt.setName("noInterior");
+            noInt.setDisplayName("Número Interior");
 
             set.put(nombre);
             set.put(rfc);
@@ -73,6 +77,7 @@ public class EmpresaNode extends AbstractNode {
 
             dFiscal.put(calle);
             dFiscal.put(noExt);
+            dFiscal.put(noInt);
             dFiscal.setName("DomicilioFiscal");
             dFiscal.setDisplayName("Domicilio Fiscal");
             
