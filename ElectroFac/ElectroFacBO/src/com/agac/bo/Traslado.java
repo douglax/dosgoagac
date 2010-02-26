@@ -48,8 +48,10 @@ import javax.xml.bind.annotation.XmlType;
              *
              */
 
-            @XmlAccessorType(XmlAccessType.FIELD)
-            @XmlType(name = "")
+        @XmlAccessorType(XmlAccessType.FIELD)
+        @XmlType(name = "", propOrder = {
+            "traslado"
+        })
             public class Traslado {
 
                 @XmlAttribute(required = true)

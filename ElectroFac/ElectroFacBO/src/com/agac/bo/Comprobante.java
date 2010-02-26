@@ -24,13 +24,16 @@ public class Comprobante {
     @XmlElement(name="Receptor", required=true)
     private Receptor receptor;
 
-    @XmlElementWrapper(name="Conceptos")
+     @XmlElementWrapper(name="Conceptos")
     @XmlElement(name="Concepto")
     private List<Concepto> conceptos;
 
-    
-    @XmlElement(name="Impuestos", required=true)
+
+    @XmlElement(name = "Impuestos", required = true)
     private Impuesto impuesto;
+
+
+
 
     public Impuesto getImpuesto() {
         return impuesto;
