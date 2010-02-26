@@ -33,6 +33,48 @@ public class Comprobante {
     private Impuesto impuesto;
 
 
+    /*  declaraciones de atributos XML de la clase Comprobante
+     *
+
+    @XmlAttribute(required = true)
+    private String version;
+    @XmlAttribute
+    private String serie;
+    @XmlAttribute(required = true)
+    private String folio;
+    @XmlAttribute(required = true)
+    private XMLGregorianCalendar fecha;
+    @XmlAttribute(required = true)
+    private String sello;
+    @XmlAttribute(required = true)
+    private BigInteger noAprobacion;
+    @XmlAttribute(required = true)
+    private BigInteger anoAprobacion;
+    @XmlAttribute(required = true)
+    private String formaDePago;
+    @XmlAttribute(required = true)
+    private String noCertificado;
+    @XmlAttribute
+    private String certificado;
+    @XmlAttribute
+    private String condicionesDePago;
+    @XmlAttribute(required = true)
+    private BigDecimal subTotal;
+    @XmlAttribute
+    private BigDecimal descuento;
+    @XmlAttribute
+    private String motivoDescuento;
+    @XmlAttribute(required = true)
+    private BigDecimal total;
+    @XmlAttribute
+    private String metodoDePago;
+    @XmlAttribute(required = true)
+    private String tipoDeComprobante;
+
+     *
+     * */
+
+
 
 
     public Impuesto getImpuesto() {
