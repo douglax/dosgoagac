@@ -26,6 +26,12 @@
             </file>
         </folder>
         <folder name="Window">
+            <file name="com-agac-gui-ComprobanteAction.instance">
+                <attr name="SystemFileSystem.localizingBundle" stringvalue="com.agac.gui.Bundle"/>
+                <attr name="component" methodvalue="com.agac.gui.ComprobanteTopComponent.findInstance"/>
+                <attr name="displayName" bundlevalue="com.agac.gui.Bundle#CTL_ComprobanteAction"/>
+                <attr name="instanceCreate" methodvalue="org.openide.windows.TopComponent.openAction"/>
+            </file>
             <file name="com-agac-gui-MenuAction.instance">
                 <attr name="component" methodvalue="com.agac.gui.MenuTopComponent.findInstance"/>
                 <attr name="displayName" bundlevalue="com.agac.gui.Bundle#CTL_MenuAction"/>
@@ -62,6 +68,9 @@
             </file>
         </folder>
         <folder name="Window">
+            <file name="ComprobanteAction.shadow">
+                <attr name="originalFile" stringvalue="Actions/Window/com-agac-gui-ComprobanteAction.instance"/>
+            </file>
             <file name="MenuAction.shadow">
                 <attr name="originalFile" stringvalue="Actions/Window/com-agac-gui-MenuAction.instance"/>
             </file>
@@ -94,6 +103,7 @@
     </folder>
     <folder name="Windows2">
         <folder name="Components">
+            <file name="ComprobanteTopComponent.settings" url="ComprobanteTopComponentSettings.xml"/>
             <file name="EmisorTopComponent.settings" url="EmisorTopComponentSettings.xml"/>
             <file name="MenuTopComponent.settings" url="MenuTopComponentSettings.xml"/>
             <file name="ReceptorTopComponent.settings" url="ReceptorTopComponentSettings.xml"/>
@@ -105,6 +115,9 @@
             </folder>
             <folder name="leftSlidingSide">
                 <file name="MenuTopComponent.wstcref" url="MenuTopComponentWstcref.xml"/>
+            </folder>
+            <folder name="output">
+                <file name="ComprobanteTopComponent.wstcref" url="ComprobanteTopComponentWstcref.xml"/>
             </folder>
         </folder>
     </folder>
