@@ -15,6 +15,7 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlTransient;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 /**
  *
@@ -25,14 +26,17 @@ public class Parte {
 
     @XmlElement(name="InformacionAduanera")
     private List<InformacionAduanera> infoAduanera;
+    @XmlJavaTypeAdapter(BigDecimalAdapter.class)
     @XmlAttribute(required=true)
     private BigDecimal cantidad;
     @XmlAttribute
     private String unidad;
     @XmlAttribute
     private String noIdentificacion;
+    @XmlJavaTypeAdapter(BigDecimalAdapter.class)
     @XmlAttribute
     private BigDecimal valorUnitario;
+    @XmlJavaTypeAdapter(BigDecimalAdapter.class)
     @XmlAttribute
     private BigDecimal importe;
 

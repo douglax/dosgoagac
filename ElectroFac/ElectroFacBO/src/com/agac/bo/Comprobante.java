@@ -15,20 +15,17 @@ import javax.xml.bind.annotation.XmlTransient;
  *
  * @author Carlos Aguirre 12 Feb 2010
  */
-@XmlRootElement(name = "Comprobante", namespace="http://www.sat.gob.mx/cfd/2")
+@XmlRootElement(name = "Comprobante", namespace = "http://www.sat.gob.mx/cfd/2")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Comprobante {
 
-    @XmlElement(name="Emisor", required=true)
+    @XmlElement(name = "Emisor", required = true)
     private Emisor emisor;
-    @XmlElement(name="Receptor", required=true)
+    @XmlElement(name = "Receptor", required = true)
     private Receptor receptor;
-
-     @XmlElementWrapper(name="Conceptos")
-    @XmlElement(name="Concepto")
+    @XmlElementWrapper(name = "Conceptos")
+    @XmlElement(name = "Concepto")
     private List<Concepto> conceptos;
-
-
     @XmlElement(name = "Impuestos", required = true)
     private Impuesto impuesto;
 
@@ -73,10 +70,6 @@ public class Comprobante {
 
      *
      * */
-
-
-
-
     public Impuesto getImpuesto() {
         return impuesto;
     }
@@ -85,10 +78,10 @@ public class Comprobante {
         this.impuesto = impuesto;
     }
 
-
     public List<Concepto> getConceptos() {
-        if(conceptos == null)
+        if (conceptos == null) {
             conceptos = new ArrayList<Concepto>();
+        }
         return conceptos;
     }
 
@@ -98,10 +91,10 @@ public class Comprobante {
         propertyChangeSupport.firePropertyChange("conceptos", oldConceptos, conceptos);
     }
 
-
     public Receptor getReceptor() {
-        if(receptor == null)
+        if (receptor == null) {
             receptor = new Receptor();
+        }
         return receptor;
     }
 
@@ -112,22 +105,25 @@ public class Comprobante {
     }
 
     public Emisor getEmisor() {
-        if(emisor == null)
+        if (emisor == null) {
             emisor = new Emisor();
+        }
         return emisor;
     }
+
     public void setEmisor(Emisor emisor) {
         Emisor oldEmisor = this.emisor;
         this.emisor = emisor;
         propertyChangeSupport.firePropertyChange("emisor", oldEmisor, emisor);
     }
+
     public void addPropertyChangeListener(PropertyChangeListener listener) {
         propertyChangeSupport.addPropertyChangeListener(listener);
     }
+
     public void removePropertyChangeListener(PropertyChangeListener listener) {
         propertyChangeSupport.removePropertyChangeListener(listener);
     }
-
     @XmlTransient
     private PropertyChangeSupport propertyChangeSupport = new PropertyChangeSupport(this);
 }

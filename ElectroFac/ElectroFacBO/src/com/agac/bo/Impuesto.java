@@ -13,26 +13,31 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 /**
  *
  * @author alex
  */
-    @XmlAccessorType(XmlAccessType.FIELD)
-    @XmlType(name = "", propOrder = {
-        "retenciones",
-        "traslados"
-    })
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = "", propOrder = {
+    "retenciones",
+    "traslados"
+})
 public class Impuesto {
-
-    @XmlElement(name = "Retenciones")
+    @XmlElementWrapper(name="Retenciones")
+    @XmlElement(name = "Retencion")
     private List<Retencion> retenciones;
-    @XmlElement(name = "Traslados")
+    @XmlElementWrapper(name="Traslados")
+    @XmlElement(name = "Traslado")
     private List<Traslado> traslados;
+    @XmlJavaTypeAdapter(BigDecimalAdapter.class)
     @XmlAttribute
     private BigDecimal totalImpuestosRetenidos;
+    @XmlJavaTypeAdapter(BigDecimalAdapter.class)
     @XmlAttribute
     private BigDecimal totalImpuestosTrasladados;
 
@@ -141,8 +146,6 @@ public class Impuesto {
     public void setTotalImpuestosTrasladados(BigDecimal value) {
         this.totalImpuestosTrasladados = value;
     }
-
-
     @XmlTransient
     private PropertyChangeSupport propertyChangeSupport = new PropertyChangeSupport(this);
 
@@ -153,7 +156,4 @@ public class Impuesto {
     public void removePropertyChangeListener(PropertyChangeListener listener) {
         propertyChangeSupport.removePropertyChangeListener(listener);
     }
-
-
-
 }

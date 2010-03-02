@@ -105,6 +105,7 @@ public class TestMarshallComprobante {
         ia.setNumero("ASKDH654654654");
         con.getInfoAduanera().add(ia);
         con.setCuentaPredial(new CuentaPredial("CuentaPredial"));
+        
         Parte par = new Parte();
         par.setCantidad(new BigDecimal(1.325));
         par.setImporte(new BigDecimal(6546.6541));
@@ -112,10 +113,8 @@ public class TestMarshallComprobante {
         par.getInfoAduanera().add(ia);
         par.setUnidad("PZ");
         par.setValorUnitario(new BigDecimal(52.36));
-        con.getParte().add(par);
-        con.getParte().add(par);
-        con.getParte().add(par);
-        con.getParte().add(par);
+
+        con.getParte().add(par);        
         con.setCantidad(5.23);
         con.setDescripcion("Cuaderno Scribe");
         con.setImporte(new BigDecimal(52.30));
@@ -123,8 +122,6 @@ public class TestMarshallComprobante {
         con.setUnidad("PZ");
         con.setValorUnitario(new BigDecimal(23.50));
         c.getConceptos().add(con);
-        c.getConceptos().add(con);
-
 
         /* aqui me quedé */
         Impuesto imp = new Impuesto();
@@ -146,7 +143,7 @@ public class TestMarshallComprobante {
 
         tras.setImpuesto("IEPS");
         tras.setTasa(new BigDecimal(.4567));
-        tras.setImporte(new BigDecimal(2000));
+        tras.setImporte(new BigDecimal(2000.34298766));
         imp.getTraslados().add(tras);
 
         imp.setTotalImpuestosRetenidos(new BigDecimal(10.101));
@@ -156,6 +153,7 @@ public class TestMarshallComprobante {
         compl.getAny().add(new String("complemento1"));
         compl.getAny().add(new String("complemento2"));
         compl.getAny().add(new String("complemento3"));
+        c.setImpuesto(imp);
 
 
 
@@ -195,6 +193,8 @@ public class TestMarshallComprobante {
         uf.setNoInterior("100-A");
         uf.setPais("Mexico");
         uf.setReferencia("Entre calle X y calle Y");
+        e.setRutaCertificado("xyz");
+        e.setRutaLlave("xyz");
         try {
             e = DbServices.saveObject(e);
             System.out.println(e.getId());

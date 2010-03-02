@@ -1,24 +1,18 @@
 package com.agac.bo;
 
-
 import java.math.BigDecimal;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
-
-
-        @XmlAccessorType(XmlAccessType.FIELD)
-        @XmlType(name = "", propOrder = {
-            "retencion"
-        })
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Retencion {
 
     @XmlAttribute(required = true)
     private String impuesto;
-
-
+    
+    @XmlJavaTypeAdapter(BigDecimalAdapter.class)
     @XmlAttribute(required = true)
     private BigDecimal importe;
 

@@ -16,6 +16,7 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 /**
  *
@@ -41,8 +42,10 @@ public class Concepto {
     private String noIdentificacion;
     @XmlAttribute(required=true)
     private String descripcion;
+    @XmlJavaTypeAdapter(BigDecimalAdapter.class)
     @XmlAttribute(required=true)
     private BigDecimal valorUnitario;
+    @XmlJavaTypeAdapter(BigDecimalAdapter.class)
     @XmlAttribute(required=true)
     private BigDecimal importe;
 
