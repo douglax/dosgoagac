@@ -26,8 +26,7 @@
             </file>
         </folder>
         <folder name="Window">
-            <file name="com-agac-gui-ComprobanteAction.instance">
-                <attr name="SystemFileSystem.localizingBundle" stringvalue="com.agac.gui.Bundle"/>
+            <file name="com-agac-gui-ComprobanteAction.instance">                
                 <attr name="component" methodvalue="com.agac.gui.ComprobanteTopComponent.findInstance"/>
                 <attr name="displayName" bundlevalue="com.agac.gui.Bundle#CTL_ComprobanteAction"/>
                 <attr name="instanceCreate" methodvalue="org.openide.windows.TopComponent.openAction"/>
@@ -112,13 +111,11 @@
             <folder name="editor">
                 <file name="EmisorTopComponent.wstcref" url="EmisorTopComponentWstcref.xml"/>
                 <file name="ReceptorTopComponent.wstcref" url="ReceptorTopComponentWstcref.xml"/>
+                <file name="ComprobanteTopComponent.wstcref" url="ComprobanteTopComponentWstcref.xml"/>
             </folder>
             <folder name="leftSlidingSide">
                 <file name="MenuTopComponent.wstcref" url="MenuTopComponentWstcref.xml"/>
-            </folder>
-            <folder name="output">
-                <file name="ComprobanteTopComponent.wstcref" url="ComprobanteTopComponentWstcref.xml"/>
-            </folder>
+            </folder>            
         </folder>
     </folder>
 </filesystem>
