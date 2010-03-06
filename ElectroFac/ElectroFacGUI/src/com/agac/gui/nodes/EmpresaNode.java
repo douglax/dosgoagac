@@ -5,7 +5,7 @@
 package com.agac.gui.nodes;
 
 import com.agac.bo.Emisor;
-import com.agac.bo.UbicacionFiscal;
+import com.agac.gui.ComprobanteTopComponent;
 import com.agac.gui.EmisorTopComponent;
 import java.awt.event.ActionEvent;
 
@@ -32,7 +32,7 @@ public class EmpresaNode extends AbstractNode {
 
     @Override
     public Action[] getActions(boolean bln) {
-        return new Action[]{new OpenAction()};
+        return new Action[]{new OpenAction(), new CrearFactura()};
     }
 
     @Override
@@ -93,7 +93,7 @@ public class EmpresaNode extends AbstractNode {
     private class OpenAction extends AbstractAction {
 
         public OpenAction() {
-            putValue(NAME, "Abrir Empresa Emisora");
+            putValue(NAME, "Abrir Empresa Emisora");            
         }
 
         @Override
@@ -103,5 +103,21 @@ public class EmpresaNode extends AbstractNode {
             etc.open();
             etc.requestActive();
         }
+    }
+
+    private class CrearFactura extends AbstractAction{
+
+        public CrearFactura(){
+            putValue(NAME, "Crear Factura");
+        }
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            ComprobanteTopComponent ctc = new ComprobanteTopComponent();
+            ctc.getComprobante().setEmisor(getLookup().lookup(Emisor.class));
+            ctc.setDisplayName("Nuevo Comprobante");
+            ctc.open();
+            ctc.requestActive();
+        }
+
     }
 }
