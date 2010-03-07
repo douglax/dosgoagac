@@ -14,7 +14,7 @@ public class ClienteNodeFactory extends ChildFactory<Receptor> {
 
     @Override
     protected boolean createKeys(List<Receptor> list) {
-        List<Receptor> l = DbServices.getList("Select r from Receptor r");
+        List<Receptor> l = DbServices.getList("Select r from Receptor r order by r.nombre");
         for (Receptor r : l) {
             list.add(r);
         }

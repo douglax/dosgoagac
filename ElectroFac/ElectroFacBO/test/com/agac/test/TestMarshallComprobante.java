@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.agac.test;
 
 import com.agac.bo.Comprobante;
@@ -67,6 +66,19 @@ public class TestMarshallComprobante {
     public void testMarshall() throws JAXBException {
         JAXBContext ctx = JAXBContext.newInstance(Comprobante.class);
         Comprobante c = new Comprobante();
+        c.setAnoAprobacion(2010);
+        c.setCertificado("XYZ");
+        c.setCondicionesDePago("Efectivo");
+        c.setDescuento(new BigDecimal(0.23));
+        c.setFolio("XYZ");
+        c.setFormaDePago("Pago en una sola exibicion");
+        c.setMetodoDePago("tarjetazo");
+        c.setMotivoDescuento("XYZ");
+        c.setNoAprobacion(123);
+        c.setNoCertificado("XYZ");
+        c.setSello("EEE");
+        c.setSerie("321321321321");
+        c.setTipoDeComprobante("INGRESO");
         Emisor e = c.getEmisor();
         e.setNombre("EMPRESA XYZ");
         e.setRfc("FYAC010101AAA");
@@ -80,8 +92,8 @@ public class TestMarshallComprobante {
         u.setNoExterior("2255");
         u.setNoInterior("A");
         u.setPais("Mexico");
-        u.setReferencia("Entre calle X y calle Y");        
-        
+        u.setReferencia("Entre calle X y calle Y");
+
         UbicacionFiscal uf = e.getDomicilioFiscal();
         uf.setCalle("Calle 123");
         uf.setCodigoPostal("31000");
@@ -93,19 +105,19 @@ public class TestMarshallComprobante {
         uf.setNoInterior("100-A");
         uf.setPais("Mexico");
         uf.setReferencia("Entre calle X y calle Y");
-        
+
         Receptor r = c.getReceptor();
         r.setNombre("Cliente XYZ");
         r.setRfc("ABCD010101AAA");
-        r.setDomicilio(u);                
+        r.setDomicilio(u);
         Concepto con = new Concepto();
-        InformacionAduanera ia = new InformacionAduanera();        
+        InformacionAduanera ia = new InformacionAduanera();
         ia.setAduana("Aduana");
         ia.setFecha(new Date(System.currentTimeMillis()));
         ia.setNumero("ASKDH654654654");
         con.getInfoAduanera().add(ia);
         con.setCuentaPredial(new CuentaPredial("CuentaPredial"));
-        
+
         Parte par = new Parte();
         par.setCantidad(new BigDecimal(1.325));
         par.setImporte(new BigDecimal(6546.6541));
@@ -114,7 +126,7 @@ public class TestMarshallComprobante {
         par.setUnidad("PZ");
         par.setValorUnitario(new BigDecimal(52.36));
 
-        con.getParte().add(par);        
+        con.getParte().add(par);
         con.setCantidad(5.23);
         con.setDescripcion("Cuaderno Scribe");
         con.setImporte(new BigDecimal(52.30));
@@ -130,7 +142,7 @@ public class TestMarshallComprobante {
         rete.setImpuesto("IVA");
         rete.setImporte(new BigDecimal(12.34));
         imp.getRetenciones().add(rete);
-        
+
         rete.setImpuesto("ISR");
         rete.setImporte(new BigDecimal(56.78));
         imp.getRetenciones().add(rete);
@@ -165,7 +177,7 @@ public class TestMarshallComprobante {
     }
 
     @Test
-    public void testJpa(){        
+    public void testJpa() {
 
         Emisor e = new Emisor();
         e.setNombre("EMPRESA XYZ");
@@ -202,8 +214,55 @@ public class TestMarshallComprobante {
             DbServices.saveObject(e);
 
             List<Emisor> l = DbServices.getList("Select e from Emisor e");
-            for(Emisor emi : l)
+            for (Emisor emi : l) {
                 System.out.println(emi.getNombre());
+            }
+            Comprobante c = new Comprobante();
+            Receptor r = c.getReceptor();
+            r.setNombre("Receptor");
+            r.setRfc("RFC");
+            r.getDomicilio().setCalle("CALLE");
+            r.getDomicilio().setCodigoPostal("31000");
+            r.getDomicilio().setEstado("CHIHUAHUA");
+            r.getDomicilio().setMunicipio("CHIHUAHUA");
+            c.setAnoAprobacion(2010);
+            c.setCertificado("XYZ");
+            c.setCondicionesDePago("Efectivo");
+            c.setDescuento(new BigDecimal(0.23));
+            c.setEmisor(e);
+            c.setFolio("XYZ");
+            c.setFormaDePago("Pago en una sola exibicion");
+            c.setMetodoDePago("tarjetazo");
+            c.setMotivoDescuento("XYZ");
+            c.setNoAprobacion(123);
+            c.setNoCertificado("XYZ");
+            c.setSello("EEE");
+            c.setSerie("321321321321");
+            c.setTipoDeComprobante("INGRESO");
+            Concepto con = new Concepto();
+            InformacionAduanera ia = new InformacionAduanera();
+            ia.setAduana("Aduana");
+            ia.setFecha(new Date(System.currentTimeMillis()));
+            ia.setNumero("ASKDH654654654");
+            con.getInfoAduanera().add(ia);
+            con.setCuentaPredial(new CuentaPredial("CuentaPredial"));
+            Parte par = new Parte();
+            par.setCantidad(new BigDecimal(1.325));
+            par.setImporte(new BigDecimal(6546.6541));
+            par.setNoIdentificacion("ABDCS293879824");
+            par.getInfoAduanera().add(ia);
+            par.setUnidad("PZ");
+            par.setValorUnitario(new BigDecimal(52.36));
+
+            con.getParte().add(par);
+            con.setCantidad(5.23);
+            con.setDescripcion("Cuaderno Scribe");
+            con.setImporte(new BigDecimal(52.30));
+            con.setNoIdentificacion("123465A");
+            con.setUnidad("PZ");
+            con.setValorUnitario(new BigDecimal(23.50));
+            c.getConceptos().add(con);
+            DbServices.saveObject(c);
             DbServices.closeDbServices();
         } catch (Exception ex) {
             Logger.getLogger(TestMarshallComprobante.class.getName()).log(Level.SEVERE, null, ex);

@@ -16,10 +16,10 @@ import java.awt.dnd.DropTargetDragEvent;
 import java.awt.dnd.DropTargetDropEvent;
 import java.awt.dnd.DropTargetEvent;
 import java.awt.dnd.DropTargetListener;
-import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.util.TooManyListenersException;
 import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
 import org.openide.util.Exceptions;
 import org.openide.util.NbBundle;
 import org.openide.windows.TopComponent;
@@ -57,6 +57,7 @@ public final class ComprobanteTopComponent extends TopComponent {
             Exceptions.printStackTrace(ex);
         }
         jPanel1.setDropTarget(dp);
+        jTable1.getColumnModel().getColumn(3).setPreferredWidth(250);
     }
 
     /** This method is called from within the constructor to
@@ -331,27 +332,34 @@ public final class ComprobanteTopComponent extends TopComponent {
         jLabel12.setLabelFor(txtCantidad);
         org.openide.awt.Mnemonics.setLocalizedText(jLabel12, org.openide.util.NbBundle.getMessage(ComprobanteTopComponent.class, "ComprobanteTopComponent.jLabel12.text")); // NOI18N
 
-        txtCantidad.setText(org.openide.util.NbBundle.getMessage(ComprobanteTopComponent.class, "ComprobanteTopComponent.txtCantidad.text")); // NOI18N
+        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, this, org.jdesktop.beansbinding.ELProperty.create("${concepto.cantidad}"), txtCantidad, org.jdesktop.beansbinding.BeanProperty.create("text"));
+        bindingGroup.addBinding(binding);
 
         jLabel13.setLabelFor(jComboBox1);
         org.openide.awt.Mnemonics.setLocalizedText(jLabel13, org.openide.util.NbBundle.getMessage(ComprobanteTopComponent.class, "ComprobanteTopComponent.jLabel13.text")); // NOI18N
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Unidad", "Pieza", "Gramos", "Kilos", "Mililitros", "Litros", "Caja", "Paquete" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Pieza", "Caja", "Consumo", "Gramos", "Kilos", "Litros", "Mililitros", "Paquete", "Servicio" }));
+
+        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, this, org.jdesktop.beansbinding.ELProperty.create("${concepto.unidad}"), jComboBox1, org.jdesktop.beansbinding.BeanProperty.create("selectedItem"));
+        bindingGroup.addBinding(binding);
 
         jLabel14.setLabelFor(txtIdentificador);
         org.openide.awt.Mnemonics.setLocalizedText(jLabel14, org.openide.util.NbBundle.getMessage(ComprobanteTopComponent.class, "ComprobanteTopComponent.jLabel14.text")); // NOI18N
 
-        txtIdentificador.setText(org.openide.util.NbBundle.getMessage(ComprobanteTopComponent.class, "ComprobanteTopComponent.txtIdentificador.text")); // NOI18N
+        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, this, org.jdesktop.beansbinding.ELProperty.create("${concepto.noIdentificacion}"), txtIdentificador, org.jdesktop.beansbinding.BeanProperty.create("text"));
+        bindingGroup.addBinding(binding);
 
         jLabel15.setLabelFor(txtDescripcion);
         org.openide.awt.Mnemonics.setLocalizedText(jLabel15, org.openide.util.NbBundle.getMessage(ComprobanteTopComponent.class, "ComprobanteTopComponent.jLabel15.text")); // NOI18N
 
-        txtDescripcion.setText(org.openide.util.NbBundle.getMessage(ComprobanteTopComponent.class, "ComprobanteTopComponent.txtDescripcion.text")); // NOI18N
+        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, this, org.jdesktop.beansbinding.ELProperty.create("${concepto.descripcion}"), txtDescripcion, org.jdesktop.beansbinding.BeanProperty.create("text"));
+        bindingGroup.addBinding(binding);
 
         jLabel16.setLabelFor(txtPrecio);
         org.openide.awt.Mnemonics.setLocalizedText(jLabel16, org.openide.util.NbBundle.getMessage(ComprobanteTopComponent.class, "ComprobanteTopComponent.jLabel16.text")); // NOI18N
 
-        txtPrecio.setText(org.openide.util.NbBundle.getMessage(ComprobanteTopComponent.class, "ComprobanteTopComponent.txtPrecio.text")); // NOI18N
+        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, this, org.jdesktop.beansbinding.ELProperty.create("${concepto.valorUnitario}"), txtPrecio, org.jdesktop.beansbinding.BeanProperty.create("text"));
+        bindingGroup.addBinding(binding);
 
         org.openide.awt.Mnemonics.setLocalizedText(jButton1, org.openide.util.NbBundle.getMessage(ComprobanteTopComponent.class, "ComprobanteTopComponent.jButton1.text")); // NOI18N
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -387,15 +395,27 @@ public final class ComprobanteTopComponent extends TopComponent {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Cantidad", "Unidad", "Identificador", "Descripción", "Precio", "Total"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class, java.lang.Double.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -443,7 +463,7 @@ public final class ComprobanteTopComponent extends TopComponent {
                                 .addGroup(jPanel2Layout.createSequentialGroup()
                                     .addGap(28, 28, 28)
                                     .addComponent(jLabel16))))))
-                .addContainerGap(49, Short.MAX_VALUE))
+                .addContainerGap(45, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -534,12 +554,16 @@ public final class ComprobanteTopComponent extends TopComponent {
     }//GEN-LAST:event_txtRFCActionPerformed
 
     private void jButton4KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButton4KeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            jButton4ActionPerformed(null);
-        }
+//        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+//            jButton4ActionPerformed(null);
+//        }
     }//GEN-LAST:event_jButton4KeyPressed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        DefaultTableModel model = (DefaultTableModel)jTable1.getModel();
+        model.addRow(new Object[]{concepto.getCantidad(), concepto.getUnidad(), 
+            concepto.getNoIdentificacion(), concepto.getDescripcion(), 
+            concepto.getValorUnitario(), concepto.getImporte()});
         txtCantidad.setText("");
         txtDescripcion.setText("");
         txtIdentificador.setText("");
@@ -551,7 +575,7 @@ public final class ComprobanteTopComponent extends TopComponent {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
-    private Concepto concepto = new Concepto();
+    
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         InformacionAduaneraPanel infPanel = new InformacionAduaneraPanel();
         infPanel.setInfoAduaneraList(concepto.getInfoAduanera());
@@ -721,6 +745,17 @@ public final class ComprobanteTopComponent extends TopComponent {
     public void setComprobante(Comprobante comprobante) {
         this.comprobante = comprobante;
         firePropertyChange("comprobante", null, comprobante);
+    }
+
+    private Concepto concepto = new Concepto();
+
+    public Concepto getConcepto() {
+        return concepto;
+    }
+
+    public void setConcepto(Concepto concepto) {
+        this.concepto = concepto;
+        firePropertyChange("concepto", null, concepto);
     }
 
 }

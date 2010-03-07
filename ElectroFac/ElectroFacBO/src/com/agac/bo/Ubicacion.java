@@ -25,10 +25,10 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "t_Ubicacion",
-propOrder = {"calle", "noExterior", "noInterior", "colonia",
-    "localidad", "referencia", "municipio", "estado", "pais",
-    "codigoPostal"
-})
+propOrder={
+    "codigoPostal", "pais",
+    "estado", "municipio", "referencia", "localidad", "colonia",
+    "noInterior", "noExterior", "calle"})
 @Entity
 public class Ubicacion implements Serializable {
 

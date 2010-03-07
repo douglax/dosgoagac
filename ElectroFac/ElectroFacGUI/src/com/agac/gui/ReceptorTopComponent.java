@@ -6,6 +6,7 @@ package com.agac.gui;
 
 import com.agac.bo.Receptor;
 import com.agac.services.DbServices;
+import java.awt.event.KeyEvent;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.IOException;
@@ -174,6 +175,11 @@ public final class ReceptorTopComponent extends TopComponent implements Property
         binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, this, org.jdesktop.beansbinding.ELProperty.create("${receptor.domicilio.referencia}"), txtReferencia, org.jdesktop.beansbinding.BeanProperty.create("text"));
         bindingGroup.addBinding(binding);
 
+        txtReferencia.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtReferenciaKeyPressed(evt);
+            }
+        });
         jScrollPane2.setViewportView(txtReferencia);
 
         org.openide.awt.Mnemonics.setLocalizedText(jLabel19, org.openide.util.NbBundle.getMessage(ReceptorTopComponent.class, "ReceptorTopComponent.jLabel19.text")); // NOI18N
@@ -303,6 +309,12 @@ public final class ReceptorTopComponent extends TopComponent implements Property
 
         bindingGroup.bind();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void txtReferenciaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtReferenciaKeyPressed
+        if(evt.getKeyCode() == KeyEvent.VK_TAB)
+            txtMunicipio.requestFocus();
+    }//GEN-LAST:event_txtReferenciaKeyPressed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel13;

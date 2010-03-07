@@ -2,12 +2,17 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.agac.bo;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import java.io.Serializable;
 import java.sql.Date;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Transient;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
@@ -21,14 +26,28 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType
-public class InformacionAduanera {
+@Entity
+public class InformacionAduanera implements Serializable {
 
-    @XmlAttribute(required=true)
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        Long oldId = this.id;
+        this.id = id;
+        propertyChangeSupport.firePropertyChange("id", oldId, id);
+    }
+    @XmlAttribute(required = true)
     private String numero;
-    @XmlAttribute(required=true)
+    @XmlAttribute(required = true)
     @XmlJavaTypeAdapter(SqlDateAdapter.class)
     private Date fecha;
-    @XmlAttribute(required=true)
+    @XmlAttribute(required = true)
     private String aduana;
 
     public String getAduana() {
@@ -60,8 +79,8 @@ public class InformacionAduanera {
         this.numero = numero;
         propertyChangeSupport.firePropertyChange("numero", oldNumero, numero);
     }
-
     @XmlTransient
+    @Transient
     private PropertyChangeSupport propertyChangeSupport = new PropertyChangeSupport(this);
 
     public void addPropertyChangeListener(PropertyChangeListener listener) {
@@ -71,5 +90,4 @@ public class InformacionAduanera {
     public void removePropertyChangeListener(PropertyChangeListener listener) {
         propertyChangeSupport.removePropertyChangeListener(listener);
     }
-
 }

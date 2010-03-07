@@ -2,14 +2,20 @@
  * Nodo opcional para expresar las partes o componentes que integran la
  * totalidad del concepto expresado en el comprobante fiscal digital
  */
-
 package com.agac.bo;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Transient;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
@@ -22,20 +28,40 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * @author Carlos Aguirre 13 Feb 2010
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-public class Parte {
+@Entity
+public class Parte implements Serializable {
 
-    @XmlElement(name="InformacionAduanera")
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        Long oldId = this.id;
+        this.id = id;
+        propertyChangeSupport.firePropertyChange("id", oldId, id);
+    }
+    @XmlElement(name = "InformacionAduanera")
+    @OneToMany
     private List<InformacionAduanera> infoAduanera;
+
     @XmlJavaTypeAdapter(BigDecimalAdapter.class)
-    @XmlAttribute(required=true)
+    @XmlAttribute(required = true)
     private BigDecimal cantidad;
+
     @XmlAttribute
     private String unidad;
+
     @XmlAttribute
     private String noIdentificacion;
+
     @XmlJavaTypeAdapter(BigDecimalAdapter.class)
     @XmlAttribute
     private BigDecimal valorUnitario;
+
     @XmlJavaTypeAdapter(BigDecimalAdapter.class)
     @XmlAttribute
     private BigDecimal importe;
@@ -91,8 +117,9 @@ public class Parte {
     }
 
     public List<InformacionAduanera> getInfoAduanera() {
-        if(infoAduanera == null)
+        if (infoAduanera == null) {
             infoAduanera = new ArrayList<InformacionAduanera>();
+        }
         return infoAduanera;
     }
 
@@ -101,8 +128,8 @@ public class Parte {
         this.infoAduanera = infoAduanera;
         propertyChangeSupport.firePropertyChange("infoAduanera", oldInfoAduanera, infoAduanera);
     }
-
     @XmlTransient
+    @Transient
     private PropertyChangeSupport propertyChangeSupport = new PropertyChangeSupport(this);
 
     public void addPropertyChangeListener(PropertyChangeListener listener) {

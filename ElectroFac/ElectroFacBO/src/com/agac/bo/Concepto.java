@@ -7,9 +7,18 @@ package com.agac.bo;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Transient;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
@@ -24,32 +33,60 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  */
 @XmlType(propOrder={"infoAduanera", "cuentaPredial", "complemento", "parte"})
 @XmlAccessorType(XmlAccessType.FIELD)
-public class Concepto {
+@Entity
+public class Concepto implements Serializable {
+
+    @XmlTransient
+    @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
+    private Long id;
+    public Long getId() {
+        return id;
+    }
+    public void setId(Long id) {
+        Long oldId = this.id;
+        this.id = id;
+        propertyChangeSupport.firePropertyChange("id", oldId, id);
+    }
 
     @XmlElement(name="InformacionAduanera")
+    @OneToMany(cascade=CascadeType.ALL)
     private List<InformacionAduanera> infoAduanera;
+
     @XmlElement(name="CuentaPredial")
+    @OneToOne
     private CuentaPredial cuentaPredial;
+
     @XmlElement(name="ComplementoConcepto")
+    @Transient
     private ComplementoConcepto complemento;
+
     @XmlElement(name="Parte")
+    @OneToMany(cascade=CascadeType.ALL)
     private List<Parte> parte;
+
     @XmlAttribute(required=true)
     private double cantidad;
+
     @XmlAttribute
     private String unidad;
+
     @XmlAttribute
     private String noIdentificacion;
+
     @XmlAttribute(required=true)
     private String descripcion;
+
     @XmlJavaTypeAdapter(BigDecimalAdapter.class)
     @XmlAttribute(required=true)
     private BigDecimal valorUnitario;
+
     @XmlJavaTypeAdapter(BigDecimalAdapter.class)
     @XmlAttribute(required=true)
     private BigDecimal importe;
 
     public BigDecimal getImporte() {
+        importe = valorUnitario.multiply(new BigDecimal(cantidad));
         return importe;
     }
 
@@ -159,6 +196,7 @@ public class Concepto {
     }
 
     @XmlTransient
+    @Transient
     private PropertyChangeSupport propertyChangeSupport = new PropertyChangeSupport(this);
 
     public void addPropertyChangeListener(PropertyChangeListener listener) {

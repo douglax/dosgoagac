@@ -149,5 +149,6 @@ public final class MenuTopComponent extends TopComponent implements ExplorerMana
         an.setDisplayName("Opciones del Sistema");
         an.setIconBaseWithExtension("com/agac/gui/resourses/sitemap_color.png");
         manager.setRootContext(an);
+        beanTreeView1.expandAll();
     }
 }

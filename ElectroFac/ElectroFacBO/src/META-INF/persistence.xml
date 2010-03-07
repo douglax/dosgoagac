@@ -6,6 +6,11 @@
     <class>com.agac.bo.UbicacionFiscal</class>
     <class>com.agac.bo.Ubicacion</class>
     <class>com.agac.bo.Receptor</class>
+    <class>com.agac.bo.Comprobante</class>
+    <class>com.agac.bo.Concepto</class>
+    <class>com.agac.bo.InformacionAduanera</class>
+    <class>com.agac.bo.Parte</class>
+    <class>com.agac.bo.CuentaPredial</class>
     <properties>
       <property name="toplink.jdbc.user" value=""/>
       <property name="toplink.jdbc.password" value=""/>

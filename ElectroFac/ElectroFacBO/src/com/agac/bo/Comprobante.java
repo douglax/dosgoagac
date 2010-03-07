@@ -2,14 +2,26 @@ package com.agac.bo;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import java.io.Serializable;
+import java.math.BigDecimal;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Transient;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 /**
  *
@@ -17,59 +29,94 @@ import javax.xml.bind.annotation.XmlTransient;
  */
 @XmlRootElement(name = "Comprobante", namespace = "http://www.sat.gob.mx/cfd/2")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class Comprobante {
+@Entity
+public class Comprobante implements Serializable {
+
+    @XmlTransient
+    @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
+    private Long Id;
+
+    public Long getId() {
+        return Id;
+    }
+
+    public void setId(Long Id) {
+        Long oldId = this.Id;
+        this.Id = Id;
+        propertyChangeSupport.firePropertyChange("Id", oldId, Id);
+    }
 
     @XmlElement(name = "Emisor", required = true)
+    @ManyToOne
     private Emisor emisor;
+
     @XmlElement(name = "Receptor", required = true)
+    @ManyToOne
     private Receptor receptor;
+
     @XmlElementWrapper(name = "Conceptos")
     @XmlElement(name = "Concepto")
+    @OneToMany
     private List<Concepto> conceptos;
+
     @XmlElement(name = "Impuestos", required = true)
-    private Impuesto impuesto;
-
-
-    /*  declaraciones de atributos XML de la clase Comprobante
-     *
+    @Transient
+    private Impuesto impuesto;    
 
     @XmlAttribute(required = true)
-    private String version;
+    private String version = "2.0";
+
     @XmlAttribute
     private String serie;
+
     @XmlAttribute(required = true)
     private String folio;
+    
     @XmlAttribute(required = true)
-    private XMLGregorianCalendar fecha;
+    @XmlJavaTypeAdapter(SqlDateAdapter.class)
+    private Date fecha = new Date(System.currentTimeMillis());
+
     @XmlAttribute(required = true)
     private String sello;
+
     @XmlAttribute(required = true)
-    private BigInteger noAprobacion;
+    private int noAprobacion;
+
     @XmlAttribute(required = true)
-    private BigInteger anoAprobacion;
+    private int anoAprobacion;
+
     @XmlAttribute(required = true)
     private String formaDePago;
+
     @XmlAttribute(required = true)
     private String noCertificado;
+
     @XmlAttribute
     private String certificado;
+
     @XmlAttribute
     private String condicionesDePago;
+
     @XmlAttribute(required = true)
     private BigDecimal subTotal;
+
     @XmlAttribute
+    @XmlJavaTypeAdapter(BigDecimalAdapter.class)
     private BigDecimal descuento;
+
     @XmlAttribute
     private String motivoDescuento;
+
     @XmlAttribute(required = true)
     private BigDecimal total;
+
     @XmlAttribute
     private String metodoDePago;
+
     @XmlAttribute(required = true)
     private String tipoDeComprobante;
 
-     *
-     * */
     public Impuesto getImpuesto() {
         return impuesto;
     }
@@ -117,6 +164,142 @@ public class Comprobante {
         propertyChangeSupport.firePropertyChange("emisor", oldEmisor, emisor);
     }
 
+    public int getAnoAprobacion() {
+        return anoAprobacion;
+    }
+
+    public void setAnoAprobacion(int anoAprobacion) {
+        this.anoAprobacion = anoAprobacion;
+    }
+
+    public String getCertificado() {
+        return certificado;
+    }
+
+    public void setCertificado(String certificado) {
+        this.certificado = certificado;
+    }
+
+    public String getCondicionesDePago() {
+        return condicionesDePago;
+    }
+
+    public void setCondicionesDePago(String condicionesDePago) {
+        this.condicionesDePago = condicionesDePago;
+    }
+
+    public BigDecimal getDescuento() {
+        return descuento;
+    }
+
+    public void setDescuento(BigDecimal descuento) {
+        this.descuento = descuento;
+    }
+
+    public Date getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
+    }
+
+    public String getFormaDePago() {
+        return formaDePago;
+    }
+
+    public void setFormaDePago(String formaDePago) {
+        this.formaDePago = formaDePago;
+    }
+
+    public String getMetodoDePago() {
+        return metodoDePago;
+    }
+
+    public void setMetodoDePago(String metodoDePago) {
+        this.metodoDePago = metodoDePago;
+    }
+
+    public String getMotivoDescuento() {
+        return motivoDescuento;
+    }
+
+    public void setMotivoDescuento(String motivoDescuento) {
+        this.motivoDescuento = motivoDescuento;
+    }
+
+    public int getNoAprobacion() {
+        return noAprobacion;
+    }
+
+    public void setNoAprobacion(int noAprobacion) {
+        this.noAprobacion = noAprobacion;
+    }
+
+    public String getNoCertificado() {
+        return noCertificado;
+    }
+
+    public void setNoCertificado(String noCertificado) {
+        this.noCertificado = noCertificado;
+    }
+
+    public String getSello() {
+        return sello;
+    }
+
+    public void setSello(String sello) {
+        this.sello = sello;
+    }
+
+    public String getSerie() {
+        return serie;
+    }
+
+    public void setSerie(String serie) {
+        this.serie = serie;
+    }
+
+    public BigDecimal getSubTotal() {
+        return subTotal;
+    }
+
+    public void setSubTotal(BigDecimal subTotal) {
+        this.subTotal = subTotal;
+    }
+
+    public String getTipoDeComprobante() {
+        return tipoDeComprobante;
+    }
+
+    public void setTipoDeComprobante(String tipoDeComprobante) {
+        this.tipoDeComprobante = tipoDeComprobante;
+    }
+
+    public BigDecimal getTotal() {
+        return total;
+    }
+
+    public void setTotal(BigDecimal total) {
+        this.total = total;
+    }
+
+    public String getVersion() {
+        return version;
+    }
+
+    public void setVersion(String version) {
+        this.version = version;
+    }
+
+    public String getFolio() {
+        return folio;
+    }
+
+    public void setFolio(String folio) {
+        this.folio = folio;
+    }
+
     public void addPropertyChangeListener(PropertyChangeListener listener) {
         propertyChangeSupport.addPropertyChangeListener(listener);
     }
@@ -125,5 +308,6 @@ public class Comprobante {
         propertyChangeSupport.removePropertyChangeListener(listener);
     }
     @XmlTransient
+    @Transient
     private PropertyChangeSupport propertyChangeSupport = new PropertyChangeSupport(this);
 }

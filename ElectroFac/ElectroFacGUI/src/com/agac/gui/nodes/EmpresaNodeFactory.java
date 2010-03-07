@@ -16,7 +16,7 @@ public class EmpresaNodeFactory extends ChildFactory<Emisor>{
 
     @Override
     protected boolean createKeys(List<Emisor> list) {
-        List<Emisor> l = DbServices.getList("Select e from Emisor e");
+        List<Emisor> l = DbServices.getList("Select e from Emisor e order by e.nombre");
         for(Emisor e : l)
             list.add(e);
         return true;

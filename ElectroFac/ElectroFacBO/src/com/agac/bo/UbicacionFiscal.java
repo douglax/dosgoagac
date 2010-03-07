@@ -24,7 +24,9 @@ import javax.xml.bind.annotation.XmlType;
  * @author Carlos Aguirre 12 Feb 2010
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "t_UbicacionFiscal")
+@XmlType(name = "t_UbicacionFiscal", propOrder={"codigoPostal", "pais",
+    "estado", "municipio", "referencia", "localidad", "colonia",
+    "noInterior", "noExterior", "calle"})
 @Entity
 public class UbicacionFiscal implements Serializable {
 
@@ -43,25 +45,34 @@ public class UbicacionFiscal implements Serializable {
     @XmlAttribute(required = true)
     @Column(nullable = false)
     private String calle;
+
     @XmlAttribute
     private String noExterior; //Opcional
+
     @XmlAttribute
     private String noInterior; //Opcional
+
     @XmlAttribute
     private String colonia; //Opcional
+
     @XmlAttribute
     private String localidad; //Opcional
+
     @XmlAttribute
     private String referencia; //Opcional
+
     @XmlAttribute(required = true)
     @Column(nullable = false)
     private String municipio;
+
     @XmlAttribute(required = true)
     @Column(nullable = false)
     private String estado;
+
     @XmlAttribute(required = true)
     @Column(nullable = false)
     private String pais = "México";
+
     @XmlAttribute(required = true)
     @Column(nullable = false)
     private String codigoPostal;
