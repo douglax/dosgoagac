@@ -112,7 +112,7 @@ public final class ComprobanteTopComponent extends TopComponent {
         jTable1 = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
         jLabel17 = new javax.swing.JLabel();
-        txtImpuestos = new javax.swing.JButton();
+        btnImpuestos = new javax.swing.JButton();
 
         setMaximumSize(new java.awt.Dimension(800, 600));
 
@@ -512,10 +512,10 @@ public final class ComprobanteTopComponent extends TopComponent {
         binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, this, org.jdesktop.beansbinding.ELProperty.create("${comprobante.emisor.nombre}"), jLabel17, org.jdesktop.beansbinding.BeanProperty.create("text"));
         bindingGroup.addBinding(binding);
 
-        org.openide.awt.Mnemonics.setLocalizedText(txtImpuestos, org.openide.util.NbBundle.getMessage(ComprobanteTopComponent.class, "ComprobanteTopComponent.txtImpuestos.text")); // NOI18N
-        txtImpuestos.addActionListener(new java.awt.event.ActionListener() {
+        org.openide.awt.Mnemonics.setLocalizedText(btnImpuestos, org.openide.util.NbBundle.getMessage(ComprobanteTopComponent.class, "ComprobanteTopComponent.btnImpuestos.text")); // NOI18N
+        btnImpuestos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtImpuestosActionPerformed(evt);
+                btnImpuestosActionPerformed(evt);
             }
         });
 
@@ -530,7 +530,7 @@ public final class ComprobanteTopComponent extends TopComponent {
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 725, Short.MAX_VALUE)
                     .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtImpuestos))
+                    .addComponent(btnImpuestos))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -543,7 +543,7 @@ public final class ComprobanteTopComponent extends TopComponent {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(txtImpuestos)
+                .addComponent(btnImpuestos)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -594,17 +594,18 @@ public final class ComprobanteTopComponent extends TopComponent {
         DialogDisplayer.getDefault().notify(dd);
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void txtImpuestosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtImpuestosActionPerformed
+    private void btnImpuestosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImpuestosActionPerformed
         // TODO add your handling code here:
 
         ImpuestosPanel impPanel = new ImpuestosPanel();
         DialogDescriptor d2 = new DialogDescriptor(impPanel, "Impuestos", true, null);
         DialogDisplayer.getDefault().notify(d2);
 
-    }//GEN-LAST:event_txtImpuestosActionPerformed
+    }//GEN-LAST:event_btnImpuestosActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup btnGrpConceptos;
+    private javax.swing.JButton btnImpuestos;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -639,7 +640,6 @@ public final class ComprobanteTopComponent extends TopComponent {
     private javax.swing.JTextField txtDescripcion;
     private javax.swing.JTextField txtEstado;
     private javax.swing.JTextField txtIdentificador;
-    private javax.swing.JButton txtImpuestos;
     private javax.swing.JTextField txtLocalidad;
     private javax.swing.JTextField txtMunicipio;
     private javax.swing.JTextField txtNoExt;

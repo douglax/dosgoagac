@@ -32,7 +32,7 @@
                   <Component id="jPanel2" alignment="0" max="32767" attributes="1"/>
                   <Component id="jPanel1" alignment="1" pref="725" max="32767" attributes="1"/>
                   <Component id="jPanel3" alignment="1" max="32767" attributes="0"/>
-                  <Component id="txtImpuestos" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnImpuestos" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -48,7 +48,7 @@
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
-              <Component id="txtImpuestos" min="-2" max="-2" attributes="0"/>
+              <Component id="btnImpuestos" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
           </Group>
@@ -762,14 +762,14 @@
         <BindingProperty name="text" source="Form" sourcePath="${comprobante.emisor.nombre}" target="jLabel17" targetPath="text" updateStrategy="0" immediately="false"/>
       </BindingProperties>
     </Component>
-    <Component class="javax.swing.JButton" name="txtImpuestos">
+    <Component class="javax.swing.JButton" name="btnImpuestos">
       <Properties>
         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-          <ResourceString bundle="com/agac/gui/Bundle.properties" key="ComprobanteTopComponent.txtImpuestos.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
+          <ResourceString bundle="com/agac/gui/Bundle.properties" key="ComprobanteTopComponent.btnImpuestos.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
         </Property>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtImpuestosActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnImpuestosActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

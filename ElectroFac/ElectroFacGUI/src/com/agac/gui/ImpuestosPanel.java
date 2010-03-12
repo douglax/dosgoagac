@@ -25,7 +25,9 @@ public class ImpuestosPanel extends javax.swing.JPanel {
 
     /** Creates new form InformacionAduaneraPanel */
     public ImpuestosPanel() {
-        initComponents();        
+        initComponents();
+        this.txtTotalRetenidos.setText(totRetenciones.toString());
+        this.txtTotalTrasladados.setText(totTraslados.toString());
     }
 
     /** This method is called from within the constructor to
@@ -42,7 +44,7 @@ public class ImpuestosPanel extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jButton4 = new javax.swing.JButton();
+        btnAdd = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         cboTipoImpuesto = new javax.swing.JComboBox();
         cboImpuesto = new javax.swing.JComboBox();
@@ -54,6 +56,7 @@ public class ImpuestosPanel extends javax.swing.JPanel {
         txtTotalRetenidos = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         txtTotalTrasladados = new javax.swing.JTextField();
+        lblTest = new javax.swing.JLabel();
 
         jLabel6.setText(org.openide.util.NbBundle.getMessage(ImpuestosPanel.class, "ImpuestosPanel.jLabel6.text")); // NOI18N
 
@@ -65,14 +68,14 @@ public class ImpuestosPanel extends javax.swing.JPanel {
 
         jLabel3.setText(org.openide.util.NbBundle.getMessage(ImpuestosPanel.class, "ImpuestosPanel.jLabel3.text")); // NOI18N
 
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/agac/gui/resourses/add.png"))); // NOI18N
-        jButton4.setText(org.openide.util.NbBundle.getMessage(ImpuestosPanel.class, "ImpuestosPanel.jButton4.text")); // NOI18N
-        jButton4.setMaximumSize(new java.awt.Dimension(49, 20));
-        jButton4.setMinimumSize(new java.awt.Dimension(49, 20));
-        jButton4.setPreferredSize(new java.awt.Dimension(49, 20));
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        btnAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/agac/gui/resourses/add.png"))); // NOI18N
+        btnAdd.setText(org.openide.util.NbBundle.getMessage(ImpuestosPanel.class, "ImpuestosPanel.btnAdd.text")); // NOI18N
+        btnAdd.setMaximumSize(new java.awt.Dimension(49, 20));
+        btnAdd.setMinimumSize(new java.awt.Dimension(49, 20));
+        btnAdd.setPreferredSize(new java.awt.Dimension(49, 20));
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                btnAddActionPerformed(evt);
             }
         });
 
@@ -124,14 +127,14 @@ public class ImpuestosPanel extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtTasa, javax.swing.GroupLayout.DEFAULT_SIZE, 52, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel1)
@@ -175,34 +178,40 @@ public class ImpuestosPanel extends javax.swing.JPanel {
         jLabel5.setText(org.openide.util.NbBundle.getMessage(ImpuestosPanel.class, "ImpuestosPanel.jLabel5.text")); // NOI18N
 
         txtTotalRetenidos.setEditable(false);
-        txtTotalRetenidos.setFont(new java.awt.Font("DejaVu Sans", 1, 11)); // NOI18N
+        txtTotalRetenidos.setFont(new java.awt.Font("DejaVu Sans", 1, 11));
         txtTotalRetenidos.setText(org.openide.util.NbBundle.getMessage(ImpuestosPanel.class, "ImpuestosPanel.txtTotalRetenidos.text")); // NOI18N
 
         jLabel7.setText(org.openide.util.NbBundle.getMessage(ImpuestosPanel.class, "ImpuestosPanel.jLabel7.text")); // NOI18N
 
         txtTotalTrasladados.setEditable(false);
-        txtTotalTrasladados.setFont(new java.awt.Font("DejaVu Sans", 1, 11)); // NOI18N
+        txtTotalTrasladados.setFont(new java.awt.Font("DejaVu Sans", 1, 11));
         txtTotalTrasladados.setText(org.openide.util.NbBundle.getMessage(ImpuestosPanel.class, "ImpuestosPanel.txtTotalTrasladados.text")); // NOI18N
+
+        lblTest.setText(org.openide.util.NbBundle.getMessage(ImpuestosPanel.class, "ImpuestosPanel.lblTest.text")); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 399, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel7))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtTotalTrasladados)
-                            .addComponent(txtTotalRetenidos, javax.swing.GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 114, Short.MAX_VALUE)))
-                .addContainerGap(40, Short.MAX_VALUE))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 399, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel7))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtTotalTrasladados)
+                                    .addComponent(txtTotalRetenidos, javax.swing.GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE)))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(25, 25, 25)
+                        .addComponent(lblTest, javax.swing.GroupLayout.PREFERRED_SIZE, 399, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -219,17 +228,31 @@ public class ImpuestosPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtTotalTrasladados, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7))
-                .addContainerGap(48, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(lblTest)
+                .addContainerGap(16, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    
+    
+//  *****************************************************************
+
+
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
 
         if (cboTipoImpuesto.getSelectedIndex()==0) {
             // Retencion
-            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+       
+
+     /*   model.addRow(new Object[]{retencion.getImporte()  concepto.getCantidad(), concepto.getUnidad(),
+            concepto.getNoIdentificacion(), concepto.getDescripcion(),
+            concepto.getValorUnitario(), concepto.getImporte()});
 
 
+      */
             //model.addRow(new Object[]{null, retencion.getImpuesto(), retencion.getImporte(),null});
             model.addRow(new Object[]{"Retencion", cboImpuesto.getSelectedItem() , Double.parseDouble(txtImporte.getText()) ,null});
             //retencionList.add(retencion);
@@ -240,7 +263,6 @@ public class ImpuestosPanel extends javax.swing.JPanel {
             setRetencion(new Retencion());
         } else if (cboTipoImpuesto.getSelectedIndex()==1) {
             // Traslado
-            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
 
 
             //model.addRow(new Object[]{null, retencion.getImpuesto(), retencion.getImporte(),null});
@@ -253,13 +275,18 @@ public class ImpuestosPanel extends javax.swing.JPanel {
             setTraslado(new Traslado());
         }
 
+        //lblTest.setText(model.getValueAt(0,2).toString());
 
+        for(int c=0;c<model.getRowCount();c++) {
+            lblTest.setText(lblTest.getText()+" "+model.getValueAt(c, 2));
+        }
+        
         /*DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         model.addRow(new Object[]{infoAduanera.getNumero(), infoAduanera.getFecha(), infoAduanera.getAduana()});
         infoAduaneraList.add(infoAduanera);
         setInfoAduanera(new InformacionAduanera());
          txtNoDoc.requestFocus(); */
-}//GEN-LAST:event_jButton4ActionPerformed
+}//GEN-LAST:event_btnAddActionPerformed
 
     private void cboImpuestoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboImpuestoActionPerformed
         // TODO add your handling code here:
@@ -372,9 +399,9 @@ public class ImpuestosPanel extends javax.swing.JPanel {
         }
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAdd;
     private javax.swing.JComboBox cboImpuesto;
     private javax.swing.JComboBox cboTipoImpuesto;
-    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -385,6 +412,7 @@ public class ImpuestosPanel extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JLabel lblTest;
     private javax.swing.JTextField txtImporte;
     private javax.swing.JTextField txtTasa;
     private javax.swing.JTextField txtTotalRetenidos;
