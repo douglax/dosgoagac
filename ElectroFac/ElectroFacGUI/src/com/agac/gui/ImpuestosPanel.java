@@ -4,13 +4,16 @@
  */
 
 /*
- * InformacionAduaneraPanel.java
+ * ImpuestoPanel.java
  *
  * Created on Mar 6, 2010, 9:33:04 AM
  */
 package com.agac.gui;
 
 import com.agac.bo.InformacionAduanera;
+import com.agac.bo.Impuesto;
+import com.agac.bo.Retencion;
+import com.agac.bo.Traslado;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
@@ -34,6 +37,7 @@ public class ImpuestosPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel6 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -46,6 +50,12 @@ public class ImpuestosPanel extends javax.swing.JPanel {
         txtTasa = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jLabel5 = new javax.swing.JLabel();
+        txtTotalRetenidos = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        txtTotalTrasladados = new javax.swing.JTextField();
+
+        jLabel6.setText(org.openide.util.NbBundle.getMessage(ImpuestosPanel.class, "ImpuestosPanel.jLabel6.text")); // NOI18N
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(ImpuestosPanel.class, "ImpuestosPanel.jPanel1.border.title"))); // NOI18N
 
@@ -162,6 +172,18 @@ public class ImpuestosPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(jTable1);
 
+        jLabel5.setText(org.openide.util.NbBundle.getMessage(ImpuestosPanel.class, "ImpuestosPanel.jLabel5.text")); // NOI18N
+
+        txtTotalRetenidos.setEditable(false);
+        txtTotalRetenidos.setFont(new java.awt.Font("DejaVu Sans", 1, 11)); // NOI18N
+        txtTotalRetenidos.setText(org.openide.util.NbBundle.getMessage(ImpuestosPanel.class, "ImpuestosPanel.txtTotalRetenidos.text")); // NOI18N
+
+        jLabel7.setText(org.openide.util.NbBundle.getMessage(ImpuestosPanel.class, "ImpuestosPanel.jLabel7.text")); // NOI18N
+
+        txtTotalTrasladados.setEditable(false);
+        txtTotalTrasladados.setFont(new java.awt.Font("DejaVu Sans", 1, 11)); // NOI18N
+        txtTotalTrasladados.setText(org.openide.util.NbBundle.getMessage(ImpuestosPanel.class, "ImpuestosPanel.txtTotalTrasladados.text")); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -170,8 +192,17 @@ public class ImpuestosPanel extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 399, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(50, Short.MAX_VALUE))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel7))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtTotalTrasladados)
+                            .addComponent(txtTotalRetenidos, javax.swing.GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 114, Short.MAX_VALUE)))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -180,12 +211,54 @@ public class ImpuestosPanel extends javax.swing.JPanel {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(120, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(txtTotalRetenidos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtTotalTrasladados, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7))
+                .addContainerGap(48, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
 
+        if (cboTipoImpuesto.getSelectedIndex()==0) {
+            // Retencion
+            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+
+
+            //model.addRow(new Object[]{null, retencion.getImpuesto(), retencion.getImporte(),null});
+            model.addRow(new Object[]{"Retencion", cboImpuesto.getSelectedItem() , Double.parseDouble(txtImporte.getText()) ,null});
+            //retencionList.add(retencion);
+
+            totRetenciones += Double.parseDouble(txtImporte.getText());
+            txtTotalRetenidos.setText(totRetenciones.toString());
+
+            setRetencion(new Retencion());
+        } else if (cboTipoImpuesto.getSelectedIndex()==1) {
+            // Traslado
+            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+
+
+            //model.addRow(new Object[]{null, retencion.getImpuesto(), retencion.getImporte(),null});
+            model.addRow(new Object[]{"Traslado", cboImpuesto.getSelectedItem() , Double.parseDouble(txtImporte.getText()) , Double.parseDouble(txtTasa.getText())});
+            //retencionList.add(retencion);
+
+            totTraslados += Double.parseDouble(txtImporte.getText());
+            txtTotalTrasladados.setText(totTraslados.toString());
+
+            setTraslado(new Traslado());
+        }
+
+
+        /*DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        model.addRow(new Object[]{infoAduanera.getNumero(), infoAduanera.getFecha(), infoAduanera.getAduana()});
+        infoAduaneraList.add(infoAduanera);
+        setInfoAduanera(new InformacionAduanera());
+         txtNoDoc.requestFocus(); */
 }//GEN-LAST:event_jButton4ActionPerformed
 
     private void cboImpuestoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboImpuestoActionPerformed
@@ -194,8 +267,7 @@ public class ImpuestosPanel extends javax.swing.JPanel {
 
     private void cboTipoImpuestoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboTipoImpuestoActionPerformed
         // TODO add your handling code here:
-        String[] petStrings = { "Bird", "Cat", "Dog", "Rabbit", "Pig" };
-
+        
 
         if (cboTipoImpuesto.getSelectedIndex()==0) {
             cboImpuesto.removeAllItems();
@@ -210,7 +282,28 @@ public class ImpuestosPanel extends javax.swing.JPanel {
         }
 
     }//GEN-LAST:event_cboTipoImpuestoActionPerformed
+
+
+
     private InformacionAduanera infoAduanera = new InformacionAduanera();
+    private Retencion retencion = new Retencion();
+    private Traslado traslado = new Traslado();
+
+    private List<Retencion> retencionList;
+    private List<Traslado> trasladoList;
+
+    private static Double totRetenciones = 0.0;
+    private static Double totTraslados = 0.0;
+
+    public void setRetencion(Retencion retencion) {
+        this.retencion = retencion;
+    }
+
+    public void setTraslado(Traslado traslado) {
+        this.traslado = traslado;
+    }
+
+
 
     public InformacionAduanera getInfoAduanera() {
         return infoAduanera;
@@ -220,7 +313,49 @@ public class ImpuestosPanel extends javax.swing.JPanel {
         this.infoAduanera = infoAduanera;        
         firePropertyChange("infoAduanera", null, infoAduanera);
     }
+
     private List<InformacionAduanera> infoAduaneraList;
+
+    public List<Retencion> getRetencionList() {
+        return retencionList;
+    }
+
+    public List<Traslado> getTrasladoList() {
+        return trasladoList;
+    }
+
+    public void setRetencionList(List<Retencion> retencionList) {
+        this.retencionList = retencionList;
+        if (retencionList != null) {
+            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+            for (Retencion info : retencionList) {
+                model.addRow(new Object[]{null,info.getImpuesto(), info.getImporte(),
+                    null});
+            }
+        }
+
+    }
+
+    public void setTrasladoList(List<Traslado> trasladoList) {
+        this.trasladoList = trasladoList;
+        if (trasladoList != null) {
+            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+            for (Traslado info : trasladoList) {
+                model.addRow(new Object[]{null,info.getImpuesto(), info.getImporte(),
+                    info.getTasa()});
+            }
+        }
+    }
+
+
+
+
+
+
+
+
+
+
 
     public List<InformacionAduanera> getInfoAduaneraList() {
         return infoAduaneraList;
@@ -244,10 +379,15 @@ public class ImpuestosPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField txtImporte;
     private javax.swing.JTextField txtTasa;
+    private javax.swing.JTextField txtTotalRetenidos;
+    private javax.swing.JTextField txtTotalTrasladados;
     // End of variables declaration//GEN-END:variables
 }
