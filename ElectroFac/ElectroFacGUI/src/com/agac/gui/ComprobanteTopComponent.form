@@ -25,9 +25,16 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
+          <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Component id="jPanel2" alignment="0" max="32767" attributes="1"/>
+                  <Component id="jPanel3" alignment="0" max="32767" attributes="0"/>
+<<<<<<< .mine
+                  <Component id="jLabel17" alignment="0" pref="725" max="32767" attributes="0"/>
+                  <Component id="jPanel1" alignment="1" pref="725" max="32767" attributes="1"/>
+                  <Component id="btnImpuestos" alignment="0" min="-2" max="-2" attributes="0"/>
+=======
                   <Component id="jLabel17" alignment="0" pref="748" max="32767" attributes="0"/>
                   <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
                       <Group type="102" alignment="0" attributes="1">
@@ -47,6 +54,7 @@
                       <Component id="jPanel1" alignment="0" min="0" pref="748" max="32767" attributes="1"/>
                       <Component id="jPanel2" alignment="0" max="32767" attributes="1"/>
                   </Group>
+>>>>>>> .r150
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -60,6 +68,10 @@
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jPanel1" min="-2" pref="190" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
+<<<<<<< .mine
+              <Component id="jPanel2" max="32767" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+=======
               <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
@@ -78,6 +90,8 @@
                   </Group>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
+>>>>>>> .r150
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -134,9 +148,9 @@
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="txtCalle" pref="410" max="32767" attributes="1"/>
-                                          <Component id="txtRazonSocial" alignment="1" pref="410" max="32767" attributes="1"/>
-                                          <Component id="txtColonia" alignment="1" pref="410" max="32767" attributes="1"/>
+                                          <Component id="txtCalle" pref="411" max="32767" attributes="1"/>
+                                          <Component id="txtRazonSocial" alignment="1" pref="411" max="32767" attributes="1"/>
+                                          <Component id="txtColonia" alignment="1" pref="411" max="32767" attributes="1"/>
                                       </Group>
                                       <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -489,7 +503,7 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
+              <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
@@ -544,7 +558,11 @@
                           </Group>
                       </Group>
                   </Group>
+<<<<<<< .mine
+                  <EmptySpace pref="75" max="32767" attributes="0"/>
+=======
                   <EmptySpace pref="68" max="32767" attributes="0"/>
+>>>>>>> .r150
               </Group>
           </Group>
         </DimensionLayout>
@@ -576,7 +594,7 @@
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="jScrollPane1" min="-2" pref="135" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace pref="40" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>

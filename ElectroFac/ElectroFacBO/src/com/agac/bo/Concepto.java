@@ -69,7 +69,7 @@ public class Concepto implements Serializable {
     private double cantidad;
 
     @XmlAttribute
-    private String unidad;
+    private String unidad = "Pieza";
 
     @XmlAttribute
     private String noIdentificacion;
@@ -205,6 +205,16 @@ public class Concepto implements Serializable {
 
     public void removePropertyChangeListener(PropertyChangeListener listener) {
         propertyChangeSupport.removePropertyChangeListener(listener);
+    }
+
+    public BigDecimal getTotalPartes(){
+        BigDecimal total = new BigDecimal(0);
+        if(parte != null){
+            for(Parte p : parte){
+                total.add(p.getImporte());
+            }
+        }
+        return total;
     }
 
 }

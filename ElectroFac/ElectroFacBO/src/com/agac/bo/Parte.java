@@ -53,7 +53,7 @@ public class Parte implements Serializable {
     private BigDecimal cantidad;
 
     @XmlAttribute
-    private String unidad;
+    private String unidad = "Pieza";
 
     @XmlAttribute
     private String noIdentificacion;
@@ -66,8 +66,21 @@ public class Parte implements Serializable {
     @XmlAttribute
     private BigDecimal importe;
 
+    @XmlAttribute
+    private String descripcion;
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        String oldDescripcion = this.descripcion;
+        this.descripcion = descripcion;
+        propertyChangeSupport.firePropertyChange("descripcion", oldDescripcion, descripcion);
+    }
+
     public BigDecimal getImporte() {
-        return importe;
+        return importe = cantidad.multiply(valorUnitario);
     }
 
     public void setImporte(BigDecimal importe) {
@@ -139,4 +152,5 @@ public class Parte implements Serializable {
     public void removePropertyChangeListener(PropertyChangeListener listener) {
         propertyChangeSupport.removePropertyChangeListener(listener);
     }
+
 }
