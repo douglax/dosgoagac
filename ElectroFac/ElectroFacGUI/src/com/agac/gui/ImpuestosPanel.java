@@ -14,6 +14,7 @@ import com.agac.bo.InformacionAduanera;
 import com.agac.bo.Impuesto;
 import com.agac.bo.Retencion;
 import com.agac.bo.Traslado;
+import java.math.BigDecimal;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
@@ -245,7 +246,8 @@ public class ImpuestosPanel extends javax.swing.JPanel {
 
         if (cboTipoImpuesto.getSelectedIndex()==0) {
             // Retencion
-       
+           Retencion retencion = new Retencion();
+
 
      /*   model.addRow(new Object[]{retencion.getImporte()  concepto.getCantidad(), concepto.getUnidad(),
             concepto.getNoIdentificacion(), concepto.getDescripcion(),
@@ -253,26 +255,45 @@ public class ImpuestosPanel extends javax.swing.JPanel {
 
 
       */
-            //model.addRow(new Object[]{null, retencion.getImpuesto(), retencion.getImporte(),null});
+
+           //TODO Falta validar formato de campos desde controles
+
+           //model.addRow(new Object[]{null, retencion.getImpuesto(), retencion.getImporte(),null});
             model.addRow(new Object[]{"Retencion", cboImpuesto.getSelectedItem() , Double.parseDouble(txtImporte.getText()) ,null});
             //retencionList.add(retencion);
+
+
+
+
+            retencion.setImpuesto(cboImpuesto.getSelectedItem().toString());
+            retencion.setImporte( new BigDecimal(txtImporte.getText()) );
+
+            retencionList.add(retencion);
+
 
             totRetenciones += Double.parseDouble(txtImporte.getText());
             txtTotalRetenidos.setText(totRetenciones.toString());
 
-            setRetencion(new Retencion());
+            // setRetencion(new Retencion());
         } else if (cboTipoImpuesto.getSelectedIndex()==1) {
             // Traslado
 
-
+            Traslado traslado = new Traslado();
             //model.addRow(new Object[]{null, retencion.getImpuesto(), retencion.getImporte(),null});
             model.addRow(new Object[]{"Traslado", cboImpuesto.getSelectedItem() , Double.parseDouble(txtImporte.getText()) , Double.parseDouble(txtTasa.getText())});
             //retencionList.add(retencion);
 
+
+            traslado.setImpuesto(cboImpuesto.getSelectedItem().toString());
+            traslado.setImporte(new BigDecimal(txtImporte.getText()));
+            traslado.setTasa(new BigDecimal(txtTasa.getText()));
+
+            trasladoList.add(traslado);
+            
             totTraslados += Double.parseDouble(txtImporte.getText());
             txtTotalTrasladados.setText(totTraslados.toString());
 
-            setTraslado(new Traslado());
+            //setTraslado(new Traslado());
         }
 
         //lblTest.setText(model.getValueAt(0,2).toString());
@@ -313,8 +334,7 @@ public class ImpuestosPanel extends javax.swing.JPanel {
 
 
     private InformacionAduanera infoAduanera = new InformacionAduanera();
-    private Retencion retencion = new Retencion();
-    private Traslado traslado = new Traslado();
+
 
     private List<Retencion> retencionList;
     private List<Traslado> trasladoList;
@@ -322,6 +342,10 @@ public class ImpuestosPanel extends javax.swing.JPanel {
     private static Double totRetenciones = 0.0;
     private static Double totTraslados = 0.0;
 
+
+
+
+    /*
     public void setRetencion(Retencion retencion) {
         this.retencion = retencion;
     }
@@ -330,7 +354,7 @@ public class ImpuestosPanel extends javax.swing.JPanel {
         this.traslado = traslado;
     }
 
-
+    */
 
     public InformacionAduanera getInfoAduanera() {
         return infoAduanera;
