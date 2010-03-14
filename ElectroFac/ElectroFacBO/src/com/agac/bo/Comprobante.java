@@ -118,6 +118,8 @@ public class Comprobante implements Serializable {
     private String tipoDeComprobante;
 
     public Impuesto getImpuesto() {
+        if(impuesto == null)
+            impuesto = new Impuesto();
         return impuesto;
     }
 
