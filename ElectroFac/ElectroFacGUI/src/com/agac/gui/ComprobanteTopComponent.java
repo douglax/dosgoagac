@@ -7,6 +7,7 @@ package com.agac.gui;
 import com.agac.bo.Comprobante;
 import com.agac.bo.Concepto;
 import com.agac.bo.Receptor;
+import com.agac.bo.Impuesto;
 import com.agac.gui.nodes.ClienteNode;
 import java.awt.datatransfer.Transferable;
 import java.awt.datatransfer.UnsupportedFlavorException;
@@ -1029,6 +1030,7 @@ public final class ComprobanteTopComponent extends TopComponent {
         // TODO add your handling code here:
 
         ImpuestosPanel impPanel = new ImpuestosPanel();
+        impPanel.setImpuesto(comprobante.getImpuesto());
         DialogDescriptor d2 = new DialogDescriptor(impPanel, "Impuestos", true, null);
         DialogDisplayer.getDefault().notify(d2);
 
@@ -1283,5 +1285,19 @@ public final class ComprobanteTopComponent extends TopComponent {
         this.concepto = concepto;
         firePropertyChange("concepto", null, concepto);
     }
+
+
+    private Impuesto impuesto = new Impuesto();
+
+    public Impuesto getImpuesto() {
+        return impuesto;
+    }
+
+    public void setImpuesto(Impuesto impuesto) {
+        this.impuesto = impuesto;
+    }
+
+  
+
 
 }

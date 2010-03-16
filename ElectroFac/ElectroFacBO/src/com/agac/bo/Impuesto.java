@@ -6,6 +6,7 @@ package com.agac.bo;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +28,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
     "retenciones",
     "traslados"
 })
-public class Impuesto {
+public class Impuesto implements Serializable {
     @XmlElementWrapper(name="Retenciones")
     @XmlElement(name = "Retencion")
     private List<Retencion> retenciones;

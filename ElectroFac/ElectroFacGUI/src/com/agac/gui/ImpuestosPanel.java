@@ -10,7 +10,7 @@
  */
 package com.agac.gui;
 
-import com.agac.bo.InformacionAduanera;
+
 import com.agac.bo.Impuesto;
 import com.agac.bo.Retencion;
 import com.agac.bo.Traslado;
@@ -246,7 +246,7 @@ public class ImpuestosPanel extends javax.swing.JPanel {
 
         if (cboTipoImpuesto.getSelectedIndex()==0) {
             // Retencion
-           Retencion retencion = new Retencion();
+           Retencion retencion = new Retencion() ;
 
 
      /*   model.addRow(new Object[]{retencion.getImporte()  concepto.getCantidad(), concepto.getUnidad(),
@@ -262,16 +262,13 @@ public class ImpuestosPanel extends javax.swing.JPanel {
             model.addRow(new Object[]{"Retencion", cboImpuesto.getSelectedItem() , Double.parseDouble(txtImporte.getText()) ,null});
             //retencionList.add(retencion);
 
-
-
-
             retencion.setImpuesto(cboImpuesto.getSelectedItem().toString());
             retencion.setImporte( new BigDecimal(txtImporte.getText()) );
 
             retencionList.add(retencion);
 
 
-            totRetenciones += Double.parseDouble(txtImporte.getText());
+            totRetenciones.add(new BigDecimal(txtImporte.getText()));
             txtTotalRetenidos.setText(totRetenciones.toString());
 
             // setRetencion(new Retencion());
@@ -290,7 +287,7 @@ public class ImpuestosPanel extends javax.swing.JPanel {
 
             trasladoList.add(traslado);
             
-            totTraslados += Double.parseDouble(txtImporte.getText());
+            totTraslados.add(new BigDecimal(txtImporte.getText()));
             txtTotalTrasladados.setText(totTraslados.toString());
 
             //setTraslado(new Traslado());
@@ -333,39 +330,34 @@ public class ImpuestosPanel extends javax.swing.JPanel {
 
 
 
-    private InformacionAduanera infoAduanera = new InformacionAduanera();
+ 
 
 
     private List<Retencion> retencionList;
     private List<Traslado> trasladoList;
 
-    private static Double totRetenciones = 0.0;
-    private static Double totTraslados = 0.0;
+    private BigDecimal totRetenciones = new BigDecimal(0);
+    private BigDecimal totTraslados = new BigDecimal(0);
 
 
 
 
-    /*
-    public void setRetencion(Retencion retencion) {
-        this.retencion = retencion;
+
+
+private Impuesto impuesto = new Impuesto();
+
+    public Impuesto getImpuesto() {
+        return impuesto;
     }
 
-    public void setTraslado(Traslado traslado) {
-        this.traslado = traslado;
+    public void setImpuesto(Impuesto impuesto) {
+        this.impuesto = impuesto;
     }
 
-    */
 
-    public InformacionAduanera getInfoAduanera() {
-        return infoAduanera;
-    }
 
-    public void setInfoAduanera(InformacionAduanera infoAduanera) {
-        this.infoAduanera = infoAduanera;        
-        firePropertyChange("infoAduanera", null, infoAduanera);
-    }
 
-    private List<InformacionAduanera> infoAduaneraList;
+   
 
     public List<Retencion> getRetencionList() {
         return retencionList;
@@ -401,27 +393,6 @@ public class ImpuestosPanel extends javax.swing.JPanel {
 
 
 
-
-
-
-
-
-
-
-    public List<InformacionAduanera> getInfoAduaneraList() {
-        return infoAduaneraList;
-    }
-
-    public void setInfoAduaneraList(List<InformacionAduanera> infoAduaneraList) {
-        this.infoAduaneraList = infoAduaneraList;
-        if (infoAduaneraList != null) {
-            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-            for (InformacionAduanera info : infoAduaneraList) {
-                model.addRow(new Object[]{info.getNumero(), info.getFecha(),
-                    info.getAduana()});
-            }
-        }
-    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
     private javax.swing.JComboBox cboImpuesto;
