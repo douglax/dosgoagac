@@ -1030,10 +1030,13 @@ public final class ComprobanteTopComponent extends TopComponent {
         // TODO add your handling code here:
 
         ImpuestosPanel impPanel = new ImpuestosPanel();
-        impPanel.setImpuesto(comprobante.getImpuesto());
+
+        //impPanel.setImpuesto(comprobante.getImpuesto());
         DialogDescriptor d2 = new DialogDescriptor(impPanel, "Impuestos", true, null);
         DialogDisplayer.getDefault().notify(d2);
+        comprobante.setImpuesto(impPanel.getImpuesto());
 
+        System.out.println(comprobante.getImpuesto());
     }//GEN-LAST:event_btnImpuestosActionPerformed
 
     private void optUnPagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_optUnPagoActionPerformed

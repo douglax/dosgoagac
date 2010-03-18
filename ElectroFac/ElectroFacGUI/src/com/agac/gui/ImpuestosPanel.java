@@ -15,6 +15,7 @@ import com.agac.bo.Impuesto;
 import com.agac.bo.Retencion;
 import com.agac.bo.Traslado;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
@@ -246,54 +247,20 @@ public class ImpuestosPanel extends javax.swing.JPanel {
 
         if (cboTipoImpuesto.getSelectedIndex()==0) {
             // Retencion
-           Retencion retencion = new Retencion() ;
 
-
-     /*   model.addRow(new Object[]{retencion.getImporte()  concepto.getCantidad(), concepto.getUnidad(),
-            concepto.getNoIdentificacion(), concepto.getDescripcion(),
-            concepto.getValorUnitario(), concepto.getImporte()});
-
-
-      */
-
-           //TODO Falta validar formato de campos desde controles
-
-           //model.addRow(new Object[]{null, retencion.getImpuesto(), retencion.getImporte(),null});
             model.addRow(new Object[]{"Retencion", cboImpuesto.getSelectedItem() , Double.parseDouble(txtImporte.getText()) ,null});
-            //retencionList.add(retencion);
-
-            retencion.setImpuesto(cboImpuesto.getSelectedItem().toString());
-            retencion.setImporte( new BigDecimal(txtImporte.getText()) );
-
-            retencionList.add(retencion);
-
-
             totRetenciones.add(new BigDecimal(txtImporte.getText()));
             txtTotalRetenidos.setText(totRetenciones.toString());
 
             // setRetencion(new Retencion());
         } else if (cboTipoImpuesto.getSelectedIndex()==1) {
             // Traslado
-
-            Traslado traslado = new Traslado();
-            //model.addRow(new Object[]{null, retencion.getImpuesto(), retencion.getImporte(),null});
             model.addRow(new Object[]{"Traslado", cboImpuesto.getSelectedItem() , Double.parseDouble(txtImporte.getText()) , Double.parseDouble(txtTasa.getText())});
-            //retencionList.add(retencion);
-
-
-            traslado.setImpuesto(cboImpuesto.getSelectedItem().toString());
-            traslado.setImporte(new BigDecimal(txtImporte.getText()));
-            traslado.setTasa(new BigDecimal(txtTasa.getText()));
-
-            trasladoList.add(traslado);
-            
             totTraslados.add(new BigDecimal(txtImporte.getText()));
             txtTotalTrasladados.setText(totTraslados.toString());
-
-            //setTraslado(new Traslado());
         }
 
-        //lblTest.setText(model.getValueAt(0,2).toString());
+
 
         for(int c=0;c<model.getRowCount();c++) {
             lblTest.setText(lblTest.getText()+" "+model.getValueAt(c, 2));
@@ -333,62 +300,57 @@ public class ImpuestosPanel extends javax.swing.JPanel {
  
 
 
-    private List<Retencion> retencionList;
-    private List<Traslado> trasladoList;
+//    private List<Retencion> retencionList;
+//    private List<Traslado> trasladoList;
 
     private BigDecimal totRetenciones = new BigDecimal(0);
     private BigDecimal totTraslados = new BigDecimal(0);
 
+    private Impuesto impuesto = new Impuesto();
 
 
-
-
-
-private Impuesto impuesto = new Impuesto();
 
     public Impuesto getImpuesto() {
+
+
+            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+
+        for(int c=0;c<model.getRowCount();c++) {
+
+            if(model.getValueAt(c,0) == "Retencion") {
+                Retencion retencion = new Retencion();
+                retencion.setImpuesto(model.getValueAt(c, 1).toString());
+                retencion.setImporte(new BigDecimal(model.getValueAt(c, 2).toString()));
+                impuesto.getRetenciones().add(retencion);
+            }
+
+            if(model.getValueAt(c,0) == "Traslado") {
+                Traslado traslado = new Traslado();
+                traslado.setImpuesto(model.getValueAt(c, 1).toString());
+                traslado.setImporte(new BigDecimal(model.getValueAt(c, 2).toString()));
+                traslado.setTasa(new BigDecimal(model.getValueAt(c, 3).toString()));
+                impuesto.getTraslados().add(traslado);
+            }
+
+
+        } //for
+
+
+        impuesto.setTotalImpuestosRetenidos(totRetenciones);
+        impuesto.setTotalImpuestosTrasladados(totTraslados);
+
+
         return impuesto;
     }
 
     public void setImpuesto(Impuesto impuesto) {
-        this.impuesto = impuesto;
+
+
+    this.impuesto = impuesto;
+        
     }
 
 
-
-
-   
-
-    public List<Retencion> getRetencionList() {
-        return retencionList;
-    }
-
-    public List<Traslado> getTrasladoList() {
-        return trasladoList;
-    }
-
-    public void setRetencionList(List<Retencion> retencionList) {
-        this.retencionList = retencionList;
-        if (retencionList != null) {
-            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-            for (Retencion info : retencionList) {
-                model.addRow(new Object[]{null,info.getImpuesto(), info.getImporte(),
-                    null});
-            }
-        }
-
-    }
-
-    public void setTrasladoList(List<Traslado> trasladoList) {
-        this.trasladoList = trasladoList;
-        if (trasladoList != null) {
-            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-            for (Traslado info : trasladoList) {
-                model.addRow(new Object[]{null,info.getImpuesto(), info.getImporte(),
-                    info.getTasa()});
-            }
-        }
-    }
 
 
 
