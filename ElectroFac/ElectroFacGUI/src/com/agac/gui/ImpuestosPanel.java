@@ -224,6 +224,11 @@ public class ImpuestosPanel extends javax.swing.JPanel {
         txtTotalTrasladados.setText(org.openide.util.NbBundle.getMessage(ImpuestosPanel.class, "ImpuestosPanel.txtTotalTrasladados.text")); // NOI18N
 
         btnLimpiar.setText(org.openide.util.NbBundle.getMessage(ImpuestosPanel.class, "ImpuestosPanel.btnLimpiar.text")); // NOI18N
+        btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimpiarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -277,11 +282,9 @@ public class ImpuestosPanel extends javax.swing.JPanel {
 
         if (cboTipoImpuesto.getSelectedIndex()==0) {
             // Retencion
-
-            model.addRow(new Object[]{"Retencion", cboImpuesto.getSelectedItem() , Double.parseDouble(txtImporte.getText()) ,null});
+            model.addRow(new Object[]{"Retención", cboImpuesto.getSelectedItem() , Double.parseDouble(txtImporte.getText()) ,null});
             totRetenciones.add(new BigDecimal(txtImporte.getText()));
             txtTotalRetenidos.setText(totRetenciones.toString());
-
 
         } else if (cboTipoImpuesto.getSelectedIndex()==1) {
             // Traslado
@@ -289,9 +292,6 @@ public class ImpuestosPanel extends javax.swing.JPanel {
             totTraslados.add(new BigDecimal(txtImporte.getText()));
             txtTotalTrasladados.setText(totTraslados.toString());
         }
-
-    
-   
 }//GEN-LAST:event_btnAddActionPerformed
 
     private void cboImpuestoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboImpuestoActionPerformed
@@ -316,9 +316,21 @@ public class ImpuestosPanel extends javax.swing.JPanel {
 
     }//GEN-LAST:event_cboTipoImpuestoActionPerformed
 
+    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+        // TODO add your handling code here:
 
-    private BigDecimal totRetenciones = new BigDecimal("0");
-    private BigDecimal totTraslados = new BigDecimal("0");
+        DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+
+        while (modelo.getRowCount() > 0)
+              {
+                    modelo.removeRow(0);
+              }
+        
+        this.impuesto = null;
+    }//GEN-LAST:event_btnLimpiarActionPerformed
+
+    BigDecimal totRetenciones = new BigDecimal("0") ;
+    BigDecimal totTraslados  = new BigDecimal("0") ;
 
     private Impuesto impuesto = new Impuesto();
 
@@ -331,7 +343,7 @@ public class ImpuestosPanel extends javax.swing.JPanel {
 
         for(int c=0;c<model.getRowCount();c++) {
 
-            if(model.getValueAt(c,0) == "Retencion") {
+            if(model.getValueAt(c,0) == "Retención") {
                 Retencion retencion = new Retencion();
                 retencion.setImpuesto(model.getValueAt(c, 1).toString());
                 retencion.setImporte(new BigDecimal(model.getValueAt(c, 2).toString()));
@@ -349,10 +361,10 @@ public class ImpuestosPanel extends javax.swing.JPanel {
 
         } //for
 
-
-        impuesto.setTotalImpuestosRetenidos(totRetenciones);
-        impuesto.setTotalImpuestosTrasladados(totTraslados);
-
+        if(impuesto != null) {
+            impuesto.setTotalImpuestosRetenidos(totRetenciones);
+            impuesto.setTotalImpuestosTrasladados(totTraslados);
+        }
 
         return impuesto;
     }
