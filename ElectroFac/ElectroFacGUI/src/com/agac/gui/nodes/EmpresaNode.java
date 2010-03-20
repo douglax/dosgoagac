@@ -113,6 +113,7 @@ public class EmpresaNode extends AbstractNode {
         @Override
         public void actionPerformed(ActionEvent e) {
             ComprobanteTopComponent ctc = new ComprobanteTopComponent();
+            ctc.componentOpened();
             ctc.getComprobante().setEmisor(getLookup().lookup(Emisor.class));
             ctc.setDisplayName("Nuevo Comprobante");
             ctc.open();

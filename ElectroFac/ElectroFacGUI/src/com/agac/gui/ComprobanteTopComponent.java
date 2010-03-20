@@ -17,10 +17,14 @@ import java.awt.dnd.DropTargetDragEvent;
 import java.awt.dnd.DropTargetDropEvent;
 import java.awt.dnd.DropTargetEvent;
 import java.awt.dnd.DropTargetListener;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.io.IOException;
 import java.util.TooManyListenersException;
+import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
+import org.netbeans.api.progress.ProgressUtils;
 import org.openide.util.Exceptions;
 import org.openide.util.NbBundle;
 import org.openide.windows.TopComponent;
@@ -29,6 +33,12 @@ import org.openide.windows.WindowManager;
 import org.netbeans.api.settings.ConvertAsProperties;
 import org.openide.DialogDescriptor;
 import org.openide.DialogDisplayer;
+import org.openide.NotifyDescriptor;
+import org.openide.NotifyDescriptor.Confirmation;
+import org.openide.cookies.SaveCookie;
+import org.openide.nodes.AbstractNode;
+import org.openide.nodes.Children;
+import org.openide.nodes.Node;
 import org.openide.util.ImageUtilities;
 
 /**
@@ -59,6 +69,12 @@ public final class ComprobanteTopComponent extends TopComponent {
         }
         jPanel1.setDropTarget(dp);
         jTable1.getColumnModel().getColumn(3).setPreferredWidth(250);
+        comprobante.addPropertyChangeListener(new PropertyChangeListener(){
+            @Override
+            public void propertyChange(PropertyChangeEvent evt) {
+                saveNode.enableSave(true);
+            }
+        });
     }
 
     /** This method is called from within the constructor to
@@ -167,6 +183,8 @@ public final class ComprobanteTopComponent extends TopComponent {
 
         setMaximumSize(new java.awt.Dimension(800, 600));
         setLayout(new java.awt.BorderLayout());
+
+        jPanel5.setPreferredSize(new java.awt.Dimension(890, 732));
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(ComprobanteTopComponent.class, "ComprobanteTopComponent.jPanel1.border.title"))); // NOI18N
         jPanel1.setName("pnlReceptor"); // NOI18N
@@ -523,7 +541,7 @@ public final class ComprobanteTopComponent extends TopComponent {
                                         .addComponent(jLabel16)))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnImpuestos)))
-                .addContainerGap(63, Short.MAX_VALUE))
+                .addContainerGap(82, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -563,8 +581,6 @@ public final class ComprobanteTopComponent extends TopComponent {
 
         TabOpciones.setTabLayoutPolicy(javax.swing.JTabbedPane.SCROLL_TAB_LAYOUT);
 
-        jPanel4.setBorder(null);
-
         org.openide.awt.Mnemonics.setLocalizedText(jLabel18, org.openide.util.NbBundle.getMessage(ComprobanteTopComponent.class, "ComprobanteTopComponent.jLabel18.text")); // NOI18N
 
         org.openide.awt.Mnemonics.setLocalizedText(jLabel19, org.openide.util.NbBundle.getMessage(ComprobanteTopComponent.class, "ComprobanteTopComponent.jLabel19.text")); // NOI18N
@@ -587,7 +603,7 @@ public final class ComprobanteTopComponent extends TopComponent {
         lblVersion.setFont(new java.awt.Font("DejaVu Sans", 1, 11));
         org.openide.awt.Mnemonics.setLocalizedText(lblVersion, org.openide.util.NbBundle.getMessage(ComprobanteTopComponent.class, "ComprobanteTopComponent.lblVersion.text")); // NOI18N
 
-        lblSerie.setFont(new java.awt.Font("DejaVu Sans", 1, 11)); // NOI18N
+        lblSerie.setFont(new java.awt.Font("DejaVu Sans", 1, 11));
         lblSerie.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
 
         binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, this, org.jdesktop.beansbinding.ELProperty.create("${comprobante.serie}"), lblSerie, org.jdesktop.beansbinding.BeanProperty.create("text"));
@@ -636,7 +652,7 @@ public final class ComprobanteTopComponent extends TopComponent {
                             .addComponent(lblFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addComponent(lblVersion, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 131, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 116, Short.MAX_VALUE)
                                 .addComponent(jLabel22))
                             .addComponent(lblFolio)
                             .addComponent(lblSerie, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -685,7 +701,7 @@ public final class ComprobanteTopComponent extends TopComponent {
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel21)
                             .addComponent(lblFecha)))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 74, Short.MAX_VALUE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 77, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel23)
@@ -709,11 +725,11 @@ public final class ComprobanteTopComponent extends TopComponent {
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 512, Short.MAX_VALUE)
+            .addGap(0, 519, Short.MAX_VALUE)
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 151, Short.MAX_VALUE)
+            .addGap(0, 164, Short.MAX_VALUE)
         );
 
         TabOpciones.addTab(org.openide.util.NbBundle.getMessage(ComprobanteTopComponent.class, "ComprobanteTopComponent.jPanel6.TabConstraints.tabTitle"), jPanel6); // NOI18N
@@ -722,11 +738,11 @@ public final class ComprobanteTopComponent extends TopComponent {
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 512, Short.MAX_VALUE)
+            .addGap(0, 519, Short.MAX_VALUE)
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 151, Short.MAX_VALUE)
+            .addGap(0, 164, Short.MAX_VALUE)
         );
 
         TabOpciones.addTab(org.openide.util.NbBundle.getMessage(ComprobanteTopComponent.class, "ComprobanteTopComponent.jPanel7.TabConstraints.tabTitle"), jPanel7); // NOI18N
@@ -801,7 +817,7 @@ public final class ComprobanteTopComponent extends TopComponent {
                                     .addGroup(jPanel8Layout.createSequentialGroup()
                                         .addComponent(txtDescImporte, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
-                                        .addComponent(cboMotivoDesc, 0, 274, Short.MAX_VALUE))
+                                        .addComponent(cboMotivoDesc, 0, 268, Short.MAX_VALUE))
                                     .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel8Layout.createSequentialGroup()
                                 .addComponent(chkCondiciones)
@@ -849,7 +865,7 @@ public final class ComprobanteTopComponent extends TopComponent {
         org.openide.awt.Mnemonics.setLocalizedText(jLabel29, org.openide.util.NbBundle.getMessage(ComprobanteTopComponent.class, "ComprobanteTopComponent.jLabel29.text")); // NOI18N
 
         lblSubtotal.setBackground(new java.awt.Color(0, 0, 255));
-        lblSubtotal.setFont(new java.awt.Font("DejaVu Sans", 1, 11)); // NOI18N
+        lblSubtotal.setFont(new java.awt.Font("DejaVu Sans", 1, 11));
         lblSubtotal.setForeground(new java.awt.Color(255, 255, 255));
         lblSubtotal.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblSubtotal.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -862,7 +878,7 @@ public final class ComprobanteTopComponent extends TopComponent {
         org.openide.awt.Mnemonics.setLocalizedText(jLabel31, org.openide.util.NbBundle.getMessage(ComprobanteTopComponent.class, "ComprobanteTopComponent.jLabel31.text")); // NOI18N
 
         lblDescuento.setBackground(new java.awt.Color(0, 0, 255));
-        lblDescuento.setFont(new java.awt.Font("DejaVu Sans", 1, 11)); // NOI18N
+        lblDescuento.setFont(new java.awt.Font("DejaVu Sans", 1, 11));
         lblDescuento.setForeground(new java.awt.Color(255, 255, 255));
         lblDescuento.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblDescuento.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -875,7 +891,7 @@ public final class ComprobanteTopComponent extends TopComponent {
         org.openide.awt.Mnemonics.setLocalizedText(jLabel32, org.openide.util.NbBundle.getMessage(ComprobanteTopComponent.class, "ComprobanteTopComponent.jLabel32.text")); // NOI18N
 
         lblIVA.setBackground(new java.awt.Color(0, 0, 255));
-        lblIVA.setFont(new java.awt.Font("DejaVu Sans", 1, 11)); // NOI18N
+        lblIVA.setFont(new java.awt.Font("DejaVu Sans", 1, 11));
         lblIVA.setForeground(new java.awt.Color(255, 255, 255));
         lblIVA.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         org.openide.awt.Mnemonics.setLocalizedText(lblIVA, org.openide.util.NbBundle.getMessage(ComprobanteTopComponent.class, "ComprobanteTopComponent.lblIVA.text")); // NOI18N
@@ -886,14 +902,14 @@ public final class ComprobanteTopComponent extends TopComponent {
         org.openide.awt.Mnemonics.setLocalizedText(lblLeyenda, org.openide.util.NbBundle.getMessage(ComprobanteTopComponent.class, "ComprobanteTopComponent.lblLeyenda.text")); // NOI18N
 
         lblOtrosImpuestos.setBackground(new java.awt.Color(0, 0, 255));
-        lblOtrosImpuestos.setFont(new java.awt.Font("DejaVu Sans", 1, 11)); // NOI18N
+        lblOtrosImpuestos.setFont(new java.awt.Font("DejaVu Sans", 1, 11));
         lblOtrosImpuestos.setForeground(new java.awt.Color(255, 255, 255));
         lblOtrosImpuestos.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         org.openide.awt.Mnemonics.setLocalizedText(lblOtrosImpuestos, org.openide.util.NbBundle.getMessage(ComprobanteTopComponent.class, "ComprobanteTopComponent.lblOtrosImpuestos.text")); // NOI18N
         lblOtrosImpuestos.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         lblOtrosImpuestos.setOpaque(true);
 
-        jLabel33.setFont(new java.awt.Font("DejaVu Sans", 1, 14)); // NOI18N
+        jLabel33.setFont(new java.awt.Font("DejaVu Sans", 1, 14));
         jLabel33.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
 
         binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, this, org.jdesktop.beansbinding.ELProperty.create("${comprobante.total}"), jLabel33, org.jdesktop.beansbinding.BeanProperty.create("text"));
@@ -922,7 +938,7 @@ public final class ComprobanteTopComponent extends TopComponent {
                                 .addComponent(lblOtrosImpuestos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(lblIVA, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(lblSubtotal, javax.swing.GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE)))))
-                .addContainerGap(0, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -957,7 +973,7 @@ public final class ComprobanteTopComponent extends TopComponent {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel17, javax.swing.GroupLayout.DEFAULT_SIZE, 844, Short.MAX_VALUE)
+                    .addComponent(jLabel17, javax.swing.GroupLayout.DEFAULT_SIZE, 877, Short.MAX_VALUE)
                     .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel5Layout.createSequentialGroup()
@@ -1022,7 +1038,10 @@ public final class ComprobanteTopComponent extends TopComponent {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        PartesPanel pp = new PartesPanel();
+        pp.setConcepto(concepto);
+        DialogDescriptor dd = new DialogDescriptor(pp, "Partes", true, null);
+        DialogDisplayer.getDefault().notify(dd);
     }//GEN-LAST:event_jButton1ActionPerformed
     
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -1213,7 +1232,7 @@ public final class ComprobanteTopComponent extends TopComponent {
 
     @Override
     public void componentOpened() {
-        // TODO add custom code on component opening
+        setActivatedNodes(new Node[]{saveNode = new NodeForSave()});
     }
 
     @Override
@@ -1312,8 +1331,54 @@ public final class ComprobanteTopComponent extends TopComponent {
     public void setImpuesto(Impuesto impuesto) {
         this.impuesto = impuesto;
     }
+    private NodeForSave saveNode;
+    //NODE FOR SAVE
+    private class NodeForSave extends AbstractNode {
 
-  
+        SaveCookieImpl impl;
 
+        public NodeForSave() {
+            super(Children.LEAF);
+            impl = new SaveCookieImpl();
+            getCookieSet().assign(SaveCookie.class);
+        }
 
+        public void enableSave(boolean modified) {
+            if (modified) {
+                getCookieSet().assign(SaveCookie.class, impl);
+            } else {
+                getCookieSet().assign(SaveCookie.class);
+            }
+        }
+
+        private class SaveCookieImpl implements SaveCookie {
+
+            @Override
+            public void save() throws IOException {
+                Confirmation msg = new NotifyDescriptor.Confirmation(
+                        "Desea guardar los cambios?", "Guardar Cambios",
+                        NotifyDescriptor.OK_CANCEL_OPTION,
+                        NotifyDescriptor.QUESTION_MESSAGE);
+                Object result = DialogDisplayer.getDefault().notify(msg);
+                if (NotifyDescriptor.YES_OPTION.equals(result)) {
+                    try {
+                        ProgressUtils.runOffEventDispatchThread(
+                                new Runnable() {
+
+                                    @Override
+                                    public void run() {
+
+                                    }
+                                }, "Guardando Datos", new AtomicBoolean(false), true);
+                        ((MenuTopComponent) WindowManager.getDefault().findTopComponent(
+                                "MenuTopComponent")).refreshNode();
+                        enableSave(false);
+                    } catch (Exception ex) {
+                        Exceptions.printStackTrace(ex);
+                    } finally {
+                    }
+                }
+            }
+        }
+    }
 }

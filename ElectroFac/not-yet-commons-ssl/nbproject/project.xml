@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://www.netbeans.org/ns/project/1">
+    <type>org.netbeans.modules.apisupport.project</type>
+    <configuration>
+        <data xmlns="http://www.netbeans.org/ns/nb-module-project/3">
+            <code-name-base>com.agac.notyetcommonsssl</code-name-base>
+            <suite-component/>
+            <module-dependencies/>
+            <public-packages>
+                <package>org.apache.commons.httpclient.contrib.ssl</package>
+                <package>org.apache.commons.ssl</package>
+                <package>org.apache.commons.ssl.asn1</package>
+                <package>org.apache.commons.ssl.rmi</package>
+                <package>org.apache.commons.ssl.util</package>
+            </public-packages>
+            <class-path-extension>
+                <runtime-relative-path>ext/not-yet-commons-ssl-0.3.11.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/not-yet-commons-ssl-0.3.11.jar</binary-origin>
+            </class-path-extension>
+        </data>
+    </configuration>
+</project>
