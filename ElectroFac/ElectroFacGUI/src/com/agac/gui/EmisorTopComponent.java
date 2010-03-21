@@ -136,6 +136,8 @@ public final class EmisorTopComponent extends TopComponent implements PropertyCh
 
         setLayout(new java.awt.BorderLayout());
 
+        jPanel5.setPreferredSize(new java.awt.Dimension(800, 685));
+
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(EmisorTopComponent.class, "EmisorTopComponent.jPanel1.border.title"))); // NOI18N
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 11));
@@ -189,9 +191,10 @@ public final class EmisorTopComponent extends TopComponent implements PropertyCh
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(EmisorTopComponent.class, "EmisorTopComponent.jPanel3.border.title"))); // NOI18N
 
+        jLabel13.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         org.openide.awt.Mnemonics.setLocalizedText(jLabel13, org.openide.util.NbBundle.getMessage(EmisorTopComponent.class, "EmisorTopComponent.jLabel13.text")); // NOI18N
 
-        txtCalle.setFont(new java.awt.Font("Tahoma", 1, 11));
+        txtCalle.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
 
         binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, this, org.jdesktop.beansbinding.ELProperty.create("${emisor.domicilioFiscal.calle}"), txtCalle, org.jdesktop.beansbinding.BeanProperty.create("text"));
         bindingGroup.addBinding(binding);
@@ -231,30 +234,34 @@ public final class EmisorTopComponent extends TopComponent implements PropertyCh
         });
         jScrollPane2.setViewportView(txtReferencia);
 
+        jLabel19.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         org.openide.awt.Mnemonics.setLocalizedText(jLabel19, org.openide.util.NbBundle.getMessage(EmisorTopComponent.class, "EmisorTopComponent.jLabel19.text")); // NOI18N
 
-        txtMunicipio.setFont(new java.awt.Font("Tahoma", 1, 11));
+        txtMunicipio.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
 
         binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, this, org.jdesktop.beansbinding.ELProperty.create("${emisor.domicilioFiscal.municipio}"), txtMunicipio, org.jdesktop.beansbinding.BeanProperty.create("text"));
         bindingGroup.addBinding(binding);
 
+        jLabel20.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         org.openide.awt.Mnemonics.setLocalizedText(jLabel20, org.openide.util.NbBundle.getMessage(EmisorTopComponent.class, "EmisorTopComponent.jLabel20.text")); // NOI18N
 
-        txtEstado.setFont(new java.awt.Font("Tahoma", 1, 11));
+        txtEstado.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
 
         binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, this, org.jdesktop.beansbinding.ELProperty.create("${emisor.domicilioFiscal.estado}"), txtEstado, org.jdesktop.beansbinding.BeanProperty.create("text"));
         bindingGroup.addBinding(binding);
 
+        jLabel21.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         org.openide.awt.Mnemonics.setLocalizedText(jLabel21, org.openide.util.NbBundle.getMessage(EmisorTopComponent.class, "EmisorTopComponent.jLabel21.text")); // NOI18N
 
-        txtPais.setFont(new java.awt.Font("Tahoma", 1, 11));
+        txtPais.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
 
         binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, this, org.jdesktop.beansbinding.ELProperty.create("${emisor.domicilioFiscal.pais}"), txtPais, org.jdesktop.beansbinding.BeanProperty.create("text"));
         bindingGroup.addBinding(binding);
 
+        jLabel22.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         org.openide.awt.Mnemonics.setLocalizedText(jLabel22, org.openide.util.NbBundle.getMessage(EmisorTopComponent.class, "EmisorTopComponent.jLabel22.text")); // NOI18N
 
-        txtCp.setFont(new java.awt.Font("Tahoma", 1, 11));
+        txtCp.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
 
         binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, this, org.jdesktop.beansbinding.ELProperty.create("${emisor.domicilioFiscal.codigoPostal}"), txtCp, org.jdesktop.beansbinding.BeanProperty.create("text"));
         bindingGroup.addBinding(binding);
@@ -530,7 +537,7 @@ public final class EmisorTopComponent extends TopComponent implements PropertyCh
             }
         });
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 11));
         org.openide.awt.Mnemonics.setLocalizedText(jLabel3, org.openide.util.NbBundle.getMessage(EmisorTopComponent.class, "EmisorTopComponent.jLabel3.text")); // NOI18N
 
         jPasswordField1.setText(org.openide.util.NbBundle.getMessage(EmisorTopComponent.class, "EmisorTopComponent.jPasswordField1.text")); // NOI18N
@@ -555,7 +562,7 @@ public final class EmisorTopComponent extends TopComponent implements PropertyCh
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButton1)
                             .addComponent(jButton2)))
-                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(205, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -589,7 +596,7 @@ public final class EmisorTopComponent extends TopComponent implements PropertyCh
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.LEADING, 0, 0, Short.MAX_VALUE)
                         .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap(74, Short.MAX_VALUE))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

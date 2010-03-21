@@ -159,6 +159,7 @@ public class TestMarshallComprobante {
         compl.getAny().add(new String("complemento2"));
         compl.getAny().add(new String("complemento3"));
         c.setImpuesto(imp);
+        System.out.println(c.getSubTotal());
     }
 
     @Test

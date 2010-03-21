@@ -4,6 +4,7 @@ import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
@@ -172,6 +173,7 @@ public class Comprobante implements Serializable {
 
     public void setAnoAprobacion(int anoAprobacion) {
         this.anoAprobacion = anoAprobacion;
+        propertyChangeSupport.firePropertyChange("anoAprobacion", null, anoAprobacion);
     }
 
     public String getCertificado() {
@@ -180,6 +182,7 @@ public class Comprobante implements Serializable {
 
     public void setCertificado(String certificado) {
         this.certificado = certificado;
+        propertyChangeSupport.firePropertyChange("certificado", null, certificado);
     }
 
     public String getCondicionesDePago() {
@@ -188,6 +191,7 @@ public class Comprobante implements Serializable {
 
     public void setCondicionesDePago(String condicionesDePago) {
         this.condicionesDePago = condicionesDePago;
+        propertyChangeSupport.firePropertyChange("condicionesDePago", null, condicionesDePago);
     }
 
     public BigDecimal getDescuento() {
@@ -196,6 +200,7 @@ public class Comprobante implements Serializable {
 
     public void setDescuento(BigDecimal descuento) {
         this.descuento = descuento;
+        propertyChangeSupport.firePropertyChange("descuento", null, descuento);
     }
 
     public Date getFecha() {
@@ -204,6 +209,7 @@ public class Comprobante implements Serializable {
 
     public void setFecha(Date fecha) {
         this.fecha = fecha;
+        propertyChangeSupport.firePropertyChange("fecha", null, fecha);
     }
 
     public String getFormaDePago() {
@@ -212,6 +218,7 @@ public class Comprobante implements Serializable {
 
     public void setFormaDePago(String formaDePago) {
         this.formaDePago = formaDePago;
+        propertyChangeSupport.firePropertyChange("formaDePago", null, formaDePago);
     }
 
     public String getMetodoDePago() {
@@ -220,6 +227,7 @@ public class Comprobante implements Serializable {
 
     public void setMetodoDePago(String metodoDePago) {
         this.metodoDePago = metodoDePago;
+        propertyChangeSupport.firePropertyChange("metodoDePago", null, metodoDePago);
     }
 
     public String getMotivoDescuento() {
@@ -228,6 +236,7 @@ public class Comprobante implements Serializable {
 
     public void setMotivoDescuento(String motivoDescuento) {
         this.motivoDescuento = motivoDescuento;
+        propertyChangeSupport.firePropertyChange("motivoDescuento", null, motivoDescuento);
     }
 
     public int getNoAprobacion() {
@@ -236,6 +245,7 @@ public class Comprobante implements Serializable {
 
     public void setNoAprobacion(int noAprobacion) {
         this.noAprobacion = noAprobacion;
+        propertyChangeSupport.firePropertyChange("noAprobacion", null, noAprobacion);
     }
 
     public String getNoCertificado() {
@@ -244,6 +254,7 @@ public class Comprobante implements Serializable {
 
     public void setNoCertificado(String noCertificado) {
         this.noCertificado = noCertificado;
+        propertyChangeSupport.firePropertyChange("noCertificado", null, noCertificado);
     }
 
     public String getSello() {
@@ -252,6 +263,7 @@ public class Comprobante implements Serializable {
 
     public void setSello(String sello) {
         this.sello = sello;
+        propertyChangeSupport.firePropertyChange("sello", null, sello);
     }
 
     public String getSerie() {
@@ -260,14 +272,19 @@ public class Comprobante implements Serializable {
 
     public void setSerie(String serie) {
         this.serie = serie;
+        propertyChangeSupport.firePropertyChange("serie", null, serie);
     }
 
     public BigDecimal getSubTotal() {
+        subTotal = new BigDecimal("0.0");
+        for(Concepto c : getConceptos())
+            subTotal = subTotal.add(c.getImporte());
         return subTotal;
     }
 
     public void setSubTotal(BigDecimal subTotal) {
         this.subTotal = subTotal;
+        propertyChangeSupport.firePropertyChange("subTotal", null, subTotal);
     }
 
     public String getTipoDeComprobante() {
@@ -276,6 +293,7 @@ public class Comprobante implements Serializable {
 
     public void setTipoDeComprobante(String tipoDeComprobante) {
         this.tipoDeComprobante = tipoDeComprobante;
+        propertyChangeSupport.firePropertyChange("tipoDeComprobante", null, tipoDeComprobante);
     }
 
     public BigDecimal getTotal() {
@@ -284,6 +302,7 @@ public class Comprobante implements Serializable {
 
     public void setTotal(BigDecimal total) {
         this.total = total;
+        propertyChangeSupport.firePropertyChange("total", null, total);
     }
 
     public String getVersion() {
@@ -292,6 +311,7 @@ public class Comprobante implements Serializable {
 
     public void setVersion(String version) {
         this.version = version;
+        propertyChangeSupport.firePropertyChange("version", null, version);
     }
 
     public String getFolio() {
@@ -300,14 +320,26 @@ public class Comprobante implements Serializable {
 
     public void setFolio(String folio) {
         this.folio = folio;
+        propertyChangeSupport.firePropertyChange("folio", null, folio);
+    }
+
+    public void addConcepto(Concepto concepto){
+        getConceptos().add(concepto);
+        propertyChangeSupport.firePropertyChange("concepto", null, concepto);
     }
 
     public void addPropertyChangeListener(PropertyChangeListener listener) {
         propertyChangeSupport.addPropertyChangeListener(listener);
+        for(Concepto c : getConceptos()){
+            c.addPropertyChangeListener(listener);
+        }
     }
 
     public void removePropertyChangeListener(PropertyChangeListener listener) {
         propertyChangeSupport.removePropertyChangeListener(listener);
+        for(Concepto c : getConceptos()){
+            c.removePropertyChangeListener(listener);
+        }
     }
     @XmlTransient
     @Transient

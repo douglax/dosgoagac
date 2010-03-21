@@ -147,10 +147,13 @@ public class Parte implements Serializable {
 
     public void addPropertyChangeListener(PropertyChangeListener listener) {
         propertyChangeSupport.addPropertyChangeListener(listener);
+        for(InformacionAduanera inf : getInfoAduanera())
+            inf.addPropertyChangeListener(listener);
     }
 
     public void removePropertyChangeListener(PropertyChangeListener listener) {
         propertyChangeSupport.removePropertyChangeListener(listener);
+        for(InformacionAduanera inf : getInfoAduanera())
+            inf.removePropertyChangeListener(listener);
     }
-
 }

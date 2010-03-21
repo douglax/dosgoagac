@@ -201,10 +201,18 @@ public class Concepto implements Serializable {
 
     public void addPropertyChangeListener(PropertyChangeListener listener) {
         propertyChangeSupport.addPropertyChangeListener(listener);
+        for(Parte p : getParte())
+            p.addPropertyChangeListener(listener);
+        for(InformacionAduanera inf : getInfoAduanera())
+            inf.addPropertyChangeListener(listener);
     }
 
     public void removePropertyChangeListener(PropertyChangeListener listener) {
         propertyChangeSupport.removePropertyChangeListener(listener);
+        for(Parte p : getParte())
+            p.removePropertyChangeListener(listener);
+        for(InformacionAduanera inf : getInfoAduanera())
+            inf.removePropertyChangeListener(listener);
     }
 
     public BigDecimal getTotalPartes(){
