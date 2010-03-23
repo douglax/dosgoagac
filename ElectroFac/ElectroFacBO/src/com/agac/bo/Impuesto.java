@@ -42,6 +42,7 @@ public class Impuesto implements Serializable {
     @XmlAttribute
     private BigDecimal totalImpuestosTrasladados;
 
+
     /**
      * Gets the value of the retenciones property.
      *

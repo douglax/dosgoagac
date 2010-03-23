@@ -59,7 +59,9 @@ public class ImpuestosPanel extends javax.swing.JPanel {
 
 
         // agregar totales a los textboxes
+        if(imp.getTotalImpuestosRetenidos() != null)
         this.txtTotalRetenidos.setText(imp.getTotalImpuestosRetenidos().toString());
+        if(imp.getTotalImpuestosRetenidos() != null)
         this.txtTotalTrasladados.setText(imp.getTotalImpuestosTrasladados().toString());
 
 

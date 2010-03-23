@@ -32,7 +32,7 @@ public class EmpresaNode extends AbstractNode {
 
     @Override
     public Action[] getActions(boolean bln) {
-        return new Action[]{new OpenAction(), new CrearFactura()};
+        return new Action[]{new OpenAction(), new CrearFactura(), new InfoCertificado()};
     }
 
     @Override
@@ -121,4 +121,19 @@ public class EmpresaNode extends AbstractNode {
         }
 
     }
+
+
+    private class InfoCertificado extends AbstractAction {
+
+        public InfoCertificado() {
+            putValue(NAME, "Información del Certificado");
+        }
+
+        @Override
+        public void actionPerformed(ActionEvent e){
+            System.out.println("oki");
+        }
+
+    }
+
 }
