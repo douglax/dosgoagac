@@ -10,13 +10,17 @@
  */
 package com.agac.gui;
 
+import com.agac.bo.Serie;
 
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 
+
+
+
 /**
  *
- * @author Carlos
+ * @author Alex
  */
 public class FoliosPanel extends javax.swing.JPanel {
 
@@ -27,7 +31,8 @@ public class FoliosPanel extends javax.swing.JPanel {
     }
 
     private Serie serie = new Serie();
-   
+
+
 
 
     /** This method is called from within the constructor to
@@ -195,18 +200,16 @@ public class FoliosPanel extends javax.swing.JPanel {
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-        model.addRow(new Object[]{concepto.getCantidad(), concepto.getUnidad(),
-        concepto.getNoIdentificacion(), concepto.getDescripcion(),
-        concepto.getValorUnitario(), concepto.getImporte()});
-        txtCantidad.setText("");
-        txtDescripcion.setText("");
-        txtIdentificador.setText("");
-        txtPrecio.setText("");
-        txtCantidad.requestFocus();
-        NumberFormat nf = NumberFormat.getCurrencyInstance();
-        comprobante.addConcepto(concepto);
-        lblSubtotal.setText(nf.format(comprobante.getSubTotal().doubleValue()));
-        setConcepto(new Concepto());
+        model.addRow(new Object[]{serie.getNumSerie(), serie.getFolioInicial(), });
+        txtSerie.setText("");
+        txtFolioInicial.setText("");
+        txtFolioFinal.setText("");
+        txtNumAprob.setText("");
+        txtAnoAprob.requestFocus();
+      //  NumberFormat nf = NumberFormat.getCurrencyInstance();
+      //  comprobante.addConcepto(concepto);
+      //  lblSubtotal.setText(nf.format(comprobante.getSubTotal().doubleValue()));
+      //  setConcepto(new Concepto());
 }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnAddKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnAddKeyPressed

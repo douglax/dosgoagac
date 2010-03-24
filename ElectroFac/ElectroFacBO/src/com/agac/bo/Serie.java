@@ -5,13 +5,19 @@
 
 package com.agac.bo;
 
+import java.io.Serializable;
 import java.math.BigInteger;
 
 /**
  *
  * @author alex
  */
-public class Serie {
+
+
+public class Serie implements Serializable {
+
+
+
 
 
     private String numSerie;
