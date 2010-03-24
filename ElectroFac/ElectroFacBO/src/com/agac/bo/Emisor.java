@@ -6,6 +6,7 @@ package com.agac.bo;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -125,6 +126,21 @@ public class Emisor implements Serializable {
         this.rutaLlave = rutaLlave;
         propertyChangeSupport.firePropertyChange("rutaLlave", oldRutaLlave, rutaLlave);
     }
+
+
+    private List<Serie> serieList;
+
+    public List<Serie> getSerieList() {
+        return serieList;
+    }
+
+    public void setSerieList(List<Serie> serieList) {
+        this.serieList = serieList;
+    }
+
+    
+
+
 
     @XmlTransient
     @Transient

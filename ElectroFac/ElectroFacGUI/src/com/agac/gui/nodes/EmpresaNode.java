@@ -32,7 +32,7 @@ public class EmpresaNode extends AbstractNode {
 
     @Override
     public Action[] getActions(boolean bln) {
-        return new Action[]{new OpenAction(), new CrearFactura(), new InfoCertificado()};
+        return new Action[]{new OpenAction(), new CrearFactura(), new adminFolios()};
     }
 
     @Override
@@ -66,7 +66,7 @@ public class EmpresaNode extends AbstractNode {
                     "getNoInterior", null);
 
             noExt.setName("noExterior");
-            noExt.setDisplayName("Número Exterioir");
+            noExt.setDisplayName("Número Exterior");
             noInt.setName("noInterior");
             noInt.setDisplayName("Número Interior");
 
@@ -123,10 +123,10 @@ public class EmpresaNode extends AbstractNode {
     }
 
 
-    private class InfoCertificado extends AbstractAction {
+    private class adminFolios  extends AbstractAction {
 
-        public InfoCertificado() {
-            putValue(NAME, "Información del Certificado");
+        public adminFolios() {
+            putValue(NAME, "Administrar Folios");
         }
 
         @Override
