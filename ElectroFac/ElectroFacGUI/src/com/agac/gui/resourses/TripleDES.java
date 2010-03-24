@@ -29,6 +29,17 @@ public class TripleDES {
         Cipher c = Cipher.getInstance("DESede/CBC/PKCS5Padding");
         c.init(Cipher.ENCRYPT_MODE, keyLocal, ivLocal);
         byte[] enc = c.doFinal(txt.getBytes("utf-8"));
-        return new String(enc);
+        return new sun.misc.BASE64Encoder().encode(enc);
     }
+
+    public String desencriptar(String enc) throws Exception {
+        byte[] data = new sun.misc.BASE64Decoder().decodeBuffer(enc);
+        SecretKey keyLocal = new SecretKeySpec(this.key, "DESede");
+        IvParameterSpec ivLocal = new IvParameterSpec(this.iv);
+        Cipher c = Cipher.getInstance("DESede/CBC/PKCS5Padding");
+        c.init(Cipher.DECRYPT_MODE, keyLocal, ivLocal);
+        byte[] dec = c.doFinal(data);
+        return new String(dec);
+    }
+
 }

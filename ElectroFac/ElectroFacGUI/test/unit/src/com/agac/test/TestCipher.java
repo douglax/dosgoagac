@@ -21,6 +21,8 @@ public class TestCipher {
             TripleDES td = new TripleDES();
             String s = td.encriptar("a0123456789");
             System.out.println(s);
+            s = td.desencriptar(s);
+            System.out.println(s);
         } catch (Exception ex) {
             Exceptions.printStackTrace(ex);
         }
