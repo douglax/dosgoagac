@@ -6,8 +6,6 @@ package com.agac.bo;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -128,6 +126,18 @@ public class Emisor implements Serializable {
         propertyChangeSupport.firePropertyChange("rutaLlave", oldRutaLlave, rutaLlave);
     }
 
+    @XmlTransient
+    private String passwd;
+
+    public String getPasswd() {
+        return passwd;
+    }
+
+    public void setPasswd(String passwd) {
+        String oldPasswd = this.passwd;
+        this.passwd = passwd;
+        propertyChangeSupport.firePropertyChange("passwd", oldPasswd, passwd);
+    }
 
 //    private ArrayList<Serie> serieList;
 //
