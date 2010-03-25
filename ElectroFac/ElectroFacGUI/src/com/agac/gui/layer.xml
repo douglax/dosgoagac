@@ -42,6 +42,11 @@
                 <attr name="iconBase" stringvalue="com/agac/gui/resourses/user_suit.png"/>
                 <attr name="instanceCreate" methodvalue="org.openide.windows.TopComponent.openAction"/>
             </file>
+            <file name="com-agac-gui-SerieAction.instance">
+                <attr name="component" methodvalue="com.agac.gui.SerieTopComponent.findInstance"/>
+                <attr name="displayName" bundlevalue="com.agac.gui.Bundle#CTL_SerieAction"/>
+                <attr name="instanceCreate" methodvalue="org.openide.windows.TopComponent.openAction"/>
+            </file>
         </folder>
     </folder>
     <folder name="Menu">
@@ -76,6 +81,9 @@
             <file name="ReceptorAction.shadow">
                 <attr name="originalFile" stringvalue="Actions/Window/com-agac-gui-ReceptorAction.instance"/>
             </file>
+            <file name="SerieAction.shadow">
+                <attr name="originalFile" stringvalue="Actions/Window/com-agac-gui-SerieAction.instance"/>
+            </file>
         </folder>
     </folder>
     <folder name="Toolbars">
@@ -106,6 +114,7 @@
             <file name="EmisorTopComponent.settings" url="EmisorTopComponentSettings.xml"/>
             <file name="MenuTopComponent.settings" url="MenuTopComponentSettings.xml"/>
             <file name="ReceptorTopComponent.settings" url="ReceptorTopComponentSettings.xml"/>
+            <file name="SerieTopComponent.settings" url="SerieTopComponentSettings.xml"/>
         </folder>
         <folder name="Modes">
             <folder name="editor">
@@ -116,6 +125,9 @@
             <folder name="leftSlidingSide">
                 <file name="MenuTopComponent.wstcref" url="MenuTopComponentWstcref.xml"/>
             </folder>            
+            <folder name="output">
+                <file name="SerieTopComponent.wstcref" url="SerieTopComponentWstcref.xml"/>
+            </folder>
         </folder>
     </folder>
 </filesystem>

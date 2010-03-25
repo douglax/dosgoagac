@@ -7,6 +7,8 @@ package com.agac.gui.nodes;
 import com.agac.bo.Emisor;
 import com.agac.gui.ComprobanteTopComponent;
 import com.agac.gui.EmisorTopComponent;
+import com.agac.gui.FoliosPanel;
+import com.agac.gui.SerieTopComponent;
 import java.awt.event.ActionEvent;
 
 import javax.swing.AbstractAction;
@@ -126,12 +128,19 @@ public class EmpresaNode extends AbstractNode {
     private class adminFolios  extends AbstractAction {
 
         public adminFolios() {
-            putValue(NAME, "Administrar Folios");
+            putValue(NAME, "Expediente de Folios");
         }
 
         @Override
         public void actionPerformed(ActionEvent e){
             System.out.println("oki");
+            SerieTopComponent stc = new SerieTopComponent();
+            stc.componentOpened();
+            stc.getExpedienteFolios().setEmisor(getLookup().lookup(Emisor.class));
+            stc.setDisplayName("Administración de Folios");
+            stc.open();
+            stc.requestActive();
+
         }
 
     }

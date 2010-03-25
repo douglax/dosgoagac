@@ -6,6 +6,7 @@ package com.agac.bo;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -128,15 +129,15 @@ public class Emisor implements Serializable {
     }
 
 
-    private List<Serie> serieList;
-
-    public List<Serie> getSerieList() {
-        return serieList;
-    }
-
-    public void setSerieList(List<Serie> serieList) {
-        this.serieList = serieList;
-    }
+//    private ArrayList<Serie> serieList;
+//
+//    public ArrayList<Serie> getSerieList() {
+//        return serieList;
+//    }
+//
+//    public void setSerieList(ArrayList<Serie> serieList) {
+//        this.serieList = serieList;
+//    }
 
     
 

@@ -7,7 +7,11 @@ package com.agac.bo;
 
 import java.io.Serializable;
 import java.math.BigInteger;
-
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
+import javax.persistence.Transient;
+import javax.xml.bind.annotation.XmlTransient;
 /**
  *
  * @author alex
@@ -25,6 +29,23 @@ public class Serie implements Serializable {
     private BigInteger folioFinal;
     private String numAutorización;
     private int anoAprob;
+
+    //private Emisor emisor;
+
+
+//        public Emisor getEmisor() {
+//        if (emisor == null) {
+//            emisor = new Emisor();
+//        }
+//        return emisor;
+//    }
+//
+//    public void setEmisor(Emisor emisor) {
+//        //Emisor oldEmisor = this.emisor;
+//        this.emisor = emisor;
+//        //propertyChangeSupport.firePropertyChange("emisor", oldEmisor, emisor);
+//    }
+
 
     public int getAnoAprob() {
         return anoAprob;
@@ -67,7 +88,19 @@ public class Serie implements Serializable {
     }
 
 
+    @XmlTransient
+    @Transient
+    private PropertyChangeSupport propertyChangeSupport = new PropertyChangeSupport(this);
 
+    public void addPropertyChangeListener(PropertyChangeListener listener) {
+        propertyChangeSupport.addPropertyChangeListener(listener);
+
+    }
+
+    public void removePropertyChangeListener(PropertyChangeListener listener) {
+        propertyChangeSupport.removePropertyChangeListener(listener);
+
+    }
 
 
 }
