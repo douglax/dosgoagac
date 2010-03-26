@@ -1,6 +1,7 @@
 package com.agac.gui;
 
 import com.agac.bo.Emisor;
+import com.agac.gui.resourses.TripleDES;
 import com.agac.services.DbServices;
 import java.awt.FileDialog;
 import java.awt.event.KeyEvent;
@@ -9,6 +10,7 @@ import java.beans.PropertyChangeListener;
 import java.io.IOException;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.logging.Logger;
+import org.jdesktop.beansbinding.Converter;
 import org.netbeans.api.progress.ProgressHandle;
 import org.netbeans.api.progress.ProgressHandleFactory;
 import org.netbeans.api.progress.ProgressUtils;
@@ -285,14 +287,14 @@ public final class EmisorTopComponent extends TopComponent implements PropertyCh
                             .addComponent(jLabel21))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtCalle, javax.swing.GroupLayout.DEFAULT_SIZE, 680, Short.MAX_VALUE)
+                            .addComponent(txtCalle, javax.swing.GroupLayout.DEFAULT_SIZE, 691, Short.MAX_VALUE)
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(txtNoInterior, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel15)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(noExterior, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(txtColonia, javax.swing.GroupLayout.DEFAULT_SIZE, 680, Short.MAX_VALUE)
+                            .addComponent(txtColonia, javax.swing.GroupLayout.DEFAULT_SIZE, 691, Short.MAX_VALUE)
                             .addComponent(txtLocalidad, javax.swing.GroupLayout.PREFERRED_SIZE, 430, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 526, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -348,7 +350,7 @@ public final class EmisorTopComponent extends TopComponent implements PropertyCh
                         .addComponent(txtPais, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel22))
                     .addComponent(txtCp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addContainerGap(56, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab(org.openide.util.NbBundle.getMessage(EmisorTopComponent.class, "EmisorTopComponent.jPanel3.TabConstraints.tabTitle"), jPanel3); // NOI18N
@@ -434,14 +436,14 @@ public final class EmisorTopComponent extends TopComponent implements PropertyCh
                                     .addComponent(jLabel29))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtCalleExp, javax.swing.GroupLayout.DEFAULT_SIZE, 680, Short.MAX_VALUE)
+                                    .addComponent(txtCalleExp, javax.swing.GroupLayout.DEFAULT_SIZE, 691, Short.MAX_VALUE)
                                     .addGroup(jPanel4Layout.createSequentialGroup()
                                         .addComponent(txtNoInteriorExp, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
                                         .addComponent(jLabel25)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(txtNoExteriorExp, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(txtColoniaExp, javax.swing.GroupLayout.DEFAULT_SIZE, 680, Short.MAX_VALUE)
+                                    .addComponent(txtColoniaExp, javax.swing.GroupLayout.DEFAULT_SIZE, 691, Short.MAX_VALUE)
                                     .addComponent(txtLocalidadExp, javax.swing.GroupLayout.PREFERRED_SIZE, 430, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 526, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(jPanel4Layout.createSequentialGroup()
@@ -501,7 +503,7 @@ public final class EmisorTopComponent extends TopComponent implements PropertyCh
                         .addComponent(jLabel32)
                         .addComponent(txtPais1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(txtCp1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(56, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab(org.openide.util.NbBundle.getMessage(EmisorTopComponent.class, "EmisorTopComponent.jPanel4.TabConstraints.tabTitle"), jPanel4); // NOI18N
@@ -542,6 +544,7 @@ public final class EmisorTopComponent extends TopComponent implements PropertyCh
         org.openide.awt.Mnemonics.setLocalizedText(jLabel3, org.openide.util.NbBundle.getMessage(EmisorTopComponent.class, "EmisorTopComponent.jLabel3.text")); // NOI18N
 
         binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, this, org.jdesktop.beansbinding.ELProperty.create("${emisor.passwd}"), txtPasswd, org.jdesktop.beansbinding.BeanProperty.create("text"));
+        binding.setConverter(passWdConverter());
         bindingGroup.addBinding(binding);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -565,7 +568,7 @@ public final class EmisorTopComponent extends TopComponent implements PropertyCh
                             .addComponent(jButton1)
                             .addComponent(jButton2)))
                     .addComponent(txtPasswd, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(204, Short.MAX_VALUE))
+                .addContainerGap(205, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -598,7 +601,7 @@ public final class EmisorTopComponent extends TopComponent implements PropertyCh
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.LEADING, 0, 0, Short.MAX_VALUE)
                         .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -609,7 +612,7 @@ public final class EmisorTopComponent extends TopComponent implements PropertyCh
                 .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 382, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
 
         jTabbedPane1.getAccessibleContext().setAccessibleName(org.openide.util.NbBundle.getMessage(EmisorTopComponent.class, "EmisorTopComponent.jTabbedPane1.AccessibleContext.accessibleName")); // NOI18N
@@ -792,6 +795,31 @@ public final class EmisorTopComponent extends TopComponent implements PropertyCh
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
         saveNode.enableSave(true);
+    }
+
+    public Converter passWdConverter(){
+        Converter c = new Converter(){
+            TripleDES td = new TripleDES();
+            @Override
+            public Object convertForward(Object s) {
+                try {
+                    return td.desencriptar((String) s);
+                } catch (Exception ex) {
+                    Exceptions.printStackTrace(ex);
+                    return null;
+                }
+            }
+            @Override
+            public Object convertReverse(Object t) {
+                try {
+                    return td.encriptar((String) t);
+                } catch (Exception ex) {
+                    Exceptions.printStackTrace(ex);
+                    return null;
+                }
+            }
+        };
+        return c;
     }
 
     private class NodeForSave extends AbstractNode {
