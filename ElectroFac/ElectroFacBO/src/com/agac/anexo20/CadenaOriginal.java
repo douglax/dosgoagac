@@ -1,4 +1,3 @@
-
 package com.agac.anexo20;
 
 import com.agac.bo.Comprobante;
@@ -28,102 +27,125 @@ public class CadenaOriginal {
         StringBuffer sb = new StringBuffer();
         sb.append("|");
         //Comprobante
-        sb.append("|").append(c.getVersion());
-        sb.append("|").append(c.getSerie());
-        sb.append("|").append(c.getFolio());
+        sb.append("|").append(c.getVersion().trim());
+        sb.append("|").append(c.getSerie().trim());
+        sb.append("|").append(c.getFolio().trim());
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(c.getFecha());
         sb.append("|" + formatFecha(calendar));
         sb.append("|" + c.getNoAprobacion());
-        if (c.getFormaDePago() != null) {
-            sb.append("|" + c.getFormaDePago());
+        if (c.getFormaDePago() != null && c.getFormaDePago().trim().length() > 0 ) {
+            sb.append("|" + c.getFormaDePago().trim());
         }
         //Emisor
-        sb.append("|" + c.getEmisor().getRfc());
-        sb.append("|" + c.getEmisor().getNombre());
+        sb.append("|" + c.getEmisor().getRfc().trim());
+        sb.append("|" + c.getEmisor().getNombre().trim());
         //Domicilio Fiscal
-        sb.append("|" + c.getEmisor().getDomicilioFiscal().getCalle());
-        if (c.getEmisor().getDomicilioFiscal().getNoExterior() != null) {
-            sb.append("|" + c.getEmisor().getDomicilioFiscal().getNoExterior());
+        sb.append("|" + c.getEmisor().getDomicilioFiscal().getCalle().trim());
+        if (c.getEmisor().getDomicilioFiscal().getNoExterior() != null
+                && c.getEmisor().getDomicilioFiscal().getNoExterior().trim().length() > 0) {
+            sb.append("|" + c.getEmisor().getDomicilioFiscal().getNoExterior().trim());
         }
-        if (c.getEmisor().getDomicilioFiscal().getNoInterior() != null) {
-            sb.append(c.getEmisor().getDomicilioFiscal().getNoInterior());
+        if (c.getEmisor().getDomicilioFiscal().getNoInterior() != null
+                && c.getEmisor().getDomicilioFiscal().getNoInterior().trim().length() > 0) {
+            sb.append(c.getEmisor().getDomicilioFiscal().getNoInterior().trim());
         }
-        if (c.getEmisor().getDomicilioFiscal().getColonia() != null) {
-            sb.append("|" + c.getEmisor().getDomicilioFiscal().getColonia());
+        if (c.getEmisor().getDomicilioFiscal().getColonia() != null
+                && c.getEmisor().getDomicilioFiscal().getColonia().trim().length() > 0) {
+            sb.append("|" + c.getEmisor().getDomicilioFiscal().getColonia().trim());
         }
-        if (c.getEmisor().getDomicilioFiscal().getLocalidad() != null) {
-            sb.append("|" + c.getEmisor().getDomicilioFiscal().getLocalidad());
+        if (c.getEmisor().getDomicilioFiscal().getLocalidad() != null
+                && c.getEmisor().getDomicilioFiscal().getLocalidad().trim().length() > 0) {
+            sb.append("|" + c.getEmisor().getDomicilioFiscal().getLocalidad().trim());
         }
-        if (c.getEmisor().getDomicilioFiscal().getReferencia() != null) {
-            sb.append("|" + c.getEmisor().getDomicilioFiscal().getReferencia());
+        if (c.getEmisor().getDomicilioFiscal().getReferencia() != null
+                && c.getEmisor().getDomicilioFiscal().getReferencia().trim().length() > 0) {
+            sb.append("|" + c.getEmisor().getDomicilioFiscal().getReferencia().trim());
         }
-        sb.append("|" + c.getEmisor().getDomicilioFiscal().getMunicipio());
-        sb.append("|" + c.getEmisor().getDomicilioFiscal().getEstado());
-        sb.append("|" + c.getEmisor().getDomicilioFiscal().getPais());
-        sb.append("|" + c.getEmisor().getDomicilioFiscal().getCodigoPostal());
+        sb.append("|" + c.getEmisor().getDomicilioFiscal().getMunicipio().trim());
+        sb.append("|" + c.getEmisor().getDomicilioFiscal().getEstado().trim());
+        sb.append("|" + c.getEmisor().getDomicilioFiscal().getPais().trim());
+        sb.append("|" + c.getEmisor().getDomicilioFiscal().getCodigoPostal().trim());
         //Expedido en
         if (c.getEmisor().getExpedidoEn() != null) {
-            if (c.getEmisor().getExpedidoEn().getCalle() != null) {
-                sb.append("|" + c.getEmisor().getExpedidoEn().getCalle());
+            if (c.getEmisor().getExpedidoEn().getCalle() != null
+                    && c.getEmisor().getExpedidoEn().getCalle().trim().length() > 0) {
+                sb.append("|" + c.getEmisor().getExpedidoEn().getCalle().trim());
             }
-            if (c.getEmisor().getExpedidoEn().getNoExterior() != null) {
-                sb.append("|" + c.getEmisor().getExpedidoEn().getNoExterior());
+            if (c.getEmisor().getExpedidoEn().getNoExterior() != null
+                    && c.getEmisor().getExpedidoEn().getNoExterior().trim().length() > 0) {
+                sb.append("|" + c.getEmisor().getExpedidoEn().getNoExterior().trim());
             }
-            if (c.getEmisor().getExpedidoEn().getNoInterior() != null) {
-                sb.append("|" + c.getEmisor().getExpedidoEn().getNoInterior());
+            if (c.getEmisor().getExpedidoEn().getNoInterior() != null
+                    && c.getEmisor().getExpedidoEn().getNoInterior().trim().length() > 0) {
+                sb.append("|" + c.getEmisor().getExpedidoEn().getNoInterior().trim());
             }
-            if (c.getEmisor().getExpedidoEn().getColonia() != null) {
-                sb.append("|" + c.getEmisor().getExpedidoEn().getColonia());
+            if (c.getEmisor().getExpedidoEn().getColonia() != null
+                    && c.getEmisor().getExpedidoEn().getColonia().trim().length() > 0) {
+                sb.append("|" + c.getEmisor().getExpedidoEn().getColonia().trim());
             }
-            if (c.getEmisor().getExpedidoEn().getLocalidad() != null) {
-                sb.append("|" + c.getEmisor().getExpedidoEn().getLocalidad());
+            if (c.getEmisor().getExpedidoEn().getLocalidad() != null
+                    && c.getEmisor().getExpedidoEn().getLocalidad().trim().length() > 0) {
+                sb.append("|" + c.getEmisor().getExpedidoEn().getLocalidad().trim());
             }
-            if (c.getEmisor().getExpedidoEn().getReferencia() != null) {
-                sb.append("|" + c.getEmisor().getExpedidoEn().getReferencia());
+            if (c.getEmisor().getExpedidoEn().getReferencia() != null
+                    && c.getEmisor().getExpedidoEn().getReferencia().trim().length() > 0) {
+                sb.append("|" + c.getEmisor().getExpedidoEn().getReferencia().trim());
             }
-            if (c.getEmisor().getExpedidoEn().getMunicipio() != null) {
-                sb.append("|" + c.getEmisor().getExpedidoEn().getMunicipio());
+            if (c.getEmisor().getExpedidoEn().getMunicipio() != null
+                    && c.getEmisor().getExpedidoEn().getMunicipio().trim().length() > 0) {
+                sb.append("|" + c.getEmisor().getExpedidoEn().getMunicipio().trim());
             }
-            if (c.getEmisor().getExpedidoEn().getEstado() != null) {
-                sb.append("|" + c.getEmisor().getExpedidoEn().getEstado());
+            if (c.getEmisor().getExpedidoEn().getEstado() != null
+                    && c.getEmisor().getExpedidoEn().getEstado().trim().length() > 0) {
+                sb.append("|" + c.getEmisor().getExpedidoEn().getEstado().trim());
             }
-            if (c.getEmisor().getExpedidoEn().getPais() != null) {
-                sb.append("|" + c.getEmisor().getExpedidoEn().getPais());
+            if (c.getEmisor().getExpedidoEn().getPais() != null
+                    && c.getEmisor().getExpedidoEn().getPais().trim().length() > 0) {
+                sb.append("|" + c.getEmisor().getExpedidoEn().getPais().trim());
             }
-            if (c.getEmisor().getExpedidoEn().getCodigoPostal() != null) {
-                sb.append("|" + c.getEmisor().getExpedidoEn().getCodigoPostal());
+            if (c.getEmisor().getExpedidoEn().getCodigoPostal() != null
+                    && c.getEmisor().getExpedidoEn().getCodigoPostal().trim().length() > 0) {
+                sb.append("|" + c.getEmisor().getExpedidoEn().getCodigoPostal().trim());
             }
         }
         //Receptor
-        sb.append("|" + c.getReceptor().getRfc());
-        sb.append("|" + c.getReceptor().getNombre());
+        sb.append("|" + c.getReceptor().getRfc().trim());
+        sb.append("|" + c.getReceptor().getNombre().trim());
         //Domicilio
-        sb.append("|" + c.getReceptor().getDomicilio().getCalle());
-        if (c.getReceptor().getDomicilio().getNoExterior() != null) {
-            sb.append("|" + c.getReceptor().getDomicilio().getNoExterior());
+        sb.append("|" + c.getReceptor().getDomicilio().getCalle().trim());
+        if (c.getReceptor().getDomicilio().getNoExterior() != null
+                && c.getReceptor().getDomicilio().getNoExterior().trim().length() > 0) {
+            sb.append("|" + c.getReceptor().getDomicilio().getNoExterior().trim());
         }
-        if (c.getReceptor().getDomicilio().getNoInterior() != null) {
-            sb.append("|" + c.getReceptor().getDomicilio().getNoInterior());
+        if (c.getReceptor().getDomicilio().getNoInterior() != null
+                && c.getReceptor().getDomicilio().getNoInterior().trim().length() > 0) {
+            sb.append("|" + c.getReceptor().getDomicilio().getNoInterior().trim());
         }
-        if (c.getReceptor().getDomicilio().getColonia() != null) {
-            sb.append("|" + c.getReceptor().getDomicilio().getColonia());
+        if (c.getReceptor().getDomicilio().getColonia() != null &&
+                c.getReceptor().getDomicilio().getColonia().trim().length() > 0) {
+            sb.append("|" + c.getReceptor().getDomicilio().getColonia().trim());
         }
-        if (c.getReceptor().getDomicilio().getLocalidad() != null) {
-            sb.append("|" + c.getReceptor().getDomicilio().getLocalidad());
+        if (c.getReceptor().getDomicilio().getLocalidad() != null &&
+                c.getReceptor().getDomicilio().getLocalidad().trim().length() > 0) {
+            sb.append("|" + c.getReceptor().getDomicilio().getLocalidad().trim());
         }
-        if (c.getReceptor().getDomicilio().getReferencia() != null) {
-            sb.append("|" + c.getReceptor().getDomicilio().getReferencia());
+        if (c.getReceptor().getDomicilio().getReferencia() != null &&
+                c.getReceptor().getDomicilio().getReferencia().trim().length() > 0) {
+            sb.append("|" + c.getReceptor().getDomicilio().getReferencia().trim());
         }
-        if (c.getReceptor().getDomicilio().getMunicipio() != null) {
-            sb.append("|" + c.getReceptor().getDomicilio().getMunicipio());
+        if (c.getReceptor().getDomicilio().getMunicipio() != null &&
+                c.getReceptor().getDomicilio().getMunicipio().trim().length() > 0) {
+            sb.append("|" + c.getReceptor().getDomicilio().getMunicipio().trim());
         }
-        if (c.getReceptor().getDomicilio().getEstado() != null) {
-            sb.append("|" + c.getReceptor().getDomicilio().getEstado());
+        if (c.getReceptor().getDomicilio().getEstado() != null &&
+                c.getReceptor().getDomicilio().getEstado().trim().length() > 0) {
+            sb.append("|" + c.getReceptor().getDomicilio().getEstado().trim());
         }
-        sb.append("|" + c.getReceptor().getDomicilio().getPais());
-        if (c.getReceptor().getDomicilio().getCodigoPostal() != null) {
-            sb.append("|" + c.getReceptor().getDomicilio().getCodigoPostal());
+        sb.append("|" + c.getReceptor().getDomicilio().getPais().trim());
+        if (c.getReceptor().getDomicilio().getCodigoPostal() != null &&
+                c.getReceptor().getDomicilio().getCodigoPostal().trim().length() > 0) {
+            sb.append("|" + c.getReceptor().getDomicilio().getCodigoPostal().trim());
         }
         //Conceptos
         List l = c.getConceptos();
@@ -132,34 +154,34 @@ public class CadenaOriginal {
         while (i.hasNext()) {
             concepto = (Concepto) i.next();
             sb.append("|" + concepto.getCantidad());
-            if (concepto.getUnidad() != null) {
-                sb.append("|" + concepto.getUnidad());
+            if (concepto.getUnidad().trim() != null) {
+                sb.append("|" + concepto.getUnidad().trim());
             }
-            sb.append("|" + concepto.getDescripcion());
+            sb.append("|" + concepto.getDescripcion().trim());
             sb.append("|" + formatBigDecimal(concepto.getValorUnitario()));
             sb.append("|" + formatBigDecimal(concepto.getImporte()));
             if (concepto.getInfoAduanera() != null) {
                 for (InformacionAduanera info : concepto.getInfoAduanera()) {
-                    sb.append("|" + info.getNumero());
+                    sb.append("|" + info.getNumero().trim());
                     calendar.setTime(info.getFecha());
                     sb.append("|" + formatFecha(calendar));
-                    sb.append("|" + info.getAduana());
+                    sb.append("|" + info.getAduana().trim());
                 }
             }
             if (concepto.getCuentaPredial() != null) {
-                sb.append("|" + concepto.getCuentaPredial().getNumero());
+                sb.append("|" + concepto.getCuentaPredial().getNumero().trim());
             }
         }
         if (c.getImpuesto().getRetenciones() != null) {
             List<Retencion> rets = c.getImpuesto().getRetenciones();
-            for(Retencion ret : rets){
+            for (Retencion ret : rets) {
                 sb.append("|" + ret.getImpuesto());
                 sb.append("|" + formatBigDecimal(ret.getImporte()));
             }
         }
         if (c.getImpuesto().getTraslados() != null) {
             List<Traslado> traslados = c.getImpuesto().getTraslados();
-            for(Traslado traslado : traslados){
+            for (Traslado traslado : traslados) {
                 sb.append("|" + traslado.getImpuesto());
                 sb.append("|" + formatBigDecimal(traslado.getImporte()));
             }
@@ -194,7 +216,7 @@ public class CadenaOriginal {
         return s;
     }
 
-    private String formatBigDecimal(BigDecimal numero){
+    private String formatBigDecimal(BigDecimal numero) {
         DecimalFormat df = new DecimalFormat();
         df.setMaximumFractionDigits(6);
         df.setMinimumFractionDigits(6);
@@ -204,6 +226,6 @@ public class CadenaOriginal {
 
     @Override
     public String toString() {
-        return cadena;
+        return cadena.trim();
     }
 }

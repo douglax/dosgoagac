@@ -171,9 +171,7 @@ public class Concepto implements Serializable {
         propertyChangeSupport.firePropertyChange("complemento", oldComplemento, complemento);
     }
 
-    public CuentaPredial getCuentaPredial() {
-        if(cuentaPredial == null)
-            cuentaPredial = new CuentaPredial();
+    public CuentaPredial getCuentaPredial() {        
         return cuentaPredial;
     }
 
@@ -183,9 +181,7 @@ public class Concepto implements Serializable {
         propertyChangeSupport.firePropertyChange("cuentaPredial", oldCuentaPredial, cuentaPredial);
     }
 
-    public List<InformacionAduanera> getInfoAduanera() {
-        if(infoAduanera == null)
-            infoAduanera = new ArrayList<InformacionAduanera>();
+    public List<InformacionAduanera> getInfoAduanera() {        
         return infoAduanera;
     }
 
@@ -203,16 +199,18 @@ public class Concepto implements Serializable {
         propertyChangeSupport.addPropertyChangeListener(listener);
         for(Parte p : getParte())
             p.addPropertyChangeListener(listener);
-        for(InformacionAduanera inf : getInfoAduanera())
-            inf.addPropertyChangeListener(listener);
+        if(infoAduanera != null)
+            for(InformacionAduanera inf : infoAduanera)
+                inf.addPropertyChangeListener(listener);
     }
 
     public void removePropertyChangeListener(PropertyChangeListener listener) {
         propertyChangeSupport.removePropertyChangeListener(listener);
         for(Parte p : getParte())
             p.removePropertyChangeListener(listener);
-        for(InformacionAduanera inf : getInfoAduanera())
-            inf.removePropertyChangeListener(listener);
+        if(infoAduanera != null)
+            for(InformacionAduanera inf : infoAduanera)
+                inf.removePropertyChangeListener(listener);
     }
 
     public BigDecimal getTotalPartes(){
