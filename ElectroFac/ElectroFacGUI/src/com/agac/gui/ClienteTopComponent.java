@@ -98,7 +98,7 @@ public class ClienteTopComponent extends TopComponent implements PropertyChangeL
                                     @Override
                                     public void run() {
                                         try {
-                                            receptor = DbServices.saveObject(receptor);
+                                            receptor = DbServices.saveObject(receptor, true);
                                         } catch (Exception ex) {
                                             DialogDisplayer.getDefault().notify(
                                                     new NotifyDescriptor.Message(ex.getMessage(),

@@ -217,10 +217,33 @@ public class Concepto implements Serializable {
         BigDecimal total = new BigDecimal(0);
         if(parte != null){
             for(Parte p : parte){
-                total.add(p.getImporte());
+                total = total.add(p.getImporte());
             }
         }
         return total;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Concepto other = (Concepto) obj;
+        if (this.id != other.id && (this.id == null || !this.id.equals(other.id))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 47 * hash + (this.id != null ? this.id.hashCode() : 0);
+        return hash;
+    }
+
 
 }

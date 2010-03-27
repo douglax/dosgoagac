@@ -33,6 +33,8 @@ import java.security.NoSuchAlgorithmException;
 import java.security.PrivateKey;
 import java.security.cert.CertificateException;
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.crypto.BadPaddingException;
@@ -52,7 +54,7 @@ import org.junit.Test;
  */
 public class TestMarshallComprobante {
 
-    Comprobante c = new Comprobante();
+    static Comprobante c = new Comprobante();
     static String sello = "";
     static String cadena = "";
 
@@ -108,6 +110,7 @@ public class TestMarshallComprobante {
         ia.setAduana("Aduana");
         ia.setFecha(new Date(System.currentTimeMillis()));
         ia.setNumero("ASKDH654654654");
+        con.setInfoAduanera(new ArrayList<InformacionAduanera>());
         con.getInfoAduanera().add(ia);
         con.setCuentaPredial(new CuentaPredial("CuentaPredial"));
 
@@ -174,7 +177,11 @@ public class TestMarshallComprobante {
     @Test
     public void testJpa() {
         try {
-            DbServices.saveObject(c);
+            DbServices.saveObject(c, true);
+            
+            List<Comprobante> comp = DbServices.getListWithParameters(
+                    "Select c from Comprobante c where c.emisor = ?1", c.getEmisor());
+            System.out.println(comp);
             DbServices.closeDbServices();
         } catch (Exception ex) {
             Logger.getLogger(TestMarshallComprobante.class.getName()).log(Level.SEVERE, null, ex);

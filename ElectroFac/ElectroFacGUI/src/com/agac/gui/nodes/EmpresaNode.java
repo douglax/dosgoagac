@@ -7,7 +7,6 @@ package com.agac.gui.nodes;
 import com.agac.bo.Emisor;
 import com.agac.gui.ComprobanteTopComponent;
 import com.agac.gui.EmisorTopComponent;
-import com.agac.gui.FoliosPanel;
 import com.agac.gui.SerieTopComponent;
 import java.awt.event.ActionEvent;
 
@@ -27,7 +26,7 @@ import org.openide.util.lookup.Lookups;
 public class EmpresaNode extends AbstractNode {
 
     public EmpresaNode(Emisor e) {
-        super(Children.LEAF, Lookups.singleton(e));
+        super(Children.create(new ComprobanteNodeFactory(e), true), Lookups.singleton(e));
         setDisplayName(e.getNombre());
         setIconBaseWithExtension("com/agac/gui/resourses/filenew.png");
     }

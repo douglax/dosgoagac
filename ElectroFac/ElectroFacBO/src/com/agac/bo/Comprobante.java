@@ -344,4 +344,27 @@ public class Comprobante implements Serializable {
     @XmlTransient
     @Transient
     private PropertyChangeSupport propertyChangeSupport = new PropertyChangeSupport(this);
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Comprobante other = (Comprobante) obj;
+        if (this.Id != other.Id && (this.Id == null || !this.Id.equals(other.Id))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 29 * hash + (this.Id != null ? this.Id.hashCode() : 0);
+        return hash;
+    }
+    
 }

@@ -859,7 +859,7 @@ public final class EmisorTopComponent extends TopComponent implements PropertyCh
                                         ProgressHandle p = ProgressHandleFactory.createHandle("My Task");
                                         p.start();
                                         try {
-                                            emisor = DbServices.saveObject(emisor);
+                                            emisor = DbServices.saveObject(emisor, true);
                                         } catch (Exception ex) {
                                             DialogDisplayer.getDefault().notify(
                                                     new NotifyDescriptor.Message(ex.getMessage(),

@@ -1,4 +1,3 @@
-
 package com.agac.gui;
 
 import com.agac.anexo20.CadenaOriginal;
@@ -7,8 +6,10 @@ import com.agac.bo.Comprobante;
 import com.agac.bo.Concepto;
 import com.agac.bo.Receptor;
 import com.agac.bo.Impuesto;
+import com.agac.bo.InformacionAduanera;
 import com.agac.gui.nodes.ClienteNode;
 import com.agac.gui.resourses.TripleDES;
+import com.agac.services.DbServices;
 import java.awt.datatransfer.Transferable;
 import java.awt.datatransfer.UnsupportedFlavorException;
 import java.awt.dnd.DnDConstants;
@@ -21,6 +22,8 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.IOException;
 import java.text.NumberFormat;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.TooManyListenersException;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.logging.Logger;
@@ -41,7 +44,6 @@ import org.openide.nodes.AbstractNode;
 import org.openide.nodes.Children;
 import org.openide.nodes.Node;
 import org.openide.util.ImageUtilities;
-
 
 @ConvertAsProperties(dtd = "-//com.agac.gui//Comprobante//EN",
 autostore = false)
@@ -78,7 +80,7 @@ public final class ComprobanteTopComponent extends TopComponent {
             public void propertyChange(PropertyChangeEvent evt) {
                 saveNode.enableSave(true);
             }
-        });        
+        });
     }
 
     /** This method is called from within the constructor to
@@ -1023,15 +1025,27 @@ public final class ComprobanteTopComponent extends TopComponent {
         PartesPanel pp = new PartesPanel();
         pp.setConcepto(concepto);
         DialogDescriptor dd = new DialogDescriptor(pp, "Partes", true, null);
-        DialogDisplayer.getDefault().notify(dd);
+        Object result = DialogDisplayer.getDefault().notify(dd);
+        if (NotifyDescriptor.OK_OPTION.equals(result)) {
+            txtCantidad.setText(Integer.toString(1));
+            txtDescripcion.setText("Multiples Partes ...");
+            txtPrecio.setText(concepto.getTotalPartes().toString());
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        List<InformacionAduanera> infoAduanera = new ArrayList<InformacionAduanera>();
+        if (concepto.getInfoAduanera() != null) {
+            infoAduanera.addAll(concepto.getInfoAduanera());
+        }
         InformacionAduaneraPanel infPanel = new InformacionAduaneraPanel();
-        infPanel.setInfoAduaneraList(concepto.getInfoAduanera());
+        infPanel.setInfoAduaneraList(infoAduanera);
         DialogDescriptor dd = new DialogDescriptor(infPanel,
                 "Información Aduanera", true, null);
-        DialogDisplayer.getDefault().notify(dd);
+        Object result = DialogDisplayer.getDefault().notify(dd);
+        if (NotifyDescriptor.OK_OPTION.equals(result)) {
+            concepto.setInfoAduanera(infoAduanera);
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void btnImpuestosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImpuestosActionPerformed
@@ -1355,6 +1369,13 @@ public final class ComprobanteTopComponent extends TopComponent {
                                                     new TripleDES().desencriptar(
                                                     comprobante.getEmisor().getPasswd()));
                                             comprobante.setSello(sd.generar(cadena));
+                                            comprobante = DbServices.saveObject(comprobante, true);
+                                            comprobante.addPropertyChangeListener(new PropertyChangeListener() {
+                                                @Override
+                                                public void propertyChange(PropertyChangeEvent evt) {
+                                                    saveNode.enableSave(true);
+                                                }
+                                            });
                                             System.out.println(cadena);
                                         } catch (Exception e) {
                                             Exceptions.printStackTrace(e);
@@ -1374,6 +1395,7 @@ public final class ComprobanteTopComponent extends TopComponent {
         }
 
         private class PrintCookieImpl implements PrintCookie {
+
             @Override
             public void print() {
                 DialogDisplayer.getDefault().notify(new NotifyDescriptor.Confirmation(
