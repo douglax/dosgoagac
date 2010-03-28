@@ -146,7 +146,7 @@ public final class MenuTopComponent extends TopComponent implements ExplorerMana
         Children.Array arr = new Children.Array();
         arr.add(new Node[]{new EmpresaRootNode(), new ClienteRootNode()});
         AbstractNode an = new AbstractNode(arr);
-        an.setDisplayName("Opciones del Sistema");
+        an.setDisplayName("Datos del Sistema");
         an.setIconBaseWithExtension("com/agac/gui/resourses/sitemap_color.png");
         manager.setRootContext(an);
         beanTreeView1.expandAll();

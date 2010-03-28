@@ -9,14 +9,19 @@ import com.agac.gui.ComprobanteTopComponent;
 import com.agac.gui.EmisorTopComponent;
 import com.agac.gui.SerieTopComponent;
 import java.awt.event.ActionEvent;
+import java.util.concurrent.ExecutionException;
 
 import javax.swing.AbstractAction;
 import javax.swing.Action;
+import javax.swing.SwingWorker;
+import org.netbeans.api.progress.ProgressHandle;
+import org.netbeans.api.progress.ProgressHandleFactory;
 import org.openide.ErrorManager;
 import org.openide.nodes.AbstractNode;
 import org.openide.nodes.Children;
 import org.openide.nodes.PropertySupport;
 import org.openide.nodes.Sheet;
+import org.openide.util.Exceptions;
 import org.openide.util.lookup.Lookups;
 
 /**
@@ -81,7 +86,7 @@ public class EmpresaNode extends AbstractNode {
             dFiscal.put(noInt);
             dFiscal.setName("DomicilioFiscal");
             dFiscal.setDisplayName("Domicilio Fiscal");
-            
+
 
         } catch (NoSuchMethodException ex) {
             ErrorManager.getDefault();
@@ -94,7 +99,7 @@ public class EmpresaNode extends AbstractNode {
     private class OpenAction extends AbstractAction {
 
         public OpenAction() {
-            putValue(NAME, "Abrir Empresa Emisora");            
+            putValue(NAME, "Abrir Empresa Emisora");
         }
 
         @Override
@@ -106,32 +111,35 @@ public class EmpresaNode extends AbstractNode {
         }
     }
 
-    private class CrearFactura extends AbstractAction{
+    private class CrearFactura extends AbstractAction {
 
-        public CrearFactura(){
+        public CrearFactura() {
             putValue(NAME, "Crear Factura");
         }
+
         @Override
         public void actionPerformed(ActionEvent e) {
+//            final ProgressHandle ph = ProgressHandleFactory.createHandle("");
+//            ph.start();
+//            ph.switchToIndeterminate();
+//            ph.setDisplayName("Creando Factura...");
             ComprobanteTopComponent ctc = new ComprobanteTopComponent();
-            ctc.componentOpened();
-            ctc.getComprobante().setEmisor(getLookup().lookup(Emisor.class));
             ctc.setDisplayName("Nuevo Comprobante");
+            ctc.componentOpened();
+            ctc.getComprobante().setEmisor(getLookup().lookup(Emisor.class));            
             ctc.open();
             ctc.requestActive();
-        }
-
+        }     
     }
 
-
-    private class adminFolios  extends AbstractAction {
+    private class adminFolios extends AbstractAction {
 
         public adminFolios() {
             putValue(NAME, "Expediente de Folios");
         }
 
         @Override
-        public void actionPerformed(ActionEvent e){
+        public void actionPerformed(ActionEvent e) {
             System.out.println("oki");
             SerieTopComponent stc = new SerieTopComponent();
             stc.componentOpened();
@@ -141,7 +149,5 @@ public class EmpresaNode extends AbstractNode {
             stc.requestActive();
 
         }
-
     }
-
 }

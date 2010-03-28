@@ -122,4 +122,8 @@ public class Receptor implements Serializable {
         return hash;
     }
 
+    @Override
+    public String toString() {
+        return nombre + " - " + rfc;
+    }
 }
