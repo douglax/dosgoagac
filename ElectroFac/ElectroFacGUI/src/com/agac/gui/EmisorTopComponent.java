@@ -850,6 +850,10 @@ public final class EmisorTopComponent extends TopComponent implements PropertyCh
                         NotifyDescriptor.QUESTION_MESSAGE);
                 Object result = DialogDisplayer.getDefault().notify(msg);
                 if (NotifyDescriptor.YES_OPTION.equals(result)) {
+                    final ProgressHandle ph = ProgressHandleFactory.createHandle("");
+                    ph.start();
+                    ph.switchToIndeterminate();
+                    ph.setDisplayName("Guardando Emisor...");
                     try {
                         ProgressUtils.runOffEventDispatchThread(
                                 new Runnable() {
@@ -864,6 +868,8 @@ public final class EmisorTopComponent extends TopComponent implements PropertyCh
                                             DialogDisplayer.getDefault().notify(
                                                     new NotifyDescriptor.Message(ex.getMessage(),
                                                     NotifyDescriptor.ERROR_MESSAGE));
+                                        }finally{
+                                            ph.finish();
                                         }
                                         emisor.addPropertyChangeListener(EmisorTopComponent.this);
                                         p.finish();

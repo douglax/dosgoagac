@@ -7,13 +7,13 @@ package com.agac.gui.nodes;
 import com.agac.bo.Emisor;
 import com.agac.gui.ComprobanteTopComponent;
 import com.agac.gui.EmisorTopComponent;
+import com.agac.gui.MenuTopComponent;
 import com.agac.gui.SerieTopComponent;
 import java.awt.event.ActionEvent;
-import java.util.concurrent.ExecutionException;
 
 import javax.swing.AbstractAction;
 import javax.swing.Action;
-import javax.swing.SwingWorker;
+import javax.swing.SwingUtilities;
 import org.netbeans.api.progress.ProgressHandle;
 import org.netbeans.api.progress.ProgressHandleFactory;
 import org.openide.ErrorManager;
@@ -22,7 +22,9 @@ import org.openide.nodes.Children;
 import org.openide.nodes.PropertySupport;
 import org.openide.nodes.Sheet;
 import org.openide.util.Exceptions;
+import org.openide.util.Utilities;
 import org.openide.util.lookup.Lookups;
+import org.openide.windows.WindowManager;
 
 /**
  *
@@ -123,13 +125,26 @@ public class EmpresaNode extends AbstractNode {
 //            ph.start();
 //            ph.switchToIndeterminate();
 //            ph.setDisplayName("Creando Factura...");
-            ComprobanteTopComponent ctc = new ComprobanteTopComponent();
-            ctc.setDisplayName("Nuevo Comprobante");
-            ctc.componentOpened();
-            ctc.getComprobante().setEmisor(getLookup().lookup(Emisor.class));            
-            ctc.open();
-            ctc.requestActive();
-        }     
+            final MenuTopComponent frm =
+                    (MenuTopComponent) WindowManager.getDefault().findTopComponent("MenuTopComponent");
+            try {                
+                frm.getBeanTreeView1().setCursor(Utilities.createProgressCursor(frm));
+                SwingUtilities.invokeLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        ComprobanteTopComponent ctc = new ComprobanteTopComponent();
+                        ctc.setDisplayName("Nuevo Comprobante");
+                        ctc.componentOpened();
+                        ctc.getComprobante().setEmisor(getLookup().lookup(Emisor.class));
+                        ctc.open();
+                        ctc.requestActive();
+                        frm.getBeanTreeView1().setCursor(null);
+                    }
+                });
+            } catch (Exception ex) {
+                Exceptions.printStackTrace(ex);
+            }
+        }
     }
 
     private class adminFolios extends AbstractAction {

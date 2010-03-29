@@ -73,14 +73,6 @@ public final class ComprobanteTopComponent extends TopComponent {
         //TODO
         comprobante.setSerie("123456");
         comprobante.setFolio("123");
-
-        comprobante.addPropertyChangeListener(new PropertyChangeListener() {
-
-            @Override
-            public void propertyChange(PropertyChangeEvent evt) {
-                saveNode.enableSave(true);
-            }
-        });
     }
 
     /** This method is called from within the constructor to
@@ -1099,8 +1091,9 @@ public final class ComprobanteTopComponent extends TopComponent {
         BuscarClienteForm frm = new BuscarClienteForm();
         DialogDescriptor dd = new DialogDescriptor(frm, "Partes", true, null);
         Object result = DialogDisplayer.getDefault().notify(dd);
-        if(NotifyDescriptor.OK_OPTION.equals(result))
+        if (NotifyDescriptor.OK_OPTION.equals(result)) {
             comprobante.setReceptor(frm.getReceptor());
+        }
     }//GEN-LAST:event_jButton5ActionPerformed
     // <editor-fold defaultstate="collapsed" desc="Variables de Instancia">
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -1238,6 +1231,13 @@ public final class ComprobanteTopComponent extends TopComponent {
 
     @Override
     public void componentOpened() {
+        comprobante.addPropertyChangeListener(new PropertyChangeListener() {
+
+            @Override
+            public void propertyChange(PropertyChangeEvent evt) {
+                saveNode.enableSave(true);
+            }
+        });
         setActivatedNodes(new Node[]{saveNode = new NodeForSave()});
     }
 
@@ -1372,6 +1372,7 @@ public final class ComprobanteTopComponent extends TopComponent {
                         NotifyDescriptor.QUESTION_MESSAGE);
                 Object result = DialogDisplayer.getDefault().notify(msg);
                 if (NotifyDescriptor.YES_OPTION.equals(result)) {
+                    
                     try {
                         ProgressUtils.runOffEventDispatchThread(
                                 new Runnable() {
@@ -1388,6 +1389,7 @@ public final class ComprobanteTopComponent extends TopComponent {
                                             comprobante.setSello(sd.generar(cadena));
                                             comprobante = DbServices.saveObject(comprobante, true);
                                             comprobante.addPropertyChangeListener(new PropertyChangeListener() {
+
                                                 @Override
                                                 public void propertyChange(PropertyChangeEvent evt) {
                                                     saveNode.enableSave(true);

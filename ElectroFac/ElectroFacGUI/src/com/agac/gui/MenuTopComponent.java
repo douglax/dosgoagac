@@ -7,6 +7,7 @@ package com.agac.gui;
 import com.agac.gui.nodes.ClienteRootNode;
 import com.agac.gui.nodes.EmpresaRootNode;
 import java.util.logging.Logger;
+import org.openide.explorer.view.BeanTreeView;
 import org.openide.util.NbBundle;
 import org.openide.windows.TopComponent;
 import org.openide.windows.WindowManager;
@@ -150,5 +151,9 @@ public final class MenuTopComponent extends TopComponent implements ExplorerMana
         an.setIconBaseWithExtension("com/agac/gui/resourses/sitemap_color.png");
         manager.setRootContext(an);
         beanTreeView1.expandAll();
+    }
+
+    public BeanTreeView getBeanTreeView1() {
+        return beanTreeView1;
     }
 }
