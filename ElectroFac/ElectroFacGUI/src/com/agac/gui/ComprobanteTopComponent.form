@@ -502,7 +502,7 @@
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace max="32767" attributes="0"/>
+                          <EmptySpace pref="38" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="jButton1" min="-2" max="-2" attributes="0"/>
@@ -1295,7 +1295,7 @@
                   <Layout>
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <EmptySpace min="0" pref="519" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="512" max="32767" attributes="0"/>
                       </Group>
                     </DimensionLayout>
                     <DimensionLayout dim="1">
@@ -1319,7 +1319,7 @@
                   <Layout>
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <EmptySpace min="0" pref="519" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="512" max="32767" attributes="0"/>
                       </Group>
                     </DimensionLayout>
                     <DimensionLayout dim="1">
@@ -1395,7 +1395,7 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
                                   <Component id="lblLeyenda" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace pref="34" max="32767" attributes="0"/>
+                                  <EmptySpace pref="54" max="32767" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="jLabel29" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="jLabel33" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
@@ -1507,9 +1507,6 @@
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
                     </Property>
                     <Property name="horizontalAlignment" type="int" value="4"/>
-                    <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-                      <ResourceString bundle="com/agac/gui/Bundle.properties" key="ComprobanteTopComponent.lblIVA.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
-                    </Property>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                         <LineBorder/>
@@ -1517,6 +1514,9 @@
                     </Property>
                     <Property name="opaque" type="boolean" value="true"/>
                   </Properties>
+                  <BindingProperties>
+                    <BindingProperty name="text" source="Form" sourcePath="${comprobante.IVA}" target="lblIVA" targetPath="text" updateStrategy="0" immediately="false"/>
+                  </BindingProperties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="lblLeyenda">
                   <Properties>

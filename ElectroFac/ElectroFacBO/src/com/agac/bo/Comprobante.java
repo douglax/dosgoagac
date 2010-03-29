@@ -118,6 +118,39 @@ public class Comprobante implements Serializable {
     @XmlAttribute(required = true)
     private String tipoDeComprobante;
 
+
+    private Double IVA ;
+
+    public Double getIVA() {
+    Double IV = 0.0;
+        
+     if ( this.getImpuesto() != null) {
+
+       
+        for(int i = 0; i < this.getImpuesto().getRetenciones().size();i++) {
+
+            if (this.getImpuesto().getRetenciones().get(i).getImpuesto().equals("I.V.A.") )
+                IV += this.getImpuesto().getRetenciones().get(i).getImporte().doubleValue();
+        }
+        for(int i=0; i< this.getImpuesto().getTraslados().size();i++) {
+            if (this.getImpuesto().getTraslados().get(i).getImpuesto().equals("I.V.A."))
+                IV += this.getImpuesto().getTraslados().get(i).getImporte().doubleValue();
+        }
+    }
+
+        return IV;
+       
+
+
+    }
+
+    public void setIVA(Double IVA) {
+        this.IVA = IVA;
+    }
+
+
+
+
     public Impuesto getImpuesto() {
         if(impuesto == null)
             impuesto = new Impuesto();

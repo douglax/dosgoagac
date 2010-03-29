@@ -21,6 +21,7 @@ import java.awt.dnd.DropTargetListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -56,6 +57,7 @@ public final class ComprobanteTopComponent extends TopComponent {
 
     public ComprobanteTopComponent() {
         initComponents();
+        comprobante.setSubTotal(new BigDecimal("0"));
         setName(NbBundle.getMessage(ComprobanteTopComponent.class, "CTL_ComprobanteTopComponent"));
         setToolTipText(NbBundle.getMessage(ComprobanteTopComponent.class, "HINT_ComprobanteTopComponent"));
         setIcon(ImageUtilities.loadImage(ICON_PATH, true));
@@ -300,21 +302,21 @@ public final class ComprobanteTopComponent extends TopComponent {
                                 .addComponent(jLabel9))
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(txtRazonSocial, javax.swing.GroupLayout.DEFAULT_SIZE, 274, Short.MAX_VALUE)
-                                .addComponent(txtCalle, javax.swing.GroupLayout.DEFAULT_SIZE, 274, Short.MAX_VALUE)
+                                .addComponent(txtRazonSocial, javax.swing.GroupLayout.DEFAULT_SIZE, 293, Short.MAX_VALUE)
+                                .addComponent(txtCalle, javax.swing.GroupLayout.DEFAULT_SIZE, 293, Short.MAX_VALUE)
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                                     .addComponent(txtPais, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(18, 18, 18)
                                     .addComponent(jLabel10)
                                     .addGap(18, 18, 18)
-                                    .addComponent(txtCP, javax.swing.GroupLayout.DEFAULT_SIZE, 62, Short.MAX_VALUE))
+                                    .addComponent(txtCP, javax.swing.GroupLayout.DEFAULT_SIZE, 79, Short.MAX_VALUE))
                                 .addGroup(jPanel1Layout.createSequentialGroup()
                                     .addComponent(txtLocalidad, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(jLabel7)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(txtMunicipio, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE))
-                                .addComponent(txtColonia, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 274, Short.MAX_VALUE))
+                                .addComponent(txtColonia, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 293, Short.MAX_VALUE))
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -493,7 +495,7 @@ public final class ComprobanteTopComponent extends TopComponent {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(38, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jButton1)
@@ -655,7 +657,7 @@ public final class ComprobanteTopComponent extends TopComponent {
                                 .addComponent(jLabel18)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(lblVersion)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 122, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 83, Short.MAX_VALUE)
                         .addComponent(lblSerie, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel23)
@@ -664,7 +666,7 @@ public final class ComprobanteTopComponent extends TopComponent {
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel22)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 467, Short.MAX_VALUE)))
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 448, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
@@ -779,7 +781,7 @@ public final class ComprobanteTopComponent extends TopComponent {
                                     .addGroup(jPanel8Layout.createSequentialGroup()
                                         .addComponent(txtDescImporte, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
-                                        .addComponent(cboMotivoDesc, 0, 268, Short.MAX_VALUE))
+                                        .addComponent(cboMotivoDesc, 0, 274, Short.MAX_VALUE))
                                     .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel8Layout.createSequentialGroup()
                                 .addComponent(chkCondiciones)
@@ -822,11 +824,11 @@ public final class ComprobanteTopComponent extends TopComponent {
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 519, Short.MAX_VALUE)
+            .addGap(0, 512, Short.MAX_VALUE)
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 177, Short.MAX_VALUE)
+            .addGap(0, 184, Short.MAX_VALUE)
         );
 
         TabOpciones.addTab(org.openide.util.NbBundle.getMessage(ComprobanteTopComponent.class, "ComprobanteTopComponent.jPanel6.TabConstraints.tabTitle"), jPanel6); // NOI18N
@@ -835,11 +837,11 @@ public final class ComprobanteTopComponent extends TopComponent {
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 519, Short.MAX_VALUE)
+            .addGap(0, 512, Short.MAX_VALUE)
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 177, Short.MAX_VALUE)
+            .addGap(0, 184, Short.MAX_VALUE)
         );
 
         TabOpciones.addTab(org.openide.util.NbBundle.getMessage(ComprobanteTopComponent.class, "ComprobanteTopComponent.jPanel7.TabConstraints.tabTitle"), jPanel7); // NOI18N
@@ -882,9 +884,11 @@ public final class ComprobanteTopComponent extends TopComponent {
         lblIVA.setFont(new java.awt.Font("DejaVu Sans", 1, 11));
         lblIVA.setForeground(new java.awt.Color(255, 255, 255));
         lblIVA.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        org.openide.awt.Mnemonics.setLocalizedText(lblIVA, org.openide.util.NbBundle.getMessage(ComprobanteTopComponent.class, "ComprobanteTopComponent.lblIVA.text")); // NOI18N
         lblIVA.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         lblIVA.setOpaque(true);
+
+        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, this, org.jdesktop.beansbinding.ELProperty.create("${comprobante.IVA}"), lblIVA, org.jdesktop.beansbinding.BeanProperty.create("text"));
+        bindingGroup.addBinding(binding);
 
         lblLeyenda.setFont(new java.awt.Font("DejaVu Sans", 1, 11));
         org.openide.awt.Mnemonics.setLocalizedText(lblLeyenda, org.openide.util.NbBundle.getMessage(ComprobanteTopComponent.class, "ComprobanteTopComponent.lblLeyenda.text")); // NOI18N
@@ -949,7 +953,7 @@ public final class ComprobanteTopComponent extends TopComponent {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(lblLeyenda)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel29)
                             .addComponent(jLabel33, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -966,14 +970,14 @@ public final class ComprobanteTopComponent extends TopComponent {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel17, javax.swing.GroupLayout.DEFAULT_SIZE, 870, Short.MAX_VALUE)
+                    .addComponent(jLabel17, javax.swing.GroupLayout.DEFAULT_SIZE, 866, Short.MAX_VALUE)
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addComponent(TabOpciones, javax.swing.GroupLayout.PREFERRED_SIZE, 524, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 739, Short.MAX_VALUE)))
+                        .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 784, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
@@ -984,7 +988,7 @@ public final class ComprobanteTopComponent extends TopComponent {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(38, 38, 38)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -1052,16 +1056,20 @@ public final class ComprobanteTopComponent extends TopComponent {
         // TODO add your handling code here:
 
         if (comprobante.getImpuesto() == null) {
-            ImpuestosPanel impPanel = new ImpuestosPanel();
+            ImpuestosPanel impPanel = new ImpuestosPanel(comprobante.getSubTotal());
             DialogDescriptor d2 = new DialogDescriptor(impPanel, "Impuestos", true, null);
             DialogDisplayer.getDefault().notify(d2);
             comprobante.setImpuesto(impPanel.getImpuesto());
+
         } else {
-            ImpuestosPanel impPanel = new ImpuestosPanel(comprobante.getImpuesto());
+            ImpuestosPanel impPanel = new ImpuestosPanel(comprobante.getSubTotal(), comprobante.getImpuesto());
             DialogDescriptor d2 = new DialogDescriptor(impPanel, "Impuestos", true, null);
             DialogDisplayer.getDefault().notify(d2);
             comprobante.setImpuesto(impPanel.getImpuesto());
         }
+
+        NumberFormat nf = NumberFormat.getCurrencyInstance();
+        lblIVA.setText(nf.format(comprobante.getIVA()));
     }//GEN-LAST:event_btnImpuestosActionPerformed
 
     private void optUnPagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_optUnPagoActionPerformed

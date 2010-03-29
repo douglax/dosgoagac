@@ -201,8 +201,8 @@
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="2">
-                <StringItem index="0" value="Retenci&#xf3;n"/>
-                <StringItem index="1" value="Traslado"/>
+                <StringItem index="0" value="Traslado"/>
+                <StringItem index="1" value="Retenci&#xf3;n"/>
               </StringArray>
             </Property>
           </Properties>
@@ -225,6 +225,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="txtImporte">
           <Properties>
+            <Property name="horizontalAlignment" type="int" value="4"/>
             <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
               <ResourceString bundle="com/agac/gui/Bundle.properties" key="ImpuestosPanel.txtImporte.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
             </Property>
@@ -235,7 +236,6 @@
             <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
               <ResourceString bundle="com/agac/gui/Bundle.properties" key="ImpuestosPanel.txtTasa.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
             </Property>
-            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
       </SubComponents>
