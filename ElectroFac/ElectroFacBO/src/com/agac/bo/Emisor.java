@@ -6,12 +6,14 @@ package com.agac.bo;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Transient;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -47,6 +49,7 @@ public class Emisor implements Serializable {
         this.id = id;
         propertyChangeSupport.firePropertyChange("id", oldId, id);
     }
+
     @XmlAttribute(name = "nombre", required = true)
     @Column(nullable = false)
     private String nombre;
@@ -139,19 +142,18 @@ public class Emisor implements Serializable {
         propertyChangeSupport.firePropertyChange("passwd", oldPasswd, passwd);
     }
 
-//    private ArrayList<Serie> serieList;
-//
-//    public ArrayList<Serie> getSerieList() {
-//        return serieList;
-//    }
-//
-//    public void setSerieList(ArrayList<Serie> serieList) {
-//        this.serieList = serieList;
-//    }
+    @XmlTransient
+    @OneToMany(cascade=CascadeType.ALL)
+    private List<Serie> series;
 
-    
+    public List<Serie> getSeries() {
+        return series;
+    }
 
-
+    public void setSeries(List<Serie> serieList) {
+        this.series = serieList;
+        propertyChangeSupport.firePropertyChange("series", null, passwd);
+    }
 
     @XmlTransient
     @Transient

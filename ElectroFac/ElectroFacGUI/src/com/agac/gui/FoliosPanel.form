@@ -82,7 +82,7 @@
                                   <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                                   <Component id="btnAdd" min="-2" pref="35" max="-2" attributes="0"/>
                               </Group>
-                              <Component id="jLabel5" pref="151" max="32767" attributes="1"/>
+                              <Component id="jLabel5" pref="156" max="32767" attributes="1"/>
                           </Group>
                       </Group>
                       <Component id="jScrollPane1" alignment="0" pref="527" max="32767" attributes="1"/>
@@ -232,7 +232,6 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAddActionPerformed"/>
-            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="btnAddKeyPressed"/>
           </Events>
         </Component>
       </SubComponents>

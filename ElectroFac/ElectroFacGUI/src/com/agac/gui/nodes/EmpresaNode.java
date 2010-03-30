@@ -5,20 +5,22 @@
 package com.agac.gui.nodes;
 
 import com.agac.bo.Emisor;
+import com.agac.bo.Serie;
 import com.agac.gui.ComprobanteTopComponent;
 import com.agac.gui.EmisorTopComponent;
 import com.agac.gui.FoliosPanel;
 import com.agac.gui.MenuTopComponent;
-import com.agac.gui.SerieTopComponent;
+import com.agac.services.DbServices;
 import java.awt.event.ActionEvent;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.SwingUtilities;
-import org.netbeans.api.progress.ProgressHandle;
-import org.netbeans.api.progress.ProgressHandleFactory;
 import org.openide.DialogDescriptor;
 import org.openide.DialogDisplayer;
 import org.openide.ErrorManager;
+import org.openide.NotifyDescriptor;
 import org.openide.nodes.AbstractNode;
 import org.openide.nodes.Children;
 import org.openide.nodes.PropertySupport;
@@ -42,7 +44,7 @@ public class EmpresaNode extends AbstractNode {
 
     @Override
     public Action[] getActions(boolean bln) {
-        return new Action[]{new OpenAction(), new CrearFactura(), new adminFolios()};
+        return new Action[]{new OpenAction(), new CrearFactura(), new AdminFolios()};
     }
 
     @Override
@@ -129,9 +131,10 @@ public class EmpresaNode extends AbstractNode {
 //            ph.setDisplayName("Creando Factura...");
             final MenuTopComponent frm =
                     (MenuTopComponent) WindowManager.getDefault().findTopComponent("MenuTopComponent");
-            try {                
+            try {
                 frm.getBeanTreeView1().setCursor(Utilities.createProgressCursor(frm));
                 SwingUtilities.invokeLater(new Runnable() {
+
                     @Override
                     public void run() {
                         ComprobanteTopComponent ctc = new ComprobanteTopComponent();
@@ -149,33 +152,30 @@ public class EmpresaNode extends AbstractNode {
         }
     }
 
-    private class adminFolios extends AbstractAction {
+    private class AdminFolios extends AbstractAction {
 
-        public adminFolios() {
+        public AdminFolios() {
             putValue(NAME, "Expediente de Folios");
         }
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            System.out.println("oki");
-
-
+            Emisor emisor = getLookup().lookup(Emisor.class);
+            List<Serie> series = new ArrayList<Serie>();
+            if(emisor.getSeries() != null)
+                    series.addAll(emisor.getSeries());
             FoliosPanel folPan = new FoliosPanel();
+            folPan.setSeries(series);
             DialogDescriptor dd = new DialogDescriptor(folPan, "Folios", true, null);
-            DialogDisplayer.getDefault().notify(dd);
-
-            //(folPan.getSerie());
-
-            folPan.getExpedienteFolios().setEmisor(getLookup().lookup(Emisor.class));
-            //folPan.setVisible(true);
-
-//            SerieTopComponent stc = new SerieTopComponent();
-//            stc.componentOpened();
-//            stc.getExpedienteFolios().setEmisor(getLookup().lookup(Emisor.class));
-//            stc.setDisplayName("Administración de Folios");
-//            stc.open();
-//            stc.requestActive();
-
+            Object result = DialogDisplayer.getDefault().notify(dd);
+            if (NotifyDescriptor.OK_OPTION.equals(result)) {                
+                try {
+                    emisor.setSeries(series);
+                    emisor = DbServices.saveObject(emisor, true);
+                } catch (Exception ex) {
+                    Exceptions.printStackTrace(ex);
+                }
+            }            
         }
     }
 }

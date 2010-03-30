@@ -203,14 +203,14 @@ public class PartesPanel extends javax.swing.JPanel {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-        Vector row = new Vector();
+        Object[] row = new Object[6];
         parte.setUnidad(jComboBox1.getSelectedItem().toString());
-        row.add(parte.getCantidad());
-        row.add(parte.getUnidad());
-        row.add(parte.getDescripcion());
-        row.add(parte.getNoIdentificacion());
-        row.add(parte.getValorUnitario());
-        row.add(parte.getImporte());
+        row[0] = parte.getCantidad();
+        row[1] = parte.getUnidad();
+        row[2] = parte.getDescripcion();
+        row[3] = parte.getNoIdentificacion();
+        row[4] = parte.getValorUnitario();
+        row[5] = parte.getImporte();
         model.addRow(row);
         txtCantidad.setText("");
         txtDescripcion.setText("");
@@ -222,14 +222,11 @@ public class PartesPanel extends javax.swing.JPanel {
 }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton4KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButton4KeyPressed
-        //        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-        //            jButton4ActionPerformed(null);
-        //        }
 }//GEN-LAST:event_jButton4KeyPressed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         InformacionAduaneraPanel infPanel = new InformacionAduaneraPanel();
-       // infPanel.setInfoAduaneraList(concepto.getInfoAduanera());
+        // infPanel.setInfoAduaneraList(concepto.getInfoAduanera());
         DialogDescriptor dd = new DialogDescriptor(infPanel,
                 "Información Aduanera", true, null);
         DialogDisplayer.getDefault().notify(dd);

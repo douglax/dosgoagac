@@ -19,7 +19,7 @@ import org.openide.util.lookup.Lookups;
 
 /**
  *
- * @author Carlos
+ * @author Carlos Aguirre
  */
 public class ClienteNode extends AbstractNode {
 

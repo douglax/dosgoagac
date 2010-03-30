@@ -2,50 +2,42 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.agac.bo;
 
 import java.io.Serializable;
 import java.math.BigInteger;
-import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.Transient;
 import javax.xml.bind.annotation.XmlTransient;
+
 /**
  *
  * @author alex
  */
-
-
+@Entity
 public class Serie implements Serializable {
+    @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
+    private Long Id;
 
+    public Long getId() {
+        return Id;
+    }
 
-
-
-
+    public void setId(Long Id) {
+        this.Id = Id;
+    }
+    
     private String numSerie;
     private BigInteger folioInicial;
     private BigInteger folioFinal;
     private String numAutorización;
     private int anoAprob;
-
-    //private Emisor emisor;
-
-
-//        public Emisor getEmisor() {
-//        if (emisor == null) {
-//            emisor = new Emisor();
-//        }
-//        return emisor;
-//    }
-//
-//    public void setEmisor(Emisor emisor) {
-//        //Emisor oldEmisor = this.emisor;
-//        this.emisor = emisor;
-//        //propertyChangeSupport.firePropertyChange("emisor", oldEmisor, emisor);
-//    }
-
 
     public int getAnoAprob() {
         return anoAprob;
@@ -86,8 +78,6 @@ public class Serie implements Serializable {
     public void setNumSerie(String numSerie) {
         this.numSerie = numSerie;
     }
-
-
     @XmlTransient
     @Transient
     private PropertyChangeSupport propertyChangeSupport = new PropertyChangeSupport(this);
@@ -96,11 +86,36 @@ public class Serie implements Serializable {
         propertyChangeSupport.addPropertyChangeListener(listener);
 
     }
-
     public void removePropertyChangeListener(PropertyChangeListener listener) {
         propertyChangeSupport.removePropertyChangeListener(listener);
 
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Serie other = (Serie) obj;
+        if (this.Id != other.Id && (this.Id == null || !this.Id.equals(other.Id))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 89 * hash + (this.Id != null ? this.Id.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public String toString() {
+        return numSerie;
+    }
 
 }
