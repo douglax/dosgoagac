@@ -35,7 +35,7 @@ public class Comprobante implements Serializable {
 
     @XmlTransient
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long Id;
 
     public Long getId() {
@@ -47,100 +47,79 @@ public class Comprobante implements Serializable {
         this.Id = Id;
         propertyChangeSupport.firePropertyChange("Id", oldId, Id);
     }
-
     @XmlElement(name = "Emisor", required = true)
     @ManyToOne
     private Emisor emisor;
-
     @XmlElement(name = "Receptor", required = true)
     @ManyToOne
     private Receptor receptor;
-
     @XmlElementWrapper(name = "Conceptos")
     @XmlElement(name = "Concepto")
     @OneToMany
     private List<Concepto> conceptos;
-
     @XmlElement(name = "Impuestos", required = true)
     @Transient
-    private Impuesto impuesto;    
-
+    private Impuesto impuesto;
     @XmlAttribute(required = true)
     private String version = "2.0";
-
     @XmlAttribute
     private String serie;
-
     @XmlAttribute(required = true)
     private String folio;
-    
     @XmlAttribute(required = true)
     @XmlJavaTypeAdapter(SqlDateAdapter.class)
     private Date fecha = new Date(System.currentTimeMillis());
-
     @XmlAttribute(required = true)
     private String sello;
-
     @XmlAttribute(required = true)
     private int noAprobacion;
-
     @XmlAttribute(required = true)
     private int anoAprobacion;
-
     @XmlAttribute(required = true)
     private String formaDePago;
-
     @XmlAttribute(required = true)
     private String noCertificado;
-
     @XmlAttribute
     private String certificado;
-
     @XmlAttribute
     private String condicionesDePago;
-
     @XmlAttribute(required = true)
     private BigDecimal subTotal;
-
     @XmlAttribute
     @XmlJavaTypeAdapter(BigDecimalAdapter.class)
     private BigDecimal descuento;
-
     @XmlAttribute
     private String motivoDescuento;
-
     @XmlAttribute(required = true)
     private BigDecimal total;
-
     @XmlAttribute
     private String metodoDePago;
-
     @XmlAttribute(required = true)
     private String tipoDeComprobante;
 
-
-    private Double IVA ;
+    @XmlTransient
+    @Transient
+    private Double IVA;
 
     public Double getIVA() {
-    Double IV = 0.0;
-        
-     if ( this.getImpuesto() != null) {
+        Double IV = 0.0;
 
-       
-        for(int i = 0; i < this.getImpuesto().getRetenciones().size();i++) {
+        if (this.getImpuesto() != null) {
 
-            if (this.getImpuesto().getRetenciones().get(i).getImpuesto().equals("I.V.A.") )
-                IV += this.getImpuesto().getRetenciones().get(i).getImporte().doubleValue();
+
+            for (int i = 0; i < this.getImpuesto().getRetenciones().size(); i++) {
+
+                if (this.getImpuesto().getRetenciones().get(i).getImpuesto().equals("I.V.A.")) {
+                    IV += this.getImpuesto().getRetenciones().get(i).getImporte().doubleValue();
+                }
+            }
+            for (int i = 0; i < this.getImpuesto().getTraslados().size(); i++) {
+                if (this.getImpuesto().getTraslados().get(i).getImpuesto().equals("I.V.A.")) {
+                    IV += this.getImpuesto().getTraslados().get(i).getImporte().doubleValue();
+                }
+            }
         }
-        for(int i=0; i< this.getImpuesto().getTraslados().size();i++) {
-            if (this.getImpuesto().getTraslados().get(i).getImpuesto().equals("I.V.A."))
-                IV += this.getImpuesto().getTraslados().get(i).getImporte().doubleValue();
-        }
-    }
-
         return IV;
-       
-
 
     }
 
@@ -148,12 +127,10 @@ public class Comprobante implements Serializable {
         this.IVA = IVA;
     }
 
-
-
-
     public Impuesto getImpuesto() {
-        if(impuesto == null)
+        if (impuesto == null) {
             impuesto = new Impuesto();
+        }
         return impuesto;
     }
 
@@ -310,8 +287,9 @@ public class Comprobante implements Serializable {
 
     public BigDecimal getSubTotal() {
         subTotal = new BigDecimal("0.0");
-        for(Concepto c : getConceptos())
+        for (Concepto c : getConceptos()) {
             subTotal = subTotal.add(c.getImporte());
+        }
         return subTotal;
     }
 
@@ -356,21 +334,21 @@ public class Comprobante implements Serializable {
         propertyChangeSupport.firePropertyChange("folio", null, folio);
     }
 
-    public void addConcepto(Concepto concepto){
+    public void addConcepto(Concepto concepto) {
         getConceptos().add(concepto);
         propertyChangeSupport.firePropertyChange("concepto", null, concepto);
     }
 
     public void addPropertyChangeListener(PropertyChangeListener listener) {
         propertyChangeSupport.addPropertyChangeListener(listener);
-        for(Concepto c : getConceptos()){
+        for (Concepto c : getConceptos()) {
             c.addPropertyChangeListener(listener);
         }
     }
 
     public void removePropertyChangeListener(PropertyChangeListener listener) {
         propertyChangeSupport.removePropertyChangeListener(listener);
-        for(Concepto c : getConceptos()){
+        for (Concepto c : getConceptos()) {
             c.removePropertyChangeListener(listener);
         }
     }
@@ -399,5 +377,4 @@ public class Comprobante implements Serializable {
         hash = 29 * hash + (this.Id != null ? this.Id.hashCode() : 0);
         return hash;
     }
-    
 }
