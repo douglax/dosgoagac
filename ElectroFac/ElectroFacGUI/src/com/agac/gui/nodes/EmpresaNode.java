@@ -7,15 +7,17 @@ package com.agac.gui.nodes;
 import com.agac.bo.Emisor;
 import com.agac.gui.ComprobanteTopComponent;
 import com.agac.gui.EmisorTopComponent;
+import com.agac.gui.FoliosPanel;
 import com.agac.gui.MenuTopComponent;
 import com.agac.gui.SerieTopComponent;
 import java.awt.event.ActionEvent;
-
 import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.SwingUtilities;
 import org.netbeans.api.progress.ProgressHandle;
 import org.netbeans.api.progress.ProgressHandleFactory;
+import org.openide.DialogDescriptor;
+import org.openide.DialogDisplayer;
 import org.openide.ErrorManager;
 import org.openide.nodes.AbstractNode;
 import org.openide.nodes.Children;
@@ -156,12 +158,23 @@ public class EmpresaNode extends AbstractNode {
         @Override
         public void actionPerformed(ActionEvent e) {
             System.out.println("oki");
-            SerieTopComponent stc = new SerieTopComponent();
-            stc.componentOpened();
-            stc.getExpedienteFolios().setEmisor(getLookup().lookup(Emisor.class));
-            stc.setDisplayName("Administración de Folios");
-            stc.open();
-            stc.requestActive();
+
+
+            FoliosPanel folPan = new FoliosPanel();
+            DialogDescriptor dd = new DialogDescriptor(folPan, "Folios", true, null);
+            DialogDisplayer.getDefault().notify(dd);
+
+            //(folPan.getSerie());
+
+            folPan.getExpedienteFolios().setEmisor(getLookup().lookup(Emisor.class));
+            //folPan.setVisible(true);
+
+//            SerieTopComponent stc = new SerieTopComponent();
+//            stc.componentOpened();
+//            stc.getExpedienteFolios().setEmisor(getLookup().lookup(Emisor.class));
+//            stc.setDisplayName("Administración de Folios");
+//            stc.open();
+//            stc.requestActive();
 
         }
     }

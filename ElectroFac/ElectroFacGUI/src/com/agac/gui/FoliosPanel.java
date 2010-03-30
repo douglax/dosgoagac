@@ -11,6 +11,7 @@
 package com.agac.gui;
 
 import com.agac.bo.Emisor;
+import com.agac.bo.ExpedienteFolios;
 import com.agac.bo.Serie;
 
 import java.util.ArrayList;
@@ -30,6 +31,11 @@ public class FoliosPanel extends javax.swing.JPanel {
     public FoliosPanel() {
         initComponents();
 
+
+        
+
+
+
     }
 
    private Serie serie = new Serie();
@@ -42,7 +48,16 @@ public class FoliosPanel extends javax.swing.JPanel {
         this.serie = serie;
     }
 
+    ExpedienteFolios expedienteFolios = new ExpedienteFolios();
 
+    public ExpedienteFolios getExpedienteFolios() {
+        return expedienteFolios;
+    }
+
+    public void setExpedienteFolios(ExpedienteFolios expedienteFolios) {
+        this.expedienteFolios = expedienteFolios;
+        firePropertyChange("expedienteFolios",null,expedienteFolios);
+    }
 
 
     /** This method is called from within the constructor to
@@ -99,10 +114,7 @@ public class FoliosPanel extends javax.swing.JPanel {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
                 "Serie", "Folio Inicial", "Folio Final", "No. Aprobación", "Año Aprobación"
@@ -213,12 +225,15 @@ public class FoliosPanel extends javax.swing.JPanel {
                 .addContainerGap(36, Short.MAX_VALUE))
         );
 
+        getAccessibleContext().setAccessibleParent(this);
+
         bindingGroup.bind();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-        model.addRow(new Object[]{serie.getNumSerie(), serie.getFolioInicial(), });
+        model.addRow(new Object[]{serie.getNumSerie(), serie.getFolioInicial(), serie.getFolioFinal(),serie.getNumAutorización(), serie.getAnoAprob()  });
+        expedienteFolios.addSerie(serie);
      //   serieList.add(serie);
 
         txtSerie.setText("");
