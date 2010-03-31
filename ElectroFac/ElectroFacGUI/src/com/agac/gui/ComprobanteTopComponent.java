@@ -28,6 +28,7 @@ import java.util.List;
 import java.util.TooManyListenersException;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.logging.Logger;
+import java.util.prefs.Preferences;
 import javax.swing.table.DefaultTableModel;
 import org.netbeans.api.progress.ProgressUtils;
 import org.openide.util.Exceptions;
@@ -1051,8 +1052,12 @@ public final class ComprobanteTopComponent extends TopComponent {
     private void btnImpuestosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImpuestosActionPerformed
         // TODO add your handling code here:
 
+       Preferences pref = Preferences.userNodeForPackage(OpcionesdelSistemaPanel.class);
+
+        //String IVAdefault = pref.get("IVA", "");
+
         if (comprobante.getImpuesto() == null) {
-            ImpuestosPanel impPanel = new ImpuestosPanel(comprobante.getSubTotal());
+            ImpuestosPanel impPanel = new ImpuestosPanel(comprobante.getSubTotal() );
             DialogDescriptor d2 = new DialogDescriptor(impPanel, "Impuestos", true, null);
             DialogDisplayer.getDefault().notify(d2);
             comprobante.setImpuesto(impPanel.getImpuesto());

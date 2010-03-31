@@ -5,6 +5,7 @@
 package com.agac.gui;
 
 import java.util.prefs.Preferences;
+import org.openide.util.NbPreferences;
 
 final class OpcionesdelSistemaPanel extends javax.swing.JPanel {
 
@@ -36,6 +37,11 @@ final class OpcionesdelSistemaPanel extends javax.swing.JPanel {
         txtIVA.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         txtIVA.setText(org.openide.util.NbBundle.getMessage(OpcionesdelSistemaPanel.class, "OpcionesdelSistemaPanel.txtIVA.text")); // NOI18N
         txtIVA.setToolTipText(org.openide.util.NbBundle.getMessage(OpcionesdelSistemaPanel.class, "OpcionesdelSistemaPanel.txtIVA.toolTipText")); // NOI18N
+        txtIVA.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtIVAActionPerformed(evt);
+            }
+        });
 
         org.openide.awt.Mnemonics.setLocalizedText(jLabel2, org.openide.util.NbBundle.getMessage(OpcionesdelSistemaPanel.class, "OpcionesdelSistemaPanel.jLabel2.text")); // NOI18N
 
@@ -92,6 +98,10 @@ final class OpcionesdelSistemaPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtISRActionPerformed
 
+    private void txtIVAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIVAActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtIVAActionPerformed
+
     void load() {
         // TODO read settings and initialize GUI
         // Example:        
@@ -100,6 +110,15 @@ final class OpcionesdelSistemaPanel extends javax.swing.JPanel {
         // someCheckBox.setSelected(NbPreferences.forModule(OpcionesdelSistemaPanel.class).getBoolean("someFlag", false));
         // or:
         // someTextField.setText(SomeSystemOption.getDefault().getSomeStringProperty());
+
+        //txtIVA.setText(Preferences.systemNodeForPackage(OpcionesdelSistemaPanel.class).get("IVA","0.16" ));
+        //txtISR.setText(Preferences.systemNodeForPackage(OpcionesdelSistemaPanel.class).get("ISR","0.30" ));
+        //txtIEPS.setText(Preferences.systemNodeForPackage(OpcionesdelSistemaPanel.class).get("IVA","0.50" ));
+
+        txtIVA.setText(NbPreferences.forModule(OpcionesdelSistemaPanel.class).get("IVA","0.16"));
+        txtISR.setText(NbPreferences.forModule(OpcionesdelSistemaPanel.class).get("ISR","0.30"));
+        txtIEPS.setText(NbPreferences.forModule(OpcionesdelSistemaPanel.class).get("IEPS","0.50"));
+
     }
 
     void store() {
@@ -111,9 +130,13 @@ final class OpcionesdelSistemaPanel extends javax.swing.JPanel {
         // or:
         // SomeSystemOption.getDefault().setSomeStringProperty(someTextField.getText());
 
-        Preferences.userNodeForPackage(OpcionesdelSistemaPanel.class).put("IVA", txtIVA.getText() );
-        Preferences.userNodeForPackage(OpcionesdelSistemaPanel.class).put("ISR", txtISR.getText() );
-        Preferences.userNodeForPackage(OpcionesdelSistemaPanel.class).put("IEPS", txtIEPS.getText() );
+      //  Preferences.userNodeForPackage(OpcionesdelSistemaPanel.class).put("IVA", txtIVA.getText() );
+      //  Preferences.userNodeForPackage(OpcionesdelSistemaPanel.class).put("ISR", txtISR.getText() );
+      //  Preferences.userNodeForPackage(OpcionesdelSistemaPanel.class).put("IEPS", txtIEPS.getText() );
+
+        NbPreferences.forModule(OpcionesdelSistemaPanel.class).put("IVA", txtIVA.getText());
+        NbPreferences.forModule(OpcionesdelSistemaPanel.class).put("ISR", txtISR.getText());
+        NbPreferences.forModule(OpcionesdelSistemaPanel.class).put("IEPS", txtIEPS.getText());
 
     }
 

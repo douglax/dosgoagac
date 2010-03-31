@@ -16,8 +16,11 @@ import com.agac.bo.Retencion;
 import com.agac.bo.Traslado;
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.prefs.PreferenceChangeEvent;
+import java.util.prefs.PreferenceChangeListener;
 import java.util.prefs.Preferences;
 import javax.swing.table.DefaultTableModel;
+import org.openide.util.NbPreferences;
 
 /**
  *
@@ -28,13 +31,33 @@ public class ImpuestosPanel extends javax.swing.JPanel {
     /** Creates new form InformacionAduaneraPanel */
     public ImpuestosPanel(BigDecimal subtotal) {
         initComponents();
+
+
+
+
+            pref.addPreferenceChangeListener(new PreferenceChangeListener() {
+            
+       public void preferenceChange(PreferenceChangeEvent evt) {
+           if(evt.getKey().equals("IVA")) {
+               IVAdefault = evt.getNewValue() ;
+           }
+           if(evt.getKey().equals("ISR")) {
+               ISRdefault = evt.getNewValue() ;
+           }
+           if(evt.getKey().equals("IEPS")) {
+               IEPSdefault = evt.getNewValue() ;
+           }
+       }
+    });
+
+
         BigDecimal oldSubtotal = new BigDecimal("0.0");
         oldSubtotal = subtotal;
         this.txtTotalRetenidos.setText(totRetenciones.toString());
         this.txtTotalTrasladados.setText(totTraslados.toString());
         this.subtotal = subtotal;
         txtImporte.setText((subtotal.multiply(new BigDecimal(IVAdefault))).toString());
-        //txtImporte.setText((subtotal.multiply(IVAdefault)).toString());
+        //txtImporte.setText((subtotal.multiply(new BigDecimal(IVA)).toString()));
         txtTasa.setText(IVAdefault);
         this.subtotal = oldSubtotal;
     }
@@ -45,6 +68,24 @@ public class ImpuestosPanel extends javax.swing.JPanel {
         // objeto impuesto para el objeto comprobante
 
         initComponents();
+
+
+            pref.addPreferenceChangeListener(new PreferenceChangeListener() {
+            
+       public void preferenceChange(PreferenceChangeEvent evt) {
+           if(evt.getKey().equals("IVA")) {
+               IVAdefault = evt.getNewValue() ;
+           }
+           if(evt.getKey().equals("ISR")) {
+               ISRdefault = evt.getNewValue() ;
+           }
+           if(evt.getKey().equals("IEPS")) {
+               IEPSdefault = evt.getNewValue() ;
+           }
+       }
+    });
+
+
 
         this.subtotal = subtotal;
         BigDecimal oldSubtotal = new BigDecimal("0.0");
@@ -289,7 +330,14 @@ public class ImpuestosPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    
+    //Preferences pref = Preferences.userNodeForPackage(OpcionesdelSistemaPanel.class);
+
+    Preferences pref = NbPreferences.forModule(OpcionesdelSistemaPanel.class);
+
+    String IVAdefault = pref.get("IVA", "");
+    String ISRdefault = pref.get("ISR","");
+    String IEPSdefault = pref.get("IEPS","");
+
     
 //  *****************************************************************
 
@@ -415,20 +463,10 @@ public class ImpuestosPanel extends javax.swing.JPanel {
     //private static BigDecimal IEPSdefault = new BigDecimal(".30");
 
 
-    Preferences pref = Preferences.userNodeForPackage(OpcionesdelSistemaPanel.class);
+   
 
-    String IVAdefault = pref.get("IVA", "");
-    String ISRdefault = pref.get("ISR","");
-    String IEPSdefault = pref.get("IEPS","");
 
-//    pref.addPreferenceChangeListener(new PreferenceChangeListener() {
-//       public void preferenceChange(PreferenceChangeEvent evt) {
-//           if(evt.getKey().equals("IVA")) {
-//               IVAdefault = evt.getNewValue().toString() );
-//           }
-//       }
-//    });
-//
+
 
 
     private BigDecimal subtotal = new BigDecimal("0.0");
