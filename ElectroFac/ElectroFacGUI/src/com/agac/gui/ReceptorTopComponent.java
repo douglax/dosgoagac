@@ -12,6 +12,7 @@ import java.beans.PropertyChangeListener;
 import java.io.IOException;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.logging.Logger;
+import java.util.prefs.Preferences;
 import org.netbeans.api.progress.ProgressUtils;
 import org.openide.util.NbBundle;
 import org.openide.windows.TopComponent;
@@ -26,6 +27,7 @@ import org.openide.nodes.AbstractNode;
 import org.openide.nodes.Children;
 import org.openide.nodes.Node;
 import org.openide.util.Exceptions;
+import org.openide.util.NbPreferences;
 
 /**
  * Top component which displays something.
@@ -101,12 +103,18 @@ public final class ReceptorTopComponent extends TopComponent implements Property
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(ReceptorTopComponent.class, "ReceptorTopComponent.jPanel1.border.title"))); // NOI18N
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         org.openide.awt.Mnemonics.setLocalizedText(jLabel1, org.openide.util.NbBundle.getMessage(ReceptorTopComponent.class, "ReceptorTopComponent.jLabel1.text")); // NOI18N
+
+        txtNombre.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
 
         org.jdesktop.beansbinding.Binding binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, this, org.jdesktop.beansbinding.ELProperty.create("${receptor.nombre}"), txtNombre, org.jdesktop.beansbinding.BeanProperty.create("text"));
         bindingGroup.addBinding(binding);
 
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         org.openide.awt.Mnemonics.setLocalizedText(jLabel2, org.openide.util.NbBundle.getMessage(ReceptorTopComponent.class, "ReceptorTopComponent.jLabel2.text")); // NOI18N
+
+        txtRFC.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
 
         binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, this, org.jdesktop.beansbinding.ELProperty.create("${receptor.rfc}"), txtRFC, org.jdesktop.beansbinding.BeanProperty.create("text"));
         bindingGroup.addBinding(binding);
@@ -123,7 +131,7 @@ public final class ReceptorTopComponent extends TopComponent implements Property
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtRFC, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 569, Short.MAX_VALUE))
+                    .addComponent(txtNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 562, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -142,7 +150,10 @@ public final class ReceptorTopComponent extends TopComponent implements Property
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(ReceptorTopComponent.class, "ReceptorTopComponent.jPanel3.border.title"))); // NOI18N
 
+        jLabel13.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         org.openide.awt.Mnemonics.setLocalizedText(jLabel13, org.openide.util.NbBundle.getMessage(ReceptorTopComponent.class, "ReceptorTopComponent.jLabel13.text")); // NOI18N
+
+        txtCalle.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
 
         binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, this, org.jdesktop.beansbinding.ELProperty.create("${receptor.domicilio.calle}"), txtCalle, org.jdesktop.beansbinding.BeanProperty.create("text"));
         bindingGroup.addBinding(binding);
@@ -182,22 +193,34 @@ public final class ReceptorTopComponent extends TopComponent implements Property
         });
         jScrollPane2.setViewportView(txtReferencia);
 
+        jLabel19.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         org.openide.awt.Mnemonics.setLocalizedText(jLabel19, org.openide.util.NbBundle.getMessage(ReceptorTopComponent.class, "ReceptorTopComponent.jLabel19.text")); // NOI18N
+
+        txtMunicipio.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
 
         binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, this, org.jdesktop.beansbinding.ELProperty.create("${receptor.domicilio.municipio}"), txtMunicipio, org.jdesktop.beansbinding.BeanProperty.create("text"));
         bindingGroup.addBinding(binding);
 
+        jLabel20.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         org.openide.awt.Mnemonics.setLocalizedText(jLabel20, org.openide.util.NbBundle.getMessage(ReceptorTopComponent.class, "ReceptorTopComponent.jLabel20.text")); // NOI18N
+
+        txtEstado.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
 
         binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, this, org.jdesktop.beansbinding.ELProperty.create("${receptor.domicilio.estado}"), txtEstado, org.jdesktop.beansbinding.BeanProperty.create("text"));
         bindingGroup.addBinding(binding);
 
+        jLabel21.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         org.openide.awt.Mnemonics.setLocalizedText(jLabel21, org.openide.util.NbBundle.getMessage(ReceptorTopComponent.class, "ReceptorTopComponent.jLabel21.text")); // NOI18N
+
+        txtPais.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
 
         binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, this, org.jdesktop.beansbinding.ELProperty.create("${receptor.domicilio.pais}"), txtPais, org.jdesktop.beansbinding.BeanProperty.create("text"));
         bindingGroup.addBinding(binding);
 
+        jLabel22.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         org.openide.awt.Mnemonics.setLocalizedText(jLabel22, org.openide.util.NbBundle.getMessage(ReceptorTopComponent.class, "ReceptorTopComponent.jLabel22.text")); // NOI18N
+
+        txtCp.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
 
         binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, this, org.jdesktop.beansbinding.ELProperty.create("${receptor.domicilio.codigoPostal}"), txtCp, org.jdesktop.beansbinding.BeanProperty.create("text"));
         bindingGroup.addBinding(binding);
@@ -385,6 +408,10 @@ public final class ReceptorTopComponent extends TopComponent implements Property
     @Override
     public void componentOpened() {
         setActivatedNodes(new Node[]{node = new NodeForSave()});
+        Preferences p = NbPreferences.forModule(OpcionesdelSistemaPanel.class);
+        txtMunicipio.setText(p.get("MUNICIPIO", ""));
+        txtEstado.setText(p.get("ESTADO", ""));
+        txtLocalidad.setText(p.get("LOCALIDAD", ""));
     }
 
     @Override

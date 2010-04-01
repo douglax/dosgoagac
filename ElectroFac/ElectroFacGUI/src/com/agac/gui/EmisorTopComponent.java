@@ -10,6 +10,7 @@ import java.beans.PropertyChangeListener;
 import java.io.IOException;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.logging.Logger;
+import java.util.prefs.Preferences;
 import org.jdesktop.beansbinding.Converter;
 import org.netbeans.api.progress.ProgressHandle;
 import org.netbeans.api.progress.ProgressHandleFactory;
@@ -27,6 +28,7 @@ import org.openide.nodes.AbstractNode;
 import org.openide.nodes.Children;
 import org.openide.nodes.Node;
 import org.openide.util.ImageUtilities;
+import org.openide.util.NbPreferences;
 
 /**
  * Top component which displays something.
@@ -760,6 +762,10 @@ public final class EmisorTopComponent extends TopComponent implements PropertyCh
     @Override
     public void componentOpened() {
         setActivatedNodes(new Node[]{saveNode = new NodeForSave()});
+        Preferences p = NbPreferences.forModule(OpcionesdelSistemaPanel.class);
+        txtMunicipio.setText(p.get("MUNICIPIO", ""));
+        txtEstado.setText(p.get("ESTADO", ""));
+        txtLocalidad.setText(p.get("LOCALIDAD", ""));
     }
 
     @Override

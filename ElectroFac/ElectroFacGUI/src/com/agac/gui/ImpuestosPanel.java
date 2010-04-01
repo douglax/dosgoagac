@@ -10,7 +10,6 @@
  */
 package com.agac.gui;
 
-
 import com.agac.bo.Impuesto;
 import com.agac.bo.Retencion;
 import com.agac.bo.Traslado;
@@ -32,23 +31,21 @@ public class ImpuestosPanel extends javax.swing.JPanel {
     public ImpuestosPanel(BigDecimal subtotal) {
         initComponents();
 
+        pref.addPreferenceChangeListener(new PreferenceChangeListener() {
 
-
-
-            pref.addPreferenceChangeListener(new PreferenceChangeListener() {
-            
-       public void preferenceChange(PreferenceChangeEvent evt) {
-           if(evt.getKey().equals("IVA")) {
-               IVAdefault = evt.getNewValue() ;
-           }
-           if(evt.getKey().equals("ISR")) {
-               ISRdefault = evt.getNewValue() ;
-           }
-           if(evt.getKey().equals("IEPS")) {
-               IEPSdefault = evt.getNewValue() ;
-           }
-       }
-    });
+            @Override
+            public void preferenceChange(PreferenceChangeEvent evt) {
+                if (evt.getKey().equals("IVA")) {
+                    IVAdefault = evt.getNewValue();
+                }
+                if (evt.getKey().equals("ISR")) {
+                    ISRdefault = evt.getNewValue();
+                }
+                if (evt.getKey().equals("IEPS")) {
+                    IEPSdefault = evt.getNewValue();
+                }
+            }
+        });
 
 
         BigDecimal oldSubtotal = new BigDecimal("0.0");
@@ -70,20 +67,20 @@ public class ImpuestosPanel extends javax.swing.JPanel {
         initComponents();
 
 
-            pref.addPreferenceChangeListener(new PreferenceChangeListener() {
-            
-       public void preferenceChange(PreferenceChangeEvent evt) {
-           if(evt.getKey().equals("IVA")) {
-               IVAdefault = evt.getNewValue() ;
-           }
-           if(evt.getKey().equals("ISR")) {
-               ISRdefault = evt.getNewValue() ;
-           }
-           if(evt.getKey().equals("IEPS")) {
-               IEPSdefault = evt.getNewValue() ;
-           }
-       }
-    });
+        pref.addPreferenceChangeListener(new PreferenceChangeListener() {
+
+            public void preferenceChange(PreferenceChangeEvent evt) {
+                if (evt.getKey().equals("IVA")) {
+                    IVAdefault = evt.getNewValue();
+                }
+                if (evt.getKey().equals("ISR")) {
+                    ISRdefault = evt.getNewValue();
+                }
+                if (evt.getKey().equals("IEPS")) {
+                    IEPSdefault = evt.getNewValue();
+                }
+            }
+        });
 
 
 
@@ -103,27 +100,30 @@ public class ImpuestosPanel extends javax.swing.JPanel {
 
         retencionList = (ArrayList) imp.getRetenciones();
 
-        for(Retencion r : retencionList )
-        modelo.addRow(new Object[]{"Retencion", r.getImpuesto() , r.getImporte()  ,null});
+        for (Retencion r : retencionList) {
+            modelo.addRow(new Object[]{"Retencion", r.getImpuesto(), r.getImporte(), null});
+        }
 
         // Agregar traslados a la tabla
         ArrayList<Traslado> trasladoList = new ArrayList<Traslado>();
 
         trasladoList = (ArrayList) imp.getTraslados();
 
-        for(Traslado t : trasladoList )
-        modelo.addRow(new Object[]{"Traslado", t.getImpuesto() , t.getImporte() , t.getTasa()});
+        for (Traslado t : trasladoList) {
+            modelo.addRow(new Object[]{"Traslado", t.getImpuesto(), t.getImporte(), t.getTasa()});
+        }
 
 
         // agregar totales a los textboxes
-        if(imp.getTotalImpuestosRetenidos() != null)
-        this.txtTotalRetenidos.setText(imp.getTotalImpuestosRetenidos().toString());
-        if(imp.getTotalImpuestosRetenidos() != null)
-        this.txtTotalTrasladados.setText(imp.getTotalImpuestosTrasladados().toString());
+        if (imp.getTotalImpuestosRetenidos() != null) {
+            this.txtTotalRetenidos.setText(imp.getTotalImpuestosRetenidos().toString());
+        }
+        if (imp.getTotalImpuestosRetenidos() != null) {
+            this.txtTotalTrasladados.setText(imp.getTotalImpuestosTrasladados().toString());
+        }
 
 
     }
-
 
     /** This method is called from within the constructor to
      * initialize the form.
@@ -329,32 +329,26 @@ public class ImpuestosPanel extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-
     //Preferences pref = Preferences.userNodeForPackage(OpcionesdelSistemaPanel.class);
-
     Preferences pref = NbPreferences.forModule(OpcionesdelSistemaPanel.class);
-
     String IVAdefault = pref.get("IVA", "");
-    String ISRdefault = pref.get("ISR","");
-    String IEPSdefault = pref.get("IEPS","");
+    String ISRdefault = pref.get("ISR", "");
+    String IEPSdefault = pref.get("IEPS", "");
 
-    
 //  *****************************************************************
-
-
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
 
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
 
-        if (cboTipoImpuesto.getSelectedIndex()==1) {
+        if (cboTipoImpuesto.getSelectedIndex() == 1) {
             // Retencion
-            model.addRow(new Object[]{"Retención", cboImpuesto.getSelectedItem() , Double.parseDouble(txtImporte.getText()) ,null});
-             totRetenciones += Double.parseDouble(txtImporte.getText());
-             txtTotalRetenidos.setText(totRetenciones.toString());
+            model.addRow(new Object[]{"Retención", cboImpuesto.getSelectedItem(), Double.parseDouble(txtImporte.getText()), null});
+            totRetenciones += Double.parseDouble(txtImporte.getText());
+            txtTotalRetenidos.setText(totRetenciones.toString());
 
-        } else if (cboTipoImpuesto.getSelectedIndex()==0) {
+        } else if (cboTipoImpuesto.getSelectedIndex() == 0) {
             // Traslado
-            model.addRow(new Object[]{"Traslado", cboImpuesto.getSelectedItem() , Double.parseDouble(txtImporte.getText()) , Double.parseDouble(txtTasa.getText())});
+            model.addRow(new Object[]{"Traslado", cboImpuesto.getSelectedItem(), Double.parseDouble(txtImporte.getText()), Double.parseDouble(txtTasa.getText())});
             totTraslados += Double.parseDouble(txtImporte.getText());
             txtTotalTrasladados.setText(totTraslados.toString());
         }
@@ -369,14 +363,14 @@ public class ImpuestosPanel extends javax.swing.JPanel {
 
     private void cboTipoImpuestoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboTipoImpuestoActionPerformed
         // TODO add your handling code here:
-        
 
-        if (cboTipoImpuesto.getSelectedIndex()==1) {
+
+        if (cboTipoImpuesto.getSelectedIndex() == 1) {
             cboImpuesto.removeAllItems();
             cboImpuesto.addItem(new String("I.V.A."));
             cboImpuesto.addItem(new String("I.S.R."));
             txtTasa.setEnabled(false);
-        } else if (cboTipoImpuesto.getSelectedIndex()==0) {
+        } else if (cboTipoImpuesto.getSelectedIndex() == 0) {
             cboImpuesto.removeAllItems();
             cboImpuesto.addItem(new String("I.V.A."));
             cboImpuesto.addItem(new String("I.E.P.S."));
@@ -388,8 +382,7 @@ public class ImpuestosPanel extends javax.swing.JPanel {
 
     }//GEN-LAST:event_cboTipoImpuestoActionPerformed
 
-
-    private void calculaydespliegaImpuesto(){
+    private void calculaydespliegaImpuesto() {
 
         BigDecimal oldSubtotal = new BigDecimal("0.0");
 
@@ -397,11 +390,11 @@ public class ImpuestosPanel extends javax.swing.JPanel {
         oldSubtotal = subtotal;
 
         if (cboTipoImpuesto.getSelectedIndex() == 0) {
-                // Traslado
-            if (cboImpuesto.getSelectedIndex() == 0 ) {
-               //IVA
-               txtImporte.setText((subtotal.multiply(new BigDecimal(IVAdefault))).toString());
-               txtTasa.setText(IVAdefault.toString());
+            // Traslado
+            if (cboImpuesto.getSelectedIndex() == 0) {
+                //IVA
+                txtImporte.setText((subtotal.multiply(new BigDecimal(IVAdefault))).toString());
+                txtTasa.setText(IVAdefault.toString());
             } else {
                 // IEPS
                 txtImporte.setText((subtotal.multiply(new BigDecimal(IEPSdefault))).toString());
@@ -409,9 +402,9 @@ public class ImpuestosPanel extends javax.swing.JPanel {
             }
         } else {
             // Retención
-            if (cboImpuesto.getSelectedIndex() == 0 ) {
-               //IVA
-               txtImporte.setText((subtotal.multiply(new BigDecimal(IVAdefault))).toString());
+            if (cboImpuesto.getSelectedIndex() == 0) {
+                //IVA
+                txtImporte.setText((subtotal.multiply(new BigDecimal(IVAdefault))).toString());
 
             } else {
                 // ISR
@@ -425,68 +418,48 @@ public class ImpuestosPanel extends javax.swing.JPanel {
         subtotal = oldSubtotal;
 
 
-        }
-
-
-
-
-
-
-
+    }
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
         // TODO add your handling code here:
 
         DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
 
-        while (modelo.getRowCount() > 0)
-              {
-                    modelo.removeRow(0);
-              }
-        
+        while (modelo.getRowCount() > 0) {
+            modelo.removeRow(0);
+        }
+
         totRetenciones = 0.0;
         totTraslados = 0.0;
 
         txtTotalRetenidos.setText("0.0");
         txtTotalTrasladados.setText("0.0");
-        
+
         //this.impuesto = null;
     }//GEN-LAST:event_btnLimpiarActionPerformed
-
-    private static Double totRetenciones = 0.0 ;
-    private static Double totTraslados  = 0.0 ;
-
+    private static Double totRetenciones = 0.0;
+    private static Double totTraslados = 0.0;
     private Impuesto impuesto = new Impuesto();
-
     //private static BigDecimal IVAdefault = new BigDecimal("0.16");
-   // private static BigDecimal ISRdefault = new BigDecimal(".20");
+    // private static BigDecimal ISRdefault = new BigDecimal(".20");
     //private static BigDecimal IEPSdefault = new BigDecimal(".30");
-
-
-   
-
-
-
-
-
     private BigDecimal subtotal = new BigDecimal("0.0");
-
 
     public Impuesto getImpuesto() {
 
 
-       DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
 
-        for(int c=0;c<model.getRowCount();c++) {
+        for (int c = 0; c < model.getRowCount(); c++) {
 
-            if(model.getValueAt(c,0) == "Retención") {
+            if (model.getValueAt(c, 0) == "Retención") {
                 Retencion retencion = new Retencion();
                 retencion.setImpuesto(model.getValueAt(c, 1).toString());
                 retencion.setImporte(new BigDecimal(model.getValueAt(c, 2).toString()));
                 impuesto.getRetenciones().add(retencion);
             }
 
-            if(model.getValueAt(c,0) == "Traslado") {
+            if (model.getValueAt(c, 0) == "Traslado") {
                 Traslado traslado = new Traslado();
                 traslado.setImpuesto(model.getValueAt(c, 1).toString());
                 traslado.setImporte(new BigDecimal(model.getValueAt(c, 2).toString()));
@@ -497,7 +470,7 @@ public class ImpuestosPanel extends javax.swing.JPanel {
 
         } //for
 
-        if(impuesto != null) {
+        if (impuesto != null) {
             impuesto.setTotalImpuestosRetenidos(BigDecimal.valueOf(totRetenciones));
             impuesto.setTotalImpuestosTrasladados(BigDecimal.valueOf(totTraslados));
         }
@@ -508,12 +481,6 @@ public class ImpuestosPanel extends javax.swing.JPanel {
     public void setImpuesto(Impuesto impuesto) {
         this.impuesto = impuesto;
     }
-
-
-
-
-
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnLimpiar;

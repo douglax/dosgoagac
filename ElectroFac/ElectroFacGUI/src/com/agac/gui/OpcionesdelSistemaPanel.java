@@ -31,6 +31,13 @@ final class OpcionesdelSistemaPanel extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         txtISR = new javax.swing.JTextField();
         txtIEPS = new javax.swing.JTextField();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
+        txtLocalidad = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        txtMunicipio = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        txtEstado = new javax.swing.JTextField();
 
         org.openide.awt.Mnemonics.setLocalizedText(jLabel1, org.openide.util.NbBundle.getMessage(OpcionesdelSistemaPanel.class, "OpcionesdelSistemaPanel.jLabel1.text")); // NOI18N
 
@@ -58,6 +65,60 @@ final class OpcionesdelSistemaPanel extends javax.swing.JPanel {
         txtIEPS.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         txtIEPS.setText(org.openide.util.NbBundle.getMessage(OpcionesdelSistemaPanel.class, "OpcionesdelSistemaPanel.txtIEPS.text")); // NOI18N
 
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(OpcionesdelSistemaPanel.class, "OpcionesdelSistemaPanel.jPanel1.border.title"))); // NOI18N
+
+        org.openide.awt.Mnemonics.setLocalizedText(jLabel4, org.openide.util.NbBundle.getMessage(OpcionesdelSistemaPanel.class, "OpcionesdelSistemaPanel.jLabel4.text")); // NOI18N
+
+        txtLocalidad.setText(org.openide.util.NbBundle.getMessage(OpcionesdelSistemaPanel.class, "OpcionesdelSistemaPanel.txtLocalidad.text")); // NOI18N
+
+        org.openide.awt.Mnemonics.setLocalizedText(jLabel5, org.openide.util.NbBundle.getMessage(OpcionesdelSistemaPanel.class, "OpcionesdelSistemaPanel.jLabel5.text")); // NOI18N
+
+        txtMunicipio.setText(org.openide.util.NbBundle.getMessage(OpcionesdelSistemaPanel.class, "OpcionesdelSistemaPanel.txtMunicipio.text")); // NOI18N
+
+        org.openide.awt.Mnemonics.setLocalizedText(jLabel6, org.openide.util.NbBundle.getMessage(OpcionesdelSistemaPanel.class, "OpcionesdelSistemaPanel.jLabel6.text")); // NOI18N
+
+        txtEstado.setText(org.openide.util.NbBundle.getMessage(OpcionesdelSistemaPanel.class, "OpcionesdelSistemaPanel.txtEstado.text")); // NOI18N
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtLocalidad, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(jLabel6)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                            .addComponent(txtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                            .addComponent(jLabel5)
+                            .addGap(18, 18, 18)
+                            .addComponent(txtMunicipio, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(101, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(txtLocalidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(txtMunicipio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(txtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -65,15 +126,18 @@ final class OpcionesdelSistemaPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel2))
-                .addGap(108, 108, 108)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtIEPS, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(txtISR, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(txtIVA, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE))
-                .addContainerGap(286, Short.MAX_VALUE))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel2))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtIEPS)
+                            .addComponent(txtISR)
+                            .addComponent(txtIVA, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -84,13 +148,15 @@ final class OpcionesdelSistemaPanel extends javax.swing.JPanel {
                     .addComponent(txtIVA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtISR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
+                    .addComponent(jLabel2)
+                    .addComponent(txtISR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtIEPS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
-                .addContainerGap(230, Short.MAX_VALUE))
+                    .addComponent(jLabel3)
+                    .addComponent(txtIEPS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(101, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -118,6 +184,12 @@ final class OpcionesdelSistemaPanel extends javax.swing.JPanel {
         txtIVA.setText(NbPreferences.forModule(OpcionesdelSistemaPanel.class).get("IVA","0.16"));
         txtISR.setText(NbPreferences.forModule(OpcionesdelSistemaPanel.class).get("ISR","0.30"));
         txtIEPS.setText(NbPreferences.forModule(OpcionesdelSistemaPanel.class).get("IEPS","0.50"));
+        txtLocalidad.setText(
+                NbPreferences.forModule(OpcionesdelSistemaPanel.class).get("LOCALIDAD", ""));
+        txtMunicipio.setText(
+                NbPreferences.forModule(OpcionesdelSistemaPanel.class).get("MUNICIPIO", ""));
+        txtEstado.setText(
+                NbPreferences.forModule(OpcionesdelSistemaPanel.class).get("ESTADO", ""));
 
     }
 
@@ -137,6 +209,9 @@ final class OpcionesdelSistemaPanel extends javax.swing.JPanel {
         NbPreferences.forModule(OpcionesdelSistemaPanel.class).put("IVA", txtIVA.getText());
         NbPreferences.forModule(OpcionesdelSistemaPanel.class).put("ISR", txtISR.getText());
         NbPreferences.forModule(OpcionesdelSistemaPanel.class).put("IEPS", txtIEPS.getText());
+        NbPreferences.forModule(OpcionesdelSistemaPanel.class).put("LOCALIDAD", txtLocalidad.getText());
+        NbPreferences.forModule(OpcionesdelSistemaPanel.class).put("MUNICIPIO", txtMunicipio.getText());
+        NbPreferences.forModule(OpcionesdelSistemaPanel.class).put("ESTADO", txtEstado.getText());
 
     }
 
@@ -148,8 +223,15 @@ final class OpcionesdelSistemaPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JTextField txtEstado;
     private javax.swing.JTextField txtIEPS;
     private javax.swing.JTextField txtISR;
     private javax.swing.JTextField txtIVA;
+    private javax.swing.JTextField txtLocalidad;
+    private javax.swing.JTextField txtMunicipio;
     // End of variables declaration//GEN-END:variables
 }

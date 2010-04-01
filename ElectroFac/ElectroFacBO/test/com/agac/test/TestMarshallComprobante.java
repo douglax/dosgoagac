@@ -20,6 +20,7 @@ import com.agac.bo.Impuesto;
 import com.agac.bo.Retencion;
 import com.agac.bo.Traslado;
 import com.agac.bo.Complemento;
+import com.agac.bo.Serie;
 import com.agac.services.DbServices;
 import java.awt.FileDialog;
 import java.io.File;
@@ -27,6 +28,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.StringWriter;
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.security.GeneralSecurityException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
@@ -65,14 +67,14 @@ public class TestMarshallComprobante {
         c.setCertificado("XYZ");
         c.setCondicionesDePago("Efectivo");
         c.setDescuento(new BigDecimal(0.23));
-        c.setFolio("XYZ");
+        c.setFolio("5");
         c.setFormaDePago("Pago en una sola exibicion");
         c.setMetodoDePago("tarjetazo");
         c.setMotivoDescuento("XYZ");
         c.setNoAprobacion(123);
         c.setNoCertificado("XYZ");
         c.setSello("EEE");
-        c.setSerie("321321321321");
+        c.setSerie("A");
         c.setTipoDeComprobante("INGRESO");
         Emisor e = c.getEmisor();
         e.setNombre("EMPRESA XYZ");
@@ -101,6 +103,14 @@ public class TestMarshallComprobante {
         uf.setPais("Mexico");
         uf.setReferencia("Entre calle X y calle Y");
 
+        Serie s = new Serie();
+        s.setAnoAprob(2010);
+        s.setFolioInicial(new BigInteger("1"));
+        s.setFolioFinal(new BigInteger("1000"));
+        s.setNumAutorización("123");
+        s.setNumSerie("A");
+        e.setSeries(new ArrayList<Serie>());
+        e.getSeries().add(s);
         Receptor r = c.getReceptor();
         r.setNombre("Cliente XYZ");
         r.setRfc("ABCD010101AAA");
@@ -177,11 +187,13 @@ public class TestMarshallComprobante {
     @Test
     public void testJpa() {
         try {
-            DbServices.saveObject(c, true);
             
+            DbServices.saveObject(c, true);            
             List<Comprobante> comp = DbServices.getListWithParameters(
                     "Select c from Comprobante c where c.emisor = ?1", c.getEmisor());
             System.out.println(comp);
+            int folio = DbServices.getSiguienteFolio(c.getEmisor(), c.getEmisor().getSeries().get(0));
+            System.out.println(folio);
             DbServices.closeDbServices();
         } catch (Exception ex) {
             Logger.getLogger(TestMarshallComprobante.class.getName()).log(Level.SEVERE, null, ex);

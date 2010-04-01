@@ -35,7 +35,8 @@ public class ComprobanteNodeFactory extends ChildFactory<Comprobante> {
     @Override
     protected Node createNodeForKey(Comprobante t) {
         AbstractNode an = new AbstractNode(Children.LEAF, Lookups.singleton(t));
-        an.setDisplayName(t.getSerie() + " - " + t.getFolio());
+        String nombre = t.getAnoAprobacion() + t.getSerie() + t.getFolio();
+        an.setDisplayName(nombre);
         an.setIconBaseWithExtension("com/agac/gui/resourses/Comprobante24.png");
         return an;
     }
