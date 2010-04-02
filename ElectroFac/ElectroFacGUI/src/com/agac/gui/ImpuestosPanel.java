@@ -18,6 +18,8 @@ import java.util.ArrayList;
 import java.util.prefs.PreferenceChangeEvent;
 import java.util.prefs.PreferenceChangeListener;
 import java.util.prefs.Preferences;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
 import org.openide.util.NbPreferences;
 
@@ -30,6 +32,9 @@ public class ImpuestosPanel extends javax.swing.JPanel {
     /** Creates new form InformacionAduaneraPanel */
     public ImpuestosPanel(BigDecimal subtotal) {
         initComponents();
+
+        txtImporte.getDocument().addDocumentListener(listenDouble);
+
 
         pref.addPreferenceChangeListener(new PreferenceChangeListener() {
 
@@ -66,6 +71,8 @@ public class ImpuestosPanel extends javax.swing.JPanel {
 
         initComponents();
 
+
+        txtImporte.getDocument().addDocumentListener(listenDouble);
 
         pref.addPreferenceChangeListener(new PreferenceChangeListener() {
 
@@ -481,6 +488,38 @@ public class ImpuestosPanel extends javax.swing.JPanel {
     public void setImpuesto(Impuesto impuesto) {
         this.impuesto = impuesto;
     }
+
+
+    DocumentListener listenDouble = new DocumentListener() {
+
+        public void insertUpdate(DocumentEvent event){
+            validar();
+        }
+
+        public void removeUpdate(DocumentEvent event) {
+            validar();
+        }
+
+        public void changedUpdate(DocumentEvent event) {
+
+        }
+
+        public void validar() {
+            try {
+                Double test = Double.parseDouble(txtImporte.getText().trim());
+            }
+            catch (NumberFormatException e) {
+                // mensaje si tiene formato erroneo
+
+                java.awt.Toolkit toolkit = java.awt.Toolkit.getDefaultToolkit();
+                toolkit.beep();
+            }
+
+
+        }
+
+    };
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnLimpiar;
