@@ -14,6 +14,7 @@ import com.agac.bo.Impuesto;
 import com.agac.bo.Retencion;
 import com.agac.bo.Traslado;
 import java.awt.Color;
+import java.awt.Font;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.prefs.PreferenceChangeEvent;
@@ -34,8 +35,8 @@ public class ImpuestosPanel extends javax.swing.JPanel {
     public ImpuestosPanel(BigDecimal subtotal) {
         initComponents();
 
-        txtImporte.getDocument().addDocumentListener(listenDouble);
-
+        txtImporte.getDocument().addDocumentListener(listenImporte);
+        txtTasa.getDocument().addDocumentListener(listenTasa);
 
         pref.addPreferenceChangeListener(new PreferenceChangeListener() {
 
@@ -73,7 +74,8 @@ public class ImpuestosPanel extends javax.swing.JPanel {
         initComponents();
 
 
-        txtImporte.getDocument().addDocumentListener(listenDouble);
+        txtImporte.getDocument().addDocumentListener(listenImporte);
+        txtTasa.getDocument().addDocumentListener(listenTasa);
 
         pref.addPreferenceChangeListener(new PreferenceChangeListener() {
 
@@ -200,8 +202,18 @@ public class ImpuestosPanel extends javax.swing.JPanel {
 
         txtImporte.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         txtImporte.setText(org.openide.util.NbBundle.getMessage(ImpuestosPanel.class, "ImpuestosPanel.txtImporte.text")); // NOI18N
+        txtImporte.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtImporteFocusLost(evt);
+            }
+        });
 
         txtTasa.setText(org.openide.util.NbBundle.getMessage(ImpuestosPanel.class, "ImpuestosPanel.txtTasa.text")); // NOI18N
+        txtTasa.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtTasaFocusLost(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -445,6 +457,21 @@ public class ImpuestosPanel extends javax.swing.JPanel {
 
         //this.impuesto = null;
     }//GEN-LAST:event_btnLimpiarActionPerformed
+
+    private void txtImporteFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtImporteFocusLost
+        // TODO add your handling code here:
+        listenImporte.insertUpdate(null);
+        
+
+    }//GEN-LAST:event_txtImporteFocusLost
+
+    private void txtTasaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtTasaFocusLost
+        // TODO add your handling code here:
+                listenTasa.insertUpdate(null);
+    }//GEN-LAST:event_txtTasaFocusLost
+
+
+
     private static Double totRetenciones = 0.0;
     private static Double totTraslados = 0.0;
     private Impuesto impuesto = new Impuesto();
@@ -491,7 +518,7 @@ public class ImpuestosPanel extends javax.swing.JPanel {
     }
 
 
-    DocumentListener listenDouble = new DocumentListener() {
+    DocumentListener listenImporte = new DocumentListener() {
 
         @Override
         public void insertUpdate(DocumentEvent event){
@@ -511,6 +538,15 @@ public class ImpuestosPanel extends javax.swing.JPanel {
         public void validar() {
             try {
                 Double test = Double.parseDouble(txtImporte.getText().trim());
+
+                //Tampoco se valen importes negativos
+                if(test<0)
+                    throw(new NumberFormatException());
+
+
+                txtImporte.setForeground(Color.black);
+                txtImporte.setFont(txtImporte.getFont().deriveFont(Font.PLAIN));
+                btnAdd.setEnabled(true);
             }
             catch (NumberFormatException e) {
                 // mensaje si tiene formato erroneo
@@ -519,16 +555,60 @@ public class ImpuestosPanel extends javax.swing.JPanel {
                 toolkit.beep();
                 System.out.println("Errrrror");
                 txtImporte.requestFocus();
-                txtImporte.setSelectionStart(0);
-                txtImporte.setSelectionEnd(txtImporte.getText().length());
-                txtImporte.setSelectionColor(Color.red);
-                txtImporte.setSelectionEnd(0);
+                txtImporte.setForeground(Color.red);
+                txtImporte.setFont(txtImporte.getFont().deriveFont(Font.BOLD));
+                btnAdd.setEnabled(false);
             }
-
-
         }
 
     };
+
+
+
+    DocumentListener listenTasa = new DocumentListener() {
+
+        @Override
+        public void insertUpdate(DocumentEvent event){
+            validar();
+        }
+
+        @Override
+        public void removeUpdate(DocumentEvent event) {
+            validar();
+        }
+
+        @Override
+        public void changedUpdate(DocumentEvent event) {
+
+        }
+
+        public void validar() {
+            try {
+                Double test = Double.parseDouble(txtTasa.getText().trim());
+
+                //Tampoco se valen importes negativos
+                if(test<0)
+                    throw(new NumberFormatException());
+
+
+                txtTasa.setForeground(Color.black);
+                txtTasa.setFont(txtTasa.getFont().deriveFont(Font.PLAIN));
+                btnAdd.setEnabled(true);
+            }
+            catch (NumberFormatException e) {
+                // mensaje si tiene formato erroneo
+
+
+                txtTasa.requestFocus();
+                txtTasa.setForeground(Color.red);
+                txtTasa.setFont(txtTasa.getFont().deriveFont(Font.BOLD));
+                btnAdd.setEnabled(false);
+            }
+        }
+
+    };
+
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
