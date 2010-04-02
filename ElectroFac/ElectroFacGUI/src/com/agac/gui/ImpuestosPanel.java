@@ -13,6 +13,7 @@ package com.agac.gui;
 import com.agac.bo.Impuesto;
 import com.agac.bo.Retencion;
 import com.agac.bo.Traslado;
+import java.awt.Color;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.prefs.PreferenceChangeEvent;
@@ -492,14 +493,17 @@ public class ImpuestosPanel extends javax.swing.JPanel {
 
     DocumentListener listenDouble = new DocumentListener() {
 
+        @Override
         public void insertUpdate(DocumentEvent event){
             validar();
         }
 
+        @Override
         public void removeUpdate(DocumentEvent event) {
             validar();
         }
 
+        @Override
         public void changedUpdate(DocumentEvent event) {
 
         }
@@ -513,6 +517,12 @@ public class ImpuestosPanel extends javax.swing.JPanel {
 
                 java.awt.Toolkit toolkit = java.awt.Toolkit.getDefaultToolkit();
                 toolkit.beep();
+                System.out.println("Errrrror");
+                txtImporte.requestFocus();
+                txtImporte.setSelectionStart(0);
+                txtImporte.setSelectionEnd(txtImporte.getText().length());
+                txtImporte.setSelectionColor(Color.red);
+                txtImporte.setSelectionEnd(0);
             }
 
 
