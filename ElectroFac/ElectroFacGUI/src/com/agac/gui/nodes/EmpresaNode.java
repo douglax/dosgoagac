@@ -4,6 +4,7 @@
  */
 package com.agac.gui.nodes;
 
+import com.agac.bo.Comprobante;
 import com.agac.bo.Emisor;
 import com.agac.bo.Serie;
 import com.agac.gui.ComprobanteTopComponent;
@@ -120,7 +121,7 @@ public class EmpresaNode extends AbstractNode {
     private class CrearFactura extends AbstractAction {
 
         public CrearFactura() {
-            putValue(NAME, "Crear Factura");
+            putValue(NAME, "Crear Comprobante de Ingreso");
         }
 
         @Override
@@ -137,7 +138,10 @@ public class EmpresaNode extends AbstractNode {
 
                     @Override
                     public void run() {
+                        Comprobante c = new Comprobante();
+                        c.setTipoDeComprobante("Ingreso");
                         ComprobanteTopComponent ctc = new ComprobanteTopComponent();
+                        ctc.setComprobante(c);
                         ctc.setDisplayName("Nuevo Comprobante");
                         ctc.componentOpened();
                         ctc.getComprobante().setEmisor(getLookup().lookup(Emisor.class));

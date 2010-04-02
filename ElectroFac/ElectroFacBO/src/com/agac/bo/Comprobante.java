@@ -83,14 +83,14 @@ public class Comprobante implements Serializable {
     @XmlAttribute
     private String condicionesDePago;
     @XmlAttribute(required = true)
-    private BigDecimal subTotal;
+    private BigDecimal subTotal = new BigDecimal(0);
     @XmlAttribute
     @XmlJavaTypeAdapter(BigDecimalAdapter.class)
     private BigDecimal descuento;
     @XmlAttribute
     private String motivoDescuento;
     @XmlAttribute(required = true)
-    private BigDecimal total;
+    private BigDecimal total = new BigDecimal(0);;
     @XmlAttribute
     private String metodoDePago;
     @XmlAttribute(required = true)
@@ -307,6 +307,8 @@ public class Comprobante implements Serializable {
     }
 
     public BigDecimal getTotal() {
+        if(impuesto.getTotalImpuestosTrasladados() != null)
+            total = subTotal.add(impuesto.getTotalImpuestosTrasladados());
         return total;
     }
 

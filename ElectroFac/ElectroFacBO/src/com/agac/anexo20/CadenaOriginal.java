@@ -34,9 +34,15 @@ public class CadenaOriginal {
         calendar.setTime(c.getFecha());
         sb.append("|" + formatFecha(calendar));
         sb.append("|" + c.getNoAprobacion());
-        if (c.getFormaDePago() != null && c.getFormaDePago().trim().length() > 0 ) {
-            sb.append("|" + c.getFormaDePago().trim());
-        }
+        sb.append("|" + Integer.toString(c.getAnoAprobacion()));
+        sb.append("|" + c.getTipoDeComprobante().trim());
+        sb.append("|" + c.getFormaDePago().trim());
+        if(c.getCondicionesDePago() != null && c.getCondicionesDePago().trim().length() > 0)
+            sb.append("|" + c.getCondicionesDePago().trim());
+        sb.append("|" + formatBigDecimal(c.getSubTotal()));
+        if(c.getDescuento() != null )
+            sb.append("|" + formatBigDecimal(c.getDescuento()));
+        sb.append("|" + formatBigDecimal(c.getTotal()));
         //Emisor
         sb.append("|" + c.getEmisor().getRfc().trim());
         sb.append("|" + c.getEmisor().getNombre().trim());
