@@ -12,10 +12,16 @@ package com.agac.gui;
 
 import com.agac.bo.Concepto;
 import com.agac.bo.Parte;
+import java.awt.Color;
+import java.awt.Font;
 import java.util.Vector;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
 import org.openide.DialogDescriptor;
 import org.openide.DialogDisplayer;
+import org.openide.NotifyDescriptor;
+import org.openide.NotifyDescriptor.Message;
 
 /**
  *
@@ -26,6 +32,10 @@ public class PartesPanel extends javax.swing.JPanel {
     /** Creates new form PartesPanel */
     public PartesPanel() {
         initComponents();
+
+        txtCantidad.getDocument().addDocumentListener(listenCantidad);
+        txtPrecio.getDocument().addDocumentListener(listenPrecio);
+
     }
 
     /** This method is called from within the constructor to
@@ -56,6 +66,12 @@ public class PartesPanel extends javax.swing.JPanel {
         org.jdesktop.beansbinding.Binding binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, this, org.jdesktop.beansbinding.ELProperty.create("${parte.cantidad}"), txtCantidad, org.jdesktop.beansbinding.BeanProperty.create("text"));
         bindingGroup.addBinding(binding);
 
+        txtCantidad.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtCantidadFocusLost(evt);
+            }
+        });
+
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Pieza", "Caja", "Consumo", "Gramos", "Kilos", "Litros", "Mililitros", "Paquete", "Servicio" }));
 
         binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, this, org.jdesktop.beansbinding.ELProperty.create("${parte.unidad}"), jComboBox1, org.jdesktop.beansbinding.BeanProperty.create("selectedItem"));
@@ -69,6 +85,12 @@ public class PartesPanel extends javax.swing.JPanel {
 
         binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, this, org.jdesktop.beansbinding.ELProperty.create("${parte.valorUnitario}"), txtPrecio, org.jdesktop.beansbinding.BeanProperty.create("text"));
         bindingGroup.addBinding(binding);
+
+        txtPrecio.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtPrecioFocusLost(evt);
+            }
+        });
 
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/agac/gui/resourses/add.png"))); // NOI18N
         jButton4.setText(org.openide.util.NbBundle.getMessage(PartesPanel.class, "PartesPanel.jButton4.text")); // NOI18N
@@ -139,7 +161,7 @@ public class PartesPanel extends javax.swing.JPanel {
                         .addComponent(jButton1))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(11, 11, 11)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 660, Short.MAX_VALUE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 678, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -149,7 +171,7 @@ public class PartesPanel extends javax.swing.JPanel {
                                 .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
+                                .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel13)
                                 .addGap(36, 36, 36)))
@@ -168,7 +190,7 @@ public class PartesPanel extends javax.swing.JPanel {
                                 .addGap(87, 87, 87)
                                 .addComponent(jLabel15))
                             .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 299, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 300, Short.MAX_VALUE)
                                 .addComponent(jLabel16)
                                 .addGap(77, 77, 77)))))
                 .addContainerGap())
@@ -202,23 +224,30 @@ public class PartesPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-        Object[] row = new Object[6];
-        parte.setUnidad(jComboBox1.getSelectedItem().toString());
-        row[0] = parte.getCantidad();
-        row[1] = parte.getUnidad();
-        row[2] = parte.getDescripcion();
-        row[3] = parte.getNoIdentificacion();
-        row[4] = parte.getValorUnitario();
-        row[5] = parte.getImporte();
-        model.addRow(row);
-        txtCantidad.setText("");
-        txtDescripcion.setText("");
-        txtIdentificador.setText("");
-        txtPrecio.setText("");
-        txtCantidad.requestFocus();
-        concepto.getParte().add(parte);
-        parte = new Parte();
+
+        if (validaCampos()) {
+            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+            Object[] row = new Object[6];
+            parte.setUnidad(jComboBox1.getSelectedItem().toString());
+            row[0] = parte.getCantidad();
+            row[1] = parte.getUnidad();
+            row[2] = parte.getDescripcion();
+            row[3] = parte.getNoIdentificacion();
+            row[4] = parte.getValorUnitario();
+            row[5] = parte.getImporte();
+            model.addRow(row);
+            txtCantidad.setText("");
+            txtDescripcion.setText("");
+            txtIdentificador.setText("");
+            txtPrecio.setText("");
+            txtCantidad.requestFocus();
+            concepto.getParte().add(parte);
+            parte = new Parte();
+        } else {
+            Message msg = new NotifyDescriptor.Message("Uno ó mas datos son requeridos para continuar");
+            Object notify = DialogDisplayer.getDefault().notify(msg);
+
+        }
 }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton4KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButton4KeyPressed
@@ -231,6 +260,19 @@ public class PartesPanel extends javax.swing.JPanel {
                 "Información Aduanera", true, null);
         DialogDisplayer.getDefault().notify(dd);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void txtCantidadFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCantidadFocusLost
+        // TODO add your handling code here:
+
+        listenCantidad.insertUpdate(null);
+
+    }//GEN-LAST:event_txtCantidadFocusLost
+
+    private void txtPrecioFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPrecioFocusLost
+        // TODO add your handling code here:
+
+        listenPrecio.insertUpdate(null);
+    }//GEN-LAST:event_txtPrecioFocusLost
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton4;
@@ -276,5 +318,90 @@ public class PartesPanel extends javax.swing.JPanel {
 
     public void setParte(Parte parte) {
         this.parte = parte;
+    }
+    DocumentListener listenCantidad = new DocumentListener() {
+
+        @Override
+        public void insertUpdate(DocumentEvent event) {
+            validar();
+        }
+
+        @Override
+        public void removeUpdate(DocumentEvent event) {
+            validar();
+        }
+
+        @Override
+        public void changedUpdate(DocumentEvent event) {
+        }
+
+        public void validar() {
+            try {
+                Double test = Double.parseDouble(txtCantidad.getText().trim());
+
+                //Tampoco se valen cantidades negativas
+                if (test < 0) {
+                    throw (new NumberFormatException());
+                }
+
+
+                txtCantidad.setForeground(Color.black);
+                txtCantidad.setFont(txtCantidad.getFont().deriveFont(Font.PLAIN));
+                jButton4.setEnabled(true);
+            } catch (NumberFormatException e) {
+
+                txtCantidad.requestFocus();
+                txtCantidad.setForeground(Color.red);
+                txtCantidad.setFont(txtCantidad.getFont().deriveFont(Font.BOLD));
+                jButton4.setEnabled(false);
+            }
+        }
+    };
+    DocumentListener listenPrecio = new DocumentListener() {
+
+        @Override
+        public void insertUpdate(DocumentEvent event) {
+            validar();
+        }
+
+        @Override
+        public void removeUpdate(DocumentEvent event) {
+            validar();
+        }
+
+        @Override
+        public void changedUpdate(DocumentEvent event) {
+        }
+
+        public void validar() {
+            try {
+                Double test = Double.parseDouble(txtPrecio.getText().trim());
+
+                //Tampoco se valen precios negativos
+                if (test < 0) {
+                    throw (new NumberFormatException());
+                }
+
+
+                txtPrecio.setForeground(Color.black);
+                txtPrecio.setFont(txtPrecio.getFont().deriveFont(Font.PLAIN));
+                jButton4.setEnabled(true);
+            } catch (NumberFormatException e) {
+
+                txtPrecio.requestFocus();
+                txtPrecio.setForeground(Color.red);
+                txtPrecio.setFont(txtPrecio.getFont().deriveFont(Font.BOLD));
+                jButton4.setEnabled(false);
+            }
+        }
+    };
+
+    private boolean validaCampos() {
+
+        if (txtDescripcion.getText().trim().equals("")) {
+            return false;
+        } else {
+            return true;
+        }
     }
 }
