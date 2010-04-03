@@ -13,6 +13,10 @@ package com.agac.gui;
 import com.agac.bo.InformacionAduanera;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
+import org.openide.DialogDisplayer;
+import org.openide.NotifyDescriptor;
+import org.openide.NotifyDescriptor.Confirmation;
+import org.openide.NotifyDescriptor.Message;
 
 /**
  *
@@ -22,7 +26,17 @@ public class InformacionAduaneraPanel extends javax.swing.JPanel {
 
     /** Creates new form InformacionAduaneraPanel */
     public InformacionAduaneraPanel() {
-        initComponents();        
+        initComponents();
+    }
+
+    public boolean validaCampos() {
+
+
+        if ((txtNoDoc.getText().trim().equals("")) || (txtAduana.getText().trim().equals(""))) {
+            return false;
+        } else {
+            return true;
+        }
     }
 
     /** This method is called from within the constructor to
@@ -163,16 +177,26 @@ public class InformacionAduaneraPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        if (jXDatePicker1.getDate() == null) {
-            infoAduanera.setFecha(new java.sql.Date(System.currentTimeMillis()));
+
+        if (validaCampos()) {
+
+            if (jXDatePicker1.getDate() == null) {
+                infoAduanera.setFecha(new java.sql.Date(System.currentTimeMillis()));
+            } else {
+                infoAduanera.setFecha(new java.sql.Date(jXDatePicker1.getDate().getTime()));
+            }
+            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+            model.addRow(new Object[]{infoAduanera.getNumero(), infoAduanera.getFecha(), infoAduanera.getAduana()});
+            infoAduaneraList.add(infoAduanera);
+            setInfoAduanera(new InformacionAduanera());
+            txtNoDoc.requestFocus();
         } else {
-            infoAduanera.setFecha(new java.sql.Date(jXDatePicker1.getDate().getTime()));
+
+            Message msg = new NotifyDescriptor.Message("Uno ó mas datos son requeridos para continuar");
+            DialogDisplayer.getDefault().notify(msg);
+
+
         }
-        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-        model.addRow(new Object[]{infoAduanera.getNumero(), infoAduanera.getFecha(), infoAduanera.getAduana()});
-        infoAduaneraList.add(infoAduanera);
-        setInfoAduanera(new InformacionAduanera());
-        txtNoDoc.requestFocus();
 }//GEN-LAST:event_jButton4ActionPerformed
     private InformacionAduanera infoAduanera = new InformacionAduanera();
 
@@ -181,7 +205,7 @@ public class InformacionAduaneraPanel extends javax.swing.JPanel {
     }
 
     public void setInfoAduanera(InformacionAduanera infoAduanera) {
-        this.infoAduanera = infoAduanera;        
+        this.infoAduanera = infoAduanera;
         firePropertyChange("infoAduanera", null, infoAduanera);
     }
     private List<InformacionAduanera> infoAduaneraList;
@@ -196,7 +220,7 @@ public class InformacionAduaneraPanel extends javax.swing.JPanel {
             DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
             for (InformacionAduanera info : infoAduaneraList) {
                 model.addRow(new Object[]{info.getNumero(), info.getFecha(),
-                    info.getAduana()});
+                            info.getAduana()});
             }
         }
     }
