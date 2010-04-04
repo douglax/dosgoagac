@@ -5,6 +5,7 @@ import com.agac.gui.resourses.TripleDES;
 import com.agac.services.DbServices;
 import java.awt.Color;
 import java.awt.FileDialog;
+import java.awt.Font;
 import java.awt.event.KeyEvent;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -15,6 +16,8 @@ import java.util.prefs.Preferences;
 import javax.swing.BorderFactory;
 import javax.swing.SwingUtilities;
 import javax.swing.border.Border;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import org.jdesktop.beansbinding.Converter;
 import org.netbeans.api.progress.ProgressHandle;
 import org.netbeans.api.progress.ProgressHandleFactory;
@@ -49,6 +52,17 @@ public final class EmisorTopComponent extends TopComponent implements PropertyCh
 
     public EmisorTopComponent() {
         initComponents();
+
+        txtCalle.getDocument().addDocumentListener(listenCalle);
+        txtNombre.getDocument().addDocumentListener(listenNombre);
+        txtRFC.getDocument().addDocumentListener(listenRFC);
+        txtMunicipio.getDocument().addDocumentListener(listenMpo);
+        txtEstado.getDocument().addDocumentListener(listenEstado);
+        txtPais.getDocument().addDocumentListener(listenPais);
+        txtCp.getDocument().addDocumentListener(listenCP);
+
+        
+
         setName(NbBundle.getMessage(EmisorTopComponent.class, "CTL_EmisorTopComponent"));
         setToolTipText(NbBundle.getMessage(EmisorTopComponent.class, "HINT_EmisorTopComponent"));
         setIcon(ImageUtilities.loadImage("com/agac/gui/resourses/filenew.png", true));
@@ -88,7 +102,6 @@ public final class EmisorTopComponent extends TopComponent implements PropertyCh
         txtNombre = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         txtRFC = new javax.swing.JTextField();
-        jButton3 = new javax.swing.JButton();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel3 = new javax.swing.JPanel();
         lblCalle = new javax.swing.JLabel();
@@ -150,7 +163,7 @@ public final class EmisorTopComponent extends TopComponent implements PropertyCh
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(EmisorTopComponent.class, "EmisorTopComponent.jPanel1.border.title"))); // NOI18N
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 11));
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel1.setLabelFor(txtNombre);
         org.openide.awt.Mnemonics.setLocalizedText(jLabel1, org.openide.util.NbBundle.getMessage(EmisorTopComponent.class, "EmisorTopComponent.jLabel1.text")); // NOI18N
 
@@ -168,13 +181,6 @@ public final class EmisorTopComponent extends TopComponent implements PropertyCh
         binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, this, org.jdesktop.beansbinding.ELProperty.create("${emisor.rfc}"), txtRFC, org.jdesktop.beansbinding.BeanProperty.create("text"));
         bindingGroup.addBinding(binding);
 
-        org.openide.awt.Mnemonics.setLocalizedText(jButton3, org.openide.util.NbBundle.getMessage(EmisorTopComponent.class, "EmisorTopComponent.jButton3.text")); // NOI18N
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -182,31 +188,24 @@ public final class EmisorTopComponent extends TopComponent implements PropertyCh
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2))
-                .addGap(18, 18, 18)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel1))
+                .addGap(27, 27, 27)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(txtNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 700, Short.MAX_VALUE)
-                        .addContainerGap())
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(txtRFC, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 439, Short.MAX_VALUE)
-                        .addComponent(jButton3)
-                        .addGap(72, 72, 72))))
+                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 698, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtRFC, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(10, 10, 10))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addGap(9, 9, 9)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(txtRFC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3))
+                    .addComponent(txtRFC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -214,10 +213,10 @@ public final class EmisorTopComponent extends TopComponent implements PropertyCh
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(EmisorTopComponent.class, "EmisorTopComponent.jPanel3.border.title"))); // NOI18N
 
-        lblCalle.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        lblCalle.setFont(new java.awt.Font("Tahoma", 1, 11));
         org.openide.awt.Mnemonics.setLocalizedText(lblCalle, org.openide.util.NbBundle.getMessage(EmisorTopComponent.class, "EmisorTopComponent.lblCalle.text")); // NOI18N
 
-        txtCalle.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        txtCalle.setFont(new java.awt.Font("Tahoma", 1, 11));
 
         binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, this, org.jdesktop.beansbinding.ELProperty.create("${emisor.domicilioFiscal.calle}"), txtCalle, org.jdesktop.beansbinding.BeanProperty.create("text"));
         bindingGroup.addBinding(binding);
@@ -307,14 +306,14 @@ public final class EmisorTopComponent extends TopComponent implements PropertyCh
                             .addComponent(jLabel21))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtCalle, javax.swing.GroupLayout.DEFAULT_SIZE, 674, Short.MAX_VALUE)
+                            .addComponent(txtCalle, javax.swing.GroupLayout.DEFAULT_SIZE, 698, Short.MAX_VALUE)
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(txtNoInterior, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel15)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(noExterior, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(txtColonia, javax.swing.GroupLayout.DEFAULT_SIZE, 674, Short.MAX_VALUE)
+                            .addComponent(txtColonia, javax.swing.GroupLayout.DEFAULT_SIZE, 698, Short.MAX_VALUE)
                             .addComponent(txtLocalidad, javax.swing.GroupLayout.PREFERRED_SIZE, 430, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 526, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -370,7 +369,7 @@ public final class EmisorTopComponent extends TopComponent implements PropertyCh
                         .addComponent(txtPais, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel22))
                     .addComponent(txtCp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(42, Short.MAX_VALUE))
+                .addContainerGap(53, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab(org.openide.util.NbBundle.getMessage(EmisorTopComponent.class, "EmisorTopComponent.jPanel3.TabConstraints.tabTitle"), jPanel3); // NOI18N
@@ -456,14 +455,14 @@ public final class EmisorTopComponent extends TopComponent implements PropertyCh
                                     .addComponent(jLabel29))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtCalleExp, javax.swing.GroupLayout.DEFAULT_SIZE, 674, Short.MAX_VALUE)
+                                    .addComponent(txtCalleExp, javax.swing.GroupLayout.DEFAULT_SIZE, 698, Short.MAX_VALUE)
                                     .addGroup(jPanel4Layout.createSequentialGroup()
                                         .addComponent(txtNoInteriorExp, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
                                         .addComponent(jLabel25)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(txtNoExteriorExp, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(txtColoniaExp, javax.swing.GroupLayout.DEFAULT_SIZE, 674, Short.MAX_VALUE)
+                                    .addComponent(txtColoniaExp, javax.swing.GroupLayout.DEFAULT_SIZE, 698, Short.MAX_VALUE)
                                     .addComponent(txtLocalidadExp, javax.swing.GroupLayout.PREFERRED_SIZE, 430, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 526, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(jPanel4Layout.createSequentialGroup()
@@ -523,7 +522,7 @@ public final class EmisorTopComponent extends TopComponent implements PropertyCh
                         .addComponent(jLabel32)
                         .addComponent(txtPais1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(txtCp1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(42, Short.MAX_VALUE))
+                .addContainerGap(53, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab(org.openide.util.NbBundle.getMessage(EmisorTopComponent.class, "EmisorTopComponent.jPanel4.TabConstraints.tabTitle"), jPanel4); // NOI18N
@@ -621,7 +620,7 @@ public final class EmisorTopComponent extends TopComponent implements PropertyCh
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.LEADING, 0, 0, Short.MAX_VALUE)
                         .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -632,7 +631,7 @@ public final class EmisorTopComponent extends TopComponent implements PropertyCh
                 .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 382, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
 
         jTabbedPane1.getAccessibleContext().setAccessibleName(org.openide.util.NbBundle.getMessage(EmisorTopComponent.class, "EmisorTopComponent.jTabbedPane1.AccessibleContext.accessibleName")); // NOI18N
@@ -675,15 +674,9 @@ public final class EmisorTopComponent extends TopComponent implements PropertyCh
             txtMunicipio.requestFocus();
     }//GEN-LAST:event_txtReferenciaExpKeyPressed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-        validaCampos();
-    }//GEN-LAST:event_jButton3ActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
@@ -751,36 +744,15 @@ public final class EmisorTopComponent extends TopComponent implements PropertyCh
 
     public boolean validaCampos() {
 
-        boolean valida = false;
+        boolean valida = true;
 
+        if (txtCalle.getText().trim().equals(""))  valida = false;
+        if (txtMunicipio.getText().trim().equals(""))  valida = false;
+        if (txtEstado.getText().trim().equals(""))  valida = false;
+        if (txtPais.getText().trim().equals(""))  valida = false;
+        if (txtCp.getText().trim().equals(""))  valida = false;
 
-
-
-
-
-        if (txtCalle.getText().trim().equals("")) {
-            valida = false;
-            lblCalle.setForeground(Color.red);
-
-            //txtCalle.setOpaque(true);
-            //txtCalle.setBackground(Color.GRAY);
-
-           
-
-// SwingUtilities.invokeLater(new Runnable() {
-//                        public void run() {
-//                            txtCalle.setBackground(Color.BLUE);
-//                        }
-//                    });
-
-        } else {
-            valida = true;
-            lblCalle.setForeground(Color.black);
-        }
-
-
-
-        return false;
+        return valida;
     } // validaCampos()
 
 
@@ -862,7 +834,12 @@ public final class EmisorTopComponent extends TopComponent implements PropertyCh
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
+        if (validaCampos()) {
         saveNode.enableSave(true);
+        } else {
+        saveNode.enableSave(false);
+        }
+
     }
 
     public Converter passWdConverter(){
@@ -956,4 +933,209 @@ public final class EmisorTopComponent extends TopComponent implements PropertyCh
             }
         }
     }
+
+
+   DocumentListener listenCalle = new DocumentListener() {
+
+        @Override
+        public void insertUpdate(DocumentEvent event){
+            validar();
+        }
+
+        @Override
+        public void removeUpdate(DocumentEvent event) {
+            validar();
+        }
+
+        @Override
+        public void changedUpdate(DocumentEvent event) {
+
+        }
+
+        public void validar() {
+
+            if(txtCalle.getText().trim().equals("")) {
+                txtCalle.setBackground(Color.YELLOW);
+            } else {
+                txtCalle.setBackground(txtColonia.getBackground());
+            }
+        }
+
+    };
+
+       DocumentListener listenNombre = new DocumentListener() {
+
+        @Override
+        public void insertUpdate(DocumentEvent event){
+            validar();
+        }
+
+        @Override
+        public void removeUpdate(DocumentEvent event) {
+            validar();
+        }
+
+        @Override
+        public void changedUpdate(DocumentEvent event) {
+
+        }
+
+        public void validar() {
+
+            if(txtNombre.getText().trim().equals("")) {
+                txtNombre.setBackground(Color.YELLOW);
+            } else {
+                txtNombre.setBackground(txtColonia.getBackground());
+            }
+        }
+
+    };
+
+       DocumentListener listenRFC = new DocumentListener() {
+
+        @Override
+        public void insertUpdate(DocumentEvent event){
+            validar();
+        }
+
+        @Override
+        public void removeUpdate(DocumentEvent event) {
+            validar();
+        }
+
+        @Override
+        public void changedUpdate(DocumentEvent event) {
+
+        }
+
+        public void validar() {
+
+            if(txtRFC.getText().trim().equals("")) {
+                txtRFC.setBackground(Color.YELLOW);
+            } else {
+                txtRFC.setBackground(txtColonia.getBackground());
+            }
+        }
+
+    };
+
+
+          DocumentListener listenMpo = new DocumentListener() {
+
+        @Override
+        public void insertUpdate(DocumentEvent event){
+            validar();
+        }
+
+        @Override
+        public void removeUpdate(DocumentEvent event) {
+            validar();
+        }
+
+        @Override
+        public void changedUpdate(DocumentEvent event) {
+
+        }
+
+        public void validar() {
+
+            if(txtMunicipio.getText().trim().equals("")) {
+                txtMunicipio.setBackground(Color.YELLOW);
+            } else {
+                txtMunicipio.setBackground(txtColonia.getBackground());
+            }
+        }
+
+    };
+
+
+          DocumentListener listenEstado = new DocumentListener() {
+
+        @Override
+        public void insertUpdate(DocumentEvent event){
+            validar();
+        }
+
+        @Override
+        public void removeUpdate(DocumentEvent event) {
+            validar();
+        }
+
+        @Override
+        public void changedUpdate(DocumentEvent event) {
+
+        }
+
+        public void validar() {
+
+            if(txtEstado.getText().trim().equals("")) {
+                txtEstado.setBackground(Color.YELLOW);
+            } else {
+                txtEstado.setBackground(txtColonia.getBackground());
+            }
+        }
+
+    };
+
+
+          DocumentListener listenPais = new DocumentListener() {
+
+        @Override
+        public void insertUpdate(DocumentEvent event){
+            validar();
+        }
+
+        @Override
+        public void removeUpdate(DocumentEvent event) {
+            validar();
+        }
+
+        @Override
+        public void changedUpdate(DocumentEvent event) {
+
+        }
+
+        public void validar() {
+
+            if(txtPais.getText().trim().equals("")) {
+                txtPais.setBackground(Color.YELLOW);
+            } else {
+                txtPais.setBackground(txtColonia.getBackground());
+            }
+        }
+
+    };
+
+
+
+    DocumentListener listenCP = new DocumentListener() {
+
+        @Override
+        public void insertUpdate(DocumentEvent event){
+            validar();
+        }
+
+        @Override
+        public void removeUpdate(DocumentEvent event) {
+            validar();
+        }
+
+        @Override
+        public void changedUpdate(DocumentEvent event) {
+
+        }
+
+        public void validar() {
+
+            if(txtCp.getText().trim().equals("")) {
+                txtCp.setBackground(Color.YELLOW);
+            } else {
+                txtCp.setBackground(txtColonia.getBackground());
+            }
+        }
+
+    };
+
+
+
 }
