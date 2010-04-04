@@ -60,6 +60,7 @@ public final class EmisorTopComponent extends TopComponent implements PropertyCh
         txtEstado.getDocument().addDocumentListener(listenEstado);
         txtPais.getDocument().addDocumentListener(listenPais);
         txtCp.getDocument().addDocumentListener(listenCP);
+        txtPasswd.getDocument().addDocumentListener(listenPWD);
 
         
 
@@ -650,6 +651,7 @@ public final class EmisorTopComponent extends TopComponent implements PropertyCh
         fd.setVisible(true);
         if (fd.getFile() != null) {
             txtCer.setText(fd.getDirectory() + fd.getFile());
+            certOK = true;
         }
 
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -661,6 +663,7 @@ public final class EmisorTopComponent extends TopComponent implements PropertyCh
         fd.setVisible(true);
         if (fd.getFile() != null) {
             txtKey.setText(fd.getDirectory() + fd.getFile());
+            keyOK = true;
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -741,6 +744,8 @@ public final class EmisorTopComponent extends TopComponent implements PropertyCh
 
 
 
+    private boolean certOK = false;
+    private boolean keyOK = false;
 
     public boolean validaCampos() {
 
@@ -751,6 +756,9 @@ public final class EmisorTopComponent extends TopComponent implements PropertyCh
         if (txtEstado.getText().trim().equals(""))  valida = false;
         if (txtPais.getText().trim().equals(""))  valida = false;
         if (txtCp.getText().trim().equals(""))  valida = false;
+        if (txtPasswd.getPassword().length==0) valida = false;
+        if (!certOK) valida = false;
+        if (!keyOK) valida = false;
 
         return valida;
     } // validaCampos()
@@ -1137,5 +1145,34 @@ public final class EmisorTopComponent extends TopComponent implements PropertyCh
     };
 
 
+    DocumentListener listenPWD = new DocumentListener() {
+
+        @Override
+        public void insertUpdate(DocumentEvent event){
+            validar();
+        }
+
+        @Override
+        public void removeUpdate(DocumentEvent event) {
+            validar();
+        }
+
+        @Override
+        public void changedUpdate(DocumentEvent event) {
+
+        }
+
+        public void validar() {
+
+
+
+            if(txtPasswd.getPassword().length == 0   ) {
+                txtPasswd.setBackground(Color.YELLOW);
+            } else {
+                txtPasswd.setBackground(txtColonia.getBackground());
+            }
+        }
+
+    };
 
 }
