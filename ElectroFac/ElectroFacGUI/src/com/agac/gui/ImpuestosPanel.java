@@ -79,6 +79,7 @@ public class ImpuestosPanel extends javax.swing.JPanel {
 
         pref.addPreferenceChangeListener(new PreferenceChangeListener() {
 
+            @Override
             public void preferenceChange(PreferenceChangeEvent evt) {
                 if (evt.getKey().equals("IVA")) {
                     IVAdefault = evt.getNewValue();
@@ -351,9 +352,9 @@ public class ImpuestosPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
     //Preferences pref = Preferences.userNodeForPackage(OpcionesdelSistemaPanel.class);
     Preferences pref = NbPreferences.forModule(OpcionesdelSistemaPanel.class);
-    String IVAdefault = pref.get("IVA", "");
-    String ISRdefault = pref.get("ISR", "");
-    String IEPSdefault = pref.get("IEPS", "");
+    String IVAdefault = pref.get("IVA", "0.0");
+    String ISRdefault = pref.get("ISR", "0.0");
+    String IEPSdefault = pref.get("IEPS", "0.0");
 
 //  *****************************************************************
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
