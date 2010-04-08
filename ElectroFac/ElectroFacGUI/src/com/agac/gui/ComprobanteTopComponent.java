@@ -1529,7 +1529,23 @@ public final class ComprobanteTopComponent extends TopComponent {
         }
 
 
-        if (optParcial.isSelected() && parcial == false) valida = false;
+        if (optParcial.isSelected()) {
+            try {
+                int x = Integer.parseInt(txtParcialidad.getText().trim());
+                            } catch (NumberFormatException nfe) {
+                valida = false;
+                listenParcial.insertUpdate(null);
+            }
+        }
+
+        if (optParcial.isSelected()) {
+            try {
+                int x = Integer.parseInt(txtParcialidadTotales.getText().trim());
+                            } catch (NumberFormatException nfe) {
+                valida = false;
+                listenParcialTotal.insertUpdate(null);
+            }
+        }
 
 
         // Verifica si se han ingresado conceptos
