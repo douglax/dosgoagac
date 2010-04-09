@@ -66,9 +66,6 @@ public final class ComprobanteTopComponent extends TopComponent {
     public ComprobanteTopComponent() {
         initComponents();
 
-
-        txtRazonSocial.getDocument().addDocumentListener(listenRazonSocial);
-        txtRFC.getDocument().addDocumentListener(listenRFC);
         txtParcialidad.getDocument().addDocumentListener(listenParcial);
         txtParcialidadTotales.getDocument().addDocumentListener(listenParcialTotal);
 
@@ -86,7 +83,7 @@ public final class ComprobanteTopComponent extends TopComponent {
             Exceptions.printStackTrace(ex);
         }
         jPanel1.setDropTarget(dp);
-        jTable1.getColumnModel().getColumn(3).setPreferredWidth(250);        
+        jTable1.getColumnModel().getColumn(3).setPreferredWidth(250);
     }
 
     /** This method is called from within the constructor to
@@ -1072,13 +1069,22 @@ public final class ComprobanteTopComponent extends TopComponent {
             ImpuestosPanel impPanel = new ImpuestosPanel(comprobante.getSubTotal());
             DialogDescriptor d2 = new DialogDescriptor(impPanel, "Impuestos", true, null);
             DialogDisplayer.getDefault().notify(d2);
-            comprobante.setImpuesto(impPanel.getImpuesto());
+            //if (d2.)
+
+            Object result = DialogDisplayer.getDefault().notify(d2);
+            if (NotifyDescriptor.OK_OPTION.equals(result)) {
+                comprobante.setImpuesto(impPanel.getImpuesto());
+            }
 
         } else {
             ImpuestosPanel impPanel = new ImpuestosPanel(comprobante.getSubTotal(), comprobante.getImpuesto());
             DialogDescriptor d2 = new DialogDescriptor(impPanel, "Impuestos", true, null);
             DialogDisplayer.getDefault().notify(d2);
-            comprobante.setImpuesto(impPanel.getImpuesto());
+            //comprobante.setImpuesto(impPanel.getImpuesto());
+            Object result = DialogDisplayer.getDefault().notify(d2);
+            if (NotifyDescriptor.OK_OPTION.equals(result)) {
+                comprobante.setImpuesto(impPanel.getImpuesto());
+            }
         }
 
         NumberFormat nf = NumberFormat.getCurrencyInstance();
@@ -1096,6 +1102,7 @@ public final class ComprobanteTopComponent extends TopComponent {
             txtParcialidad.setEnabled(true);
             txtParcialidadTotales.setEnabled(true);
         }
+        parcial = true;
     }//GEN-LAST:event_optUnPagoActionPerformed
 
     private void optParcialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_optParcialActionPerformed
@@ -1103,10 +1110,24 @@ public final class ComprobanteTopComponent extends TopComponent {
         if (optUnPago.isSelected()) {
             txtParcialidad.setEnabled(false);
             txtParcialidadTotales.setEnabled(false);
+            parcial = true;
         } else {
             txtParcialidad.setEnabled(true);
             txtParcialidadTotales.setEnabled(true);
+            
+                try {
+                    int x = Integer.parseInt(txtParcialidad.getText().trim());
+                    x = Integer.parseInt(txtParcialidadTotales.getText().trim());
+                    parcial = true;
+                } catch (NumberFormatException nfe) {
+                    parcial = false;
+                    //listenParcial.insertUpdate(null);
+                }
         }
+
+
+
+
     }//GEN-LAST:event_optParcialActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
@@ -1119,8 +1140,8 @@ public final class ComprobanteTopComponent extends TopComponent {
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void cmbSeriesItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbSeriesItemStateChanged
-        Serie serie = (Serie)cmbSeries.getSelectedItem();
-        if(serie != null){
+        Serie serie = (Serie) cmbSeries.getSelectedItem();
+        if (serie != null) {
             int folio = DbServices.getSiguienteFolio(comprobante.getEmisor(), serie);
             folio++;
             comprobante.setFolio(Integer.toString(folio));
@@ -1147,7 +1168,7 @@ public final class ComprobanteTopComponent extends TopComponent {
 
     private void chkDescuentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkDescuentoActionPerformed
         // TODO add your handling code here:
-        if(chkDescuento.isSelected()) {
+        if (chkDescuento.isSelected()) {
             txtDescImporte.setEnabled(true);
             cboMotivoDesc.setEnabled(true);
         } else {
@@ -1155,8 +1176,6 @@ public final class ComprobanteTopComponent extends TopComponent {
             cboMotivoDesc.setEnabled(false);
         }
     }//GEN-LAST:event_chkDescuentoActionPerformed
-
-    
     // <editor-fold defaultstate="collapsed" desc="Variables de Instancia">
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTabbedPane TabOpciones;
@@ -1298,7 +1317,7 @@ public final class ComprobanteTopComponent extends TopComponent {
             }
         });
         setActivatedNodes(new Node[]{saveNode = new NodeForSave()});
-        
+
     }
 
     @Override
@@ -1314,6 +1333,7 @@ public final class ComprobanteTopComponent extends TopComponent {
         singleton.readPropertiesImpl(p);
         return singleton;
     }
+
     public Converter getConverter() {
         return new Converter() {
 
@@ -1380,7 +1400,6 @@ public final class ComprobanteTopComponent extends TopComponent {
         }
     }
     //</editor-fold>
-
     private Comprobante comprobante = new Comprobante();
 
     public Comprobante getComprobante() {
@@ -1466,7 +1485,7 @@ public final class ComprobanteTopComponent extends TopComponent {
                                                     comprobante.getEmisor().getRutaLlave(),
                                                     new TripleDES().desencriptar(
                                                     comprobante.getEmisor().getPasswd()));
-                                            comprobante.setSello(sd.generar(cadena));                                            
+                                            comprobante.setSello(sd.generar(cadena));
                                             comprobante = DbServices.saveObject(comprobante, true);
                                             comprobante.addPropertyChangeListener(new PropertyChangeListener() {
 
@@ -1505,22 +1524,24 @@ public final class ComprobanteTopComponent extends TopComponent {
         }
     }
     //</editor-fold>
-
-
     private boolean descuentoOK = true;
     private boolean parcial = true;
     private boolean parcialDe = true;
 
-    public boolean validaCampos(){
+    public boolean validaCampos() {
 
         boolean valida = true;
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
 
-        if(txtRazonSocial.getText().trim().equals("")) valida = false;
-        if(txtRFC.getText().trim().equals("")) valida = false;
+        if (txtRazonSocial.getText().trim().equals("")) {
+            valida = false;
+        }
+        if (txtRFC.getText().trim().equals("")) {
+            valida = false;
+        }
 
-        if (chkDescuento.isSelected() )  {
-            if(txtDescImporte.getText().trim().equals("")) {
+        if (chkDescuento.isSelected()) {
+            if (txtDescImporte.getText().trim().equals("")) {
                 txtDescImporte.setBackground(Color.YELLOW);
                 valida = false;
             } else {
@@ -1532,24 +1553,27 @@ public final class ComprobanteTopComponent extends TopComponent {
         if (optParcial.isSelected()) {
             try {
                 int x = Integer.parseInt(txtParcialidad.getText().trim());
-                            } catch (NumberFormatException nfe) {
+                x = Integer.parseInt(txtParcialidadTotales.getText().trim());
+            } catch (NumberFormatException nfe) {
                 valida = false;
-                listenParcial.insertUpdate(null);
+                //listenParcial.insertUpdate(null);
             }
         }
 
-        if (optParcial.isSelected()) {
-            try {
-                int x = Integer.parseInt(txtParcialidadTotales.getText().trim());
-                            } catch (NumberFormatException nfe) {
-                valida = false;
-                listenParcialTotal.insertUpdate(null);
-            }
-        }
+//        if (optParcial.isSelected()) {
+//            try {
+//                int x = Integer.parseInt(txtParcialidadTotales.getText().trim());
+//                            } catch (NumberFormatException nfe) {
+//                valida = false;
+//               // listenParcialTotal.insertUpdate(null);
+//            }
+//        }
 
 
         // Verifica si se han ingresado conceptos
-        if(model.getRowCount() == 0) valida = false;
+        if (model.getRowCount() == 0) {
+            valida = false;
+        }
 
 
 
@@ -1557,12 +1581,7 @@ public final class ComprobanteTopComponent extends TopComponent {
 
     }
 
-
-
-
-
-
-    DocumentListener listenRazonSocial = new DocumentListener() {
+    DocumentListener listenDescuento = new DocumentListener() {
 
         @Override
         public void insertUpdate(DocumentEvent event) {
@@ -1580,61 +1599,7 @@ public final class ComprobanteTopComponent extends TopComponent {
 
         public void validar() {
 
-            if (txtRazonSocial.getText().trim().equals("")) {
-                txtRazonSocial.setBackground(Color.YELLOW);
-            } else {
-                txtRazonSocial.setBackground(txtColonia.getBackground());
-            }
-        }
-    };
-
-
-    DocumentListener listenRFC = new DocumentListener() {
-
-        @Override
-        public void insertUpdate(DocumentEvent event) {
-            validar();
-        }
-
-        @Override
-        public void removeUpdate(DocumentEvent event) {
-            validar();
-        }
-
-        @Override
-        public void changedUpdate(DocumentEvent event) {
-        }
-
-        public void validar() {
-
-            if (txtRFC.getText().trim().equals("")) {
-                txtRFC.setBackground(Color.YELLOW);
-            } else {
-                txtRFC.setBackground(txtColonia.getBackground());
-            }
-        }
-    };
-
-
-        DocumentListener listenDescuento = new DocumentListener() {
-
-        @Override
-        public void insertUpdate(DocumentEvent event) {
-            validar();
-        }
-
-        @Override
-        public void removeUpdate(DocumentEvent event) {
-            validar();
-        }
-
-        @Override
-        public void changedUpdate(DocumentEvent event) {
-        }
-
-        public void validar() {
-
-            if ( chkDescuento.isSelected() ) {
+            if (chkDescuento.isSelected()) {
 
                 try {
                     Double D = Double.parseDouble(txtDescImporte.getText().trim());
@@ -1644,8 +1609,7 @@ public final class ComprobanteTopComponent extends TopComponent {
                     txtDescImporte.setFont(txtDescImporte.getFont().deriveFont(Font.PLAIN));
 
 
-                }
-                catch (NumberFormatException nfe) {
+                } catch (NumberFormatException nfe) {
                     txtDescImporte.setBackground(Color.YELLOW);
                     txtDescImporte.requestFocus();
                     txtDescImporte.setForeground(Color.RED);
@@ -1653,12 +1617,13 @@ public final class ComprobanteTopComponent extends TopComponent {
 
                 }
 
-           }
+            }
         }
     };
 
 
-        DocumentListener listenParcial = new DocumentListener() {
+    
+    DocumentListener listenParcial = new DocumentListener() {
 
         @Override
         public void insertUpdate(DocumentEvent event) {
@@ -1687,27 +1652,25 @@ public final class ComprobanteTopComponent extends TopComponent {
 
 
 
-            try {
+                try {
 
-                int x = Integer.parseInt(txtParcialidad.getText().trim());
-                txtParcialidad.setFont(txtParcialidad.getFont().deriveFont(Font.PLAIN));
-                txtParcialidad.setForeground(Color.BLACK);
+                    int x = Integer.parseInt(txtParcialidad.getText().trim());
+                    txtParcialidad.setFont(txtParcialidad.getFont().deriveFont(Font.PLAIN));
+                    txtParcialidad.setForeground(Color.BLACK);
 
-            } catch (NumberFormatException nfe) {
+                } catch (NumberFormatException nfe) {
 
 
-                txtParcialidad.setBackground(Color.YELLOW);
-                txtParcialidad.requestFocus();
-                txtParcialidad.setForeground(Color.RED);
-                txtParcialidad.setFont(txtParcialidad.getFont().deriveFont(Font.BOLD));
-            }
+                    txtParcialidad.setBackground(Color.YELLOW);
+                    txtParcialidad.requestFocus();
+                    txtParcialidad.setForeground(Color.RED);
+                    txtParcialidad.setFont(txtParcialidad.getFont().deriveFont(Font.BOLD));
+                }
             }
 
         }
     };
-
-
-        DocumentListener listenParcialTotal = new DocumentListener() {
+    DocumentListener listenParcialTotal = new DocumentListener() {
 
         @Override
         public void insertUpdate(DocumentEvent event) {
@@ -1736,25 +1699,22 @@ public final class ComprobanteTopComponent extends TopComponent {
 
 
 
-            try {
+                try {
 
-                int x = Integer.parseInt(txtParcialidadTotales.getText().trim());
-                txtParcialidadTotales.setFont(txtParcialidadTotales.getFont().deriveFont(Font.PLAIN));
-                txtParcialidadTotales.setForeground(Color.BLACK);
+                    int x = Integer.parseInt(txtParcialidadTotales.getText().trim());
+                    txtParcialidadTotales.setFont(txtParcialidadTotales.getFont().deriveFont(Font.PLAIN));
+                    txtParcialidadTotales.setForeground(Color.BLACK);
 
-            } catch (NumberFormatException nfe) {
+                } catch (NumberFormatException nfe) {
 
 
-                txtParcialidadTotales.setBackground(Color.YELLOW);
-                txtParcialidadTotales.requestFocus();
-                txtParcialidadTotales.setForeground(Color.RED);
-                txtParcialidadTotales.setFont(txtParcialidad.getFont().deriveFont(Font.BOLD));
-            }
+                    txtParcialidadTotales.setBackground(Color.YELLOW);
+                    txtParcialidadTotales.requestFocus();
+                    txtParcialidadTotales.setForeground(Color.RED);
+                    txtParcialidadTotales.setFont(txtParcialidad.getFont().deriveFont(Font.BOLD));
+                }
             }
 
         }
     };
-
-
-
 }
