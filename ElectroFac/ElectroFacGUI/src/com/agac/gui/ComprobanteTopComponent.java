@@ -1124,7 +1124,7 @@ public final class ComprobanteTopComponent extends TopComponent {
                     //listenParcial.insertUpdate(null);
                 }
         }
-
+        //firePropertyChange(null, null, null);
 
 
 
@@ -1550,24 +1550,10 @@ public final class ComprobanteTopComponent extends TopComponent {
         }
 
 
-        if (optParcial.isSelected()) {
-            try {
-                int x = Integer.parseInt(txtParcialidad.getText().trim());
-                x = Integer.parseInt(txtParcialidadTotales.getText().trim());
-            } catch (NumberFormatException nfe) {
-                valida = false;
-                //listenParcial.insertUpdate(null);
-            }
-        }
+        if (optParcial.isSelected() && (txtParcialidad.getText().trim().equals("") || txtParcialidadTotales.getText().trim().equals("")  ) ) valida = false;
+//      
 
-//        if (optParcial.isSelected()) {
-//            try {
-//                int x = Integer.parseInt(txtParcialidadTotales.getText().trim());
-//                            } catch (NumberFormatException nfe) {
-//                valida = false;
-//               // listenParcialTotal.insertUpdate(null);
-//            }
-//        }
+
 
 
         // Verifica si se han ingresado conceptos
@@ -1657,7 +1643,8 @@ public final class ComprobanteTopComponent extends TopComponent {
                     int x = Integer.parseInt(txtParcialidad.getText().trim());
                     txtParcialidad.setFont(txtParcialidad.getFont().deriveFont(Font.PLAIN));
                     txtParcialidad.setForeground(Color.BLACK);
-
+                    //firePropertyChange()
+                    
                 } catch (NumberFormatException nfe) {
 
 
@@ -1704,6 +1691,7 @@ public final class ComprobanteTopComponent extends TopComponent {
                     int x = Integer.parseInt(txtParcialidadTotales.getText().trim());
                     txtParcialidadTotales.setFont(txtParcialidadTotales.getFont().deriveFont(Font.PLAIN));
                     txtParcialidadTotales.setForeground(Color.BLACK);
+                    
 
                 } catch (NumberFormatException nfe) {
 
