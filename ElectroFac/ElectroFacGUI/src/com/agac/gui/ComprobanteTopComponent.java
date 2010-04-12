@@ -47,6 +47,7 @@ import org.openide.DialogDescriptor;
 import org.openide.DialogDisplayer;
 import org.openide.NotifyDescriptor;
 import org.openide.NotifyDescriptor.Confirmation;
+import org.openide.NotifyDescriptor.Message;
 import org.openide.cookies.PrintCookie;
 import org.openide.cookies.SaveCookie;
 import org.openide.nodes.AbstractNode;
@@ -68,7 +69,7 @@ public final class ComprobanteTopComponent extends TopComponent {
 
         txtParcialidad.getDocument().addDocumentListener(listenParcial);
         txtParcialidadTotales.getDocument().addDocumentListener(listenParcialTotal);
-
+        txtDescImporte.getDocument().addDocumentListener(listenDescuento);
 
         setName(NbBundle.getMessage(ComprobanteTopComponent.class, "CTL_ComprobanteTopComponent"));
         setToolTipText(NbBundle.getMessage(ComprobanteTopComponent.class, "HINT_ComprobanteTopComponent"));
@@ -761,6 +762,7 @@ public final class ComprobanteTopComponent extends TopComponent {
             }
         });
 
+        txtDescImporte.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         txtDescImporte.setText(org.openide.util.NbBundle.getMessage(ComprobanteTopComponent.class, "ComprobanteTopComponent.txtDescImporte.text")); // NOI18N
         txtDescImporte.setEnabled(false);
         txtDescImporte.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -1102,7 +1104,7 @@ public final class ComprobanteTopComponent extends TopComponent {
             txtParcialidad.setEnabled(true);
             txtParcialidadTotales.setEnabled(true);
         }
-        parcial = true;
+       
     }//GEN-LAST:event_optUnPagoActionPerformed
 
     private void optParcialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_optParcialActionPerformed
@@ -1110,19 +1112,12 @@ public final class ComprobanteTopComponent extends TopComponent {
         if (optUnPago.isSelected()) {
             txtParcialidad.setEnabled(false);
             txtParcialidadTotales.setEnabled(false);
-            parcial = true;
+           
         } else {
             txtParcialidad.setEnabled(true);
             txtParcialidadTotales.setEnabled(true);
             
-                try {
-                    int x = Integer.parseInt(txtParcialidad.getText().trim());
-                    x = Integer.parseInt(txtParcialidadTotales.getText().trim());
-                    parcial = true;
-                } catch (NumberFormatException nfe) {
-                    parcial = false;
-                    //listenParcial.insertUpdate(null);
-                }
+
         }
         //firePropertyChange(null, null, null);
 
@@ -1464,6 +1459,7 @@ public final class ComprobanteTopComponent extends TopComponent {
 
             @Override
             public void save() throws IOException {
+             if (validaCampos()) {
                 Confirmation msg = new NotifyDescriptor.Confirmation(
                         "¿Desea guardar los cambios?", "Guardar Cambios",
                         NotifyDescriptor.OK_CANCEL_OPTION,
@@ -1510,6 +1506,12 @@ public final class ComprobanteTopComponent extends TopComponent {
                     }
                 }
             }
+             else {
+                  NotifyDescriptor msg = new NotifyDescriptor.Message("Verifique la información, podría tener formato incorrecto", NotifyDescriptor.WARNING_MESSAGE);
+                Object result = DialogDisplayer.getDefault().notify(msg);
+             }
+
+            }
         }
 
         private class PrintCookieImpl implements PrintCookie {
@@ -1524,9 +1526,7 @@ public final class ComprobanteTopComponent extends TopComponent {
         }
     }
     //</editor-fold>
-    private boolean descuentoOK = true;
-    private boolean parcial = true;
-    private boolean parcialDe = true;
+ 
 
     public boolean validaCampos() {
 
@@ -1561,7 +1561,13 @@ public final class ComprobanteTopComponent extends TopComponent {
             valida = false;
         }
 
-
+        if (chkDescuento.isSelected()) {
+            try {
+                Double D = Double.parseDouble(txtDescImporte.getText().trim());
+            } catch (NumberFormatException nfe) {
+                valida = false;
+            }
+        }
 
         return valida;
 
