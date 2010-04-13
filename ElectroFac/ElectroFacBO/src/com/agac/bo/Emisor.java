@@ -7,12 +7,15 @@ import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.io.Serializable;
 import java.util.List;
+import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Transient;
@@ -154,6 +157,23 @@ public class Emisor implements Serializable {
         this.series = serieList;
         propertyChangeSupport.firePropertyChange("series", null, passwd);
     }
+
+    @XmlTransient
+    @Lob
+    @Basic(fetch=FetchType.LAZY)
+    @Column(columnDefinition="BLOB")
+    private byte[] logo;
+
+    public byte[] getLogo() {
+        return logo;
+    }
+
+    public void setLogo(byte[] logo) {
+        byte[] oldLogo = this.logo;
+        this.logo = logo;
+        propertyChangeSupport.firePropertyChange("logo", oldLogo, logo);
+    }
+
 
     @XmlTransient
     @Transient

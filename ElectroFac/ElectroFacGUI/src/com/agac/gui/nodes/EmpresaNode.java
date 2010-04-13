@@ -12,6 +12,7 @@ import com.agac.gui.EmisorTopComponent;
 import com.agac.gui.FoliosPanel;
 import com.agac.gui.MenuTopComponent;
 import com.agac.services.DbServices;
+import java.awt.FileDialog;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import java.util.List;
@@ -45,7 +46,11 @@ public class EmpresaNode extends AbstractNode {
 
     @Override
     public Action[] getActions(boolean bln) {
-        return new Action[]{new OpenAction(), new CrearFactura(), new AdminFolios()};
+        return new Action[]{new OpenAction(),
+            new CrearFactura(),
+            new AdminFolios(),
+            new AddLogo()
+        };
     }
 
     @Override
@@ -181,5 +186,23 @@ public class EmpresaNode extends AbstractNode {
                 }
             }            
         }
+    }
+
+    private class AddLogo extends AbstractAction{
+
+        public AddLogo(){
+            putValue(NAME, "Agregar Logotipo de empresa");
+        }
+        @Override
+        public void actionPerformed(ActionEvent e) {
+
+            FileDialog fd = new FileDialog(WindowManager.getDefault().getMainWindow(),
+                    "Logotipo Empresa Emisora");
+            fd.setVisible(true);
+            if(fd.getFile() != null){
+                
+            }
+        }
+
     }
 }
