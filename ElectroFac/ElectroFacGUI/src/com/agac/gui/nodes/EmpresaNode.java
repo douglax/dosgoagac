@@ -12,12 +12,24 @@ import com.agac.gui.EmisorTopComponent;
 import com.agac.gui.FoliosPanel;
 import com.agac.gui.MenuTopComponent;
 import com.agac.services.DbServices;
+import java.awt.BorderLayout;
 import java.awt.FileDialog;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+import javax.imageio.ImageIO;
 import javax.swing.AbstractAction;
 import javax.swing.Action;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import org.openide.DialogDescriptor;
 import org.openide.DialogDisplayer;
@@ -47,10 +59,11 @@ public class EmpresaNode extends AbstractNode {
     @Override
     public Action[] getActions(boolean bln) {
         return new Action[]{new OpenAction(),
-            new CrearFactura(),
-            new AdminFolios(),
-            new AddLogo()
-        };
+                    new CrearFactura(),
+                    new AdminFolios(),
+                    new AddLogo(),
+                    new VerLogo()
+                };
     }
 
     @Override
@@ -171,38 +184,91 @@ public class EmpresaNode extends AbstractNode {
         public void actionPerformed(ActionEvent e) {
             Emisor emisor = getLookup().lookup(Emisor.class);
             List<Serie> series = new ArrayList<Serie>();
-            if(emisor.getSeries() != null)
-                    series.addAll(emisor.getSeries());
+            if (emisor.getSeries() != null) {
+                series.addAll(emisor.getSeries());
+            }
             FoliosPanel folPan = new FoliosPanel();
             folPan.setSeries(series);
             DialogDescriptor dd = new DialogDescriptor(folPan, "Folios", true, null);
             Object result = DialogDisplayer.getDefault().notify(dd);
-            if (NotifyDescriptor.OK_OPTION.equals(result)) {                
+            if (NotifyDescriptor.OK_OPTION.equals(result)) {
                 try {
                     emisor.setSeries(series);
                     emisor = DbServices.saveObject(emisor, true);
                 } catch (Exception ex) {
                     Exceptions.printStackTrace(ex);
                 }
-            }            
+            }
         }
     }
 
-    private class AddLogo extends AbstractAction{
+    private class AddLogo extends AbstractAction {
 
-        public AddLogo(){
-            putValue(NAME, "Agregar Logotipo de empresa");
+        public AddLogo() {
+            putValue(NAME, "Agregar Logotipo de la empresa");
         }
+
         @Override
         public void actionPerformed(ActionEvent e) {
-
             FileDialog fd = new FileDialog(WindowManager.getDefault().getMainWindow(),
                     "Logotipo Empresa Emisora");
             fd.setVisible(true);
-            if(fd.getFile() != null){
-                
+            if (fd.getFile() != null) {
+                try {
+                    String fn = fd.getFile();
+                    String ext = fn.substring(fn.indexOf(".") + 1, fn.length());
+                    InputStream in = new FileInputStream(new File(fd.getDirectory() + fn));
+                    BufferedImage i = ImageIO.read(in);
+                    ByteArrayOutputStream bos = new ByteArrayOutputStream();
+                    byte[] b = null;
+                    ImageIO.write(i, ext, bos);
+                    b = bos.toByteArray();
+                    bos.close();
+                    Emisor emisor = getLookup().lookup(Emisor.class);
+                    emisor.setLogo(b);
+                    emisor = DbServices.saveObject(emisor, true);
+                    DialogDisplayer.getDefault().notify(
+                            new NotifyDescriptor.Message(
+                            "El logotipo del emisor se guardo correctamente"));
+                } catch (Exception ex) {
+                    Exceptions.printStackTrace(ex);
+                }
             }
         }
+    }
 
+    private class VerLogo extends AbstractAction {
+
+        public VerLogo() {
+            putValue(NAME, "Ver logotipo de la empresa");
+        }
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            try {
+                JPanel panel = new JPanel();
+                panel.setLayout(new BorderLayout());
+                JLabel logo = new JLabel();
+                Emisor emisor = getLookup().lookup(Emisor.class);
+                if(emisor.getLogo() == null){
+                    DialogDisplayer.getDefault().notify(
+                        new NotifyDescriptor.Message("No existe imagen para este emisor"));
+                    return;
+                }
+                InputStream in = new ByteArrayInputStream(emisor.getLogo());
+                Image img = ImageIO.read(in);
+                if(img == null){
+                    DialogDisplayer.getDefault().notify(
+                        new NotifyDescriptor.Message("No existe imagen para este emisor"));
+                    return;
+                }
+                logo.setIcon(new ImageIcon(img));
+                panel.add(logo, BorderLayout.CENTER);
+                DialogDisplayer.getDefault().notify(
+                        new NotifyDescriptor.Message(panel));
+            } catch (Exception ex) {
+                Exceptions.printStackTrace(ex);
+            }
+        }
     }
 }

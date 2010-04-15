@@ -24,10 +24,8 @@ import java.awt.dnd.DropTargetListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.IOException;
-import java.math.BigDecimal;
 import java.text.NumberFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.TooManyListenersException;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -47,7 +45,6 @@ import org.openide.DialogDescriptor;
 import org.openide.DialogDisplayer;
 import org.openide.NotifyDescriptor;
 import org.openide.NotifyDescriptor.Confirmation;
-import org.openide.NotifyDescriptor.Message;
 import org.openide.cookies.PrintCookie;
 import org.openide.cookies.SaveCookie;
 import org.openide.nodes.AbstractNode;
@@ -1065,8 +1062,6 @@ public final class ComprobanteTopComponent extends TopComponent {
 
         Preferences pref = Preferences.userNodeForPackage(OpcionesdelSistemaPanel.class);
 
-
-
         if (comprobante.getImpuesto() == null) {
             ImpuestosPanel impPanel = new ImpuestosPanel(comprobante.getSubTotal());
             DialogDescriptor d2 = new DialogDescriptor(impPanel, "Impuestos", true, null);
@@ -1104,7 +1099,7 @@ public final class ComprobanteTopComponent extends TopComponent {
             txtParcialidad.setEnabled(true);
             txtParcialidadTotales.setEnabled(true);
         }
-       
+
     }//GEN-LAST:event_optUnPagoActionPerformed
 
     private void optParcialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_optParcialActionPerformed
@@ -1112,11 +1107,11 @@ public final class ComprobanteTopComponent extends TopComponent {
         if (optUnPago.isSelected()) {
             txtParcialidad.setEnabled(false);
             txtParcialidadTotales.setEnabled(false);
-           
+
         } else {
             txtParcialidad.setEnabled(true);
             txtParcialidadTotales.setEnabled(true);
-            
+
 
         }
         //firePropertyChange(null, null, null);
@@ -1403,8 +1398,17 @@ public final class ComprobanteTopComponent extends TopComponent {
 
     public void setComprobante(Comprobante comprobante) {
         this.comprobante = comprobante;
+        if (comprobante.getConceptos() != null && !comprobante.getConceptos().isEmpty()) {
+            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+            for (Concepto con : comprobante.getConceptos()) {
+                model.addRow(new Object[]{con.getCantidad(), con.getUnidad(),
+                            con.getNoIdentificacion(), con.getDescripcion(),
+                            con.getValorUnitario(), con.getImporte()});
+            }
+        }
         firePropertyChange("comprobante", null, comprobante);
     }
+
     private Concepto concepto = new Concepto();
 
     public Concepto getConcepto() {
@@ -1459,57 +1463,56 @@ public final class ComprobanteTopComponent extends TopComponent {
 
             @Override
             public void save() throws IOException {
-             if (validaCampos()) {
-                Confirmation msg = new NotifyDescriptor.Confirmation(
-                        "¿Desea guardar los cambios?", "Guardar Cambios",
-                        NotifyDescriptor.OK_CANCEL_OPTION,
-                        NotifyDescriptor.QUESTION_MESSAGE);
-                Object result = DialogDisplayer.getDefault().notify(msg);
-                if (NotifyDescriptor.YES_OPTION.equals(result)) {
+                if (validaCampos()) {
+                    Confirmation msg = new NotifyDescriptor.Confirmation(
+                            "¿Desea guardar los cambios?", "Guardar Cambios",
+                            NotifyDescriptor.OK_CANCEL_OPTION,
+                            NotifyDescriptor.QUESTION_MESSAGE);
+                    Object result = DialogDisplayer.getDefault().notify(msg);
+                    if (NotifyDescriptor.YES_OPTION.equals(result)) {
 
-                    try {
-                        ProgressUtils.runOffEventDispatchThread(
-                                new Runnable() {
+                        try {
+                            ProgressUtils.runOffEventDispatchThread(
+                                    new Runnable() {
 
-                                    @Override
-                                    public void run() {
-                                        try {
-                                            comprobante.setFormaDePago("Pago en una sola exhibición");
-                                            String cadena = new CadenaOriginal(comprobante).toString();
-                                            SelloDigital sd = new SelloDigital();
-                                            sd.cargarLlavePrivada(
-                                                    comprobante.getEmisor().getRutaLlave(),
-                                                    new TripleDES().desencriptar(
-                                                    comprobante.getEmisor().getPasswd()));
-                                            comprobante.setSello(sd.generar(cadena));
-                                            comprobante = DbServices.saveObject(comprobante, true);
-                                            comprobante.addPropertyChangeListener(new PropertyChangeListener() {
+                                        @Override
+                                        public void run() {
+                                            try {
+                                                comprobante.setFormaDePago("Pago en una sola exhibición");
+                                                String cadena = new CadenaOriginal(comprobante).toString();
+                                                SelloDigital sd = new SelloDigital();
+                                                sd.cargarLlavePrivada(
+                                                        comprobante.getEmisor().getRutaLlave(),
+                                                        new TripleDES().desencriptar(
+                                                        comprobante.getEmisor().getPasswd()));
+                                                comprobante.setSello(sd.generar(cadena));
+                                                comprobante = DbServices.saveObject(comprobante, true);
+                                                comprobante.addPropertyChangeListener(new PropertyChangeListener() {
 
-                                                @Override
-                                                public void propertyChange(PropertyChangeEvent evt) {
-                                                    saveNode.enableSave(true);
-                                                }
-                                            });
-                                            System.out.println(cadena);
-                                        } catch (Exception e) {
-                                            Exceptions.printStackTrace(e);
+                                                    @Override
+                                                    public void propertyChange(PropertyChangeEvent evt) {
+                                                        saveNode.enableSave(true);
+                                                    }
+                                                });
+                                                System.out.println(cadena);
+                                            } catch (Exception e) {
+                                                Exceptions.printStackTrace(e);
+                                            }
                                         }
-                                    }
-                                }, "Guardando Datos", new AtomicBoolean(false), true);
-                        ((MenuTopComponent) WindowManager.getDefault().findTopComponent(
-                                "MenuTopComponent")).refreshNode();
-                        enableSave(false);
-                        enablePrint(true);
-                    } catch (Exception ex) {
-                        Exceptions.printStackTrace(ex);
-                    } finally {
+                                    }, "Guardando Datos", new AtomicBoolean(false), true);
+                            ((MenuTopComponent) WindowManager.getDefault().findTopComponent(
+                                    "MenuTopComponent")).refreshNode();
+                            enableSave(false);
+                            enablePrint(true);
+                        } catch (Exception ex) {
+                            Exceptions.printStackTrace(ex);
+                        } finally {
+                        }
                     }
+                } else {
+                    NotifyDescriptor msg = new NotifyDescriptor.Message("Verifique la información, podría tener formato incorrecto", NotifyDescriptor.WARNING_MESSAGE);
+                    Object result = DialogDisplayer.getDefault().notify(msg);
                 }
-            }
-             else {
-                  NotifyDescriptor msg = new NotifyDescriptor.Message("Verifique la información, podría tener formato incorrecto", NotifyDescriptor.WARNING_MESSAGE);
-                Object result = DialogDisplayer.getDefault().notify(msg);
-             }
 
             }
         }
@@ -1526,7 +1529,6 @@ public final class ComprobanteTopComponent extends TopComponent {
         }
     }
     //</editor-fold>
- 
 
     public boolean validaCampos() {
 
@@ -1550,7 +1552,9 @@ public final class ComprobanteTopComponent extends TopComponent {
         }
 
 
-        if (optParcial.isSelected() && (txtParcialidad.getText().trim().equals("") || txtParcialidadTotales.getText().trim().equals("")  ) ) valida = false;
+        if (optParcial.isSelected() && (txtParcialidad.getText().trim().equals("") || txtParcialidadTotales.getText().trim().equals(""))) {
+            valida = false;
+        }
 //      
 
 
@@ -1572,7 +1576,6 @@ public final class ComprobanteTopComponent extends TopComponent {
         return valida;
 
     }
-
     DocumentListener listenDescuento = new DocumentListener() {
 
         @Override
@@ -1612,9 +1615,6 @@ public final class ComprobanteTopComponent extends TopComponent {
             }
         }
     };
-
-
-    
     DocumentListener listenParcial = new DocumentListener() {
 
         @Override
@@ -1650,7 +1650,7 @@ public final class ComprobanteTopComponent extends TopComponent {
                     txtParcialidad.setFont(txtParcialidad.getFont().deriveFont(Font.PLAIN));
                     txtParcialidad.setForeground(Color.BLACK);
                     //firePropertyChange()
-                    
+
                 } catch (NumberFormatException nfe) {
 
 
@@ -1697,7 +1697,7 @@ public final class ComprobanteTopComponent extends TopComponent {
                     int x = Integer.parseInt(txtParcialidadTotales.getText().trim());
                     txtParcialidadTotales.setFont(txtParcialidadTotales.getFont().deriveFont(Font.PLAIN));
                     txtParcialidadTotales.setForeground(Color.BLACK);
-                    
+
 
                 } catch (NumberFormatException nfe) {
 

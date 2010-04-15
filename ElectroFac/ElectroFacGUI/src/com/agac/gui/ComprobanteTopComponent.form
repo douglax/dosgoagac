@@ -54,7 +54,7 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="TabOpciones" min="-2" pref="524" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="jPanel3" min="-2" pref="244" max="-2" attributes="0"/>
+                                  <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <Component id="jPanel2" alignment="0" min="0" pref="784" max="32767" attributes="1"/>
                               <Component id="jPanel1" alignment="0" max="32767" attributes="1"/>
@@ -72,7 +72,7 @@
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="jPanel1" min="-2" pref="190" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jPanel2" min="-2" pref="283" max="-2" attributes="0"/>
+                      <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="TabOpciones" min="-2" pref="237" max="-2" attributes="1"/>
@@ -113,23 +113,23 @@
                                       </Group>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="1" attributes="0">
-                                          <Component id="txtRazonSocial" alignment="1" pref="315" max="32767" attributes="1"/>
-                                          <Component id="txtCalle" alignment="1" pref="315" max="32767" attributes="1"/>
+                                          <Component id="txtRazonSocial" alignment="1" pref="319" max="32767" attributes="1"/>
+                                          <Component id="txtCalle" alignment="1" pref="319" max="32767" attributes="1"/>
                                           <Group type="102" alignment="0" attributes="0">
                                               <Component id="txtPais" min="-2" pref="155" max="-2" attributes="0"/>
                                               <EmptySpace type="separate" max="-2" attributes="0"/>
                                               <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
                                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                                              <Component id="txtCP" pref="103" max="32767" attributes="0"/>
+                                              <Component id="txtCP" pref="107" max="32767" attributes="0"/>
                                           </Group>
                                           <Group type="102" alignment="1" attributes="1">
                                               <Component id="txtLocalidad" min="-2" pref="128" max="-2" attributes="0"/>
                                               <EmptySpace max="-2" attributes="0"/>
                                               <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
                                               <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="txtMunicipio" pref="159" max="32767" attributes="1"/>
+                                              <Component id="txtMunicipio" pref="163" max="32767" attributes="1"/>
                                           </Group>
-                                          <Component id="txtColonia" alignment="0" pref="315" max="32767" attributes="1"/>
+                                          <Component id="txtColonia" alignment="0" pref="319" max="32767" attributes="1"/>
                                       </Group>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -560,7 +560,7 @@
                                   <Component id="btnImpuestos" min="-2" pref="95" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace pref="29" max="32767" attributes="0"/>
+                          <EmptySpace pref="33" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
