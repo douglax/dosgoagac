@@ -6,6 +6,8 @@ import com.agac.bo.Comprobante;
 import com.agac.bo.Concepto;
 import com.agac.bo.Receptor;
 import com.agac.bo.Impuesto;
+import com.agac.bo.Traslado;
+import com.agac.bo.Retencion;
 import com.agac.bo.InformacionAduanera;
 import com.agac.bo.Serie;
 import com.agac.gui.nodes.ClienteNode;
@@ -24,6 +26,7 @@ import java.awt.dnd.DropTargetListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -51,6 +54,7 @@ import org.openide.nodes.AbstractNode;
 import org.openide.nodes.Children;
 import org.openide.nodes.Node;
 import org.openide.util.ImageUtilities;
+import org.openide.util.NbPreferences;
 
 @ConvertAsProperties(dtd = "-//com.agac.gui//Comprobante//EN",
 autostore = false)
@@ -306,21 +310,21 @@ public final class ComprobanteTopComponent extends TopComponent {
                                 .addComponent(jLabel9))
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(txtRazonSocial, javax.swing.GroupLayout.DEFAULT_SIZE, 315, Short.MAX_VALUE)
-                                .addComponent(txtCalle, javax.swing.GroupLayout.DEFAULT_SIZE, 315, Short.MAX_VALUE)
+                                .addComponent(txtRazonSocial, javax.swing.GroupLayout.DEFAULT_SIZE, 319, Short.MAX_VALUE)
+                                .addComponent(txtCalle, javax.swing.GroupLayout.DEFAULT_SIZE, 319, Short.MAX_VALUE)
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                                     .addComponent(txtPais, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(18, 18, 18)
                                     .addComponent(jLabel10)
                                     .addGap(18, 18, 18)
-                                    .addComponent(txtCP, javax.swing.GroupLayout.DEFAULT_SIZE, 103, Short.MAX_VALUE))
+                                    .addComponent(txtCP, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE))
                                 .addGroup(jPanel1Layout.createSequentialGroup()
                                     .addComponent(txtLocalidad, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(jLabel7)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(txtMunicipio, javax.swing.GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE))
-                                .addComponent(txtColonia, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 315, Short.MAX_VALUE))
+                                    .addComponent(txtMunicipio, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE))
+                                .addComponent(txtColonia, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 319, Short.MAX_VALUE))
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -485,6 +489,18 @@ public final class ComprobanteTopComponent extends TopComponent {
                 return canEdit [columnIndex];
             }
         });
+        jTable1.addInputMethodListener(new java.awt.event.InputMethodListener() {
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
+            }
+            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
+                jTable1InputMethodTextChanged(evt);
+            }
+        });
+        jTable1.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                jTable1PropertyChange(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         org.openide.awt.Mnemonics.setLocalizedText(btnImpuestos, org.openide.util.NbBundle.getMessage(ComprobanteTopComponent.class, "ComprobanteTopComponent.btnImpuestos.text")); // NOI18N
@@ -542,7 +558,7 @@ public final class ComprobanteTopComponent extends TopComponent {
                                         .addComponent(jLabel16)))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnImpuestos, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -973,8 +989,8 @@ public final class ComprobanteTopComponent extends TopComponent {
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel5Layout.createSequentialGroup()
                             .addComponent(TabOpciones, javax.swing.GroupLayout.PREFERRED_SIZE, 524, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, 0, 784, Short.MAX_VALUE)
+                            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, 0, 788, Short.MAX_VALUE)
                         .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap(41, Short.MAX_VALUE))
         );
@@ -1166,6 +1182,75 @@ public final class ComprobanteTopComponent extends TopComponent {
             cboMotivoDesc.setEnabled(false);
         }
     }//GEN-LAST:event_chkDescuentoActionPerformed
+
+
+
+
+    private void jTable1PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jTable1PropertyChange
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTable1PropertyChange
+
+    private void jTable1InputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_jTable1InputMethodTextChanged
+        // TODO add your handling code here:
+
+        ArrayList<Traslado> Tlist = new ArrayList<Traslado>();
+        ArrayList<Retencion> Rlist = new ArrayList<Retencion>();
+        Traslado T = new Traslado();
+        Retencion R = new Retencion();
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+
+        if (model.getRowCount() == 0) {
+
+
+            Tlist.add(T);
+            comprobante.getImpuesto().setTraslados(Tlist);
+
+        } else {
+
+
+            // Se recorren la lista de traslados para verificar si existe IVA
+            // se agrega cada renglón a la respectiva lista, excepto IVA Traslado
+
+       
+             BigDecimal TTrasl = new BigDecimal("0.0");
+
+             for(int c=0;c<=comprobante.getImpuesto().getTraslados().size();c++){
+                 if(comprobante.getImpuesto().getTraslados().get(c).getImpuesto().equals("I.V.A.")    ) {
+                     Tlist.add(comprobante.getImpuesto().getTraslados().get(c));
+                     TTrasl.add(comprobante.getImpuesto().getTraslados().get(c).getImporte());
+
+                 }
+             }
+
+             // calculamos nuevo importe a partir de la suma de importes de conceptos
+
+             Double subTot = 0.0;
+
+             for (int c=0;c<=model.getRowCount();c++) {
+                 subTot += Double.parseDouble(model.getValueAt(c, 5).toString());
+             }
+
+             //calculamos IVA y lo guardamos en subTot
+
+             subTot *= Double.parseDouble(IVAdefault);
+
+             T.setImpuesto("I.V.A.");
+             T.setImporte(new BigDecimal(subTot.toString()));
+             T.setTasa(new BigDecimal(IVAdefault));
+
+
+             //Finalmente se agrega a la lista temporal el impuesto de IVA
+             Tlist.add(T);
+
+             comprobante.getImpuesto().setTraslados(Tlist);
+             comprobante.getImpuesto().setTotalImpuestosTrasladados(TTrasl);
+
+        }//if
+
+
+
+
+    }//GEN-LAST:event_jTable1InputMethodTextChanged
     // <editor-fold defaultstate="collapsed" desc="Variables de Instancia">
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTabbedPane TabOpciones;
@@ -1395,6 +1480,10 @@ public final class ComprobanteTopComponent extends TopComponent {
     public Comprobante getComprobante() {
         return comprobante;
     }
+
+    Preferences pref = NbPreferences.forModule(OpcionesdelSistemaPanel.class);
+    String IVAdefault = pref.get("IVA", "0.0");
+
 
     public void setComprobante(Comprobante comprobante) {
         this.comprobante = comprobante;

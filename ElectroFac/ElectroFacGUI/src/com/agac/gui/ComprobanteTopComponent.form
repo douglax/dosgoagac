@@ -56,7 +56,7 @@
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <Component id="jPanel2" alignment="0" min="0" pref="784" max="32767" attributes="1"/>
+                              <Component id="jPanel2" alignment="0" min="0" pref="788" max="32767" attributes="1"/>
                               <Component id="jPanel1" alignment="0" max="32767" attributes="1"/>
                           </Group>
                       </Group>
@@ -72,7 +72,7 @@
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="jPanel1" min="-2" pref="190" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
+                      <Component id="jPanel2" min="-2" pref="283" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="TabOpciones" min="-2" pref="237" max="-2" attributes="1"/>
@@ -771,6 +771,10 @@
                           </Table>
                         </Property>
                       </Properties>
+                      <Events>
+                        <EventHandler event="inputMethodTextChanged" listener="java.awt.event.InputMethodListener" parameters="java.awt.event.InputMethodEvent" handler="jTable1InputMethodTextChanged"/>
+                        <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="jTable1PropertyChange"/>
+                      </Events>
                     </Component>
                   </SubComponents>
                 </Container>
