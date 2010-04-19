@@ -1,0 +1,5 @@
+Manifest-Version: 1.0
+OpenIDE-Module: com.agac.jasperreports
+OpenIDE-Module-Localizing-Bundle: com/agac/jasperreports/Bundle.properties
+OpenIDE-Module-Specification-Version: 1.0
+
