@@ -1027,12 +1027,14 @@ public final class ComprobanteTopComponent extends TopComponent {
     }//GEN-LAST:event_btnAddConceptoKeyPressed
 
     private void btnAddConceptoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddConceptoActionPerformed
+
         try {
             DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
             model.addRow(new Object[]{concepto.getCantidad(), concepto.getUnidad(),
                         concepto.getNoIdentificacion(), concepto.getDescripcion(),
                         concepto.getValorUnitario(), concepto.getImporte()});
             comprobante.addConcepto(concepto);
+
             setConcepto(new Concepto());
             txtCantidad.setText("");
             txtDescripcion.setText("");
@@ -1042,8 +1044,8 @@ public final class ComprobanteTopComponent extends TopComponent {
             NumberFormat nf = NumberFormat.getCurrencyInstance();
             lblSubtotal.setText(nf.format(comprobante.getSubTotal().doubleValue()));
             //jLabel33.setText(nf.format(comprobante.getTotal().doubleValue()));
-            //refrescaImpuestos();
-           
+            refrescaImpuestos();
+
 
         } catch (Exception ex) {
             Exception e = new Exception("No se pudo agregar el concepto, verifique los datos");
@@ -1052,6 +1054,7 @@ public final class ComprobanteTopComponent extends TopComponent {
         }
 
         //refrescaImpuestos();
+
     }//GEN-LAST:event_btnAddConceptoActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -1644,19 +1647,29 @@ public final class ComprobanteTopComponent extends TopComponent {
 
     public void refrescaImpuestos() {
 
-
         ArrayList<Traslado> Tlist = new ArrayList<Traslado>();
         Traslado T = new Traslado();
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
 
         //if (model.getRowCount() == 0) {
-        if(impuesto.getTraslados() == null) {
+        if(comprobante.getImpuesto().getTraslados().size() == 0) {
 
             T.setImpuesto("I.V.A.");
             T.setImporte(comprobante.getSubTotal().multiply(new BigDecimal(IVAdefault)));
             T.setTasa(new BigDecimal(IVAdefault));
             Tlist.add(T);
+
             impuesto.setTraslados(Tlist);
+            //comprobante.getImpuesto().setTraslados(Tlist);
+            comprobante.setImpuesto(impuesto);
+
+            comprobante.setIVA(comprobante.getSubTotal().doubleValue() * Double.parseDouble(IVAdefault));
+
+            comprobante.getImpuesto().setTotalImpuestosTrasladados(comprobante.getSubTotal().multiply(new BigDecimal(IVAdefault)));
+            NumberFormat nf = NumberFormat.getCurrencyInstance();
+            lblIVA.setText(nf.format(comprobante.getIVA()));
+
+            //impuesto.setTraslados(Tlist);
 
         } else {
 
@@ -1667,10 +1680,10 @@ public final class ComprobanteTopComponent extends TopComponent {
 
              BigDecimal TTrasl = new BigDecimal("0.0");
 
-             for(int c=0;c<=impuesto.getTraslados().size()-1;c++){
-                 if(impuesto.getTraslados().get(c).getImpuesto().equals("I.V.A.")    ) {
-                     Tlist.add(impuesto.getTraslados().get(c));
-                     TTrasl.add(impuesto.getTraslados().get(c).getImporte());
+             for(int c=0;c< comprobante.getImpuesto().getTraslados().size();c++){
+                 if( !comprobante.getImpuesto().getTraslados().get(c).getImpuesto().equals("I.V.A.")    ) {
+                     Tlist.add(comprobante.getImpuesto().getTraslados().get(c));
+                     TTrasl.add( comprobante.getImpuesto().getTraslados().get(c).getImporte());
 
                  }
              }
@@ -1679,7 +1692,7 @@ public final class ComprobanteTopComponent extends TopComponent {
 
              Double subTot = 0.0;
 
-             for (int c=0;c<=model.getRowCount();c++) {
+             for (int c=0;c<model.getRowCount();c++) {
                  subTot += Double.parseDouble(model.getValueAt(c, 5).toString());
              }
 
@@ -1698,8 +1711,15 @@ public final class ComprobanteTopComponent extends TopComponent {
              comprobante.getImpuesto().setTraslados(Tlist);
              comprobante.getImpuesto().setTotalImpuestosTrasladados(TTrasl);
 
+
+             //comprobante.setImpuesto(impuesto);
+
              comprobante.setIVA(subTot);
-             lblIVA.setText(subTot.toString());
+
+            NumberFormat nf = NumberFormat.getCurrencyInstance();
+            lblIVA.setText(nf.format(comprobante.getIVA()));
+
+            // lblIVA.setText(subTot.toString());
 
         }//if
 
