@@ -100,6 +100,7 @@ public final class ComprobanteTopComponent extends TopComponent {
      */
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
         bindingGroup = new org.jdesktop.beansbinding.BindingGroup();
 
         btnGrpConceptos = new javax.swing.ButtonGroup();
@@ -192,10 +193,16 @@ public final class ComprobanteTopComponent extends TopComponent {
         lblIVA = new javax.swing.JLabel();
         jLabel33 = new javax.swing.JLabel();
 
-        setMaximumSize(new java.awt.Dimension(800, 600));
+        setMaximumSize(new java.awt.Dimension(1000, 1000));
+        setPreferredSize(new java.awt.Dimension(768, 1000));
         setLayout(new java.awt.BorderLayout());
 
-        jPanel5.setPreferredSize(new java.awt.Dimension(890, 732));
+        jScrollPane3.setMaximumSize(new java.awt.Dimension(1000, 1000));
+        jScrollPane3.setPreferredSize(new java.awt.Dimension(768, 1000));
+
+        jPanel5.setMaximumSize(new java.awt.Dimension(1000, 1000));
+        jPanel5.setPreferredSize(new java.awt.Dimension(768, 1000));
+        jPanel5.setLayout(new java.awt.GridBagLayout());
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(ComprobanteTopComponent.class, "ComprobanteTopComponent.jPanel1.border.title"))); // NOI18N
         jPanel1.setMaximumSize(new java.awt.Dimension(803, 32767));
@@ -315,21 +322,21 @@ public final class ComprobanteTopComponent extends TopComponent {
                                 .addComponent(jLabel9))
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(txtRazonSocial, javax.swing.GroupLayout.DEFAULT_SIZE, 325, Short.MAX_VALUE)
-                                .addComponent(txtCalle, javax.swing.GroupLayout.DEFAULT_SIZE, 325, Short.MAX_VALUE)
+                                .addComponent(txtRazonSocial, javax.swing.GroupLayout.DEFAULT_SIZE, 348, Short.MAX_VALUE)
+                                .addComponent(txtCalle, javax.swing.GroupLayout.DEFAULT_SIZE, 348, Short.MAX_VALUE)
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                                     .addComponent(txtPais, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(18, 18, 18)
                                     .addComponent(jLabel10)
                                     .addGap(18, 18, 18)
-                                    .addComponent(txtCP, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE))
+                                    .addComponent(txtCP, javax.swing.GroupLayout.DEFAULT_SIZE, 134, Short.MAX_VALUE))
                                 .addGroup(jPanel1Layout.createSequentialGroup()
                                     .addComponent(txtLocalidad, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(jLabel7)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(txtMunicipio, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE))
-                                .addComponent(txtColonia, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 325, Short.MAX_VALUE))
+                                    .addComponent(txtMunicipio, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE))
+                                .addComponent(txtColonia, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 348, Short.MAX_VALUE))
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -402,6 +409,16 @@ public final class ComprobanteTopComponent extends TopComponent {
         txtEstado.getAccessibleContext().setAccessibleName(org.openide.util.NbBundle.getMessage(ComprobanteTopComponent.class, "ComprobanteTopComponent.jTextField8.AccessibleContext.accessibleName")); // NOI18N
         txtPais.getAccessibleContext().setAccessibleName(org.openide.util.NbBundle.getMessage(ComprobanteTopComponent.class, "ComprobanteTopComponent.jTextField9.AccessibleContext.accessibleName")); // NOI18N
         txtCP.getAccessibleContext().setAccessibleName(org.openide.util.NbBundle.getMessage(ComprobanteTopComponent.class, "ComprobanteTopComponent.jTextField10.AccessibleContext.accessibleName")); // NOI18N
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.ipadx = 128;
+        gridBagConstraints.ipady = -45;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(13, 20, 0, 0);
+        jPanel5.add(jPanel1, gridBagConstraints);
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(ComprobanteTopComponent.class, "ComprobanteTopComponent.jPanel2.border.title"))); // NOI18N
         jPanel2.setMaximumSize(new java.awt.Dimension(800, 32767));
@@ -563,7 +580,7 @@ public final class ComprobanteTopComponent extends TopComponent {
                                         .addComponent(jLabel16)))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnImpuestos, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addContainerGap(51, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -596,10 +613,29 @@ public final class ComprobanteTopComponent extends TopComponent {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.ipadx = 39;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(13, 20, 0, 0);
+        jPanel5.add(jPanel2, gridBagConstraints);
+
         jLabel17.setFont(new java.awt.Font("Tahoma", 1, 18));
 
         binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, this, org.jdesktop.beansbinding.ELProperty.create("${comprobante.emisor.nombre}"), jLabel17, org.jdesktop.beansbinding.BeanProperty.create("text"));
         bindingGroup.addBinding(binding);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.ipadx = 839;
+        gridBagConstraints.ipady = 22;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(15, 20, 0, 4);
+        jPanel5.add(jLabel17, gridBagConstraints);
 
         TabOpciones.setTabLayoutPolicy(javax.swing.JTabbedPane.SCROLL_TAB_LAYOUT);
 
@@ -727,7 +763,7 @@ public final class ComprobanteTopComponent extends TopComponent {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel22)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(44, 44, 44))
+                .addGap(20, 20, 20))
         );
 
         TabOpciones.addTab(org.openide.util.NbBundle.getMessage(ComprobanteTopComponent.class, "ComprobanteTopComponent.jPanel4.TabConstraints.tabTitle"), jPanel4); // NOI18N
@@ -872,7 +908,7 @@ public final class ComprobanteTopComponent extends TopComponent {
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 216, Short.MAX_VALUE)
+            .addGap(0, 217, Short.MAX_VALUE)
         );
 
         TabOpciones.addTab(org.openide.util.NbBundle.getMessage(ComprobanteTopComponent.class, "ComprobanteTopComponent.jPanel6.TabConstraints.tabTitle"), jPanel6); // NOI18N
@@ -885,10 +921,19 @@ public final class ComprobanteTopComponent extends TopComponent {
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 216, Short.MAX_VALUE)
+            .addGap(0, 217, Short.MAX_VALUE)
         );
 
         TabOpciones.addTab(org.openide.util.NbBundle.getMessage(ComprobanteTopComponent.class, "ComprobanteTopComponent.jPanel7.TabConstraints.tabTitle"), jPanel7); // NOI18N
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.ipadx = -348;
+        gridBagConstraints.ipady = 12;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(13, 20, 0, 0);
+        jPanel5.add(TabOpciones, gridBagConstraints);
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(ComprobanteTopComponent.class, "ComprobanteTopComponent.jPanel3.border.title"))); // NOI18N
 
@@ -980,38 +1025,13 @@ public final class ComprobanteTopComponent extends TopComponent {
 
         jPanel3Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {lblDescuento, lblIVA, lblSubtotal});
 
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 839, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel5Layout.createSequentialGroup()
-                            .addComponent(TabOpciones, javax.swing.GroupLayout.PREFERRED_SIZE, 524, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, 0, 807, Short.MAX_VALUE)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap(39, Short.MAX_VALUE))
-        );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(TabOpciones, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(37, Short.MAX_VALUE))
-        );
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.ipady = -59;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTH;
+        gridBagConstraints.insets = new java.awt.Insets(111, 7, 0, 0);
+        jPanel5.add(jPanel3, gridBagConstraints);
 
         jScrollPane3.setViewportView(jPanel5);
 
