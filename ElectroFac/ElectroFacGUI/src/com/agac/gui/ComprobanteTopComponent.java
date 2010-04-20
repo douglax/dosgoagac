@@ -322,21 +322,21 @@ public final class ComprobanteTopComponent extends TopComponent {
                                 .addComponent(jLabel9))
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(txtRazonSocial, javax.swing.GroupLayout.DEFAULT_SIZE, 348, Short.MAX_VALUE)
-                                .addComponent(txtCalle, javax.swing.GroupLayout.DEFAULT_SIZE, 348, Short.MAX_VALUE)
+                                .addComponent(txtRazonSocial, javax.swing.GroupLayout.DEFAULT_SIZE, 349, Short.MAX_VALUE)
+                                .addComponent(txtCalle, javax.swing.GroupLayout.DEFAULT_SIZE, 349, Short.MAX_VALUE)
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                                     .addComponent(txtPais, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(18, 18, 18)
                                     .addComponent(jLabel10)
                                     .addGap(18, 18, 18)
-                                    .addComponent(txtCP, javax.swing.GroupLayout.DEFAULT_SIZE, 134, Short.MAX_VALUE))
+                                    .addComponent(txtCP, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE))
                                 .addGroup(jPanel1Layout.createSequentialGroup()
                                     .addComponent(txtLocalidad, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(jLabel7)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(txtMunicipio, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE))
-                                .addComponent(txtColonia, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 348, Short.MAX_VALUE))
+                                    .addComponent(txtMunicipio, javax.swing.GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE))
+                                .addComponent(txtColonia, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 349, Short.MAX_VALUE))
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -512,10 +512,10 @@ public final class ComprobanteTopComponent extends TopComponent {
             }
         });
         jTable1.addInputMethodListener(new java.awt.event.InputMethodListener() {
-            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
-            }
             public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
                 jTable1InputMethodTextChanged(evt);
+            }
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
             }
         });
         jTable1.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
@@ -526,6 +526,7 @@ public final class ComprobanteTopComponent extends TopComponent {
         jScrollPane1.setViewportView(jTable1);
 
         org.openide.awt.Mnemonics.setLocalizedText(btnImpuestos, org.openide.util.NbBundle.getMessage(ComprobanteTopComponent.class, "ComprobanteTopComponent.btnImpuestos.text")); // NOI18N
+        btnImpuestos.setEnabled(false);
         btnImpuestos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnImpuestosActionPerformed(evt);
@@ -732,7 +733,7 @@ public final class ComprobanteTopComponent extends TopComponent {
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel22)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 455, Short.MAX_VALUE)))
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 468, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
@@ -861,7 +862,7 @@ public final class ComprobanteTopComponent extends TopComponent {
                                     .addGroup(jPanel8Layout.createSequentialGroup()
                                         .addComponent(txtDescImporte, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
-                                        .addComponent(cboMotivoDesc, 0, 274, Short.MAX_VALUE))
+                                        .addComponent(cboMotivoDesc, 0, 284, Short.MAX_VALUE))
                                     .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel8Layout.createSequentialGroup()
                                 .addComponent(chkCondiciones)
@@ -904,11 +905,11 @@ public final class ComprobanteTopComponent extends TopComponent {
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 519, Short.MAX_VALUE)
+            .addGap(0, 545, Short.MAX_VALUE)
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 217, Short.MAX_VALUE)
+            .addGap(0, 202, Short.MAX_VALUE)
         );
 
         TabOpciones.addTab(org.openide.util.NbBundle.getMessage(ComprobanteTopComponent.class, "ComprobanteTopComponent.jPanel6.TabConstraints.tabTitle"), jPanel6); // NOI18N
@@ -917,11 +918,11 @@ public final class ComprobanteTopComponent extends TopComponent {
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 519, Short.MAX_VALUE)
+            .addGap(0, 545, Short.MAX_VALUE)
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 217, Short.MAX_VALUE)
+            .addGap(0, 202, Short.MAX_VALUE)
         );
 
         TabOpciones.addTab(org.openide.util.NbBundle.getMessage(ComprobanteTopComponent.class, "ComprobanteTopComponent.jPanel7.TabConstraints.tabTitle"), jPanel7); // NOI18N
@@ -1109,27 +1110,42 @@ public final class ComprobanteTopComponent extends TopComponent {
 
        // Preferences pref = Preferences.userNodeForPackage(OpcionesdelSistemaPanel.class);
 
-        if (comprobante.getImpuesto() == null) {
-            ImpuestosPanel impPanel = new ImpuestosPanel(comprobante.getSubTotal());
-            DialogDescriptor d2 = new DialogDescriptor(impPanel, "Impuestos", true, null);
-            DialogDisplayer.getDefault().notify(d2);
-            //if (d2.)
+//        if (comprobante.getImpuesto() == null) {
+//            ImpuestosPanel impPanel = new ImpuestosPanel(comprobante.getSubTotal());
+//            DialogDescriptor d2 = new DialogDescriptor(impPanel, "Impuestos", true, null);
+//            DialogDisplayer.getDefault().notify(d2);
+//            //if (d2.)
+//
+//            Object result = DialogDisplayer.getDefault().notify(d2);
+//            if (NotifyDescriptor.OK_OPTION.equals(result)) {
+//                comprobante.setImpuesto(impPanel.getImpuesto());
+//            }
+//
+//        } else {
+//            ImpuestosPanel impPanel = new ImpuestosPanel(comprobante.getSubTotal(), comprobante.getImpuesto());
+//            DialogDescriptor d2 = new DialogDescriptor(impPanel, "Impuestos", true, null);
+//            DialogDisplayer.getDefault().notify(d2);
+//            //comprobante.setImpuesto(impPanel.getImpuesto());
+//            Object result = DialogDisplayer.getDefault().notify(d2);
+//            if (NotifyDescriptor.OK_OPTION.equals(result)) {
+//                comprobante.setImpuesto(impPanel.getImpuesto());
+//            }
+//        }
 
-            Object result = DialogDisplayer.getDefault().notify(d2);
-            if (NotifyDescriptor.OK_OPTION.equals(result)) {
-                comprobante.setImpuesto(impPanel.getImpuesto());
-            }
 
-        } else {
-            ImpuestosPanel impPanel = new ImpuestosPanel(comprobante.getSubTotal(), comprobante.getImpuesto());
+            ImpuestosPanel impPanel = new ImpuestosPanel(comprobante);
             DialogDescriptor d2 = new DialogDescriptor(impPanel, "Impuestos", true, null);
-            DialogDisplayer.getDefault().notify(d2);
+            //DialogDisplayer.getDefault().notify(d2);
             //comprobante.setImpuesto(impPanel.getImpuesto());
             Object result = DialogDisplayer.getDefault().notify(d2);
-            if (NotifyDescriptor.OK_OPTION.equals(result)) {
+
+
+
+            if (DialogDescriptor.OK_OPTION.equals(result)) {
                 comprobante.setImpuesto(impPanel.getImpuesto());
             }
-        }
+
+
 
 
         refrescaImpuestos();
@@ -1743,7 +1759,8 @@ public final class ComprobanteTopComponent extends TopComponent {
 
         }//if
 
-
+        if(comprobante.getImpuesto().getTraslados() != null)
+            btnImpuestos.setEnabled(true);
 
     } // refrescaImpuestos
 

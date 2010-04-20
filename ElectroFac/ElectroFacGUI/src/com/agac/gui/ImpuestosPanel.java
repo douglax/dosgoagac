@@ -10,6 +10,7 @@
  */
 package com.agac.gui;
 
+import com.agac.bo.Comprobante;
 import com.agac.bo.Impuesto;
 import com.agac.bo.Retencion;
 import com.agac.bo.Traslado;
@@ -27,114 +28,77 @@ import org.openide.util.NbPreferences;
 
 /**
  *
- * @author Carlos
+ * @author alex
  */
 public class ImpuestosPanel extends javax.swing.JPanel {
 
-    /** Creates new form InformacionAduaneraPanel */
-    public ImpuestosPanel(BigDecimal subtotal) {
+
+
+        public ImpuestosPanel(Comprobante comprobante) {
         initComponents();
 
         txtImporte.getDocument().addDocumentListener(listenImporte);
         txtTasa.getDocument().addDocumentListener(listenTasa);
-
-        pref.addPreferenceChangeListener(new PreferenceChangeListener() {
-
-            @Override
-            public void preferenceChange(PreferenceChangeEvent evt) {
-                if (evt.getKey().equals("IVA")) {
-                    IVAdefault = evt.getNewValue();
-                }
-                if (evt.getKey().equals("ISR")) {
-                    ISRdefault = evt.getNewValue();
-                }
-                if (evt.getKey().equals("IEPS")) {
-                    IEPSdefault = evt.getNewValue();
-                }
-            }
-        });
-
-
-        BigDecimal oldSubtotal = new BigDecimal("0.0");
-        oldSubtotal = subtotal;
-        this.txtTotalRetenidos.setText(totRetenciones.toString());
-        this.txtTotalTrasladados.setText(totTraslados.toString());
-        this.subtotal = subtotal;
-        txtImporte.setText((subtotal.multiply(new BigDecimal(IVAdefault))).toString());
-        //txtImporte.setText((subtotal.multiply(new BigDecimal(IVA)).toString()));
-        txtTasa.setText(IVAdefault);
-        this.subtotal = oldSubtotal;
-    }
-
-    public ImpuestosPanel(BigDecimal subtotal, Impuesto imp) {
-
-        // Este constructor se utiliza cuando previamente se creo un
-        // objeto impuesto para el objeto comprobante
-
-        initComponents();
-
-
-        txtImporte.getDocument().addDocumentListener(listenImporte);
-        txtTasa.getDocument().addDocumentListener(listenTasa);
-
-        pref.addPreferenceChangeListener(new PreferenceChangeListener() {
-
-            @Override
-            public void preferenceChange(PreferenceChangeEvent evt) {
-                if (evt.getKey().equals("IVA")) {
-                    IVAdefault = evt.getNewValue();
-                }
-                if (evt.getKey().equals("ISR")) {
-                    ISRdefault = evt.getNewValue();
-                }
-                if (evt.getKey().equals("IEPS")) {
-                    IEPSdefault = evt.getNewValue();
-                }
-            }
-        });
-
-
-
-        this.subtotal = subtotal;
-        BigDecimal oldSubtotal = new BigDecimal("0.0");
-        oldSubtotal = subtotal;
-        txtImporte.setText((subtotal.multiply(new BigDecimal(IVAdefault))).toString());
-        txtTasa.setText(IVAdefault);
-        this.subtotal = oldSubtotal;
 
 
         DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
 
+        pref.addPreferenceChangeListener(new PreferenceChangeListener() {
 
-        // Agregar retenciones a la tabla
+            @Override
+            public void preferenceChange(PreferenceChangeEvent evt) {
+                if (evt.getKey().equals("IVA")) {
+                    IVAdefault = evt.getNewValue();
+                }
+                if (evt.getKey().equals("ISR")) {
+                    ISRdefault = evt.getNewValue();
+                }
+                if (evt.getKey().equals("IEPS")) {
+                    IEPSdefault = evt.getNewValue();
+                }
+            }
+        });
+
+
+
+        // recorremos primero Traslados
+
         ArrayList<Retencion> retencionList = new ArrayList<Retencion>();
 
-        retencionList = (ArrayList) imp.getRetenciones();
+        retencionList = (ArrayList) comprobante.getImpuesto().getRetenciones() ;
 
         for (Retencion r : retencionList) {
             modelo.addRow(new Object[]{"Retencion", r.getImpuesto(), r.getImporte(), null});
         }
 
-        // Agregar traslados a la tabla
+
+        // luego recorremos traslados
+
         ArrayList<Traslado> trasladoList = new ArrayList<Traslado>();
 
-        trasladoList = (ArrayList) imp.getTraslados();
+        trasladoList = (ArrayList) comprobante.getImpuesto().getTraslados() ;
 
         for (Traslado t : trasladoList) {
-            modelo.addRow(new Object[]{"Traslado", t.getImpuesto(), t.getImporte(), t.getTasa()});
+            modelo.addRow(new Object[]{"Traslado", t.getImpuesto(), t.getImporte(), t.getTasa() });
         }
 
 
-        // agregar totales a los textboxes
-        if (imp.getTotalImpuestosRetenidos() != null) {
-            this.txtTotalRetenidos.setText(imp.getTotalImpuestosRetenidos().toString());
-        }
-        if (imp.getTotalImpuestosRetenidos() != null) {
-            this.txtTotalTrasladados.setText(imp.getTotalImpuestosTrasladados().toString());
+        txtTotalRetenidos.setText(totRetenciones.toString());
+        txtTotalTrasladados.setText(totTraslados.toString());
+        txtTasa.setText(IVAdefault);
+
+
+        subTot = comprobante.getSubTotal();
+
         }
 
 
-    }
+    //
+
+
+
+
+
 
     /** This method is called from within the constructor to
      * initialize the form.
@@ -356,6 +320,19 @@ public class ImpuestosPanel extends javax.swing.JPanel {
     String ISRdefault = pref.get("ISR", "0.0");
     String IEPSdefault = pref.get("IEPS", "0.0");
 
+
+    private BigDecimal subTot = new BigDecimal(0.0);
+
+    public BigDecimal getSubTot() {
+        return subTot;
+    }
+
+    public void setSubTot(BigDecimal subTot) {
+        this.subTot = subTot;
+    }
+
+
+
 //  *****************************************************************
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
 
@@ -450,11 +427,18 @@ public class ImpuestosPanel extends javax.swing.JPanel {
             modelo.removeRow(0);
         }
 
+        // agregamos IVA de todos modos
+
+
+        modelo.addRow(new Object[]{"Traslado", "I.V.A.",Double.parseDouble(this.getSubTot().toString())* Double.parseDouble(IVAdefault), Double.parseDouble(IVAdefault)});
+
+
+
         totRetenciones = 0.0;
         totTraslados = 0.0;
 
         txtTotalRetenidos.setText("0.0");
-        txtTotalTrasladados.setText("0.0");
+        txtTotalTrasladados.setText(this.getSubTot().toString());
 
         //this.impuesto = null;
     }//GEN-LAST:event_btnLimpiarActionPerformed
