@@ -90,7 +90,7 @@ public class Comprobante implements Serializable {
     @XmlAttribute
     private String motivoDescuento;
     @XmlAttribute(required = true)
-    private BigDecimal total = new BigDecimal(0);;
+    private BigDecimal total = new BigDecimal(0);
     @XmlAttribute
     private String metodoDePago;
     @XmlAttribute(required = true)
@@ -284,11 +284,7 @@ public class Comprobante implements Serializable {
         propertyChangeSupport.firePropertyChange("serie", null, serie);
     }
 
-    public BigDecimal getSubTotal() {
-        subTotal = new BigDecimal("0.0");
-        for (Concepto c : getConceptos()) {
-            subTotal = subTotal.add(c.getImporte());
-        }
+    public BigDecimal getSubTotal() {        
         return subTotal;
     }
 
@@ -306,9 +302,7 @@ public class Comprobante implements Serializable {
         propertyChangeSupport.firePropertyChange("tipoDeComprobante", null, tipoDeComprobante);
     }
 
-    public BigDecimal getTotal() {
-        if(impuesto.getTotalImpuestosTrasladados() != null)
-            total = subTotal.add(impuesto.getTotalImpuestosTrasladados());
+    public BigDecimal getTotal() {        
         return total;
     }
 
@@ -377,5 +371,30 @@ public class Comprobante implements Serializable {
         int hash = 5;
         hash = 29 * hash + (this.Id != null ? this.Id.hashCode() : 0);
         return hash;
+    }
+
+    public BigDecimal calcularSubTotal(){
+        BigDecimal sub = new BigDecimal("0.0");
+        for (Concepto c : getConceptos()) {
+            sub = sub.add(c.getImporte());
+        }
+        return sub;
+    }
+
+    public BigDecimal calcularImpuestos(){
+        BigDecimal tot = new BigDecimal("0");
+        if(impuesto != null){
+            for(Traslado t : impuesto.getTraslados()){
+                tot = tot.add(t.getImporte());
+            }
+            for(Retencion r : impuesto.getRetenciones()){
+                tot = tot.add(r.getImporte());
+            }
+        }
+        return tot;
+    }
+
+    public BigDecimal calcularTotal(){
+        return calcularSubTotal().add(calcularImpuestos());
     }
 }

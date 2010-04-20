@@ -1475,6 +1475,10 @@ public final class ComprobanteTopComponent extends TopComponent {
     }
     private NodeForSave saveNode;
 
+    public void enablePrint(){
+        saveNode.enablePrint(true);
+    }
+
     // <editor-fold defaultstate="collapsed" desc="Node For Save">
     private class NodeForSave extends AbstractNode {
 

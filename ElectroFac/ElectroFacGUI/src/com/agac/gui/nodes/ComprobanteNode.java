@@ -51,6 +51,7 @@ public class ComprobanteNode extends AbstractNode {
                         ctc.componentOpened();                        
                         ctc.open();
                         ctc.requestActive();
+                        ctc.enablePrint();
                         frm.getBeanTreeView1().setCursor(null);
                     }
                 });
