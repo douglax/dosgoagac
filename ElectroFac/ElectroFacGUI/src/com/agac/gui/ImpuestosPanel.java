@@ -62,14 +62,20 @@ public class ImpuestosPanel extends javax.swing.JPanel {
 
 
 
+
+        this.setImpuesto(comprobante.getImpuesto());
+
         // recorremos primero Retenciones
 
         ArrayList<Retencion> retencionList = new ArrayList<Retencion>();
 
-        retencionList = (ArrayList) comprobante.getImpuesto().getRetenciones() ;
+        retencionList = (ArrayList) impuesto.getRetenciones() ;
+        BigDecimal totRet = new BigDecimal("0.0");
+
 
         for (Retencion r : retencionList) {
             modelo.addRow(new Object[]{"Retencion", r.getImpuesto(), r.getImporte(), null});
+            totRet.add(r.getImporte());
         }
 
 
@@ -77,10 +83,13 @@ public class ImpuestosPanel extends javax.swing.JPanel {
 
         ArrayList<Traslado> trasladoList = new ArrayList<Traslado>();
 
-        trasladoList = (ArrayList) comprobante.getImpuesto().getTraslados() ;
+        trasladoList = (ArrayList) impuesto.getTraslados() ;
+        BigDecimal totTras = new BigDecimal("0.0");
 
         for (Traslado t : trasladoList) {
             modelo.addRow(new Object[]{"Traslado", t.getImpuesto(), t.getImporte(), t.getTasa() });
+            totTras.add(t.getImporte());
+            
         }
 
 
@@ -91,19 +100,23 @@ public class ImpuestosPanel extends javax.swing.JPanel {
         subTot = comprobante.getSubTotal();
 
 
-        this.setImpuesto(comprobante.getImpuesto());
+        impuesto.setTotalImpuestosRetenidos(totRet);
+        impuesto.setTotalImpuestosTrasladados(totTras);
 
-        if(impuesto.getTotalImpuestosRetenidos()!=null){
-            txtTotalRetenidos.setText(impuesto.getTotalImpuestosRetenidos().toString());
-        } else {
-            txtTotalRetenidos.setText("0.0");
-        }
+        txtTotalRetenidos.setText(totRet.toString());
+        txtTotalTrasladados.setText(totTras.toString());
 
-        if (impuesto.getTotalImpuestosTrasladados() != null) {
-            txtTotalTrasladados.setText(impuesto.getTotalImpuestosTrasladados().toString());
-        } else {
-            txtTotalTrasladados.setText("0.0");
-        }
+//        if(impuesto.getTotalImpuestosRetenidos()!=null){
+//            txtTotalRetenidos.setText(impuesto.getTotalImpuestosRetenidos().toString());
+//        } else {
+//            txtTotalRetenidos.setText("0.0");
+//        }
+//
+//        if (impuesto.getTotalImpuestosTrasladados() != null) {
+//            txtTotalTrasladados.setText(impuesto.getTotalImpuestosTrasladados().toString());
+//        } else {
+//            txtTotalTrasladados.setText("0.0");
+//        }
         
 
 
@@ -515,6 +528,8 @@ public class ImpuestosPanel extends javax.swing.JPanel {
 
 
 
+
+    BigDecimal subtotal = new BigDecimal("0.0");
     
     private Impuesto impuesto = new Impuesto();
 

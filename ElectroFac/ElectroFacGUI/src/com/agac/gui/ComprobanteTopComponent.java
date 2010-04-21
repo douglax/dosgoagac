@@ -1106,31 +1106,7 @@ public final class ComprobanteTopComponent extends TopComponent {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void btnImpuestosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImpuestosActionPerformed
-        // TODO add your handling code here:
 
-       // Preferences pref = Preferences.userNodeForPackage(OpcionesdelSistemaPanel.class);
-
-//        if (comprobante.getImpuesto() == null) {
-//            ImpuestosPanel impPanel = new ImpuestosPanel(comprobante.getSubTotal());
-//            DialogDescriptor d2 = new DialogDescriptor(impPanel, "Impuestos", true, null);
-//            DialogDisplayer.getDefault().notify(d2);
-//            //if (d2.)
-//
-//            Object result = DialogDisplayer.getDefault().notify(d2);
-//            if (NotifyDescriptor.OK_OPTION.equals(result)) {
-//                comprobante.setImpuesto(impPanel.getImpuesto());
-//            }
-//
-//        } else {
-//            ImpuestosPanel impPanel = new ImpuestosPanel(comprobante.getSubTotal(), comprobante.getImpuesto());
-//            DialogDescriptor d2 = new DialogDescriptor(impPanel, "Impuestos", true, null);
-//            DialogDisplayer.getDefault().notify(d2);
-//            //comprobante.setImpuesto(impPanel.getImpuesto());
-//            Object result = DialogDisplayer.getDefault().notify(d2);
-//            if (NotifyDescriptor.OK_OPTION.equals(result)) {
-//                comprobante.setImpuesto(impPanel.getImpuesto());
-//            }
-//        }
 
 
             ImpuestosPanel impPanel = new ImpuestosPanel(comprobante);
@@ -1148,7 +1124,7 @@ public final class ComprobanteTopComponent extends TopComponent {
 
 
 
-        refrescaImpuestos();
+     //   refrescaImpuestos();
 
         NumberFormat nf = NumberFormat.getCurrencyInstance();
         lblIVA.setText(nf.format(comprobante.getIVA()));
