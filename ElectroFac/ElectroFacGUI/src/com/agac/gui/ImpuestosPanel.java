@@ -83,8 +83,8 @@ public class ImpuestosPanel extends javax.swing.JPanel {
         }
 
 
-        txtTotalRetenidos.setText(totRetenciones.toString());
-        txtTotalTrasladados.setText(totTraslados.toString());
+        txtTotalRetenidos.setText(comprobante.getImpuesto().getTotalImpuestosRetenidos().toString());
+        txtTotalTrasladados.setText(comprobante.getImpuesto().getTotalImpuestosTrasladados().toString());
         txtTasa.setText(IVAdefault);
 
 
