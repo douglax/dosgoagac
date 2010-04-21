@@ -18,6 +18,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.prefs.PreferenceChangeEvent;
 import java.util.prefs.PreferenceChangeListener;
 import java.util.prefs.Preferences;
@@ -61,7 +62,7 @@ public class ImpuestosPanel extends javax.swing.JPanel {
 
 
 
-        // recorremos primero Traslados
+        // recorremos primero Retenciones
 
         ArrayList<Retencion> retencionList = new ArrayList<Retencion>();
 
@@ -83,14 +84,32 @@ public class ImpuestosPanel extends javax.swing.JPanel {
         }
 
 
-        txtTotalRetenidos.setText(comprobante.getImpuesto().getTotalImpuestosRetenidos().toString());
-        txtTotalTrasladados.setText(comprobante.getImpuesto().getTotalImpuestosTrasladados().toString());
+        
         txtTasa.setText(IVAdefault);
 
 
         subTot = comprobante.getSubTotal();
 
+
+        this.setImpuesto(comprobante.getImpuesto());
+
+        if(impuesto.getTotalImpuestosRetenidos()!=null){
+            txtTotalRetenidos.setText(impuesto.getTotalImpuestosRetenidos().toString());
+        } else {
+            txtTotalRetenidos.setText("0.0");
         }
+
+        if (impuesto.getTotalImpuestosTrasladados() != null) {
+            txtTotalTrasladados.setText(impuesto.getTotalImpuestosTrasladados().toString());
+        } else {
+            txtTotalTrasladados.setText("0.0");
+        }
+        
+
+
+        }
+
+
 
 
     //
@@ -338,24 +357,52 @@ public class ImpuestosPanel extends javax.swing.JPanel {
 
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
 
+        Retencion R = new Retencion();
+        Traslado T = new Traslado();
+
+
         if (cboTipoImpuesto.getSelectedIndex() == 1) {
             // Retencion
             model.addRow(new Object[]{"Retención", cboImpuesto.getSelectedItem(), Double.parseDouble(txtImporte.getText()), null});
-            totRetenciones += Double.parseDouble(txtImporte.getText());
-            txtTotalRetenidos.setText(totRetenciones.toString());
+            
+            R.setImpuesto(cboImpuesto.getSelectedItem().toString());
+            R.setImporte(new BigDecimal(txtImporte.getText()));
+            impuesto.getRetenciones().add(R);
+
+            impuesto.setTotalImpuestosRetenidos((new BigDecimal(txtImporte.getText())).add(impuesto.getTotalImpuestosRetenidos()));
+
+
+       //     (new BigDecimal(txtImporte.getText()).add(impuesto.getTotalImpuestosRetenidos())
+
+            txtTotalRetenidos.setText(impuesto.getTotalImpuestosRetenidos().toString());
 
         } else if (cboTipoImpuesto.getSelectedIndex() == 0) {
             // Traslado
             model.addRow(new Object[]{"Traslado", cboImpuesto.getSelectedItem(), Double.parseDouble(txtImporte.getText()), Double.parseDouble(txtTasa.getText())});
-            totTraslados += Double.parseDouble(txtImporte.getText());
-            txtTotalTrasladados.setText(totTraslados.toString());
+
+            T.setImpuesto(cboImpuesto.getSelectedItem().toString());
+            T.setImporte(new BigDecimal(txtImporte.getText()));
+            T.setTasa(new BigDecimal(txtTasa.getText()));
+
+            impuesto.getTraslados().add(T);
+
+            //impuesto.setTotalImpuestosTrasladados(new BigDecimal(txtImporte.getText()));
+
+            impuesto.setTotalImpuestosTrasladados((new BigDecimal(txtImporte.getText())).add(impuesto.getTotalImpuestosTrasladados()));
+
+            //totTraslados += Double.parseDouble(txtImporte.getText());
+            txtTotalTrasladados.setText(impuesto.getTotalImpuestosTrasladados().toString());
         }
+
+
+
+
 }//GEN-LAST:event_btnAddActionPerformed
 
     private void cboImpuestoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboImpuestoActionPerformed
         // TODO add your handling code here:
 
-        calculaydespliegaImpuesto();
+       // calculaydespliegaImpuesto();
 
     }//GEN-LAST:event_cboImpuestoActionPerformed
 
@@ -376,7 +423,7 @@ public class ImpuestosPanel extends javax.swing.JPanel {
 
         }
 
-        calculaydespliegaImpuesto();
+       // calculaydespliegaImpuesto();
 
     }//GEN-LAST:event_cboTipoImpuestoActionPerformed
 
@@ -422,6 +469,8 @@ public class ImpuestosPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
 
         DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+        ArrayList<Traslado> Tlist = new ArrayList<Traslado>();
+        Traslado T = new Traslado();
 
         while (modelo.getRowCount() > 0) {
             modelo.removeRow(0);
@@ -432,13 +481,22 @@ public class ImpuestosPanel extends javax.swing.JPanel {
 
         modelo.addRow(new Object[]{"Traslado", "I.V.A.",Double.parseDouble(this.getSubTot().toString())* Double.parseDouble(IVAdefault), Double.parseDouble(IVAdefault)});
 
+        // Creamos un traslado de IVA y lo agregamos a una lista
+        T.setImpuesto("I.V.A.");
+        T.setImporte(this.getSubTot().multiply(new BigDecimal(IVAdefault)));
+        T.setTasa(new BigDecimal(IVAdefault));
+        Tlist.add(T);
+        
+        //modificamos el objeto local impuesto
+        impuesto.setRetenciones(null);
+        impuesto.setTraslados(Tlist);
 
-
-        totRetenciones = 0.0;
-        totTraslados = 0.0;
+        impuesto.setTotalImpuestosRetenidos(new BigDecimal("0.0"));
+        impuesto.setTotalImpuestosTrasladados(this.getSubTot().multiply(new BigDecimal(IVAdefault)));
+        
 
         txtTotalRetenidos.setText("0.0");
-        txtTotalTrasladados.setText(this.getSubTot().toString());
+        txtTotalTrasladados.setText(impuesto.getTotalImpuestosTrasladados().toString());
 
         //this.impuesto = null;
     }//GEN-LAST:event_btnLimpiarActionPerformed
@@ -457,44 +515,13 @@ public class ImpuestosPanel extends javax.swing.JPanel {
 
 
 
-    private static Double totRetenciones = 0.0;
-    private static Double totTraslados = 0.0;
+    
     private Impuesto impuesto = new Impuesto();
-    //private static BigDecimal IVAdefault = new BigDecimal("0.16");
-    // private static BigDecimal ISRdefault = new BigDecimal(".20");
-    //private static BigDecimal IEPSdefault = new BigDecimal(".30");
-    private BigDecimal subtotal = new BigDecimal("0.0");
+
+
+    
 
     public Impuesto getImpuesto() {
-
-
-        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-
-        for (int c = 0; c < model.getRowCount(); c++) {
-
-            if (model.getValueAt(c, 0) == "Retención") {
-                Retencion retencion = new Retencion();
-                retencion.setImpuesto(model.getValueAt(c, 1).toString());
-                retencion.setImporte(new BigDecimal(model.getValueAt(c, 2).toString()));
-                impuesto.getRetenciones().add(retencion);
-            }
-
-            if (model.getValueAt(c, 0) == "Traslado") {
-                Traslado traslado = new Traslado();
-                traslado.setImpuesto(model.getValueAt(c, 1).toString());
-                traslado.setImporte(new BigDecimal(model.getValueAt(c, 2).toString()));
-                traslado.setTasa(new BigDecimal(model.getValueAt(c, 3).toString()));
-                impuesto.getTraslados().add(traslado);
-            }
-
-
-        } //for
-
-        if (impuesto != null) {
-            impuesto.setTotalImpuestosRetenidos(BigDecimal.valueOf(totRetenciones));
-            impuesto.setTotalImpuestosTrasladados(BigDecimal.valueOf(totTraslados));
-        }
-
         return impuesto;
     }
 
