@@ -17,8 +17,8 @@ import com.agac.bo.Traslado;
 import java.awt.Color;
 import java.awt.Font;
 import java.math.BigDecimal;
+import java.text.NumberFormat;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.prefs.PreferenceChangeEvent;
 import java.util.prefs.PreferenceChangeListener;
 import java.util.prefs.Preferences;
@@ -40,6 +40,8 @@ public class ImpuestosPanel extends javax.swing.JPanel {
 
         txtImporte.getDocument().addDocumentListener(listenImporte);
         txtTasa.getDocument().addDocumentListener(listenTasa);
+
+
 
 
         DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
@@ -109,10 +111,10 @@ public class ImpuestosPanel extends javax.swing.JPanel {
 
 
         if(impuesto.getTotalImpuestosRetenidos() != null)
-        txtTotalRetenidos.setText(impuesto.getTotalImpuestosRetenidos().toString());
+        txtTotalRetenidos.setText(nf.format(impuesto.getTotalImpuestosRetenidos()));
 
         if(impuesto.getTotalImpuestosTrasladados() != null)
-        txtTotalTrasladados.setText(impuesto.getTotalImpuestosTrasladados().toString());
+        txtTotalTrasladados.setText(nf.format(impuesto.getTotalImpuestosTrasladados()));
 
 
         
@@ -187,7 +189,7 @@ public class ImpuestosPanel extends javax.swing.JPanel {
             }
         });
 
-        cboImpuesto.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "I.V.A.", "I.S.R." }));
+        cboImpuesto.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "I.V.A.", "I.E.P.S." }));
         cboImpuesto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cboImpuestoActionPerformed(evt);
@@ -234,7 +236,7 @@ public class ImpuestosPanel extends javax.swing.JPanel {
                         .addGap(18, 18, 18)
                         .addComponent(txtImporte, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtTasa, javax.swing.GroupLayout.DEFAULT_SIZE, 52, Short.MAX_VALUE)))
+                        .addComponent(txtTasa, javax.swing.GroupLayout.DEFAULT_SIZE, 58, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -287,13 +289,15 @@ public class ImpuestosPanel extends javax.swing.JPanel {
         jLabel5.setText(org.openide.util.NbBundle.getMessage(ImpuestosPanel.class, "ImpuestosPanel.jLabel5.text")); // NOI18N
 
         txtTotalRetenidos.setEditable(false);
-        txtTotalRetenidos.setFont(new java.awt.Font("DejaVu Sans", 1, 11));
+        txtTotalRetenidos.setFont(new java.awt.Font("DejaVu Sans", 1, 11)); // NOI18N
+        txtTotalRetenidos.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         txtTotalRetenidos.setText(org.openide.util.NbBundle.getMessage(ImpuestosPanel.class, "ImpuestosPanel.txtTotalRetenidos.text")); // NOI18N
 
         jLabel7.setText(org.openide.util.NbBundle.getMessage(ImpuestosPanel.class, "ImpuestosPanel.jLabel7.text")); // NOI18N
 
         txtTotalTrasladados.setEditable(false);
-        txtTotalTrasladados.setFont(new java.awt.Font("DejaVu Sans", 1, 11));
+        txtTotalTrasladados.setFont(new java.awt.Font("DejaVu Sans", 1, 11)); // NOI18N
+        txtTotalTrasladados.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         txtTotalTrasladados.setText(org.openide.util.NbBundle.getMessage(ImpuestosPanel.class, "ImpuestosPanel.txtTotalTrasladados.text")); // NOI18N
 
         btnLimpiar.setText(org.openide.util.NbBundle.getMessage(ImpuestosPanel.class, "ImpuestosPanel.btnLimpiar.text")); // NOI18N
@@ -371,6 +375,7 @@ public class ImpuestosPanel extends javax.swing.JPanel {
         Traslado T = new Traslado();
 
 
+
         if (cboTipoImpuesto.getSelectedIndex() == 1) {
             // Retencion
             model.addRow(new Object[]{"Retención", cboImpuesto.getSelectedItem(), Double.parseDouble(txtImporte.getText()), null});
@@ -381,13 +386,16 @@ public class ImpuestosPanel extends javax.swing.JPanel {
 
             
             if(impuesto.getTotalImpuestosRetenidos()!=null) {
-                impuesto.getTotalImpuestosRetenidos().add(R.getImporte()); }
-            else {
-                impuesto.setTotalImpuestosRetenidos(new BigDecimal(txtImporte.getText()));}
+                impuesto.setTotalImpuestosRetenidos(impuesto.getTotalImpuestosRetenidos().add(R.getImporte()));
+                
+            } else {
+                impuesto.setTotalImpuestosRetenidos(R.getImporte());
+            }
 
 
 
-            txtTotalRetenidos.setText(impuesto.getTotalImpuestosRetenidos().toString());
+
+            txtTotalRetenidos.setText(nf.format(  impuesto.getTotalImpuestosRetenidos()  ) );
 
         } else if (cboTipoImpuesto.getSelectedIndex() == 0) {
             // Traslado
@@ -400,12 +408,12 @@ public class ImpuestosPanel extends javax.swing.JPanel {
             impuesto.getTraslados().add(T);
 
             if(impuesto.getTotalImpuestosTrasladados()!=null) {
-                impuesto.getTotalImpuestosTrasladados().add(T.getImporte()); }
-            else {
-                impuesto.setTotalImpuestosTrasladados(new BigDecimal(txtImporte.getText()));
+                impuesto.setTotalImpuestosTrasladados(impuesto.getTotalImpuestosTrasladados().add(T.getImporte()));
+            } else {
+                impuesto.setTotalImpuestosTrasladados(T.getImporte());
             }
             
-            txtTotalTrasladados.setText(impuesto.getTotalImpuestosTrasladados().toString());
+            txtTotalTrasladados.setText(nf.format(impuesto.getTotalImpuestosTrasladados()));
 
 
         }
@@ -425,6 +433,7 @@ public class ImpuestosPanel extends javax.swing.JPanel {
     private void cboTipoImpuestoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboTipoImpuestoActionPerformed
         // TODO add your handling code here:
 
+    //    BigDecimal temp = this.getSubTot();
 
         if (cboTipoImpuesto.getSelectedIndex() == 1) {
             cboImpuesto.removeAllItems();
@@ -437,9 +446,17 @@ public class ImpuestosPanel extends javax.swing.JPanel {
             cboImpuesto.addItem(new String("I.E.P.S."));
             txtTasa.setEnabled(true);
 
+            txtTasa.setText(IVAdefault);
+
         }
 
-       
+            // Como el impuesto siempre se inicia en IVA
+            // se inicia
+//            cboImpuesto.setSelectedIndex(0);
+//
+//
+//            temp.multiply(new BigDecimal(IVAdefault));
+//            txtImporte.setText( temp.toString() );
 
     }//GEN-LAST:event_cboTipoImpuestoActionPerformed
 
@@ -475,9 +492,9 @@ public class ImpuestosPanel extends javax.swing.JPanel {
         
 
         txtTotalRetenidos.setText("0.0");
-        txtTotalTrasladados.setText(impuesto.getTotalImpuestosTrasladados().toString());
+        txtTotalTrasladados.setText(nf.format(impuesto.getTotalImpuestosTrasladados()));
 
-        //this.impuesto = null;
+        
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
     private void txtImporteFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtImporteFocusLost
@@ -509,6 +526,10 @@ public class ImpuestosPanel extends javax.swing.JPanel {
     public void setImpuesto(Impuesto impuesto) {
         this.impuesto = impuesto;
     }
+
+
+
+    NumberFormat nf = NumberFormat.getCurrencyInstance();
 
 
     DocumentListener listenImporte = new DocumentListener() {
