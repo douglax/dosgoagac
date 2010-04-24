@@ -225,7 +225,9 @@ public class PartesPanel extends javax.swing.JPanel {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
 
-        if (validaCampos()) {
+        //if (validaCampos()) {
+
+        try {
             DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
             Object[] row = new Object[6];
             parte.setUnidad(jComboBox1.getSelectedItem().toString());
@@ -243,8 +245,8 @@ public class PartesPanel extends javax.swing.JPanel {
             txtCantidad.requestFocus();
             concepto.getParte().add(parte);
             parte = new Parte();
-        } else {
-            Message msg = new NotifyDescriptor.Message("Uno ó mas datos son requeridos para continuar");
+        } catch  (Exception e) {
+            Message msg = new NotifyDescriptor.Message("Algún dato podría faltar ó tener formato erroneo!!");
             Object notify = DialogDisplayer.getDefault().notify(msg);
 
         }
@@ -350,7 +352,7 @@ public class PartesPanel extends javax.swing.JPanel {
                 jButton4.setEnabled(true);
             } catch (NumberFormatException e) {
 
-                txtCantidad.requestFocus();
+                //txtCantidad.requestFocus();
                 txtCantidad.setForeground(Color.red);
                 txtCantidad.setFont(txtCantidad.getFont().deriveFont(Font.BOLD));
                 jButton4.setEnabled(false);
@@ -388,7 +390,7 @@ public class PartesPanel extends javax.swing.JPanel {
                 jButton4.setEnabled(true);
             } catch (NumberFormatException e) {
 
-                txtPrecio.requestFocus();
+                //txtPrecio.requestFocus();
                 txtPrecio.setForeground(Color.red);
                 txtPrecio.setFont(txtPrecio.getFont().deriveFont(Font.BOLD));
                 jButton4.setEnabled(false);

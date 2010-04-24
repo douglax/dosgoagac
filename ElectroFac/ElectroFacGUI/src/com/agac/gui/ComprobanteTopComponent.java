@@ -1110,9 +1110,6 @@ public final class ComprobanteTopComponent extends TopComponent {
                 comprobante.setImpuesto(impPanel.getImpuesto());
             }
 
-
-
-
      //   refrescaImpuestos();
 
         NumberFormat nf = NumberFormat.getCurrencyInstance();
@@ -1483,6 +1480,12 @@ public final class ComprobanteTopComponent extends TopComponent {
         saveNode.enablePrint(true);
     }
 
+
+
+
+
+
+
     // <editor-fold defaultstate="collapsed" desc="Node For Save">
     private class NodeForSave extends AbstractNode {
 
@@ -1531,7 +1534,14 @@ public final class ComprobanteTopComponent extends TopComponent {
                                         @Override
                                         public void run() {
                                             try {
-                                                comprobante.setFormaDePago("Pago en una sola exhibición");
+
+                                                if(optUnPago.isSelected()) {
+                                                    comprobante.setFormaDePago(" Pago");
+                                                } else {
+                                                    comprobante.setFormaDePago("Parcialidad " + txtParcialidad.getText() + " de " + txtParcialidadTotales.getText());
+                                                }
+
+                                                
                                                 String cadena = new CadenaOriginal(comprobante).toString();
                                                 SelloDigital sd = new SelloDigital();
                                                 sd.cargarLlavePrivada(
@@ -1623,6 +1633,7 @@ public final class ComprobanteTopComponent extends TopComponent {
             valida = false;
         }
 //      
+
 
 
 
@@ -1851,7 +1862,9 @@ public final class ComprobanteTopComponent extends TopComponent {
                     int x = Integer.parseInt(txtParcialidadTotales.getText().trim());
                     txtParcialidadTotales.setFont(txtParcialidadTotales.getFont().deriveFont(Font.PLAIN));
                     txtParcialidadTotales.setForeground(Color.BLACK);
-
+                    if ( x  <  Integer.parseInt(txtParcialidad.getText().trim()) ){
+                      throw(new NumberFormatException());
+                    }
 
                 } catch (NumberFormatException nfe) {
 
