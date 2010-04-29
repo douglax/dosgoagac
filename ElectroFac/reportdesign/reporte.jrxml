@@ -3,6 +3,9 @@
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
+	<subDataset name="dataset1">
+		<field name="cantidad" class="java.lang.Double"/>
+	</subDataset>
 	<field name="emisor.logo" class="java.lang.Object"/>
 	<field name="emisor.rfc" class="java.lang.String"/>
 	<field name="emisor.nombre" class="java.lang.String"/>
@@ -13,6 +16,7 @@
 	<field name="emisor.domicilioFiscal.municipio" class="java.lang.String"/>
 	<field name="emisor.domicilioFiscal.estado" class="java.lang.String"/>
 	<field name="emisor.domicilioFiscal.pais" class="java.lang.String"/>
+	<field name="conceptos" class="java.lang.Object"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -80,10 +84,26 @@
 		<band height="42" splitType="Stretch"/>
 	</columnHeader>
 	<detail>
-		<band height="125" splitType="Stretch"/>
+		<band height="36" splitType="Stretch">
+			<componentElement>
+				<reportElement x="0" y="0" width="572" height="30"/>
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
+					<datasetRun subDataset="dataset1">
+						<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource((java.util.List)$F{conceptos})]]></dataSourceExpression>
+					</datasetRun>
+					<jr:listContents height="30" width="572">
+						<textField>
+							<reportElement x="6" y="0" width="81" height="20"/>
+							<textElement/>
+							<textFieldExpression class="java.lang.String"><![CDATA[""+$F{cantidad}]]></textFieldExpression>
+						</textField>
+					</jr:listContents>
+				</jr:list>
+			</componentElement>
+		</band>
 	</detail>
 	<columnFooter>
-		<band height="45" splitType="Stretch"/>
+		<band height="44" splitType="Stretch"/>
 	</columnFooter>
 	<pageFooter>
 		<band height="54" splitType="Stretch"/>
