@@ -17,24 +17,25 @@
 	<field name="emisor.domicilioFiscal.codigoPostal" class="java.lang.String"/>
 	<field name="receptor.nombre" class="java.lang.String"/>
 	<field name="receptor.rfc" class="java.lang.String"/>
-	<field name="receptor.domicilioFiscal.calle" class="java.lang.String"/>
-	<field name="receptor.domicilioFiscal.noExterior" class="java.lang.String"/>
-	<field name="receptor.domicilioFiscal.colonia" class="java.lang.String"/>
-	<field name="receptor.domicilioFiscal.localidad" class="java.lang.String"/>
-	<field name="receptor.domicilioFiscal.municipio" class="java.lang.String"/>
-	<field name="receptor.domicilioFiscal.codigoPostal" class="java.lang.String"/>
-	<field name="concepto.cantidad" class="java.lang.String"/>
-	<field name="concepto.unidad" class="java.lang.String"/>
-	<field name="concepto.noIdentificacion" class="java.lang.String"/>
-	<field name="concepto.descripcion" class="java.lang.String"/>
-	<field name="concepto.valorUnitario" class="java.lang.String"/>
-	<field name="concepto.importe" class="java.lang.String"/>
+	<field name="receptor.domicilio.calle" class="java.lang.String"/>
+	<field name="receptor.domicilio.noExterior" class="java.lang.String"/>
+	<field name="receptor.domicilio.colonia" class="java.lang.String"/>
+	<field name="receptor.domicilio.localidad" class="java.lang.String"/>
+	<field name="receptor.domicilio.municipio" class="java.lang.String"/>
+	<field name="receptor.domicilio.codigoPostal" class="java.lang.String"/>
+	<field name="conceptos.cantidad" class="java.lang.String"/>
+	<field name="conceptos.unidad" class="java.lang.String"/>
+	<field name="conceptos.noIdentificacion" class="java.lang.String"/>
+	<field name="conceptos.descripcion" class="java.lang.String"/>
+	<field name="conceptos.valorUnitario" class="java.lang.String"/>
+	<field name="conceptos.importe" class="java.lang.String"/>
 	<field name="subTotal" class="java.lang.String"/>
 	<field name="IVA" class="java.lang.String"/>
 	<field name="total" class="java.lang.String"/>
 	<field name="CantidadConLetra" class="java.lang.String"/>
-	<field name="receptor.domicilioFiscal.estado" class="java.lang.String"/>
-	<field name="receptor.domicilioFiscal.pais" class="java.lang.String"/>
+	<field name="receptor.domicilio.estado" class="java.lang.String"/>
+	<field name="receptor.domicilio.pais" class="java.lang.String"/>
+	<field name="conceptos" class="java.util.List"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -113,12 +114,12 @@
 			<textField>
 				<reportElement x="4" y="139" width="549" height="20"/>
 				<textElement/>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{receptor.domicilioFiscal.calle} + " " + $F{receptor.domicilioFiscal.noExterior} + ", Colonia " + $F{receptor.domicilioFiscal.colonia} + " C.P. " + $F{receptor.domicilioFiscal.codigoPostal}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{receptor.domicilio.calle} + " " + $F{receptor.domicilio.noExterior} + ", Colonia " + $F{receptor.domicilio.colonia} + " C.P. " + $F{receptor.domicilio.codigoPostal}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="6" y="161" width="547" height="20"/>
 				<textElement/>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{receptor.domicilioFiscal.localidad} + " " + $F{receptor.domicilioFiscal.municipio} + ", " + $F{receptor.domicilioFiscal.estado} + ", " + $F{receptor.domicilioFiscal.pais}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{receptor.domicilio.localidad} + " " + $F{receptor.domicilio.municipio} + ", " + $F{receptor.domicilio.estado} + ", " + $F{receptor.domicilio.pais}]]></textFieldExpression>
 			</textField>
 		</band>
 	</title>
@@ -179,32 +180,32 @@
 			<textField>
 				<reportElement x="3" y="4" width="39" height="20"/>
 				<textElement/>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{concepto.cantidad}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{conceptos.cantidad}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="51" y="4" width="30" height="20"/>
 				<textElement/>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{concepto.unidad}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{conceptos.unidad}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="88" y="4" width="55" height="20"/>
 				<textElement/>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{concepto.noIdentificacion}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{conceptos.noIdentificacion}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="153" y="4" width="271" height="20" isPrintWhenDetailOverflows="true"/>
 				<textElement/>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{concepto.descripcion}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{conceptos.descripcion}]]></textFieldExpression>
 			</textField>
 			<textField pattern="#,##0.00">
 				<reportElement x="436" y="4" width="60" height="20"/>
 				<textElement textAlignment="Right"/>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{concepto.valorUnitario}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{conceptos.valorUnitario}]]></textFieldExpression>
 			</textField>
 			<textField pattern="#,##0.00">
 				<reportElement x="508" y="4" width="59" height="20"/>
 				<textElement textAlignment="Right"/>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{concepto.importe}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{conceptos.importe}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
