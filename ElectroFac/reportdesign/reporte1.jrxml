@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reporte1" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="12"/>
+	<property name="ireport.y" value="128"/>
 	<subDataset name="dataset1">
 		<field name="cantidad" class="java.lang.Double"/>
 		<field name="unidad" class="java.lang.String"/>
@@ -37,6 +37,7 @@
 	<field name="receptor.domicilio.estado" class="java.lang.String"/>
 	<field name="receptor.domicilio.pais" class="java.lang.String"/>
 	<field name="conceptos" class="java.lang.Object"/>
+	<field name="cantidadConLetra" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -221,65 +222,161 @@
 		</band>
 	</detail>
 	<columnFooter>
-		<band height="77" splitType="Stretch">
+		<band height="162" splitType="Stretch">
 			<rectangle>
-				<reportElement x="1" y="2" width="404" height="20" backcolor="#C0C0C0"/>
+				<reportElement x="1" y="57" width="404" height="20" backcolor="#C0C0C0"/>
 			</rectangle>
 			<staticText>
-				<reportElement x="4" y="5" width="262" height="17"/>
+				<reportElement x="4" y="62" width="125" height="17"/>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[Cantidad con letra]]></text>
 			</staticText>
 			<textField pattern="¤ #,##0.00">
-				<reportElement x="503" y="5" width="64" height="20"/>
+				<reportElement x="503" y="61" width="64" height="20"/>
 				<textElement textAlignment="Right">
 					<font isBold="true"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{subTotal}.toString()]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="424" y="5" width="74" height="20"/>
+				<reportElement x="424" y="63" width="74" height="20"/>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[SUBTOTAL]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="424" y="25" width="74" height="20"/>
+				<reportElement x="424" y="83" width="74" height="20"/>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[I.V.A.]]></text>
 			</staticText>
 			<textField pattern="¤ #,##0.00" isBlankWhenNull="true">
-				<reportElement x="503" y="22" width="64" height="20"/>
+				<reportElement x="503" y="84" width="64" height="20"/>
 				<textElement textAlignment="Right">
 					<font size="10" isBold="true"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[""+$F{IVA}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="424" y="45" width="74" height="20"/>
+				<reportElement x="424" y="107" width="74" height="20"/>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[TOTAL]]></text>
 			</staticText>
 			<textField pattern="¤ #,##0.00">
-				<reportElement x="503" y="42" width="64" height="20"/>
+				<reportElement x="503" y="106" width="64" height="20"/>
 				<textElement textAlignment="Right">
 					<font size="10" isBold="true"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{total}.toString()]]></textFieldExpression>
 			</textField>
+			<textField>
+				<reportElement x="1" y="82" width="404" height="21"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{cantidadConLetra}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="2" width="117" height="13"/>
+				<textElement>
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cadena original:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="3" y="15" width="569" height="34"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[Aqui va la cadena original | Aqui va la cadena original | Aqui va la cadena original | Aqui va la cadena original | Aqui va la cadena original | Aqui va la cadena original | Aqui va la cadena original | Aqui va la cadena original | Aqui va la cadena original | Aqui va la cadena original | Aqui va la cadena original | Aqui va la cadena original | Aqui va la cadena original | ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="107" width="211" height="17"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Debo y pagaré incondicionalmente a la orden de:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="207" y="107" width="217" height="17"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{emisor.nombre}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="118" width="424" height="16"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[la cantidad aqui señalada. Si no se pagara al vencimiento causará un interes bancario vigente.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="130" width="567" height="16"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[En caso de cheque devuelto causará el 20% de interés al importe del cheque según la ley de títulos y créditos bancarios.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="140" width="567" height="16"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[La reproducción no autorizada de este comprobante constituye un delito en los términos de las disposiciones fiscales.]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="158" width="572" height="1"/>
+				<graphicElement>
+					<pen lineWidth="1.5"/>
+				</graphicElement>
+			</line>
 		</band>
 	</columnFooter>
 	<pageFooter>
-		<band height="54" splitType="Stretch"/>
+		<band height="98" splitType="Stretch">
+			<staticText>
+				<reportElement x="2" y="43" width="569" height="34"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Sello Digital - Sello Digital - Sello Digital - Sello Digital - Sello Digital - Sello Digital - Sello Digital - Sello Digital - Sello Digital - Sello Digital - Sello Digital - Sello Digital - Sello Digital - Sello Digital - Sello Digital - Sello Digital - Sello Digital - Sello Digital - Sello Digital - Sello Digital - Sello Digital - Sello Digital - Sello Digital - ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="3" width="445" height="11"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Este documento es una impresión de un Comprobante Fiscal Digital]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="14" width="150" height="11"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Numero de aprobación de folios:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="255" y="14" width="150" height="11"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Certificado:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="28" width="100" height="11"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Sello Digital:]]></text>
+			</staticText>
+		</band>
 	</pageFooter>
 	<summary>
-		<band height="42" splitType="Stretch"/>
+		<band height="79" splitType="Stretch"/>
 	</summary>
 </jasperReport>
