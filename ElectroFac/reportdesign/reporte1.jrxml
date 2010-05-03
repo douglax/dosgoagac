@@ -2,7 +2,15 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reporte1" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="12"/>
+	<subDataset name="dataset1">
+		<field name="cantidad" class="java.lang.Double"/>
+		<field name="unidad" class="java.lang.String"/>
+		<field name="noIdentificacion" class="java.lang.String"/>
+		<field name="descripcion" class="java.lang.String"/>
+		<field name="valorUnitario" class="java.math.BigDecimal"/>
+		<field name="importe" class="java.math.BigDecimal"/>
+	</subDataset>
 	<field name="emisor.nombre" class="java.lang.String"/>
 	<field name="emisor.rfc" class="java.lang.String"/>
 	<field name="folio" class="java.lang.String"/>
@@ -23,19 +31,12 @@
 	<field name="receptor.domicilio.localidad" class="java.lang.String"/>
 	<field name="receptor.domicilio.municipio" class="java.lang.String"/>
 	<field name="receptor.domicilio.codigoPostal" class="java.lang.String"/>
-	<field name="conceptos.cantidad" class="java.lang.String"/>
-	<field name="conceptos.unidad" class="java.lang.String"/>
-	<field name="conceptos.noIdentificacion" class="java.lang.String"/>
-	<field name="conceptos.descripcion" class="java.lang.String"/>
-	<field name="conceptos.valorUnitario" class="java.lang.String"/>
-	<field name="conceptos.importe" class="java.lang.String"/>
-	<field name="subTotal" class="java.lang.String"/>
-	<field name="IVA" class="java.lang.String"/>
-	<field name="total" class="java.lang.String"/>
-	<field name="CantidadConLetra" class="java.lang.String"/>
+	<field name="subTotal" class="java.math.BigDecimal"/>
+	<field name="IVA" class="java.lang.Double"/>
+	<field name="total" class="java.math.BigDecimal"/>
 	<field name="receptor.domicilio.estado" class="java.lang.String"/>
 	<field name="receptor.domicilio.pais" class="java.lang.String"/>
-	<field name="conceptos" class="java.util.List"/>
+	<field name="conceptos" class="java.lang.Object"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -86,7 +87,7 @@
 				<textElement/>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{emisor.domicilioFiscal.calle} + " " + $F{emisor.domicilioFiscal.noExterior} +" Colonia " + $F{emisor.domicilioFiscal.colonia} + " C.P. " + $F{emisor.domicilioFiscal.codigoPostal}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField isBlankWhenNull="true">
 				<reportElement x="112" y="59" width="455" height="20"/>
 				<textElement/>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{emisor.domicilioFiscal.localidad} + " " + $F{emisor.domicilioFiscal.municipio} + ", " + $F{emisor.domicilioFiscal.estado} + ", " + $F{emisor.domicilioFiscal.pais}]]></textFieldExpression>
@@ -116,7 +117,7 @@
 				<textElement/>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{receptor.domicilio.calle} + " " + $F{receptor.domicilio.noExterior} + ", Colonia " + $F{receptor.domicilio.colonia} + " C.P. " + $F{receptor.domicilio.codigoPostal}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField isBlankWhenNull="true">
 				<reportElement x="6" y="161" width="547" height="20"/>
 				<textElement/>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{receptor.domicilio.localidad} + " " + $F{receptor.domicilio.municipio} + ", " + $F{receptor.domicilio.estado} + ", " + $F{receptor.domicilio.pais}]]></textFieldExpression>
@@ -176,37 +177,47 @@
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="32" splitType="Stretch">
-			<textField>
-				<reportElement x="3" y="4" width="39" height="20"/>
-				<textElement/>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{conceptos.cantidad}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="51" y="4" width="30" height="20"/>
-				<textElement/>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{conceptos.unidad}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="88" y="4" width="55" height="20"/>
-				<textElement/>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{conceptos.noIdentificacion}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="153" y="4" width="271" height="20" isPrintWhenDetailOverflows="true"/>
-				<textElement/>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{conceptos.descripcion}]]></textFieldExpression>
-			</textField>
-			<textField pattern="#,##0.00">
-				<reportElement x="436" y="4" width="60" height="20"/>
-				<textElement textAlignment="Right"/>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{conceptos.valorUnitario}]]></textFieldExpression>
-			</textField>
-			<textField pattern="#,##0.00">
-				<reportElement x="508" y="4" width="59" height="20"/>
-				<textElement textAlignment="Right"/>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{conceptos.importe}]]></textFieldExpression>
-			</textField>
+		<band height="36" splitType="Stretch">
+			<componentElement>
+				<reportElement x="0" y="0" width="572" height="30"/>
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
+					<datasetRun subDataset="dataset1">
+						<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource((java.util.List)$F{conceptos})]]></dataSourceExpression>
+					</datasetRun>
+					<jr:listContents height="30" width="572">
+						<textField>
+							<reportElement x="6" y="5" width="33" height="20"/>
+							<textElement/>
+							<textFieldExpression class="java.lang.String"><![CDATA[""+$F{cantidad}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="43" y="5" width="35" height="20"/>
+							<textElement/>
+							<textFieldExpression class="java.lang.String"><![CDATA[$F{unidad}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="84" y="5" width="45" height="20"/>
+							<textElement/>
+							<textFieldExpression class="java.lang.String"><![CDATA[$F{noIdentificacion}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="134" y="5" width="290" height="20"/>
+							<textElement/>
+							<textFieldExpression class="java.lang.String"><![CDATA[$F{descripcion}]]></textFieldExpression>
+						</textField>
+						<textField pattern="#,##0.00">
+							<reportElement x="429" y="5" width="69" height="20"/>
+							<textElement textAlignment="Right"/>
+							<textFieldExpression class="java.lang.String"><![CDATA[$F{valorUnitario}.toString()]]></textFieldExpression>
+						</textField>
+						<textField pattern="#,##0.00">
+							<reportElement x="508" y="5" width="59" height="20"/>
+							<textElement/>
+							<textFieldExpression class="java.lang.String"><![CDATA[$F{importe}.toString()]]></textFieldExpression>
+						</textField>
+					</jr:listContents>
+				</jr:list>
+			</componentElement>
 		</band>
 	</detail>
 	<columnFooter>
@@ -226,7 +237,7 @@
 				<textElement textAlignment="Right">
 					<font isBold="true"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{subTotal}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{subTotal}.toString()]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="424" y="5" width="74" height="20"/>
@@ -242,12 +253,12 @@
 				</textElement>
 				<text><![CDATA[I.V.A.]]></text>
 			</staticText>
-			<textField pattern="¤ #,##0.00">
+			<textField pattern="¤ #,##0.00" isBlankWhenNull="true">
 				<reportElement x="503" y="22" width="64" height="20"/>
 				<textElement textAlignment="Right">
 					<font size="10" isBold="true"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{IVA}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[""+$F{IVA}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="424" y="45" width="74" height="20"/>
@@ -261,12 +272,7 @@
 				<textElement textAlignment="Right">
 					<font size="10" isBold="true"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{total}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="1" y="27" width="404" height="20"/>
-				<textElement/>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{CantidadConLetra}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{total}.toString()]]></textFieldExpression>
 			</textField>
 		</band>
 	</columnFooter>
