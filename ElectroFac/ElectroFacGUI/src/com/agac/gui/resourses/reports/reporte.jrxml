@@ -6,6 +6,7 @@
 	<subDataset name="dataset1">
 		<field name="cantidad" class="java.lang.Double"/>
 		<field name="descripcion" class="java.lang.String"/>
+		<field name="importe" class="java.math.BigDecimal"/>
 	</subDataset>
 	<field name="emisor.logo" class="java.lang.Object"/>
 	<field name="emisor.rfc" class="java.lang.String"/>
@@ -24,11 +25,15 @@
 	<field name="receptor.domicilio.calle" class="java.lang.String"/>
 	<field name="receptor.domicilio.noExterior" class="java.lang.String"/>
 	<field name="receptor.domicilio.colonia" class="java.lang.String"/>
+	<field name="receptor.rfc" class="java.lang.String"/>
+	<field name="receptor.domicilio.municipio" class="java.lang.String"/>
+	<field name="receptor.domicilio.estado" class="java.lang.String"/>
+	<field name="receptor.domicilio.pais" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="304" splitType="Stretch">
+		<band height="244" splitType="Stretch">
 			<image>
 				<reportElement x="0" y="0" width="106" height="88"/>
 				<imageExpression class="java.awt.Image"><![CDATA[net.sf.jasperreports.engine.util.JRImageLoader.loadImage((byte[]) $F{emisor.logo})]]></imageExpression>
@@ -53,49 +58,59 @@
 				<text><![CDATA[R.F.C.]]></text>
 			</staticText>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement x="0" y="147" width="263" height="20"/>
-				<textElement verticalAlignment="Middle"/>
+				<reportElement x="0" y="120" width="263" height="12"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{emisor.domicilioFiscal.calle} + " " + $F{emisor.domicilioFiscal.noExterior}]]></textFieldExpression>
 			</textField>
 			<line>
-				<reportElement x="0" y="123" width="572" height="1"/>
+				<reportElement x="0" y="166" width="572" height="1"/>
 			</line>
-			<staticText>
-				<reportElement x="0" y="127" width="100" height="20"/>
-				<textElement>
-					<font size="11" isBold="true"/>
-				</textElement>
-				<text><![CDATA[Domicilio Fiscal]]></text>
-			</staticText>
 			<textField isBlankWhenNull="true">
-				<reportElement x="0" y="167" width="263" height="20"/>
-				<textElement verticalAlignment="Middle"/>
+				<reportElement x="0" y="132" width="263" height="12"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA["Colonia " + $F{emisor.domicilioFiscal.colonia} + " Código Postal " + $F{emisor.domicilioFiscal.codigoPostal}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement x="0" y="187" width="263" height="20"/>
-				<textElement verticalAlignment="Middle"/>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{emisor.domicilioFiscal.municipio} + ", " + $F{emisor.domicilioFiscal.estado}]]></textFieldExpression>
+				<reportElement x="0" y="144" width="263" height="12"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{emisor.domicilioFiscal.municipio} + ", " + $F{emisor.domicilioFiscal.estado} + " - " + $F{emisor.domicilioFiscal.pais}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="0" y="207" width="231" height="20"/>
-				<textElement verticalAlignment="Middle"/>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{emisor.domicilioFiscal.pais}]]></textFieldExpression>
+				<reportElement x="0" y="175" width="572" height="12"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{receptor.nombre}+ " - " + $F{receptor.rfc}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="0" y="238" width="572" height="20"/>
-				<textElement/>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{receptor.nombre}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="0" y="258" width="572" height="20"/>
-				<textElement/>
+				<reportElement x="0" y="187" width="572" height="12"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{receptor.domicilio.calle} + " " + $F{receptor.domicilio.noExterior}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="0" y="278" width="572" height="20"/>
-				<textElement/>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{receptor.domicilio.colonia}]]></textFieldExpression>
+				<reportElement x="0" y="199" width="572" height="12"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["Colonia " + $F{receptor.domicilio.colonia}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="233" width="572" height="1"/>
+			</line>
+			<textField>
+				<reportElement x="0" y="211" width="263" height="12"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{receptor.domicilio.municipio} + ", " + $F{receptor.domicilio.estado} + " - " + $F{receptor.domicilio.pais}]]></textFieldExpression>
 			</textField>
 		</band>
 	</title>
@@ -103,23 +118,34 @@
 		<band splitType="Stretch"/>
 	</pageHeader>
 	<detail>
-		<band height="26" splitType="Stretch">
+		<band height="15" splitType="Stretch">
 			<componentElement>
-				<reportElement x="0" y="0" width="572" height="22"/>
+				<reportElement x="0" y="0" width="572" height="13"/>
 				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
 					<datasetRun subDataset="dataset1">
 						<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource((java.util.List)$F{conceptos})]]></dataSourceExpression>
 					</datasetRun>
-					<jr:listContents height="22" width="572">
+					<jr:listContents height="13" width="572">
 						<textField>
-							<reportElement x="6" y="0" width="100" height="20"/>
-							<textElement/>
+							<reportElement x="6" y="0" width="100" height="13"/>
+							<textElement>
+								<font fontName="Courier New" size="8"/>
+							</textElement>
 							<textFieldExpression class="java.lang.String"><![CDATA[""+$F{cantidad}]]></textFieldExpression>
 						</textField>
 						<textField>
-							<reportElement x="106" y="0" width="346" height="20"/>
-							<textElement/>
+							<reportElement x="106" y="0" width="346" height="13"/>
+							<textElement>
+								<font fontName="Courier New" size="8"/>
+							</textElement>
 							<textFieldExpression class="java.lang.String"><![CDATA[$F{descripcion}]]></textFieldExpression>
+						</textField>
+						<textField pattern="¤ #,##0.00">
+							<reportElement x="472" y="0" width="100" height="13"/>
+							<textElement textAlignment="Right">
+								<font fontName="Courier New" size="8"/>
+							</textElement>
+							<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{importe}]]></textFieldExpression>
 						</textField>
 					</jr:listContents>
 				</jr:list>
@@ -127,7 +153,11 @@
 		</band>
 	</detail>
 	<columnFooter>
-		<band height="44" splitType="Stretch"/>
+		<band height="6">
+			<line>
+				<reportElement x="6" y="0" width="566" height="1"/>
+			</line>
+		</band>
 	</columnFooter>
 	<pageFooter>
 		<band height="104" splitType="Stretch">
@@ -140,15 +170,15 @@
 			</staticText>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 				<reportElement stretchType="RelativeToTallestObject" x="0" y="77" width="572" height="20"/>
-				<textElement>
-					<font size="8"/>
+				<textElement textAlignment="Left">
+					<font size="7"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{sello}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 				<reportElement x="0" y="20" width="572" height="20"/>
-				<textElement>
-					<font size="8"/>
+				<textElement textAlignment="Left">
+					<font size="7"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{cadenaOriginal}]]></textFieldExpression>
 			</textField>

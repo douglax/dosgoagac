@@ -915,6 +915,9 @@ public final class ComprobanteTopComponent extends TopComponent {
         lblSubtotal.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         lblSubtotal.setOpaque(true);
 
+        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, this, org.jdesktop.beansbinding.ELProperty.create("${comprobante.subTotal}"), lblSubtotal, org.jdesktop.beansbinding.BeanProperty.create("text"));
+        bindingGroup.addBinding(binding);
+
         jLabel31.setFont(new java.awt.Font("DejaVu Sans", 1, 11));
         org.openide.awt.Mnemonics.setLocalizedText(jLabel31, org.openide.util.NbBundle.getMessage(ComprobanteTopComponent.class, "ComprobanteTopComponent.jLabel31.text")); // NOI18N
 
@@ -938,8 +941,12 @@ public final class ComprobanteTopComponent extends TopComponent {
         lblIVA.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         lblIVA.setOpaque(true);
 
-        jLabel33.setFont(new java.awt.Font("DejaVu Sans", 1, 14));
+        jLabel33.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel33.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel33.setPreferredSize(new java.awt.Dimension(0, 20));
+
+        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, this, org.jdesktop.beansbinding.ELProperty.create("${comprobante.total}"), jLabel33, org.jdesktop.beansbinding.BeanProperty.create("text"));
+        bindingGroup.addBinding(binding);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -947,21 +954,20 @@ public final class ComprobanteTopComponent extends TopComponent {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel28)
-                            .addComponent(jLabel31)
-                            .addComponent(jLabel32))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(lblDescuento, javax.swing.GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE)
-                                    .addComponent(lblSubtotal, javax.swing.GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE))
-                                .addGap(21, 21, 21))
-                            .addComponent(lblIVA)))
-                    .addComponent(jLabel33, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel28)
+                    .addComponent(jLabel31)
+                    .addComponent(jLabel32)
                     .addComponent(jLabel29))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblDescuento, javax.swing.GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE)
+                            .addComponent(lblSubtotal, javax.swing.GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE))
+                        .addGap(21, 21, 21))
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jLabel33, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblIVA, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -982,10 +988,10 @@ public final class ComprobanteTopComponent extends TopComponent {
                     .addComponent(jLabel32)
                     .addComponent(lblIVA))
                 .addGap(18, 18, 18)
-                .addComponent(jLabel29)
-                .addGap(38, 38, 38)
-                .addComponent(jLabel33, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel29)
+                    .addComponent(jLabel33, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(65, 65, 65))
         );
 
         jPanel3Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {lblDescuento, lblIVA, lblSubtotal});
@@ -1052,6 +1058,8 @@ public final class ComprobanteTopComponent extends TopComponent {
             txtPrecio.setText("");
             txtCantidad.requestFocus();
             NumberFormat nf = NumberFormat.getCurrencyInstance();
+            comprobante.setSubTotal(comprobante.calcularSubTotal());
+            comprobante.setTotal(comprobante.calcularTotal());
             lblSubtotal.setText(nf.format(comprobante.getSubTotal().doubleValue()));
             //jLabel33.setText(nf.format(comprobante.getTotal().doubleValue()));
             refrescaImpuestos();
@@ -1095,22 +1103,17 @@ public final class ComprobanteTopComponent extends TopComponent {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void btnImpuestosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImpuestosActionPerformed
+        ImpuestosPanel impPanel = new ImpuestosPanel(comprobante);
+        DialogDescriptor d2 = new DialogDescriptor(impPanel, "Impuestos", true, null);
+        //DialogDisplayer.getDefault().notify(d2);
+        //comprobante.setImpuesto(impPanel.getImpuesto());
+        Object result = DialogDisplayer.getDefault().notify(d2);
 
+        if (DialogDescriptor.OK_OPTION.equals(result)) {
+            comprobante.setImpuesto(impPanel.getImpuesto());
+        }
 
-
-            ImpuestosPanel impPanel = new ImpuestosPanel(comprobante);
-            DialogDescriptor d2 = new DialogDescriptor(impPanel, "Impuestos", true, null);
-            //DialogDisplayer.getDefault().notify(d2);
-            //comprobante.setImpuesto(impPanel.getImpuesto());
-            Object result = DialogDisplayer.getDefault().notify(d2);
-
-
-
-            if (DialogDescriptor.OK_OPTION.equals(result)) {
-                comprobante.setImpuesto(impPanel.getImpuesto());
-            }
-
-     //   refrescaImpuestos();
+        refrescaImpuestos();
 
         NumberFormat nf = NumberFormat.getCurrencyInstance();
         lblIVA.setText(nf.format(comprobante.getIVA()));
@@ -1135,16 +1138,11 @@ public final class ComprobanteTopComponent extends TopComponent {
         if (optUnPago.isSelected()) {
             txtParcialidad.setEnabled(false);
             txtParcialidadTotales.setEnabled(false);
-
         } else {
             txtParcialidad.setEnabled(true);
             txtParcialidadTotales.setEnabled(true);
-
-
         }
         //firePropertyChange(null, null, null);
-
-
 
     }//GEN-LAST:event_optParcialActionPerformed
 
@@ -1195,16 +1193,12 @@ public final class ComprobanteTopComponent extends TopComponent {
         }
     }//GEN-LAST:event_chkDescuentoActionPerformed
 
-
-
-
     private void jTable1PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jTable1PropertyChange
         // TODO add your handling code here:
     }//GEN-LAST:event_jTable1PropertyChange
 
     private void jTable1InputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_jTable1InputMethodTextChanged
         // TODO add your handling code here:
-
     }//GEN-LAST:event_jTable1InputMethodTextChanged
     // <editor-fold defaultstate="collapsed" desc="Variables de Instancia">
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -1435,10 +1429,8 @@ public final class ComprobanteTopComponent extends TopComponent {
     public Comprobante getComprobante() {
         return comprobante;
     }
-
     Preferences pref = NbPreferences.forModule(OpcionesdelSistemaPanel.class);
     String IVAdefault = pref.get("IVA", "0.0");
-
 
     public void setComprobante(Comprobante comprobante) {
         this.comprobante = comprobante;
@@ -1452,7 +1444,6 @@ public final class ComprobanteTopComponent extends TopComponent {
         }
         firePropertyChange("comprobante", null, comprobante);
     }
-
     private Concepto concepto = new Concepto();
 
     public Concepto getConcepto() {
@@ -1461,7 +1452,7 @@ public final class ComprobanteTopComponent extends TopComponent {
 
     public void setConcepto(Concepto concepto) {
         this.concepto = concepto;
-        
+
         firePropertyChange("concepto", null, concepto);
         //refrescaImpuestos();
     }
@@ -1476,15 +1467,9 @@ public final class ComprobanteTopComponent extends TopComponent {
     }
     private NodeForSave saveNode;
 
-    public void enablePrint(){
+    public void enablePrint() {
         saveNode.enablePrint(true);
     }
-
-
-
-
-
-
 
     // <editor-fold defaultstate="collapsed" desc="Node For Save">
     private class NodeForSave extends AbstractNode {
@@ -1535,13 +1520,13 @@ public final class ComprobanteTopComponent extends TopComponent {
                                         public void run() {
                                             try {
 
-                                                if(optUnPago.isSelected()) {
+                                                if (optUnPago.isSelected()) {
                                                     comprobante.setFormaDePago(" Pago");
                                                 } else {
                                                     comprobante.setFormaDePago("Parcialidad " + txtParcialidad.getText() + " de " + txtParcialidadTotales.getText());
                                                 }
 
-                                                
+
                                                 String cadena = new CadenaOriginal(comprobante).toString();
                                                 SelloDigital sd = new SelloDigital();
                                                 sd.cargarLlavePrivada(
@@ -1628,22 +1613,13 @@ public final class ComprobanteTopComponent extends TopComponent {
                 txtDescImporte.setBackground(txtColonia.getBackground());
             }
         }
-
-
         if (optParcial.isSelected() && (txtParcialidad.getText().trim().equals("") || txtParcialidadTotales.getText().trim().equals(""))) {
             valida = false;
         }
-//      
-
-
-
-
-
         // Verifica si se han ingresado conceptos
         if (model.getRowCount() == 0) {
             valida = false;
         }
-
         if (chkDescuento.isSelected()) {
             try {
                 Double D = Double.parseDouble(txtDescImporte.getText().trim());
@@ -1651,12 +1627,8 @@ public final class ComprobanteTopComponent extends TopComponent {
                 valida = false;
             }
         }
-
         return valida;
-
     }
-
-
 
     public void refrescaImpuestos() {
 
@@ -1665,7 +1637,7 @@ public final class ComprobanteTopComponent extends TopComponent {
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
 
         //if (model.getRowCount() == 0) {
-        if(comprobante.getImpuesto().getTraslados().size() == 0) {
+        if (comprobante.getImpuesto().getTraslados().size() == 0) {
 
             T.setImpuesto("I.V.A.");
             T.setImporte(comprobante.getSubTotal().multiply(new BigDecimal(IVAdefault)));
@@ -1686,48 +1658,44 @@ public final class ComprobanteTopComponent extends TopComponent {
 
         } else {
 
-
             // Se recorren la lista de traslados para verificar si existe IVA
             // se agrega cada renglón a la respectiva lista, excepto IVA Traslado
 
+            BigDecimal TTrasl = new BigDecimal("0.0");
 
-             BigDecimal TTrasl = new BigDecimal("0.0");
+            for (int c = 0; c < comprobante.getImpuesto().getTraslados().size(); c++) {
+                if (!comprobante.getImpuesto().getTraslados().get(c).getImpuesto().equals("I.V.A.")) {
+                    Tlist.add(comprobante.getImpuesto().getTraslados().get(c));
+                    TTrasl.add(comprobante.getImpuesto().getTraslados().get(c).getImporte());
 
-             for(int c=0;c< comprobante.getImpuesto().getTraslados().size();c++){
-                 if( !comprobante.getImpuesto().getTraslados().get(c).getImpuesto().equals("I.V.A.")    ) {
-                     Tlist.add(comprobante.getImpuesto().getTraslados().get(c));
-                     TTrasl.add( comprobante.getImpuesto().getTraslados().get(c).getImporte());
+                }
+            }
 
-                 }
-             }
+            // calculamos nuevo importe a partir de la suma de importes de conceptos
 
-             // calculamos nuevo importe a partir de la suma de importes de conceptos
+            Double subTot = 0.0;
 
-             Double subTot = 0.0;
+            for (int c = 0; c < model.getRowCount(); c++) {
+                subTot += Double.parseDouble(model.getValueAt(c, 5).toString());
+            }
 
-             for (int c=0;c<model.getRowCount();c++) {
-                 subTot += Double.parseDouble(model.getValueAt(c, 5).toString());
-             }
+            //calculamos IVA y lo guardamos en subTot
 
-             //calculamos IVA y lo guardamos en subTot
+            subTot *= Double.parseDouble(IVAdefault);
 
-             subTot *= Double.parseDouble(IVAdefault);
+            T.setImpuesto("I.V.A.");
+            T.setImporte(new BigDecimal(subTot.toString()));
+            T.setTasa(new BigDecimal(IVAdefault));
 
-             T.setImpuesto("I.V.A.");
-             T.setImporte(new BigDecimal(subTot.toString()));
-             T.setTasa(new BigDecimal(IVAdefault));
+            //Finalmente se agrega a la lista temporal el impuesto de IVA
+            Tlist.add(T);
 
+            comprobante.getImpuesto().setTraslados(Tlist);
+            comprobante.getImpuesto().setTotalImpuestosTrasladados(TTrasl);
 
-             //Finalmente se agrega a la lista temporal el impuesto de IVA
-             Tlist.add(T);
+            //comprobante.setImpuesto(impuesto);
 
-             comprobante.getImpuesto().setTraslados(Tlist);
-             comprobante.getImpuesto().setTotalImpuestosTrasladados(TTrasl);
-
-
-             //comprobante.setImpuesto(impuesto);
-
-             comprobante.setIVA(subTot);
+            comprobante.setIVA(subTot);
 
             NumberFormat nf = NumberFormat.getCurrencyInstance();
             lblIVA.setText(nf.format(comprobante.getIVA()));
@@ -1736,12 +1704,11 @@ public final class ComprobanteTopComponent extends TopComponent {
 
         }//if
 
-        if(comprobante.getImpuesto().getTraslados() != null)
+        if (comprobante.getImpuesto().getTraslados() != null) {
             btnImpuestos.setEnabled(true);
+        }
 
     } // refrescaImpuestos
-
-
     DocumentListener listenDescuento = new DocumentListener() {
 
         @Override
@@ -1799,7 +1766,6 @@ public final class ComprobanteTopComponent extends TopComponent {
 
         public void validar() {
 
-
             if (optParcial.isSelected()) {
 
                 if (txtParcialidad.getText().trim().equals("")) {
@@ -1807,9 +1773,6 @@ public final class ComprobanteTopComponent extends TopComponent {
                 } else {
                     txtParcialidad.setBackground(txtCantidad.getBackground());
                 }
-
-
-
                 try {
 
                     int x = Integer.parseInt(txtParcialidad.getText().trim());
@@ -1818,15 +1781,12 @@ public final class ComprobanteTopComponent extends TopComponent {
                     //firePropertyChange()
 
                 } catch (NumberFormatException nfe) {
-
-
                     txtParcialidad.setBackground(Color.YELLOW);
                     txtParcialidad.requestFocus();
                     txtParcialidad.setForeground(Color.RED);
                     txtParcialidad.setFont(txtParcialidad.getFont().deriveFont(Font.BOLD));
                 }
             }
-
         }
     };
     DocumentListener listenParcialTotal = new DocumentListener() {
@@ -1847,7 +1807,6 @@ public final class ComprobanteTopComponent extends TopComponent {
 
         public void validar() {
 
-
             if (optParcial.isSelected()) {
 
                 if (txtParcialidadTotales.getText().trim().equals("")) {
@@ -1856,20 +1815,16 @@ public final class ComprobanteTopComponent extends TopComponent {
                     txtParcialidadTotales.setBackground(txtCantidad.getBackground());
                 }
 
-
-
                 try {
 
                     int x = Integer.parseInt(txtParcialidadTotales.getText().trim());
                     txtParcialidadTotales.setFont(txtParcialidadTotales.getFont().deriveFont(Font.PLAIN));
                     txtParcialidadTotales.setForeground(Color.BLACK);
-                    if ( x  <  Integer.parseInt(txtParcialidad.getText().trim()) ){
-                      throw(new NumberFormatException());
+                    if (x < Integer.parseInt(txtParcialidad.getText().trim())) {
+                        throw (new NumberFormatException());
                     }
 
                 } catch (NumberFormatException nfe) {
-
-
                     txtParcialidadTotales.setBackground(Color.YELLOW);
                     txtParcialidadTotales.requestFocus();
                     txtParcialidadTotales.setForeground(Color.RED);

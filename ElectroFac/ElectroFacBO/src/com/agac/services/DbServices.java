@@ -86,7 +86,7 @@ public class DbServices {
         em.close();
         if(num == null)
             return 0;
-        return Integer.parseInt((String)num);
+        return (Integer)num;
     }
 
     public static void closeDbServices() {
