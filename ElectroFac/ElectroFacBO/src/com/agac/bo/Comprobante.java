@@ -23,6 +23,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import com.agac.libraries.NumberToLetterConverter;
+import javax.persistence.Column;
 
 /**
  *
@@ -65,7 +66,7 @@ public class Comprobante implements Serializable {
     @XmlAttribute
     private String serie;
     @XmlAttribute(required = true)
-    private String folio;
+    private int folio;
     @XmlAttribute(required = true)
     @XmlJavaTypeAdapter(SqlDateAdapter.class)
     private Date fecha = new Date(System.currentTimeMillis());
@@ -96,34 +97,36 @@ public class Comprobante implements Serializable {
     private String metodoDePago;
     @XmlAttribute(required = true)
     private String tipoDeComprobante;
-
+    @XmlTransient
+    @Column(length=1000)
+    private String cantidadConLetra = "";
     @XmlTransient
     @Transient
     private Double IVA;
+    @XmlTransient
+    @Column(length=10000)
+    private String cadenaOriginal;
 
+    public String getCadenaOriginal() {
+        return cadenaOriginal;
+    }
 
-    private String cantidadConLetra = "";
+    public void setCadenaOriginal(String cadenaOriginal) {
+        this.cadenaOriginal = cadenaOriginal;
+        propertyChangeSupport.firePropertyChange("cadenaOriginal", null, cadenaOriginal);
+    }
 
     public String getCantidadConLetra() {
         return cantidadConLetra;
     }
-
     public void setCantidadConLetra(BigDecimal cantidad) {
-
-        this.cantidadConLetra = NumberToLetterConverter.convertNumberToLetter(cantidad.toString());
-         
+        this.cantidadConLetra = NumberToLetterConverter.convertNumberToLetter(cantidad.toString());         
     }
-
-
 
     public Double getIVA() {
         Double IV = 0.0;
-
         if (this.getImpuesto() != null) {
-
-
             for (int i = 0; i < this.getImpuesto().getRetenciones().size(); i++) {
-
                 if (this.getImpuesto().getRetenciones().get(i).getImpuesto().equals("I.V.A.")) {
                     IV += this.getImpuesto().getRetenciones().get(i).getImporte().doubleValue();
                 }
@@ -135,7 +138,6 @@ public class Comprobante implements Serializable {
             }
         }
         return IV;
-
     }
 
     public void setIVA(Double IVA) {
@@ -337,11 +339,11 @@ public class Comprobante implements Serializable {
         propertyChangeSupport.firePropertyChange("version", null, version);
     }
 
-    public String getFolio() {
+    public int getFolio() {
         return folio;
     }
 
-    public void setFolio(String folio) {
+    public void setFolio(int folio) {
         this.folio = folio;
         propertyChangeSupport.firePropertyChange("folio", null, folio);
     }

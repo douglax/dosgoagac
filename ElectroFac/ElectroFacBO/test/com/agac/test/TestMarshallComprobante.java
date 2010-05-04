@@ -67,7 +67,7 @@ public class TestMarshallComprobante {
         c.setCertificado("XYZ");
         c.setCondicionesDePago("Efectivo");
         c.setDescuento(new BigDecimal(0.23));
-        c.setFolio("5");
+        c.setFolio(5);
         c.setFormaDePago("Pago en una sola exibicion");
         c.setMetodoDePago("tarjetazo");
         c.setMotivoDescuento("XYZ");

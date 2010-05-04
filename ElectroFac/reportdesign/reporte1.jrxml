@@ -13,7 +13,7 @@
 	</subDataset>
 	<field name="emisor.nombre" class="java.lang.String"/>
 	<field name="emisor.rfc" class="java.lang.String"/>
-	<field name="folio" class="java.lang.String"/>
+	<field name="folio" class="java.lang.Integer"/>
 	<field name="emisor.logo" class="java.lang.Object"/>
 	<field name="emisor.domicilioFiscal.calle" class="java.lang.String"/>
 	<field name="emisor.domicilioFiscal.noExterior" class="java.lang.String"/>

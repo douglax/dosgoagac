@@ -1162,7 +1162,7 @@ public final class ComprobanteTopComponent extends TopComponent {
         if (serie != null) {
             int folio = DbServices.getSiguienteFolio(comprobante.getEmisor(), serie);
             folio++;
-            comprobante.setFolio(Integer.toString(folio));
+            comprobante.setFolio(folio);
             comprobante.setSerie(serie.getNumSerie());
             comprobante.setAnoAprobacion(serie.getAnoAprob());
             comprobante.setNoAprobacion(Integer.parseInt(serie.getNumAutorización()));
@@ -1549,6 +1549,7 @@ public final class ComprobanteTopComponent extends TopComponent {
                                                         new TripleDES().desencriptar(
                                                         comprobante.getEmisor().getPasswd()));
                                                 comprobante.setSello(sd.generar(cadena));
+                                                comprobante.setCadenaOriginal(cadena);
                                                 comprobante = DbServices.saveObject(comprobante, true);
                                                 comprobante.addPropertyChangeListener(new PropertyChangeListener() {
 
@@ -1590,7 +1591,7 @@ public final class ComprobanteTopComponent extends TopComponent {
                         NotifyDescriptor.QUESTION_MESSAGE));
                 try {
                     InputStream in = getClass().getClassLoader().getResourceAsStream(
-                            "com/agac/gui/resourses/reports/reporte1.jasper");
+                            "com/agac/gui/resourses/reports/reporte.jasper");
                     List<Comprobante> l = new ArrayList<Comprobante>();
                     l.add(comprobante);
                     JRBeanCollectionDataSource ds = new JRBeanCollectionDataSource(l);

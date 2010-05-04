@@ -29,7 +29,7 @@ public class CadenaOriginal {
         //Comprobante
         sb.append("|").append(c.getVersion().trim());
         sb.append("|").append(c.getSerie().trim());
-        sb.append("|").append(c.getFolio().trim());
+        sb.append("|").append(Integer.toString(c.getFolio()));
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(c.getFecha());
         sb.append("|" + formatFecha(calendar));
