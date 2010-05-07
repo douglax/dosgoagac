@@ -807,9 +807,11 @@ public final class EmisorTopComponent extends TopComponent implements PropertyCh
     public void componentOpened() {
         setActivatedNodes(new Node[]{saveNode = new NodeForSave()});
         Preferences p = NbPreferences.forModule(OpcionesdelSistemaPanel.class);
-        txtMunicipio.setText(p.get("MUNICIPIO", ""));
-        txtEstado.setText(p.get("ESTADO", ""));
-        txtLocalidad.setText(p.get("LOCALIDAD", ""));
+
+
+      //  txtMunicipio.setText(p.get("MUNICIPIO", ""));
+      //  txtEstado.setText(p.get("ESTADO", ""));
+      //  txtLocalidad.setText(p.get("LOCALIDAD", ""));
     }
 
     @Override
