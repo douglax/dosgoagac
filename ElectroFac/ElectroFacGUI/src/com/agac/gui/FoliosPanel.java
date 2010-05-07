@@ -78,14 +78,14 @@ public class FoliosPanel extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Serie", "Folio Inicial", "Folio Final", "No. Aprobación", "Año Aprobación"
+                "Serie", "Folio Inicial", "Folio Final", "No. Aprobación", "Año Aprobación", "Activa"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.String.class, java.lang.Integer.class
+                java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.String.class, java.lang.Integer.class, java.lang.Boolean.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false, false, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -137,8 +137,8 @@ public class FoliosPanel extends javax.swing.JPanel {
                                 .addComponent(txtAnoAprob, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(28, 28, 28)
                                 .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 527, Short.MAX_VALUE))
+                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE)))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 574, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -169,8 +169,8 @@ public class FoliosPanel extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -188,12 +188,13 @@ public class FoliosPanel extends javax.swing.JPanel {
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-        Object[] row = new Object[5];
+        Object[] row = new Object[6];
         row[0] = serie.getNumSerie();
         row[1] = serie.getFolioInicial();
         row[2] = serie.getFolioFinal();
         row[3] = serie.getNumAutorización();
         row[4] = serie.getAnoAprob();
+        row[5] = serie.isActiva();
         model.addRow(row);
         serieList.add(serie);
         setSerie(new Serie());
@@ -212,12 +213,13 @@ public class FoliosPanel extends javax.swing.JPanel {
         this.serieList = serieList;
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         for (Serie s : serieList) {
-            Object[] row = new Object[5];
+            Object[] row = new Object[6];
             row[0] = s.getNumSerie();
             row[1] = s.getFolioInicial();
             row[2] = s.getFolioFinal();
             row[3] = s.getNumAutorización();
             row[4] = s.getAnoAprob();
+            row[5] = serie.isActiva();
             model.addRow(row);
         }
     }

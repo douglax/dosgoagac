@@ -46,6 +46,7 @@ public class ComprobanteNode extends AbstractNode {
                     public void run() {
                         Comprobante c = getLookup().lookup(Comprobante.class);
                         ComprobanteTopComponent ctc = new ComprobanteTopComponent();
+                        ctc.setIsNew(false);
                         ctc.setComprobante(c);
                         ctc.setDisplayName(c.getAnoAprobacion() + c.getSerie() + c.getFolio());
                         ctc.componentOpened();                        

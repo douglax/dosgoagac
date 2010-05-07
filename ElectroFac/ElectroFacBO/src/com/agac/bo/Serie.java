@@ -38,6 +38,16 @@ public class Serie implements Serializable {
     private BigInteger folioFinal;
     private String numAutorización;
     private int anoAprob;
+    @XmlTransient
+    private boolean activa = true;
+    
+    public boolean isActiva() {
+        return activa;
+    }
+    
+    public void setActiva(boolean activa) {
+        this.activa = activa;
+    }
 
     public int getAnoAprob() {
         return anoAprob;

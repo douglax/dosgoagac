@@ -27,6 +27,7 @@ import java.beans.PropertyChangeListener;
 import java.io.IOException;
 import java.io.InputStream;
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -69,6 +70,11 @@ public final class ComprobanteTopComponent extends TopComponent {
     /** path to the icon used by the component and its open action */
     static final String ICON_PATH = "com/agac/gui/resourses/package.png";
     private static final String PREFERRED_ID = "ComprobanteTopComponent";
+    private boolean isNew = true;
+
+    public void setIsNew(boolean val) {
+        isNew = val;
+    }
 
     public ComprobanteTopComponent() {
         initComponents();
@@ -1156,10 +1162,17 @@ public final class ComprobanteTopComponent extends TopComponent {
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void cmbSeriesItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbSeriesItemStateChanged
+        if (!isNew) {
+            return;
+        }
         Serie serie = (Serie) cmbSeries.getSelectedItem();
         if (serie != null) {
             int folio = DbServices.getSiguienteFolio(comprobante.getEmisor(), serie);
             folio++;
+            if(folio > serie.getFolioFinal().intValue()){
+                DialogDisplayer.getDefault().notify(new NotifyDescriptor.Message("Ya no hay mas folios para esta serie", NotifyDescriptor.ERROR_MESSAGE));
+                return;
+            }
             comprobante.setFolio(folio);
             comprobante.setSerie(serie.getNumSerie());
             comprobante.setAnoAprobacion(serie.getAnoAprob());
@@ -1544,6 +1557,7 @@ public final class ComprobanteTopComponent extends TopComponent {
                                                     }
                                                 });
                                                 System.out.println(cadena);
+                                                isNew = false;
                                             } catch (Exception e) {
                                                 Exceptions.printStackTrace(e);
                                             }
