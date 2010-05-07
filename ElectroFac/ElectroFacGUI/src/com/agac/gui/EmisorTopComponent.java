@@ -5,7 +5,6 @@ import com.agac.gui.resourses.TripleDES;
 import com.agac.services.DbServices;
 import java.awt.Color;
 import java.awt.FileDialog;
-import java.awt.Font;
 import java.awt.event.KeyEvent;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -13,9 +12,6 @@ import java.io.IOException;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.logging.Logger;
 import java.util.prefs.Preferences;
-import javax.swing.BorderFactory;
-import javax.swing.SwingUtilities;
-import javax.swing.border.Border;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import org.jdesktop.beansbinding.Converter;
@@ -61,8 +57,11 @@ public final class EmisorTopComponent extends TopComponent implements PropertyCh
         txtPais.getDocument().addDocumentListener(listenPais);
         txtCp.getDocument().addDocumentListener(listenCP);
         txtPasswd.getDocument().addDocumentListener(listenPWD);
-
         
+        Preferences p = NbPreferences.forModule(OpcionesdelSistemaPanel.class);
+        txtMunicipio.setText(p.get("MUNICIPIO", ""));
+        txtEstado.setText(p.get("ESTADO", ""));
+        txtLocalidad.setText(p.get("LOCALIDAD", ""));
 
         setName(NbBundle.getMessage(EmisorTopComponent.class, "CTL_EmisorTopComponent"));
         setToolTipText(NbBundle.getMessage(EmisorTopComponent.class, "HINT_EmisorTopComponent"));
@@ -806,12 +805,10 @@ public final class EmisorTopComponent extends TopComponent implements PropertyCh
     @Override
     public void componentOpened() {
         setActivatedNodes(new Node[]{saveNode = new NodeForSave()});
-        Preferences p = NbPreferences.forModule(OpcionesdelSistemaPanel.class);
+        
 
 
-      //  txtMunicipio.setText(p.get("MUNICIPIO", ""));
-      //  txtEstado.setText(p.get("ESTADO", ""));
-      //  txtLocalidad.setText(p.get("LOCALIDAD", ""));
+
     }
 
     @Override

@@ -134,23 +134,23 @@
                                       </Group>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="1" attributes="0">
-                                          <Component id="txtRazonSocial" alignment="1" pref="354" max="32767" attributes="1"/>
-                                          <Component id="txtCalle" alignment="1" pref="354" max="32767" attributes="1"/>
+                                          <Component id="txtRazonSocial" alignment="1" pref="311" max="32767" attributes="1"/>
+                                          <Component id="txtCalle" alignment="1" pref="311" max="32767" attributes="1"/>
                                           <Group type="102" alignment="0" attributes="0">
                                               <Component id="txtPais" min="-2" pref="155" max="-2" attributes="0"/>
                                               <EmptySpace type="separate" max="-2" attributes="0"/>
                                               <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
                                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                                              <Component id="txtCP" pref="140" max="32767" attributes="0"/>
+                                              <Component id="txtCP" pref="94" max="32767" attributes="0"/>
                                           </Group>
                                           <Group type="102" alignment="1" attributes="1">
                                               <Component id="txtLocalidad" min="-2" pref="128" max="-2" attributes="0"/>
                                               <EmptySpace max="-2" attributes="0"/>
                                               <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
                                               <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="txtMunicipio" pref="192" max="32767" attributes="1"/>
+                                              <Component id="txtMunicipio" pref="129" max="32767" attributes="1"/>
                                           </Group>
-                                          <Component id="txtColonia" alignment="0" pref="354" max="32767" attributes="1"/>
+                                          <Component id="txtColonia" alignment="0" pref="311" max="32767" attributes="1"/>
                                       </Group>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -581,7 +581,7 @@
                                   <Component id="btnImpuestos" min="-2" pref="95" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace pref="57" max="32767" attributes="0"/>
+                          <EmptySpace pref="37" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -618,7 +618,7 @@
                                   <Component id="jScrollPane1" min="-2" pref="135" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace max="32767" attributes="0"/>
+                          <EmptySpace pref="24" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -884,7 +884,7 @@
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="jLabel22" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="jScrollPane2" pref="505" max="32767" attributes="0"/>
+                                      <Component id="jScrollPane2" pref="492" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
@@ -1115,7 +1115,7 @@
                                                   <Group type="102" attributes="0">
                                                       <Component id="txtDescImporte" min="-2" pref="59" max="-2" attributes="1"/>
                                                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                                                      <Component id="cboMotivoDesc" pref="274" max="32767" attributes="0"/>
+                                                      <Component id="cboMotivoDesc" pref="284" max="32767" attributes="0"/>
                                                   </Group>
                                                   <Component id="jComboBox2" min="-2" pref="139" max="-2" attributes="0"/>
                                               </Group>
@@ -1321,7 +1321,7 @@
                     </DimensionLayout>
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <EmptySpace min="0" pref="205" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="209" max="32767" attributes="0"/>
                       </Group>
                     </DimensionLayout>
                   </Layout>
@@ -1345,7 +1345,7 @@
                     </DimensionLayout>
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <EmptySpace min="0" pref="205" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="209" max="32767" attributes="0"/>
                       </Group>
                     </DimensionLayout>
                   </Layout>

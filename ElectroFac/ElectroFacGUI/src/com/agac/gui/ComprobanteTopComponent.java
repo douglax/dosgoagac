@@ -1590,7 +1590,7 @@ public final class ComprobanteTopComponent extends TopComponent {
                         NotifyDescriptor.QUESTION_MESSAGE));
                 try {
                     InputStream in = getClass().getClassLoader().getResourceAsStream(
-                            "com/agac/gui/resourses/reports/reporte.jasper");
+                            "com/agac/gui/resourses/reports/reporte1.jasper");
                     List<Comprobante> l = new ArrayList<Comprobante>();
                     l.add(comprobante);
                     JRBeanCollectionDataSource ds = new JRBeanCollectionDataSource(l);

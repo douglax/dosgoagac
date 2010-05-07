@@ -13,7 +13,7 @@
 	</subDataset>
 	<field name="emisor.nombre" class="java.lang.String"/>
 	<field name="emisor.rfc" class="java.lang.String"/>
-	<field name="folio" class="java.lang.String"/>
+	<field name="folio" class="java.lang.Integer"/>
 	<field name="emisor.logo" class="java.lang.Object"/>
 	<field name="emisor.domicilioFiscal.calle" class="java.lang.String"/>
 	<field name="emisor.domicilioFiscal.noExterior" class="java.lang.String"/>
@@ -40,6 +40,9 @@
 	<field name="cantidadConLetra" class="java.lang.String"/>
 	<field name="cadenaOriginal" class="java.lang.String"/>
 	<field name="sello" class="java.lang.String"/>
+	<field name="noAprobacion" class="java.lang.Integer"/>
+	<field name="anoAprobacion" class="java.lang.Integer"/>
+	<field name="noCertificado" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -69,7 +72,8 @@
 				</graphicElement>
 			</line>
 			<image>
-				<reportElement x="0" y="0" width="100" height="79"/>
+				<reportElement x="0" y="0" width="80" height="80"/>
+				<imageExpression class="java.awt.Image"><![CDATA[net.sf.jasperreports.engine.util.JRImageLoader.loadImage((byte[]) $F{emisor.logo})]]></imageExpression>
 			</image>
 			<textField>
 				<reportElement x="112" y="19" width="100" height="20"/>
@@ -83,7 +87,7 @@
 				<textElement textAlignment="Center">
 					<font size="13" isBold="true"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{folio}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$F{folio}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="112" y="40" width="460" height="20"/>
@@ -363,7 +367,7 @@
 				<text><![CDATA[Numero de aprobación de folios:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="255" y="14" width="150" height="11"/>
+				<reportElement x="281" y="14" width="59" height="11"/>
 				<textElement>
 					<font size="9"/>
 				</textElement>
@@ -376,6 +380,20 @@
 				</textElement>
 				<text><![CDATA[Sello Digital:]]></text>
 			</staticText>
+			<textField>
+				<reportElement x="159" y="14" width="100" height="10"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{anoAprobacion} + "-"+$F{noAprobacion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="354" y="14" width="100" height="12"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{noCertificado}]]></textFieldExpression>
+			</textField>
 		</band>
 	</pageFooter>
 	<summary>
