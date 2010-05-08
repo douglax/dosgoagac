@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.math.BigInteger;
 import java.security.GeneralSecurityException;
 import java.security.InvalidKeyException;
 import java.security.MessageDigest;
@@ -14,6 +15,7 @@ import java.security.PublicKey;
 import java.security.cert.Certificate;
 import java.security.cert.CertificateException;
 import java.security.cert.CertificateFactory;
+import java.security.cert.X509Certificate;
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
@@ -28,6 +30,7 @@ public class SelloDigital {
     
     private PrivateKey mPrivateKey;
     private PublicKey mPublicKey;
+    private BigInteger serialNumber;
     
     public SelloDigital() {
         super();        
@@ -46,7 +49,9 @@ public class SelloDigital {
         InputStream in = new FileInputStream(fileName);
         CertificateFactory cf = CertificateFactory.getInstance("X.509");
         Certificate crl = cf.generateCertificate(in);
-        mPublicKey = crl.getPublicKey();        
+        serialNumber = ((X509Certificate)crl).getSerialNumber();
+        mPublicKey = crl.getPublicKey();
+
         in.close();        
     }
     
@@ -74,4 +79,9 @@ public class SelloDigital {
                 return false;
         return true;        
     }
+
+    public BigInteger getSerialNumber() {
+        return serialNumber;
+    }
+
 }

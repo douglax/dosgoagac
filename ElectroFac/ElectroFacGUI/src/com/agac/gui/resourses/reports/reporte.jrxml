@@ -29,6 +29,13 @@
 	<field name="receptor.domicilio.municipio" class="java.lang.String"/>
 	<field name="receptor.domicilio.estado" class="java.lang.String"/>
 	<field name="receptor.domicilio.pais" class="java.lang.String"/>
+	<field name="subTotal" class="java.math.BigDecimal"/>
+	<field name="total" class="java.math.BigDecimal"/>
+	<field name="folio" class="java.lang.Integer"/>
+	<field name="serie" class="java.lang.String"/>
+	<field name="anoAprobacion" class="java.lang.Integer"/>
+	<field name="noAprobacion" class="java.lang.Integer"/>
+	<field name="noCertificado" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -112,6 +119,83 @@
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{receptor.domicilio.municipio} + ", " + $F{receptor.domicilio.estado} + " - " + $F{receptor.domicilio.pais}]]></textFieldExpression>
 			</textField>
+			<staticText>
+				<reportElement x="405" y="71" width="47" height="12"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Serie]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="405" y="83" width="47" height="12"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Folio]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="405" y="107" width="47" height="12"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Año aprob.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="405" y="95" width="47" height="12"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[No. Aprob]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="467" y="83" width="100" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$F{folio}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="467" y="71" width="100" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{serie}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="115" y="71" width="277" height="20"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Este documento es una impresión de un Comprobante Fiscal Diigital]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="467" y="107" width="100" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$F{anoAprobacion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="467" y="95" width="100" height="12"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$F{noAprobacion}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="405" y="132" width="162" height="20"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{noCertificado}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="405" y="120" width="100" height="12"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[No. Certificado]]></text>
+			</staticText>
 		</band>
 	</title>
 	<pageHeader>
@@ -153,10 +237,24 @@
 		</band>
 	</detail>
 	<columnFooter>
-		<band height="6">
-			<line>
-				<reportElement x="6" y="0" width="566" height="1"/>
-			</line>
+		<band height="28">
+			<rectangle>
+				<reportElement x="0" y="4" width="572" height="23" backcolor="#CCCCCC"/>
+			</rectangle>
+			<textField pattern="¤ #,##0.00">
+				<reportElement x="259" y="7" width="309" height="21"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{total}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="3" y="4" width="100" height="24"/>
+				<textElement verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Total a pagar]]></text>
+			</staticText>
 		</band>
 	</columnFooter>
 	<pageFooter>
@@ -192,6 +290,25 @@
 		</band>
 	</pageFooter>
 	<summary>
-		<band height="26" splitType="Stretch"/>
+		<band height="31" splitType="Stretch">
+			<textField pattern="¤ #,##0.00">
+				<reportElement x="263" y="0" width="309" height="15"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{subTotal}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="0" width="100" height="15"/>
+				<textElement/>
+				<text><![CDATA[Subtotal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="15" width="100" height="15"/>
+				<textElement/>
+				<text><![CDATA[IVA]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="0" width="566" height="1"/>
+			</line>
+		</band>
 	</summary>
 </jasperReport>

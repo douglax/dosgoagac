@@ -1484,7 +1484,7 @@ public final class ComprobanteTopComponent extends TopComponent {
         saveNode.enablePrint(true);
     }
 
-    // <editor-fold defaultstate="collapsed" desc="Node For Save">
+    // <editor-fold defaultstate="collapsed" desc="Node For Save & Print">
     private class NodeForSave extends AbstractNode {
 
         SaveCookieImpl impl;
@@ -1534,18 +1534,18 @@ public final class ComprobanteTopComponent extends TopComponent {
                                             try {
 
                                                 if (optUnPago.isSelected()) {
-                                                    comprobante.setFormaDePago(" Pago");
+                                                    comprobante.setFormaDePago("Pago en una sola exibición");
                                                 } else {
                                                     comprobante.setFormaDePago("Parcialidad " + txtParcialidad.getText() + " de " + txtParcialidadTotales.getText());
                                                 }
-
-
                                                 String cadena = new CadenaOriginal(comprobante).toString();
                                                 SelloDigital sd = new SelloDigital();
                                                 sd.cargarLlavePrivada(
                                                         comprobante.getEmisor().getRutaLlave(),
                                                         new TripleDES().desencriptar(
                                                         comprobante.getEmisor().getPasswd()));
+                                                sd.cargarLlavePublicaDeCertificado(comprobante.getEmisor().getRutaCertificado());
+                                                comprobante.setNoCertificado(sd.getSerialNumber().toString());
                                                 comprobante.setSello(sd.generar(cadena));
                                                 comprobante.setCadenaOriginal(cadena);
                                                 comprobante = DbServices.saveObject(comprobante, true);
@@ -1590,7 +1590,7 @@ public final class ComprobanteTopComponent extends TopComponent {
                         NotifyDescriptor.QUESTION_MESSAGE));
                 try {
                     InputStream in = getClass().getClassLoader().getResourceAsStream(
-                            "com/agac/gui/resourses/reports/reporte1.jasper");
+                            "com/agac/gui/resourses/reports/reporte.jasper");
                     List<Comprobante> l = new ArrayList<Comprobante>();
                     l.add(comprobante);
                     JRBeanCollectionDataSource ds = new JRBeanCollectionDataSource(l);
