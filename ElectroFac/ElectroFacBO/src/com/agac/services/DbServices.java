@@ -103,4 +103,17 @@ public class DbServices {
         } catch (Exception e) {
         }
     }
+
+    public static <U> U find(Class<U> u, Object pk){
+        if (emf == null) {
+            emf = Persistence.createEntityManagerFactory("ElectroFacBOPU");
+        }
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        U obj = em.find(u, pk);
+        em.getTransaction().commit();
+        em.close();
+        return obj;
+
+    }
 }

@@ -2,6 +2,7 @@ package com.agac.gui;
 
 import com.agac.anexo20.CadenaOriginal;
 import com.agac.anexo20.SelloDigital;
+import com.agac.bo.Articulo;
 import com.agac.bo.Comprobante;
 import com.agac.bo.Concepto;
 import com.agac.bo.Receptor;
@@ -22,12 +23,12 @@ import java.awt.dnd.DropTargetDragEvent;
 import java.awt.dnd.DropTargetDropEvent;
 import java.awt.dnd.DropTargetEvent;
 import java.awt.dnd.DropTargetListener;
+import java.awt.event.KeyEvent;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.IOException;
 import java.io.InputStream;
 import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -439,6 +440,12 @@ public final class ComprobanteTopComponent extends TopComponent {
 
         binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, this, org.jdesktop.beansbinding.ELProperty.create("${concepto.noIdentificacion}"), txtIdentificador, org.jdesktop.beansbinding.BeanProperty.create("text"));
         bindingGroup.addBinding(binding);
+
+        txtIdentificador.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtIdentificadorKeyPressed(evt);
+            }
+        });
 
         jLabel15.setLabelFor(txtDescripcion);
         org.openide.awt.Mnemonics.setLocalizedText(jLabel15, org.openide.util.NbBundle.getMessage(ComprobanteTopComponent.class, "ComprobanteTopComponent.jLabel15.text")); // NOI18N
@@ -941,7 +948,7 @@ public final class ComprobanteTopComponent extends TopComponent {
         org.openide.awt.Mnemonics.setLocalizedText(jLabel32, org.openide.util.NbBundle.getMessage(ComprobanteTopComponent.class, "ComprobanteTopComponent.jLabel32.text")); // NOI18N
 
         lblIVA.setBackground(new java.awt.Color(0, 0, 255));
-        lblIVA.setFont(new java.awt.Font("DejaVu Sans", 1, 11)); // NOI18N
+        lblIVA.setFont(new java.awt.Font("DejaVu Sans", 1, 11));
         lblIVA.setForeground(new java.awt.Color(255, 255, 255));
         lblIVA.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblIVA.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -1216,6 +1223,16 @@ public final class ComprobanteTopComponent extends TopComponent {
     private void jTable1InputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_jTable1InputMethodTextChanged
         // TODO add your handling code here:
     }//GEN-LAST:event_jTable1InputMethodTextChanged
+
+    private void txtIdentificadorKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdentificadorKeyPressed
+        if(evt.getKeyChar() == KeyEvent.VK_ENTER){
+            Articulo a = DbServices.find(Articulo.class, txtIdentificador.getText());
+            if (a != null){
+                txtDescripcion.setText(a.getDescripcion());
+                txtPrecio.setText(a.getPrecio().toString());
+            }
+        }
+    }//GEN-LAST:event_txtIdentificadorKeyPressed
     // <editor-fold defaultstate="collapsed" desc="Variables de Instancia">
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTabbedPane TabOpciones;

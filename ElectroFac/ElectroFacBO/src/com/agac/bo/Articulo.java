@@ -2,6 +2,7 @@ package com.agac.bo;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
@@ -17,6 +18,7 @@ public class Articulo implements Serializable {
     @Id
     private String identificador;
     private String descripcion;
+    @Column(columnDefinition="DECIMAL(10,6)")
     private BigDecimal precio;
     @ManyToOne
     private Emisor emisor; 
