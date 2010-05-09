@@ -7,6 +7,7 @@ package com.agac.gui.nodes;
 import com.agac.bo.Comprobante;
 import com.agac.bo.Emisor;
 import com.agac.bo.Serie;
+import com.agac.gui.ArticulosPanel;
 import com.agac.gui.ComprobanteTopComponent;
 import com.agac.gui.EmisorTopComponent;
 import com.agac.gui.FoliosPanel;
@@ -61,6 +62,7 @@ public class EmpresaNode extends AbstractNode {
         return new Action[]{new OpenAction(),
                     new CrearFactura(),
                     new AdminFolios(),
+                    new CatalogoArticulos(),
                     new AddLogo(),
                     new VerLogo()
                 };
@@ -269,6 +271,21 @@ public class EmpresaNode extends AbstractNode {
             } catch (Exception ex) {
                 Exceptions.printStackTrace(ex);
             }
+        }
+    }
+
+    private class CatalogoArticulos extends AbstractAction{
+
+        public CatalogoArticulos(){
+            putValue(NAME, "Catálogo de artículos...");
+        }
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            ArticulosPanel ap = new ArticulosPanel();
+            ap.setEmisor(getLookup().lookup(Emisor.class));
+            DialogDisplayer.getDefault().notify(
+                        new DialogDescriptor(ap,
+                        "Artículos", true, null));
         }
     }
 }

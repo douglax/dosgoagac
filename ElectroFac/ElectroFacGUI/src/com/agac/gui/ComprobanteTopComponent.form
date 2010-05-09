@@ -1524,6 +1524,9 @@
                     </Property>
                     <Property name="opaque" type="boolean" value="true"/>
                   </Properties>
+                  <BindingProperties>
+                    <BindingProperty name="text" source="Form" sourcePath="${comprobante.IVA}" target="lblIVA" targetPath="text" updateStrategy="0" immediately="false"/>
+                  </BindingProperties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel33">
                   <Properties>

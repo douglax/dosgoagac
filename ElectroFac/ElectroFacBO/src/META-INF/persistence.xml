@@ -12,6 +12,7 @@
     <class>com.agac.bo.Parte</class>
     <class>com.agac.bo.CuentaPredial</class>
     <class>com.agac.bo.Serie</class>
+    <class>com.agac.bo.Articulo</class>
     <properties>
       <property name="toplink.jdbc.user" value=""/>
       <property name="toplink.jdbc.password" value=""/>

@@ -328,21 +328,21 @@ public final class ComprobanteTopComponent extends TopComponent {
                                 .addComponent(jLabel9))
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(txtRazonSocial, javax.swing.GroupLayout.DEFAULT_SIZE, 354, Short.MAX_VALUE)
-                                .addComponent(txtCalle, javax.swing.GroupLayout.DEFAULT_SIZE, 354, Short.MAX_VALUE)
+                                .addComponent(txtRazonSocial, javax.swing.GroupLayout.DEFAULT_SIZE, 371, Short.MAX_VALUE)
+                                .addComponent(txtCalle, javax.swing.GroupLayout.DEFAULT_SIZE, 371, Short.MAX_VALUE)
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                                     .addComponent(txtPais, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(18, 18, 18)
                                     .addComponent(jLabel10)
                                     .addGap(18, 18, 18)
-                                    .addComponent(txtCP, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE))
+                                    .addComponent(txtCP, javax.swing.GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE))
                                 .addGroup(jPanel1Layout.createSequentialGroup()
                                     .addComponent(txtLocalidad, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(jLabel7)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(txtMunicipio, javax.swing.GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE))
-                                .addComponent(txtColonia, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 354, Short.MAX_VALUE))
+                                    .addComponent(txtMunicipio, javax.swing.GroupLayout.DEFAULT_SIZE, 215, Short.MAX_VALUE))
+                                .addComponent(txtColonia, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 371, Short.MAX_VALUE))
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -577,7 +577,7 @@ public final class ComprobanteTopComponent extends TopComponent {
                                         .addComponent(jLabel16)))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnImpuestos, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(57, Short.MAX_VALUE))
+                .addContainerGap(85, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -607,7 +607,7 @@ public final class ComprobanteTopComponent extends TopComponent {
                             .addComponent(jButton3))
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
 
         jLabel17.setFont(new java.awt.Font("Tahoma", 1, 18));
@@ -712,7 +712,7 @@ public final class ComprobanteTopComponent extends TopComponent {
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel22)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 505, Short.MAX_VALUE)))
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 517, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
@@ -841,7 +841,7 @@ public final class ComprobanteTopComponent extends TopComponent {
                                     .addGroup(jPanel8Layout.createSequentialGroup()
                                         .addComponent(txtDescImporte, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
-                                        .addComponent(cboMotivoDesc, 0, 274, Short.MAX_VALUE))
+                                        .addComponent(cboMotivoDesc, 0, 268, Short.MAX_VALUE))
                                     .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel8Layout.createSequentialGroup()
                                 .addComponent(chkCondiciones)
@@ -888,7 +888,7 @@ public final class ComprobanteTopComponent extends TopComponent {
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 205, Short.MAX_VALUE)
+            .addGap(0, 207, Short.MAX_VALUE)
         );
 
         TabOpciones.addTab(org.openide.util.NbBundle.getMessage(ComprobanteTopComponent.class, "ComprobanteTopComponent.jPanel6.TabConstraints.tabTitle"), jPanel6); // NOI18N
@@ -901,7 +901,7 @@ public final class ComprobanteTopComponent extends TopComponent {
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 205, Short.MAX_VALUE)
+            .addGap(0, 207, Short.MAX_VALUE)
         );
 
         TabOpciones.addTab(org.openide.util.NbBundle.getMessage(ComprobanteTopComponent.class, "ComprobanteTopComponent.jPanel7.TabConstraints.tabTitle"), jPanel7); // NOI18N
@@ -941,13 +941,16 @@ public final class ComprobanteTopComponent extends TopComponent {
         org.openide.awt.Mnemonics.setLocalizedText(jLabel32, org.openide.util.NbBundle.getMessage(ComprobanteTopComponent.class, "ComprobanteTopComponent.jLabel32.text")); // NOI18N
 
         lblIVA.setBackground(new java.awt.Color(0, 0, 255));
-        lblIVA.setFont(new java.awt.Font("DejaVu Sans", 1, 11));
+        lblIVA.setFont(new java.awt.Font("DejaVu Sans", 1, 11)); // NOI18N
         lblIVA.setForeground(new java.awt.Color(255, 255, 255));
         lblIVA.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblIVA.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         lblIVA.setOpaque(true);
 
-        jLabel33.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, this, org.jdesktop.beansbinding.ELProperty.create("${comprobante.IVA}"), lblIVA, org.jdesktop.beansbinding.BeanProperty.create("text"));
+        bindingGroup.addBinding(binding);
+
+        jLabel33.setFont(new java.awt.Font("Tahoma", 1, 14));
         jLabel33.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel33.setPreferredSize(new java.awt.Dimension(0, 20));
 

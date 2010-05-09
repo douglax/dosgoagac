@@ -122,7 +122,7 @@ public class Comprobante implements Serializable {
     public void setCantidadConLetra(BigDecimal cantidad) {
         this.cantidadConLetra = NumberToLetterConverter.convertNumberToLetter(cantidad.toString());         
     }
-
+    
     public Double getIVA() {
         Double IV = 0.0;
         if (this.getImpuesto() != null) {
