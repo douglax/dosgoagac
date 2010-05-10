@@ -3,6 +3,7 @@ package com.agac.gui;
 import com.agac.anexo20.CadenaOriginal;
 import com.agac.anexo20.SelloDigital;
 import com.agac.bo.Articulo;
+import com.agac.bo.ArticuloPK;
 import com.agac.bo.Comprobante;
 import com.agac.bo.Concepto;
 import com.agac.bo.Receptor;
@@ -1226,7 +1227,8 @@ public final class ComprobanteTopComponent extends TopComponent {
 
     private void txtIdentificadorKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdentificadorKeyPressed
         if(evt.getKeyChar() == KeyEvent.VK_ENTER){
-            Articulo a = DbServices.find(Articulo.class, txtIdentificador.getText());
+            Articulo a = DbServices.find(
+                    Articulo.class, new ArticuloPK(txtIdentificador.getText(), comprobante.getEmisor().getId()));
             if (a != null){
                 txtDescripcion.setText(a.getDescripcion());
                 txtPrecio.setText(a.getPrecio().toString());

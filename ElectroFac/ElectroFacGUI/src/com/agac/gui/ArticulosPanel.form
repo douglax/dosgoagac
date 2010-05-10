@@ -91,11 +91,11 @@
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jButton4" alignment="1" pref="20" max="32767" attributes="1"/>
-                      <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                      <Component id="jButton4" alignment="1" pref="22" max="32767" attributes="1"/>
+                      <Component id="txtPrecio" alignment="1" max="32767" attributes="1"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="txtIdentificador" alignment="3" max="32767" attributes="1"/>
                           <Component id="txtDescripcion" alignment="3" max="32767" attributes="1"/>
-                          <Component id="txtPrecio" alignment="1" max="32767" attributes="1"/>
                       </Group>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>

@@ -100,6 +100,8 @@ public class DbServices {
             if (emf == null) {
                 emf = Persistence.createEntityManagerFactory("ElectroFacBOPU");
             }
+            EntityManager em = emf.createEntityManager();
+            em.close();
         } catch (Exception e) {
         }
     }
@@ -115,5 +117,21 @@ public class DbServices {
         em.close();
         return obj;
 
+    }
+
+    public static <U> U getSingleObjectWithParameters(String s, Object... params) {
+        if (emf == null) {
+            emf = Persistence.createEntityManagerFactory("ElectroFacBOPU");
+        }
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        Query qry = em.createQuery(s);
+        for (int i = 0; i < params.length; i++) {
+            qry = qry.setParameter(i + 1, params[i]);
+        }
+        U obj = (U)qry.getSingleResult();
+        em.getTransaction().commit();
+        em.close();
+        return obj;
     }
 }

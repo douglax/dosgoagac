@@ -3,9 +3,8 @@ package com.agac.bo;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 
 /**
  *
@@ -15,13 +14,20 @@ import javax.persistence.ManyToOne;
 @Entity
 public class Articulo implements Serializable {
    
-    @Id
-    private String identificador;
+
+    @EmbeddedId
+    private ArticuloPK id;
     private String descripcion;
     @Column(columnDefinition="DECIMAL(10,6)")
     private BigDecimal precio;
-    @ManyToOne
-    private Emisor emisor; 
+
+    public ArticuloPK getId() {
+        return id;
+    }
+
+    public void setId(ArticuloPK id) {
+        this.id = id;
+    }
 
     public String getDescripcion() {
         return descripcion;
@@ -29,15 +35,7 @@ public class Articulo implements Serializable {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
-    }
-
-    public String getIdentificador() {
-        return identificador;
-    }
-
-    public void setIdentificador(String identificador) {
-        this.identificador = identificador;
-    }
+    }   
 
     public BigDecimal getPrecio() {
         return precio;
@@ -47,11 +45,27 @@ public class Articulo implements Serializable {
         this.precio = precio;
     }
 
-    public Emisor getEmisor() {
-        return emisor;
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Articulo other = (Articulo) obj;
+        if (this.id != other.id && (this.id == null || !this.id.equals(other.id))) {
+            return false;
+        }
+        return true;
     }
 
-    public void setEmisor(Emisor emisor) {
-        this.emisor = emisor;
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 37 * hash + (this.id != null ? this.id.hashCode() : 0);
+        return hash;
     }
+
+    
 }

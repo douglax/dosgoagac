@@ -11,9 +11,14 @@
 package com.agac.gui;
 
 import com.agac.bo.Articulo;
+import com.agac.bo.ArticuloPK;
 import com.agac.bo.Emisor;
 import com.agac.services.DbServices;
 import java.math.BigDecimal;
+import java.util.List;
+import javax.swing.JPanel;
+import org.openide.DialogDescriptor;
+import org.openide.DialogDisplayer;
 import org.openide.util.Exceptions;
 
 /**
@@ -120,11 +125,11 @@ public class ArticulosPanel extends javax.swing.JPanel {
                     .addComponent(jLabel16))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE)
+                    .addComponent(jButton4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 22, Short.MAX_VALUE)
+                    .addComponent(txtPrecio, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(txtIdentificador)
-                        .addComponent(txtDescripcion)
-                        .addComponent(txtPrecio)))
+                        .addComponent(txtDescripcion)))
                 .addGap(18, 18, 18)
                 .addComponent(jButton1)
                 .addContainerGap())
@@ -153,8 +158,7 @@ public class ArticulosPanel extends javax.swing.JPanel {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         Articulo a = new Articulo();
-        a.setEmisor(emisor);
-        a.setIdentificador(txtIdentificador.getText());
+        a.setId(new ArticuloPK(txtIdentificador.getText(), emisor.getId()));
         a.setDescripcion(txtDescripcion.getText());
         try {
             a.setPrecio(new BigDecimal(txtPrecio.getText()));
@@ -174,6 +178,11 @@ public class ArticulosPanel extends javax.swing.JPanel {
 }//GEN-LAST:event_jButton4KeyPressed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        CatalogoArticulosPanel panel = new CatalogoArticulosPanel();
+
+        List<Articulo> arts = DbServices.getListWithParameters("Select a from Articulo a where a.id.emisor_id = ?1", emisor.getId());
+        panel.setArticulos(arts);
+        DialogDisplayer.getDefault().notify(new DialogDescriptor(panel, "Artículos", true, null));
 }//GEN-LAST:event_jButton1ActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

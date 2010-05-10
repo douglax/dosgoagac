@@ -57,7 +57,7 @@ public final class EmisorTopComponent extends TopComponent implements PropertyCh
         txtPais.getDocument().addDocumentListener(listenPais);
         txtCp.getDocument().addDocumentListener(listenCP);
         txtPasswd.getDocument().addDocumentListener(listenPWD);
-        
+
         Preferences p = NbPreferences.forModule(OpcionesdelSistemaPanel.class);
         txtMunicipio.setText(p.get("MUNICIPIO", ""));
         txtEstado.setText(p.get("ESTADO", ""));
@@ -669,15 +669,16 @@ public final class EmisorTopComponent extends TopComponent implements PropertyCh
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void txtReferenciaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtReferenciaKeyPressed
-        if(evt.getKeyCode() == KeyEvent.VK_TAB)
+        if (evt.getKeyCode() == KeyEvent.VK_TAB) {
             txtMunicipio.requestFocus();
+        }
     }//GEN-LAST:event_txtReferenciaKeyPressed
 
     private void txtReferenciaExpKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtReferenciaExpKeyPressed
-        if(evt.getKeyCode() == KeyEvent.VK_TAB)
+        if (evt.getKeyCode() == KeyEvent.VK_TAB) {
             txtMunicipio.requestFocus();
+        }
     }//GEN-LAST:event_txtReferenciaExpKeyPressed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -742,9 +743,6 @@ public final class EmisorTopComponent extends TopComponent implements PropertyCh
     private javax.swing.JTextArea txtReferenciaExp;
     private org.jdesktop.beansbinding.BindingGroup bindingGroup;
     // End of variables declaration//GEN-END:variables
-
-
-
     private boolean certOK = false;
     private boolean keyOK = false;
 
@@ -752,18 +750,33 @@ public final class EmisorTopComponent extends TopComponent implements PropertyCh
 
         boolean valida = true;
 
-        if (txtCalle.getText().trim().equals(""))  valida = false;
-        if (txtMunicipio.getText().trim().equals(""))  valida = false;
-        if (txtEstado.getText().trim().equals(""))  valida = false;
-        if (txtPais.getText().trim().equals(""))  valida = false;
-        if (txtCp.getText().trim().equals(""))  valida = false;
-        if (txtPasswd.getPassword().length==0) valida = false;
-        if (!certOK) valida = false;
-        if (!keyOK) valida = false;
+        if (txtCalle.getText().trim().equals("")) {
+            valida = false;
+        }
+        if (txtMunicipio.getText().trim().equals("")) {
+            valida = false;
+        }
+        if (txtEstado.getText().trim().equals("")) {
+            valida = false;
+        }
+        if (txtPais.getText().trim().equals("")) {
+            valida = false;
+        }
+        if (txtCp.getText().trim().equals("")) {
+            valida = false;
+        }
+        if (txtPasswd.getPassword().length == 0) {
+            valida = false;
+        }
+        if (txtCer.getText().length() == 0) {
+            valida = false;
+        }
+        if (txtKey.getText().length() == 0) {
+            valida = false;
+        }
 
         return valida;
     } // validaCampos()
-
 
     /**
      * Gets default instance. Do not use directly: reserved for *.settings files only,
@@ -805,7 +818,7 @@ public final class EmisorTopComponent extends TopComponent implements PropertyCh
     @Override
     public void componentOpened() {
         setActivatedNodes(new Node[]{saveNode = new NodeForSave()});
-        
+
 
 
 
@@ -844,16 +857,18 @@ public final class EmisorTopComponent extends TopComponent implements PropertyCh
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
         if (validaCampos()) {
-        saveNode.enableSave(true);
+            saveNode.enableSave(true);
         } else {
-        saveNode.enableSave(false);
+            saveNode.enableSave(false);
         }
 
     }
 
-    public Converter passWdConverter(){
-        Converter c = new Converter(){
+    public Converter passWdConverter() {
+        Converter c = new Converter() {
+
             TripleDES td = new TripleDES();
+
             @Override
             public Object convertForward(Object s) {
                 try {
@@ -863,6 +878,7 @@ public final class EmisorTopComponent extends TopComponent implements PropertyCh
                     return null;
                 }
             }
+
             @Override
             public Object convertReverse(Object t) {
                 try {
@@ -922,7 +938,7 @@ public final class EmisorTopComponent extends TopComponent implements PropertyCh
                                             DialogDisplayer.getDefault().notify(
                                                     new NotifyDescriptor.Message(ex.getMessage(),
                                                     NotifyDescriptor.ERROR_MESSAGE));
-                                        }finally{
+                                        } finally {
                                             ph.finish();
                                         }
                                         emisor.addPropertyChangeListener(EmisorTopComponent.this);
@@ -942,12 +958,10 @@ public final class EmisorTopComponent extends TopComponent implements PropertyCh
             }
         }
     }
-
-
-   DocumentListener listenCalle = new DocumentListener() {
+    DocumentListener listenCalle = new DocumentListener() {
 
         @Override
-        public void insertUpdate(DocumentEvent event){
+        public void insertUpdate(DocumentEvent event) {
             validar();
         }
 
@@ -958,24 +972,21 @@ public final class EmisorTopComponent extends TopComponent implements PropertyCh
 
         @Override
         public void changedUpdate(DocumentEvent event) {
-
         }
 
         public void validar() {
 
-            if(txtCalle.getText().trim().equals("")) {
+            if (txtCalle.getText().trim().equals("")) {
                 txtCalle.setBackground(Color.YELLOW);
             } else {
                 txtCalle.setBackground(txtColonia.getBackground());
             }
         }
-
     };
-
-       DocumentListener listenNombre = new DocumentListener() {
+    DocumentListener listenNombre = new DocumentListener() {
 
         @Override
-        public void insertUpdate(DocumentEvent event){
+        public void insertUpdate(DocumentEvent event) {
             validar();
         }
 
@@ -986,24 +997,21 @@ public final class EmisorTopComponent extends TopComponent implements PropertyCh
 
         @Override
         public void changedUpdate(DocumentEvent event) {
-
         }
 
         public void validar() {
 
-            if(txtNombre.getText().trim().equals("")) {
+            if (txtNombre.getText().trim().equals("")) {
                 txtNombre.setBackground(Color.YELLOW);
             } else {
                 txtNombre.setBackground(txtColonia.getBackground());
             }
         }
-
     };
-
-       DocumentListener listenRFC = new DocumentListener() {
+    DocumentListener listenRFC = new DocumentListener() {
 
         @Override
-        public void insertUpdate(DocumentEvent event){
+        public void insertUpdate(DocumentEvent event) {
             validar();
         }
 
@@ -1014,25 +1022,21 @@ public final class EmisorTopComponent extends TopComponent implements PropertyCh
 
         @Override
         public void changedUpdate(DocumentEvent event) {
-
         }
 
         public void validar() {
 
-            if(txtRFC.getText().trim().equals("")) {
+            if (txtRFC.getText().trim().equals("")) {
                 txtRFC.setBackground(Color.YELLOW);
             } else {
                 txtRFC.setBackground(txtColonia.getBackground());
             }
         }
-
     };
-
-
-          DocumentListener listenMpo = new DocumentListener() {
+    DocumentListener listenMpo = new DocumentListener() {
 
         @Override
-        public void insertUpdate(DocumentEvent event){
+        public void insertUpdate(DocumentEvent event) {
             validar();
         }
 
@@ -1043,25 +1047,21 @@ public final class EmisorTopComponent extends TopComponent implements PropertyCh
 
         @Override
         public void changedUpdate(DocumentEvent event) {
-
         }
 
         public void validar() {
 
-            if(txtMunicipio.getText().trim().equals("")) {
+            if (txtMunicipio.getText().trim().equals("")) {
                 txtMunicipio.setBackground(Color.YELLOW);
             } else {
                 txtMunicipio.setBackground(txtColonia.getBackground());
             }
         }
-
     };
-
-
-          DocumentListener listenEstado = new DocumentListener() {
+    DocumentListener listenEstado = new DocumentListener() {
 
         @Override
-        public void insertUpdate(DocumentEvent event){
+        public void insertUpdate(DocumentEvent event) {
             validar();
         }
 
@@ -1072,25 +1072,21 @@ public final class EmisorTopComponent extends TopComponent implements PropertyCh
 
         @Override
         public void changedUpdate(DocumentEvent event) {
-
         }
 
         public void validar() {
 
-            if(txtEstado.getText().trim().equals("")) {
+            if (txtEstado.getText().trim().equals("")) {
                 txtEstado.setBackground(Color.YELLOW);
             } else {
                 txtEstado.setBackground(txtColonia.getBackground());
             }
         }
-
     };
-
-
-          DocumentListener listenPais = new DocumentListener() {
+    DocumentListener listenPais = new DocumentListener() {
 
         @Override
-        public void insertUpdate(DocumentEvent event){
+        public void insertUpdate(DocumentEvent event) {
             validar();
         }
 
@@ -1101,26 +1097,21 @@ public final class EmisorTopComponent extends TopComponent implements PropertyCh
 
         @Override
         public void changedUpdate(DocumentEvent event) {
-
         }
 
         public void validar() {
 
-            if(txtPais.getText().trim().equals("")) {
+            if (txtPais.getText().trim().equals("")) {
                 txtPais.setBackground(Color.YELLOW);
             } else {
                 txtPais.setBackground(txtColonia.getBackground());
             }
         }
-
     };
-
-
-
     DocumentListener listenCP = new DocumentListener() {
 
         @Override
-        public void insertUpdate(DocumentEvent event){
+        public void insertUpdate(DocumentEvent event) {
             validar();
         }
 
@@ -1131,25 +1122,21 @@ public final class EmisorTopComponent extends TopComponent implements PropertyCh
 
         @Override
         public void changedUpdate(DocumentEvent event) {
-
         }
 
         public void validar() {
 
-            if(txtCp.getText().trim().equals("")) {
+            if (txtCp.getText().trim().equals("")) {
                 txtCp.setBackground(Color.YELLOW);
             } else {
                 txtCp.setBackground(txtColonia.getBackground());
             }
         }
-
     };
-
-
     DocumentListener listenPWD = new DocumentListener() {
 
         @Override
-        public void insertUpdate(DocumentEvent event){
+        public void insertUpdate(DocumentEvent event) {
             validar();
         }
 
@@ -1160,20 +1147,17 @@ public final class EmisorTopComponent extends TopComponent implements PropertyCh
 
         @Override
         public void changedUpdate(DocumentEvent event) {
-
         }
 
         public void validar() {
 
 
 
-            if(txtPasswd.getPassword().length == 0   ) {
+            if (txtPasswd.getPassword().length == 0) {
                 txtPasswd.setBackground(Color.YELLOW);
             } else {
                 txtPasswd.setBackground(txtColonia.getBackground());
             }
         }
-
     };
-
 }
