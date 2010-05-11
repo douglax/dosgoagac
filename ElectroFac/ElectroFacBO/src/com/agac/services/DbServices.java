@@ -89,6 +89,28 @@ public class DbServices {
         return (Integer)num;
     }
 
+    public static <U> List<U> getComprobantesDelMes(String rfcEmisor, int mes, int ano) {
+
+        if (emf == null) {
+            emf = Persistence.createEntityManagerFactory("ElectroFacBOPU");
+        }
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+
+        Query query = em.createNativeQuery(
+        "select * from COMPROBANTE c inner join app.EMISOR e on (c.EMISOR_ID = e.ID) where e.RFC = '" +
+                rfcEmisor + "' and MONTH(c.FECHA) = " + mes + "and YEAR(c.fecha) = " + ano);
+
+        //List resultRows = query.getResultList();
+
+        List<U> l = query.getResultList();
+        em.getTransaction().commit();
+        em.close();
+        return l;
+
+    }
+
+
     public static void closeDbServices() {
         if ((emf != null) && (emf.isOpen())) {
             emf.close();

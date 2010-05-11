@@ -8,12 +8,17 @@
  *
  * Created on May 10, 2010, 8:40:40 PM
  */
-
 package com.agac.gui;
 
+import com.agac.bo.Comprobante;
 import com.agac.bo.Emisor;
 import java.awt.FileDialog;
 import org.openide.windows.WindowManager;
+import com.agac.services.DbServices;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Vector;
 
 /**
  *
@@ -63,6 +68,11 @@ public class ReporteMensualPanel extends javax.swing.JPanel {
         });
 
         btnGenerar.setText(org.openide.util.NbBundle.getMessage(ReporteMensualPanel.class, "ReporteMensualPanel.btnGenerar.text")); // NOI18N
+        btnGenerar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGenerarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -111,6 +121,12 @@ public class ReporteMensualPanel extends javax.swing.JPanel {
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         // TODO add your handling code here:
 
+
+
+
+
+
+
         FileDialog fd = new FileDialog(WindowManager.getDefault().getMainWindow(),
                 "Archivo de reporte", FileDialog.SAVE);
         fd.setFile("*.txt");
@@ -118,19 +134,50 @@ public class ReporteMensualPanel extends javax.swing.JPanel {
 
 
 
-        txtRuta.setText( fd.getDirectory() + "1"+ emisor.getRfc() + mesAnumero() + cboAno.getSelectedItem().toString() + ".txt");
+        txtRuta.setText(fd.getDirectory() + "1" + emisor.getRfc() + mesAnumero() + cboAno.getSelectedItem().toString() + ".txt");
 
 
-       // if (fd.getFile() != null) {
-       //     txtCer.setText(fd.getDirectory() + fd.getFile());
-       //     certOK = true;
-       // }
+
+
+        // if (fd.getFile() != null) {
+        //     txtCer.setText(fd.getDirectory() + fd.getFile());
+        //     certOK = true;
+        // }
 
 
 
     }//GEN-LAST:event_btnBuscarActionPerformed
 
+    private void btnGenerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarActionPerformed
+        // TODO add your handling code here:
 
+
+        List<Comprobante> results = null;
+        results = DbServices.getComprobantesDelMes(emisor.getRfc(), cboMes.getSelectedIndex() + 1, Integer.parseInt(cboAno.getSelectedItem().toString()));
+
+        if (results.isEmpty()) {
+            // Mensaje no hay registros
+        } else {
+
+            try {
+                // crear archivo
+
+                
+
+                // Recorremos los resultados y los escribimos al archivo
+                for (Iterator it = results.iterator(); it.hasNext();) {
+                    Vector resultRow = (Vector) it.next();
+                    //Integer id = (Integer) resultRow.elementAt(0);
+                    System.out.println(resultRow.elementAt(0).toString());
+
+                }
+            } catch (Exception e) {
+
+            }
+
+        } //if
+
+    }//GEN-LAST:event_btnGenerarActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnGenerar;
@@ -140,8 +187,6 @@ public class ReporteMensualPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JTextField txtRuta;
     // End of variables declaration//GEN-END:variables
-
-
     private Emisor emisor = new Emisor();
 
     public Emisor getEmisor() {
@@ -152,25 +197,46 @@ public class ReporteMensualPanel extends javax.swing.JPanel {
         this.emisor = emisor;
     }
 
-
-    public String mesAnumero(){
+    public String mesAnumero() {
         String mes = "";
-        if(cboMes.getSelectedIndex() == 0) mes = "01";
-        if(cboMes.getSelectedIndex() == 1) mes = "02";
-        if(cboMes.getSelectedIndex() == 2) mes = "03";
-        if(cboMes.getSelectedIndex() == 3) mes = "04";
-        if(cboMes.getSelectedIndex() == 4) mes = "05";
-        if(cboMes.getSelectedIndex() == 5) mes = "06";
-        if(cboMes.getSelectedIndex() == 6) mes = "07";
-        if(cboMes.getSelectedIndex() == 7) mes = "08";
-        if(cboMes.getSelectedIndex() == 8) mes = "09";
-        if(cboMes.getSelectedIndex() == 9) mes = "10";
-        if(cboMes.getSelectedIndex() == 10) mes = "11";
-        if(cboMes.getSelectedIndex() == 11) mes = "12";
+        if (cboMes.getSelectedIndex() == 0) {
+            mes = "01";
+        }
+        if (cboMes.getSelectedIndex() == 1) {
+            mes = "02";
+        }
+        if (cboMes.getSelectedIndex() == 2) {
+            mes = "03";
+        }
+        if (cboMes.getSelectedIndex() == 3) {
+            mes = "04";
+        }
+        if (cboMes.getSelectedIndex() == 4) {
+            mes = "05";
+        }
+        if (cboMes.getSelectedIndex() == 5) {
+            mes = "06";
+        }
+        if (cboMes.getSelectedIndex() == 6) {
+            mes = "07";
+        }
+        if (cboMes.getSelectedIndex() == 7) {
+            mes = "08";
+        }
+        if (cboMes.getSelectedIndex() == 8) {
+            mes = "09";
+        }
+        if (cboMes.getSelectedIndex() == 9) {
+            mes = "10";
+        }
+        if (cboMes.getSelectedIndex() == 10) {
+            mes = "11";
+        }
+        if (cboMes.getSelectedIndex() == 11) {
+            mes = "12";
+        }
 
         return mes;
 
     }
-
-
 }

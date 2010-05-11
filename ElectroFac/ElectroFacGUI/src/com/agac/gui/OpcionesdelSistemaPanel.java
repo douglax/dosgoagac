@@ -273,7 +273,7 @@ final class OpcionesdelSistemaPanel extends javax.swing.JPanel {
             
           try {
 
-            image = ImageIO.read(new File("com/agac/gui/resourses/add.png"));
+            image = ImageIO.read(new File("com/agac/gui/resourses/report1_thumb.jpg"));
             picLabel.setIcon(new ImageIcon( image ));
           }
           catch (IOException e) {
