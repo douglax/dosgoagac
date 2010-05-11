@@ -12,6 +12,7 @@ import com.agac.gui.ComprobanteTopComponent;
 import com.agac.gui.EmisorTopComponent;
 import com.agac.gui.FoliosPanel;
 import com.agac.gui.MenuTopComponent;
+import com.agac.gui.ReporteMensualPanel;
 import com.agac.services.DbServices;
 import java.awt.BorderLayout;
 import java.awt.FileDialog;
@@ -64,7 +65,8 @@ public class EmpresaNode extends AbstractNode {
                     new AdminFolios(),
                     new CatalogoArticulos(),
                     new AddLogo(),
-                    new VerLogo()
+                    new VerLogo(),
+                    new ReporteMensual()
                 };
     }
 
@@ -288,4 +290,21 @@ public class EmpresaNode extends AbstractNode {
                         "Artículos", true, null));
         }
     }
+
+
+    private class ReporteMensual extends AbstractAction {
+        public ReporteMensual(){
+            putValue(NAME, "Generar Reporte Mensual");
+        }
+        @Override
+        public void actionPerformed(ActionEvent e){
+            ReporteMensualPanel rm = new ReporteMensualPanel();
+            rm.setEmisor(getLookup().lookup(Emisor.class));
+            DialogDisplayer.getDefault().notify(
+                        new DialogDescriptor(rm,
+                        "Reporte Mensual", true, null));
+        }
+    }
+
+
 }
