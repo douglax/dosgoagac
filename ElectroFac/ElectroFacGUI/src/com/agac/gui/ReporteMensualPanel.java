@@ -15,6 +15,9 @@ import com.agac.bo.Emisor;
 import java.awt.FileDialog;
 import org.openide.windows.WindowManager;
 import com.agac.services.DbServices;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -151,7 +154,7 @@ public class ReporteMensualPanel extends javax.swing.JPanel {
     private void btnGenerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarActionPerformed
         // TODO add your handling code here:
 
-
+        String linea = "";
         List<Comprobante> results = null;
         results = DbServices.getComprobantesDelMes(emisor.getRfc(), cboMes.getSelectedIndex() + 1, Integer.parseInt(cboAno.getSelectedItem().toString()));
 
@@ -162,16 +165,28 @@ public class ReporteMensualPanel extends javax.swing.JPanel {
             try {
                 // crear archivo
 
-                
+
+            FileWriter outFile = new FileWriter(txtRuta.getText());
+            PrintWriter out = new PrintWriter(outFile);
+
+
+
 
                 // Recorremos los resultados y los escribimos al archivo
                 for (Iterator it = results.iterator(); it.hasNext();) {
                     Vector resultRow = (Vector) it.next();
-                    //Integer id = (Integer) resultRow.elementAt(0);
-                    System.out.println(resultRow.elementAt(0).toString());
+
+
+                    linea = "|";
+                    linea += resultRow.elementAt(0);                    //RFC
+                    linea += "|" + resultRow.elementAt(1);              //Serie
+                    linea += "|" + resultRow.elementAt(2).toString();   //folio
+                    out.println(linea);
 
                 }
-            } catch (Exception e) {
+
+                out.close();
+            } catch (IOException e) {
 
             }
 

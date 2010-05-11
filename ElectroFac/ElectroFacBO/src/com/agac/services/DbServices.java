@@ -97,9 +97,22 @@ public class DbServices {
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
 
+
+        //Version 1
+//        Query query = em.createNativeQuery(
+//
+//
+//                "select * from COMPROBANTE c inner join app.EMISOR e on (c.EMISOR_ID = e.ID) where e.RFC = '" +
+//                rfcEmisor + "' and MONTH(c.FECHA) = " + mes + "and YEAR(c.fecha) = " + ano);
+
+
+        //Version 2
         Query query = em.createNativeQuery(
-        "select * from COMPROBANTE c inner join app.EMISOR e on (c.EMISOR_ID = e.ID) where e.RFC = '" +
-                rfcEmisor + "' and MONTH(c.FECHA) = " + mes + "and YEAR(c.fecha) = " + ano);
+        "select r.rfc, c.serie, c.folio, c.noaprobacion, c.fecha, c.total,'IVA' as \"IVA\", '1' as \"Estado\"," +
+        "'pedimentos' as \"Pedimentos\",'Fecha Pedimientos' as \"FecPedimento\", 'Aduana' as \"aduana\" " +
+        "from   COMPROBANTE c inner join EMISOR e on (c.EMISOR_ID = e.ID) inner join Receptor r on (c.receptor_id = r.ID) " +
+        "where e.RFC = '" + rfcEmisor + "' and MONTH(c.FECHA) = " + mes + " and YEAR(c.fecha) = " + ano);
+
 
         //List resultRows = query.getResultList();
 
