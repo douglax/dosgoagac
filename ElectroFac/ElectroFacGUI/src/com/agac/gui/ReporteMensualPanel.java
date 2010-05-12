@@ -12,12 +12,14 @@ package com.agac.gui;
 
 import com.agac.bo.Comprobante;
 import com.agac.bo.Emisor;
+import com.agac.bo.InformacionAduanera;
 import java.awt.FileDialog;
 import org.openide.windows.WindowManager;
 import com.agac.services.DbServices;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Vector;
@@ -173,7 +175,19 @@ public class ReporteMensualPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
 
         String linea = "";
+        String qryIA = "";
+
+        ArrayList<String> lstPedimento = new ArrayList<String>();
+        ArrayList<String> lstFecha = new ArrayList<String>();
+        ArrayList<String> lstAduana = new ArrayList<String>();
+
+        String concatPedimento = "";
+        String concatFecha = "";
+        String concatAduana = "";
+
+
         List<Comprobante> results = null;
+        List<InformacionAduanera> infoAduanera = null;
         results = DbServices.getComprobantesDelMes(emisor.getRfc(), cboMes.getSelectedIndex() + 1, Integer.parseInt(cboAno.getSelectedItem().toString()));
 
         if (results.isEmpty()) {
@@ -182,12 +196,8 @@ public class ReporteMensualPanel extends javax.swing.JPanel {
 
             try {
                 // crear archivo
-
-
                 FileWriter outFile = new FileWriter(txtRuta.getText());
                 PrintWriter out = new PrintWriter(outFile);
-
-
 
 
                 // Recorremos los resultados y los escribimos al archivo
@@ -204,9 +214,57 @@ public class ReporteMensualPanel extends javax.swing.JPanel {
                     linea += "|" + resultRow.elementAt(5).toString();   //monto
                     linea += "|" + resultRow.elementAt(6);             //IVA
                     linea += "|" + resultRow.elementAt(7);             //Estado del comprobante
-                    linea += "|" + resultRow.elementAt(8);             //pedimento
-                    linea += "|" + resultRow.elementAt(9);             //fecha de pedimento
-                    linea += "|" + resultRow.elementAt(10);            //Aduana
+
+                    // buscamos registros de información aduanera del concepto
+
+
+                    //TODO: modificar query para que solo obtenga la información aduanera
+                    //del concepto actual
+                    qryIA = "Select i from InformacionAduanera i ";
+                    infoAduanera = DbServices.getList(qryIA);
+
+                    if (infoAduanera.isEmpty()) {
+                        linea += "|||";
+                    } else {
+
+                        lstPedimento.clear() ;
+                        lstFecha.clear();
+                        lstAduana.clear();
+
+                        // Recorremos Información Aduanera para llenar las listas
+                        for(InformacionAduanera i : infoAduanera){
+                           lstPedimento.add(i.getNumero());
+                           lstFecha.add(i.getFecha().toString());
+                           lstAduana.add(i.getAduana());
+                        }
+
+                        // Recorremos las listas recien creadas para completar la línea
+
+                        concatPedimento = "";
+                        for(String i : lstPedimento) {
+                            concatPedimento +=  i + ",";
+                        }
+                        // Remover la última coma
+                        concatPedimento = concatPedimento.substring(0,concatPedimento.length()-1);
+
+                        concatFecha = "";
+                        for(String i : lstFecha) {
+                            concatFecha +=  i + ",";
+                        }
+                        concatFecha = concatFecha.substring(0,concatFecha.length()-1);
+
+                        concatAduana = "";
+                        for(String i : lstAduana) {
+                            concatAduana +=  i + ",";
+                        }
+                        concatAduana = concatAduana.substring(0,concatAduana.length()-1);
+
+                        //juntamos los valores y los agregamos a linea
+                        linea += "|" + concatPedimento + "|" + concatFecha + "|" + concatAduana;
+
+                    }
+
+                    //cerramos linea y la escribimos
                     linea += "|";
                     out.println(linea);
 
