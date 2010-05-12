@@ -18,10 +18,13 @@ import com.agac.services.DbServices;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Vector;
+import java.util.prefs.PreferenceChangeEvent;
+import java.util.prefs.PreferenceChangeListener;
+import java.util.prefs.Preferences;
+import org.openide.util.NbPreferences;
 
 /**
  *
@@ -32,6 +35,20 @@ public class ReporteMensualPanel extends javax.swing.JPanel {
     /** Creates new form ReporteMensualPanel */
     public ReporteMensualPanel() {
         initComponents();
+
+
+        txtRuta.setText(RutaReportes + "1" + emisor.getRfc() + mesAnumero() + cboAno.getSelectedItem().toString() + ".txt" );
+
+        pref.addPreferenceChangeListener(new PreferenceChangeListener() {
+
+            @Override
+            public void preferenceChange(PreferenceChangeEvent evt) {
+                if (evt.getKey().equals("RUTAREPORTES")) {
+                    RutaReportes = evt.getNewValue();
+                }
+
+            }
+        });
     }
 
     /** This method is called from within the constructor to
@@ -56,11 +73,22 @@ public class ReporteMensualPanel extends javax.swing.JPanel {
         jLabel1.setText(org.openide.util.NbBundle.getMessage(ReporteMensualPanel.class, "ReporteMensualPanel.jLabel1.text")); // NOI18N
 
         cboMes.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" }));
+        cboMes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cboMesActionPerformed(evt);
+            }
+        });
 
         cboAno.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "2010", "2011", "2012", "2013", "2014", "2015" }));
+        cboAno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cboAnoActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText(org.openide.util.NbBundle.getMessage(ReporteMensualPanel.class, "ReporteMensualPanel.jLabel2.text")); // NOI18N
 
+        txtRuta.setEditable(false);
         txtRuta.setText(org.openide.util.NbBundle.getMessage(ReporteMensualPanel.class, "ReporteMensualPanel.txtRuta.text")); // NOI18N
 
         btnBuscar.setText(org.openide.util.NbBundle.getMessage(ReporteMensualPanel.class, "ReporteMensualPanel.btnBuscar.text")); // NOI18N
@@ -126,30 +154,20 @@ public class ReporteMensualPanel extends javax.swing.JPanel {
 
 
 
-
-
-
-
         FileDialog fd = new FileDialog(WindowManager.getDefault().getMainWindow(),
                 "Archivo de reporte", FileDialog.SAVE);
         fd.setFile("*.txt");
+        fd.setDirectory(RutaReportes);
         fd.setVisible(true);
 
+        RutaReportes = fd.getDirectory();
 
-
-        txtRuta.setText(fd.getDirectory() + "1" + emisor.getRfc() + mesAnumero() + cboAno.getSelectedItem().toString() + ".txt");
-
-
-
-
-        // if (fd.getFile() != null) {
-        //     txtCer.setText(fd.getDirectory() + fd.getFile());
-        //     certOK = true;
-        // }
-
+        txtRuta.setText(RutaReportes + "1" + emisor.getRfc() + mesAnumero() + cboAno.getSelectedItem().toString() + ".txt");
 
 
     }//GEN-LAST:event_btnBuscarActionPerformed
+
+
 
     private void btnGenerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarActionPerformed
         // TODO add your handling code here:
@@ -166,8 +184,8 @@ public class ReporteMensualPanel extends javax.swing.JPanel {
                 // crear archivo
 
 
-            FileWriter outFile = new FileWriter(txtRuta.getText());
-            PrintWriter out = new PrintWriter(outFile);
+                FileWriter outFile = new FileWriter(txtRuta.getText());
+                PrintWriter out = new PrintWriter(outFile);
 
 
 
@@ -181,18 +199,41 @@ public class ReporteMensualPanel extends javax.swing.JPanel {
                     linea += resultRow.elementAt(0);                    //RFC
                     linea += "|" + resultRow.elementAt(1);              //Serie
                     linea += "|" + resultRow.elementAt(2).toString();   //folio
+                    linea += "|" + resultRow.elementAt(3).toString();   //NoAprobacion
+                    linea += "|" + resultRow.elementAt(4).toString();   //fecha
+                    linea += "|" + resultRow.elementAt(5).toString();   //monto
+                    linea += "|" + resultRow.elementAt(6);             //IVA
+                    linea += "|" + resultRow.elementAt(7);             //Estado del comprobante
+                    linea += "|" + resultRow.elementAt(8);             //pedimento
+                    linea += "|" + resultRow.elementAt(9);             //fecha de pedimento
+                    linea += "|" + resultRow.elementAt(10);            //Aduana
+                    linea += "|";
                     out.println(linea);
 
                 }
 
                 out.close();
             } catch (IOException e) {
-
+                System.out.println(e.getMessage());
             }
 
         } //if
 
     }//GEN-LAST:event_btnGenerarActionPerformed
+
+    private void cboMesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboMesActionPerformed
+        // TODO add your handling code here:
+
+        txtRuta.setText(RutaReportes + "1" + emisor.getRfc() + mesAnumero() + cboAno.getSelectedItem().toString() + ".txt" );
+
+    }//GEN-LAST:event_cboMesActionPerformed
+
+    private void cboAnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboAnoActionPerformed
+        // TODO add your handling code here:
+
+        txtRuta.setText(RutaReportes + "1" + emisor.getRfc() + mesAnumero() + cboAno.getSelectedItem().toString() + ".txt" );
+    }//GEN-LAST:event_cboAnoActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnGenerar;
@@ -202,7 +243,10 @@ public class ReporteMensualPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JTextField txtRuta;
     // End of variables declaration//GEN-END:variables
+
     private Emisor emisor = new Emisor();
+    Preferences pref = NbPreferences.forModule(OpcionesdelSistemaPanel.class);
+    String RutaReportes = pref.get("RUTAREPORTES", "");
 
     public Emisor getEmisor() {
         return emisor;
