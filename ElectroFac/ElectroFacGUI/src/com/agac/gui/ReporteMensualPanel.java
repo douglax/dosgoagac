@@ -217,11 +217,10 @@ public class ReporteMensualPanel extends javax.swing.JPanel {
 
                     // buscamos registros de información aduanera del concepto
 
-
-                    //TODO: modificar query para que solo obtenga la información aduanera
-                    //del concepto actual
-                    qryIA = "Select i from InformacionAduanera i ";
-                    infoAduanera = DbServices.getList(qryIA);
+                    qryIA = "Select i from InformacionAduanera i JOIN i.Concepto_InformacionAduanera x " +
+                            "JOIN x.Conceptos p JOIN p.ComprobanteConcepto k " +
+                            "JOIN k.Comprobante c WHERE c.ID= ?1";
+                    infoAduanera = DbServices.getListWithParameters(qryIA, resultRow.elementAt(8).toString());
 
                     if (infoAduanera.isEmpty()) {
                         linea += "|||";

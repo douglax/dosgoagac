@@ -108,8 +108,7 @@ public class DbServices {
 
         //Version 2
         Query query = em.createNativeQuery(
-        "select r.rfc, c.serie, c.folio, c.noaprobacion, c.fecha, c.total,'IVA' as \"IVA\", '1' as \"Estado\"," +
-        "'pedimentos' as \"Pedimentos\",'Fecha Pedimientos' as \"FecPedimento\", 'Aduana' as \"aduana\" " +
+        "select r.rfc, c.serie, c.folio, c.noaprobacion, c.fecha, c.total,'IVA' as \"IVA\", '1' as \"Estado\", c.ID " +
         "from   COMPROBANTE c inner join EMISOR e on (c.EMISOR_ID = e.ID) inner join Receptor r on (c.receptor_id = r.ID) " +
         "where e.RFC = '" + rfcEmisor + "' and MONTH(c.FECHA) = " + mes + " and YEAR(c.fecha) = " + ano);
 
