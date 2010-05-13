@@ -39,7 +39,7 @@ public class ReporteMensualPanel extends javax.swing.JPanel {
         initComponents();
 
 
-        txtRuta.setText(RutaReportes + "1" + emisor.getRfc() + mesAnumero() + cboAno.getSelectedItem().toString() + ".txt" );
+     //   txtRuta.setText(RutaReportes + "1" + emisor.getRfc() + mesAnumero() + cboAno.getSelectedItem().toString() + ".txt" );
 
         pref.addPreferenceChangeListener(new PreferenceChangeListener() {
 
@@ -74,7 +74,7 @@ public class ReporteMensualPanel extends javax.swing.JPanel {
 
         jLabel1.setText(org.openide.util.NbBundle.getMessage(ReporteMensualPanel.class, "ReporteMensualPanel.jLabel1.text")); // NOI18N
 
-        cboMes.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" }));
+        cboMes.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "----", "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" }));
         cboMes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cboMesActionPerformed(evt);
@@ -101,6 +101,7 @@ public class ReporteMensualPanel extends javax.swing.JPanel {
         });
 
         btnGenerar.setText(org.openide.util.NbBundle.getMessage(ReporteMensualPanel.class, "ReporteMensualPanel.btnGenerar.text")); // NOI18N
+        btnGenerar.setEnabled(false);
         btnGenerar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnGenerarActionPerformed(evt);
@@ -188,7 +189,7 @@ public class ReporteMensualPanel extends javax.swing.JPanel {
 
         List<Comprobante> results = null;
         List<InformacionAduanera> infoAduanera = null;
-        results = DbServices.getComprobantesDelMes(emisor.getRfc(), cboMes.getSelectedIndex() + 1, Integer.parseInt(cboAno.getSelectedItem().toString()));
+        results = DbServices.getComprobantesDelMes(emisor.getRfc(), cboMes.getSelectedIndex() , Integer.parseInt(cboAno.getSelectedItem().toString()));
 
         if (results.isEmpty()) {
             // Mensaje no hay registros
@@ -217,9 +218,17 @@ public class ReporteMensualPanel extends javax.swing.JPanel {
 
                     // buscamos registros de información aduanera del concepto
 
+                    //qryIA = "Select i from InformacionAduanera i JOIN  " +
+                    //        "JOIN i.Concepto p " +
+                    //        "JOIN p.Comprobante c WHERE c.ID= ?1";
+
                     qryIA = "Select i from InformacionAduanera i JOIN i.Concepto_InformacionAduanera x " +
-                            "JOIN x.Conceptos p JOIN p.ComprobanteConcepto k " +
-                            "JOIN k.Comprobante c WHERE c.ID= ?1";
+                    "JOIN x.Concepto p JOIN p.ComprobanteConcepto k " +
+                    "JOIN k.Comprobante c WHERE c.ID= ?1";
+
+
+
+
                     infoAduanera = DbServices.getListWithParameters(qryIA, resultRow.elementAt(8).toString());
 
                     if (infoAduanera.isEmpty()) {
@@ -267,6 +276,8 @@ public class ReporteMensualPanel extends javax.swing.JPanel {
                     linea += "|";
                     out.println(linea);
 
+
+
                 }
 
                 out.close();
@@ -281,8 +292,11 @@ public class ReporteMensualPanel extends javax.swing.JPanel {
     private void cboMesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboMesActionPerformed
         // TODO add your handling code here:
 
-        txtRuta.setText(RutaReportes + "1" + emisor.getRfc() + mesAnumero() + cboAno.getSelectedItem().toString() + ".txt" );
-
+        if(cboMes.getSelectedIndex() > 0) {
+            txtRuta.setText(RutaReportes + "1" + emisor.getRfc() + mesAnumero() + cboAno.getSelectedItem().toString() + ".txt" );
+            btnGenerar.setEnabled(true); }
+        else
+            btnGenerar.setEnabled(false);
     }//GEN-LAST:event_cboMesActionPerformed
 
     private void cboAnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboAnoActionPerformed
@@ -315,41 +329,11 @@ public class ReporteMensualPanel extends javax.swing.JPanel {
 
     public String mesAnumero() {
         String mes = "";
-        if (cboMes.getSelectedIndex() == 0) {
-            mes = "01";
-        }
-        if (cboMes.getSelectedIndex() == 1) {
-            mes = "02";
-        }
-        if (cboMes.getSelectedIndex() == 2) {
-            mes = "03";
-        }
-        if (cboMes.getSelectedIndex() == 3) {
-            mes = "04";
-        }
-        if (cboMes.getSelectedIndex() == 4) {
-            mes = "05";
-        }
-        if (cboMes.getSelectedIndex() == 5) {
-            mes = "06";
-        }
-        if (cboMes.getSelectedIndex() == 6) {
-            mes = "07";
-        }
-        if (cboMes.getSelectedIndex() == 7) {
-            mes = "08";
-        }
-        if (cboMes.getSelectedIndex() == 8) {
-            mes = "09";
-        }
-        if (cboMes.getSelectedIndex() == 9) {
-            mes = "10";
-        }
-        if (cboMes.getSelectedIndex() == 10) {
-            mes = "11";
-        }
-        if (cboMes.getSelectedIndex() == 11) {
-            mes = "12";
+
+        if (cboMes.getSelectedIndex() < 10) {
+            mes = "0" + cboMes.getSelectedIndex(); }
+        else {
+            mes = String.valueOf(cboMes.getSelectedIndex());
         }
 
         return mes;

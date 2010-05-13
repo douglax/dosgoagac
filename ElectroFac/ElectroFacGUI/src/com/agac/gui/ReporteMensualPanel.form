@@ -83,19 +83,20 @@
     <Component class="javax.swing.JComboBox" name="cboMes">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="12">
-            <StringItem index="0" value="Enero"/>
-            <StringItem index="1" value="Febrero"/>
-            <StringItem index="2" value="Marzo"/>
-            <StringItem index="3" value="Abril"/>
-            <StringItem index="4" value="Mayo"/>
-            <StringItem index="5" value="Junio"/>
-            <StringItem index="6" value="Julio"/>
-            <StringItem index="7" value="Agosto"/>
-            <StringItem index="8" value="Septiembre"/>
-            <StringItem index="9" value="Octubre"/>
-            <StringItem index="10" value="Noviembre"/>
-            <StringItem index="11" value="Diciembre"/>
+          <StringArray count="13">
+            <StringItem index="0" value="----"/>
+            <StringItem index="1" value="Enero"/>
+            <StringItem index="2" value="Febrero"/>
+            <StringItem index="3" value="Marzo"/>
+            <StringItem index="4" value="Abril"/>
+            <StringItem index="5" value="Mayo"/>
+            <StringItem index="6" value="Junio"/>
+            <StringItem index="7" value="Julio"/>
+            <StringItem index="8" value="Agosto"/>
+            <StringItem index="9" value="Septiembre"/>
+            <StringItem index="10" value="Octubre"/>
+            <StringItem index="11" value="Noviembre"/>
+            <StringItem index="12" value="Diciembre"/>
           </StringArray>
         </Property>
       </Properties>
@@ -150,6 +151,7 @@
         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
           <ResourceString bundle="com/agac/gui/Bundle.properties" key="ReporteMensualPanel.btnGenerar.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
         </Property>
+        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnGenerarActionPerformed"/>
