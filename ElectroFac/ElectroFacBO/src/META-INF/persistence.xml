@@ -13,12 +13,15 @@
     <class>com.agac.bo.CuentaPredial</class>
     <class>com.agac.bo.Serie</class>
     <class>com.agac.bo.Articulo</class>
+    <class>com.agac.bo.Impuesto</class>
+    <class>com.agac.bo.Retencion</class>
+    <class>com.agac.bo.Traslado</class>
     <properties>
       <property name="toplink.jdbc.user" value=""/>
       <property name="toplink.jdbc.password" value=""/>
       <property name="toplink.jdbc.url" value="jdbc:derby:efactura;create=true"/>
       <property name="toplink.jdbc.driver" value="org.apache.derby.jdbc.EmbeddedDriver"/>
-      <property name="toplink.ddl-generation" value="create-tables"/>
+      <property name="toplink.ddl-generation" value="drop-and-create-tables"/>
       <property name="toplink.logging.level" value="FINE"/>
       <property name="toplink.target-database" value="Derby"/>
     </properties>

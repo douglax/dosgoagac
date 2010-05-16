@@ -24,6 +24,7 @@ import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import com.agac.libraries.NumberToLetterConverter;
 import javax.persistence.Column;
+import javax.persistence.OneToOne;
 
 /**
  *
@@ -59,7 +60,7 @@ public class Comprobante implements Serializable {
     @OneToMany
     private List<Concepto> conceptos;
     @XmlElement(name = "Impuestos", required = true)
-    @Transient
+    @OneToOne
     private Impuesto impuesto;
     @XmlAttribute(required = true)
     private String version = "2.0";

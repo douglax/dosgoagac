@@ -1,13 +1,24 @@
 package com.agac.bo;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 @XmlAccessorType(XmlAccessType.FIELD)
-public class Retencion {
+@Entity
+public class Retencion implements Serializable {
+    @XmlTransient
+    @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
+    private Long id;
 
     @XmlAttribute(required = true)
     private String impuesto;
@@ -62,6 +73,14 @@ public class Retencion {
      */
     public void setImporte(BigDecimal value) {
         this.importe = value;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }
 

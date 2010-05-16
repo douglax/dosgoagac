@@ -10,6 +10,11 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
@@ -28,12 +33,19 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
     "retenciones",
     "traslados"
 })
+@Entity
 public class Impuesto implements Serializable {
+    @XmlTransient
+    @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
+    private Long id;
     @XmlElementWrapper(name="Retenciones")
     @XmlElement(name = "Retencion")
+    @OneToMany
     private List<Retencion> retenciones;
     @XmlElementWrapper(name="Traslados")
     @XmlElement(name = "Traslado")
+    @OneToMany
     private List<Traslado> traslados;
     @XmlJavaTypeAdapter(BigDecimalAdapter.class)
     @XmlAttribute
@@ -157,5 +169,13 @@ public class Impuesto implements Serializable {
 
     public void removePropertyChangeListener(PropertyChangeListener listener) {
         propertyChangeSupport.removePropertyChangeListener(listener);
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }
