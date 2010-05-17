@@ -99,11 +99,29 @@ public class EmpresaNode extends AbstractNode {
                     "getNoExterior", null);
             Property noInt = new PropertySupport.Reflection<String>(e.getDomicilioFiscal(), String.class,
                     "getNoInterior", null);
+            Property localidad = new PropertySupport.Reflection<String>(e.getDomicilioFiscal(), String.class,
+                    "getLocalidad", null);
+            Property municipio = new PropertySupport.Reflection<String>(e.getDomicilioFiscal(), String.class,
+                    "getMunicipio", null);
+            Property estado = new PropertySupport.Reflection<String>(e.getDomicilioFiscal(), String.class,
+                "getEstado", null);
+            Property pais = new PropertySupport.Reflection<String>(e.getDomicilioFiscal(), String.class,
+                "getPais", null);
 
             noExt.setName("noExterior");
             noExt.setDisplayName("Número Exterior");
             noInt.setName("noInterior");
             noInt.setDisplayName("Número Interior");
+            localidad.setName("localidad");
+            localidad.setDisplayName("Localidad");
+            municipio.setName("municipio");
+            municipio.setDisplayName("Municipio ó Delegación:");
+            estado.setName("estado");
+            estado.setDisplayName("Estado");
+            pais.setName("pais");
+            pais.setDisplayName("País");
+
+       
 
             set.put(nombre);
             set.put(rfc);
@@ -113,6 +131,10 @@ public class EmpresaNode extends AbstractNode {
             dFiscal.put(calle);
             dFiscal.put(noExt);
             dFiscal.put(noInt);
+            dFiscal.put(localidad);
+            dFiscal.put(municipio);
+            dFiscal.put(estado);
+            dFiscal.put(pais);
             dFiscal.setName("DomicilioFiscal");
             dFiscal.setDisplayName("Domicilio Fiscal");
 
