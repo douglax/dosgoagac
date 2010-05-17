@@ -149,6 +149,7 @@ public class TestMarshallComprobante {
         rete.setImporte(new BigDecimal(12.34));
         imp.getRetenciones().add(rete);
 
+        rete = new Retencion();
         rete.setImpuesto("ISR");
         rete.setImporte(new BigDecimal(56.78));
         imp.getRetenciones().add(rete);
@@ -159,6 +160,7 @@ public class TestMarshallComprobante {
         tras.setImporte(new BigDecimal(1000));
         imp.getTraslados().add(tras);
 
+        tras = new Traslado();
         tras.setImpuesto("IEPS");
         tras.setTasa(new BigDecimal(.4567));
         tras.setImporte(new BigDecimal(2000.34298766));

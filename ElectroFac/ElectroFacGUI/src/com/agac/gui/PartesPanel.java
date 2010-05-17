@@ -11,9 +11,12 @@
 package com.agac.gui;
 
 import com.agac.bo.Concepto;
+import com.agac.bo.InformacionAduanera;
 import com.agac.bo.Parte;
 import java.awt.Color;
 import java.awt.Font;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Vector;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
@@ -256,11 +259,18 @@ public class PartesPanel extends javax.swing.JPanel {
 }//GEN-LAST:event_jButton4KeyPressed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        List<InformacionAduanera> infoAduanera = new ArrayList<InformacionAduanera>();
+        if (concepto.getInfoAduanera() != null) {
+            infoAduanera.addAll(parte.getInfoAduanera());
+        }
         InformacionAduaneraPanel infPanel = new InformacionAduaneraPanel();
-        // infPanel.setInfoAduaneraList(concepto.getInfoAduanera());
+        infPanel.setInfoAduaneraList(infoAduanera);
         DialogDescriptor dd = new DialogDescriptor(infPanel,
                 "Información Aduanera", true, null);
-        DialogDisplayer.getDefault().notify(dd);
+        Object result = DialogDisplayer.getDefault().notify(dd);
+        if (NotifyDescriptor.OK_OPTION.equals(result)) {
+            parte.setInfoAduanera(infoAduanera);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void txtCantidadFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCantidadFocusLost
