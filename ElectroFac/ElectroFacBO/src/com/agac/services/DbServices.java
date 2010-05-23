@@ -84,9 +84,12 @@ public class DbServices {
         Object num = qry.getSingleResult();
         em.getTransaction().commit();
         em.close();
-        if(num == null)
-            return 0;
-        return (Integer)num;
+        if(num == null){
+            num = serie.getFolioInicial().intValue();
+            return (Integer)num;
+        }
+        else
+            return ((Integer)num) + 1;
     }
 
     public static <U> List<U> getComprobantesDelMes(String rfcEmisor, int mes, int ano) {

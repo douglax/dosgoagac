@@ -147,24 +147,24 @@ public class TestMarshallComprobante {
         Retencion rete = new Retencion();
         rete.setImpuesto("IVA");
         rete.setImporte(new BigDecimal(12.34));
-        imp.getRetenciones().add(rete);
+        imp.getRetenciones().put("IVA",rete);
 
         rete = new Retencion();
         rete.setImpuesto("ISR");
         rete.setImporte(new BigDecimal(56.78));
-        imp.getRetenciones().add(rete);
+        imp.getRetenciones().put("ISR",rete);
 
         Traslado tras = new Traslado();
         tras.setImpuesto("IVA");
         tras.setTasa(new BigDecimal(.0123));
         tras.setImporte(new BigDecimal(1000));
-        imp.getTraslados().add(tras);
+        imp.getTraslados().put("IVA",tras);
 
         tras = new Traslado();
         tras.setImpuesto("IEPS");
         tras.setTasa(new BigDecimal(.4567));
         tras.setImporte(new BigDecimal(2000.34298766));
-        imp.getTraslados().add(tras);
+        imp.getTraslados().put("IEPS",tras);
 
         imp.setTotalImpuestosRetenidos(new BigDecimal(10.101));
         imp.setTotalImpuestosTrasladados(new BigDecimal(20.202));

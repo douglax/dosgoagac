@@ -10,17 +10,19 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Transient;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementWrapper;
-import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
@@ -28,139 +30,82 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  *
  * @author alex
  */
-@XmlAccessorType(XmlAccessType.FIELD)
+@XmlAccessorType(XmlAccessType.NONE)
 @XmlType(name = "", propOrder = {
-    "retenciones",
-    "traslados"
+    "retencionesList",
+    "trasladosList"
 })
 @Entity
 public class Impuesto implements Serializable {
-    @XmlTransient
+    
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
-    @XmlElementWrapper(name="Retenciones")
-    @XmlElement(name = "Retencion")
+    
     @OneToMany
-    private List<Retencion> retenciones;
-    @XmlElementWrapper(name="Traslados")
-    @XmlElement(name = "Traslado")
+    private Map<String,Retencion> retenciones;
+    
     @OneToMany
-    private List<Traslado> traslados;
+    private Map<String,Traslado> traslados;
+
     @XmlJavaTypeAdapter(BigDecimalAdapter.class)
     @XmlAttribute
     private BigDecimal totalImpuestosRetenidos;
+
     @XmlJavaTypeAdapter(BigDecimalAdapter.class)
     @XmlAttribute
     private BigDecimal totalImpuestosTrasladados;
 
-
-    /**
-     * Gets the value of the retenciones property.
-     *
-     * @return
-     *     possible object is
-     *     {@link Comprobante.Impuestos.Retenciones }
-     *
-     */
-    public List<Retencion> getRetenciones() {
+    public Map<String,Retencion> getRetenciones() {
         if (retenciones == null) {
-            retenciones = new ArrayList<Retencion>();
+            retenciones = new TreeMap<String,Retencion>();
         }
         return retenciones;
     }
 
-    /**
-     * Sets the value of the retenciones property.
-     *
-     * @param value
-     *     allowed object is
-     *     {@link Comprobante.Impuestos.Retenciones }
-     *
-     */
-    public void setRetenciones(List<Retencion> retenciones) {
-        List<Retencion> oldParte = this.retenciones;
+
+    public void setRetenciones(Map<String,Retencion> retenciones) {
+        Map<String,Retencion> oldParte = this.retenciones;
         this.retenciones = retenciones;
         propertyChangeSupport.firePropertyChange("retencion", oldParte, retenciones);
     }
 
-    /**
-     * Gets the value of the traslados property.
-     *
-     * @return
-     *     possible object is
-     *     {@link Comprobante.Impuestos.Traslados }
-     *
-     */
-    public List<Traslado> getTraslados() {
+
+    public Map<String,Traslado> getTraslados() {
         if (traslados == null) {
-            traslados = new ArrayList<Traslado>();
+            traslados = new TreeMap<String,Traslado>();
         }
         return traslados;
     }
 
-    /**
-     * Sets the value of the traslados property.
-     *
-     * @param value
-     *     allowed object is
-     *     {@link Comprobante.Impuestos.Traslados }
-     *
-     */
-    public void setTraslados(List<Traslado> traslados) {
-        List<Traslado> oldParte = this.traslados;
+
+    public void setTraslados(Map<String,Traslado> traslados) {
+        Map<String,Traslado> oldParte = this.traslados;
         this.traslados = traslados;
         propertyChangeSupport.firePropertyChange("traslados", oldParte, traslados);
     }
 
-    /**
-     * Gets the value of the totalImpuestosRetenidos property.
-     *
-     * @return
-     *     possible object is
-     *     {@link BigDecimal }
-     *
-     */
+
     public BigDecimal getTotalImpuestosRetenidos() {
         return totalImpuestosRetenidos;
     }
 
-    /**
-     * Sets the value of the totalImpuestosRetenidos property.
-     *
-     * @param value
-     *     allowed object is
-     *     {@link BigDecimal }
-     *
-     */
+
     public void setTotalImpuestosRetenidos(BigDecimal value) {
         this.totalImpuestosRetenidos = value;
     }
 
-    /**
-     * Gets the value of the totalImpuestosTrasladados property.
-     *
-     * @return
-     *     possible object is
-     *     {@link BigDecimal }
-     *
-     */
+
     public BigDecimal getTotalImpuestosTrasladados() {
         return totalImpuestosTrasladados;
     }
 
-    /**
-     * Sets the value of the totalImpuestosTrasladados property.
-     *
-     * @param value
-     *     allowed object is
-     *     {@link BigDecimal }
-     *
-     */
+
     public void setTotalImpuestosTrasladados(BigDecimal value) {
         this.totalImpuestosTrasladados = value;
     }
-    @XmlTransient
+
+    @Transient
     private PropertyChangeSupport propertyChangeSupport = new PropertyChangeSupport(this);
 
     public void addPropertyChangeListener(PropertyChangeListener listener) {
@@ -177,5 +122,17 @@ public class Impuesto implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+    
+    @XmlElementWrapper(name="Traslados")
+    @XmlElement(name = "Traslado")
+    public List<Traslado> getTrasladosList(){
+        return new ArrayList<Traslado>(traslados.values());
+    }
+
+    @XmlElementWrapper(name="Retenciones")
+    @XmlElement(name = "Retencion")
+     public List<Retencion> getRetencionesList(){
+        return new ArrayList<Retencion>(retenciones.values());
     }
 }

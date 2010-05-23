@@ -404,10 +404,10 @@ public class Comprobante implements Serializable {
     public BigDecimal calcularImpuestos(){
         BigDecimal tot = new BigDecimal("0");
         if(impuesto != null){
-            for(Traslado t : impuesto.getTraslados()){
+            for(Traslado t : impuesto.getTraslados().values()){
                 tot = tot.add(t.getImporte());
             }
-            for(Retencion r : impuesto.getRetenciones()){
+            for(Retencion r : impuesto.getRetenciones().values()){
                 tot = tot.add(r.getImporte());
             }
         }

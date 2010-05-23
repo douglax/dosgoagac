@@ -10,6 +10,7 @@ import java.text.DecimalFormat;
 import java.util.Calendar;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -179,15 +180,15 @@ public class CadenaOriginal {
             }
         }
         if (c.getImpuesto().getRetenciones() != null) {
-            List<Retencion> rets = c.getImpuesto().getRetenciones();
-            for (Retencion ret : rets) {
+            Map<String,Retencion> rets = c.getImpuesto().getRetenciones();
+            for (Retencion ret : rets.values()) {
                 sb.append("|" + ret.getImpuesto());
                 sb.append("|" + formatBigDecimal(ret.getImporte()));
             }
         }
         if (c.getImpuesto().getTraslados() != null) {
-            List<Traslado> traslados = c.getImpuesto().getTraslados();
-            for (Traslado traslado : traslados) {
+            Map<String,Traslado> traslados = c.getImpuesto().getTraslados();
+            for (Traslado traslado : traslados.values()) {
                 sb.append("|" + traslado.getImpuesto());
                 sb.append("|" + formatBigDecimal(traslado.getImporte()));
             }

@@ -1080,16 +1080,12 @@ public final class ComprobanteTopComponent extends TopComponent {
             lblSubtotal.setText(nf.format(comprobante.getSubTotal().doubleValue()));
             //jLabel33.setText(nf.format(comprobante.getTotal().doubleValue()));
             refrescaImpuestos();
-
-
+            
         } catch (Exception ex) {
             Exception e = new Exception("No se pudo agregar el concepto, verifique los datos");
             NotifyDescriptor n = new NotifyDescriptor.Exception(e);
             DialogDisplayer.getDefault().notify(n);
         }
-
-        //refrescaImpuestos();
-
     }//GEN-LAST:event_btnAddConceptoActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -1179,7 +1175,7 @@ public final class ComprobanteTopComponent extends TopComponent {
         Serie serie = (Serie) cmbSeries.getSelectedItem();
         if (serie != null) {
             int folio = DbServices.getSiguienteFolio(comprobante.getEmisor(), serie);
-            folio++;
+            
             if(folio > serie.getFolioFinal().intValue()){
                 DialogDisplayer.getDefault().notify(new NotifyDescriptor.Message("Ya no hay mas folios para esta serie", NotifyDescriptor.ERROR_MESSAGE));
                 return;
@@ -1745,6 +1741,7 @@ public final class ComprobanteTopComponent extends TopComponent {
         }
 
     } // refrescaImpuestos
+
     DocumentListener listenDescuento = new DocumentListener() {
 
         @Override
