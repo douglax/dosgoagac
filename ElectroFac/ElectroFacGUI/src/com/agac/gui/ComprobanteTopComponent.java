@@ -34,6 +34,7 @@ import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.TooManyListenersException;
+import java.util.TreeMap;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.logging.Logger;
 import java.util.prefs.Preferences;
@@ -1079,8 +1080,8 @@ public final class ComprobanteTopComponent extends TopComponent {
             comprobante.setTotal(comprobante.calcularTotal());
             lblSubtotal.setText(nf.format(comprobante.getSubTotal().doubleValue()));
             //jLabel33.setText(nf.format(comprobante.getTotal().doubleValue()));
-            refrescaImpuestos();
-            
+            refrescaIva();
+
         } catch (Exception ex) {
             Exception e = new Exception("No se pudo agregar el concepto, verifique los datos");
             NotifyDescriptor n = new NotifyDescriptor.Exception(e);
@@ -1121,13 +1122,10 @@ public final class ComprobanteTopComponent extends TopComponent {
         //DialogDisplayer.getDefault().notify(d2);
         //comprobante.setImpuesto(impPanel.getImpuesto());
         Object result = DialogDisplayer.getDefault().notify(d2);
-
         if (DialogDescriptor.OK_OPTION.equals(result)) {
             comprobante.setImpuesto(impPanel.getImpuesto());
         }
-
-        refrescaImpuestos();
-
+        //refrescaImpuestos();
         NumberFormat nf = NumberFormat.getCurrencyInstance();
         lblIVA.setText(nf.format(comprobante.getIVA()));
         jLabel33.setText(nf.format(comprobante.getTotal()));
@@ -1175,8 +1173,8 @@ public final class ComprobanteTopComponent extends TopComponent {
         Serie serie = (Serie) cmbSeries.getSelectedItem();
         if (serie != null) {
             int folio = DbServices.getSiguienteFolio(comprobante.getEmisor(), serie);
-            
-            if(folio > serie.getFolioFinal().intValue()){
+
+            if (folio > serie.getFolioFinal().intValue()) {
                 DialogDisplayer.getDefault().notify(new NotifyDescriptor.Message("Ya no hay mas folios para esta serie", NotifyDescriptor.ERROR_MESSAGE));
                 return;
             }
@@ -1222,10 +1220,10 @@ public final class ComprobanteTopComponent extends TopComponent {
     }//GEN-LAST:event_jTable1InputMethodTextChanged
 
     private void txtIdentificadorKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdentificadorKeyPressed
-        if(evt.getKeyChar() == KeyEvent.VK_ENTER){
+        if (evt.getKeyChar() == KeyEvent.VK_ENTER) {
             Articulo a = DbServices.find(
                     Articulo.class, new ArticuloPK(txtIdentificador.getText(), comprobante.getEmisor().getId()));
-            if (a != null){
+            if (a != null) {
                 txtDescripcion.setText(a.getDescripcion());
                 txtPrecio.setText(a.getPrecio().toString());
             }
@@ -1662,86 +1660,20 @@ public final class ComprobanteTopComponent extends TopComponent {
         return valida;
     }
 
-    public void refrescaImpuestos() {
-
-        ArrayList<Traslado> Tlist = new ArrayList<Traslado>();
+    public void refrescaIva() {
         Traslado T = new Traslado();
-        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-
-        //if (model.getRowCount() == 0) {
-        if (comprobante.getImpuesto().getTraslados().size() == 0) {
-
-            T.setImpuesto("I.V.A.");
-            T.setImporte(comprobante.getSubTotal().multiply(new BigDecimal(IVAdefault)));
-            T.setTasa(new BigDecimal(IVAdefault));
-            Tlist.add(T);
-
-            impuesto.setTraslados(Tlist);
-            //comprobante.getImpuesto().setTraslados(Tlist);
-            comprobante.setImpuesto(impuesto);
-
-            comprobante.setIVA(comprobante.getSubTotal().doubleValue() * Double.parseDouble(IVAdefault));
-
-            comprobante.getImpuesto().setTotalImpuestosTrasladados(comprobante.getSubTotal().multiply(new BigDecimal(IVAdefault)));
-            NumberFormat nf = NumberFormat.getCurrencyInstance();
-            lblIVA.setText(nf.format(comprobante.getIVA()));
-
-            //impuesto.setTraslados(Tlist);
-
-        } else {
-
-            // Se recorren la lista de traslados para verificar si existe IVA
-            // se agrega cada renglón a la respectiva lista, excepto IVA Traslado
-
-            BigDecimal TTrasl = new BigDecimal("0.0");
-
-            for (int c = 0; c < comprobante.getImpuesto().getTraslados().size(); c++) {
-                if (!comprobante.getImpuesto().getTraslados().get(c).getImpuesto().equals("I.V.A.")) {
-                    Tlist.add(comprobante.getImpuesto().getTraslados().get(c));
-                    TTrasl.add(comprobante.getImpuesto().getTraslados().get(c).getImporte());
-
-                }
-            }
-
-            // calculamos nuevo importe a partir de la suma de importes de conceptos
-
-            Double subTot = 0.0;
-
-            for (int c = 0; c < model.getRowCount(); c++) {
-                subTot += Double.parseDouble(model.getValueAt(c, 5).toString());
-            }
-
-            //calculamos IVA y lo guardamos en subTot
-
-            subTot *= Double.parseDouble(IVAdefault);
-
-            T.setImpuesto("I.V.A.");
-            T.setImporte(new BigDecimal(subTot.toString()));
-            T.setTasa(new BigDecimal(IVAdefault));
-
-            //Finalmente se agrega a la lista temporal el impuesto de IVA
-            Tlist.add(T);
-
-            comprobante.getImpuesto().setTraslados(Tlist);
-            comprobante.getImpuesto().setTotalImpuestosTrasladados(TTrasl);
-
-            //comprobante.setImpuesto(impuesto);
-
-            comprobante.setIVA(subTot);
-
-            NumberFormat nf = NumberFormat.getCurrencyInstance();
-            lblIVA.setText(nf.format(comprobante.getIVA()));
-
-            // lblIVA.setText(subTot.toString());
-
-        }//if
-
-        if (comprobante.getImpuesto().getTraslados() != null) {
-            btnImpuestos.setEnabled(true);
-        }
-
-    } // refrescaImpuestos
-
+        T.setImpuesto("IVA");
+        T.setImporte(comprobante.getSubTotal().multiply(new BigDecimal(IVAdefault)));
+        T.setTasa(new BigDecimal(IVAdefault));
+        if(impuesto.getTraslados() == null)
+            impuesto.setTraslados(new TreeMap<String, Traslado>());
+        impuesto.getTraslados().put("IVA", T);
+        comprobante.setImpuesto(impuesto);
+        comprobante.setIVA(comprobante.getSubTotal().doubleValue() * Double.parseDouble(IVAdefault));
+        comprobante.getImpuesto().setTotalImpuestosTrasladados(comprobante.getSubTotal().multiply(new BigDecimal(IVAdefault)));
+        NumberFormat nf = NumberFormat.getCurrencyInstance();
+        lblIVA.setText(nf.format(comprobante.getIVA()));
+    }
     DocumentListener listenDescuento = new DocumentListener() {
 
         @Override

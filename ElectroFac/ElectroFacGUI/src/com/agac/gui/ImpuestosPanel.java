@@ -57,7 +57,7 @@ public class ImpuestosPanel extends javax.swing.JPanel {
         // recorremos primero Retenciones
 
         List<Retencion> retencionList = new ArrayList<Retencion>();
-        retencionList = impuesto.getRetenciones() ;        
+//        retencionList = impuesto.getRetenciones() ;
         for (Retencion r : retencionList) {
             
             modelo.addRow(new Object[]{"Retencion", r.getImpuesto(), r.getImporte(), null});
@@ -330,7 +330,7 @@ public class ImpuestosPanel extends javax.swing.JPanel {
             
             R.setImpuesto(cboImpuesto.getSelectedItem().toString());
             R.setImporte(new BigDecimal(txtImporte.getText()));
-            impuesto.getRetenciones().add(R);            
+//            impuesto.getRetenciones().add(R);
             if(impuesto.getTotalImpuestosRetenidos()!=null) {
                 impuesto.setTotalImpuestosRetenidos(impuesto.getTotalImpuestosRetenidos().add(R.getImporte()));                
             } else {
@@ -346,7 +346,7 @@ public class ImpuestosPanel extends javax.swing.JPanel {
             T.setImporte(new BigDecimal(txtImporte.getText()));
             T.setTasa(new BigDecimal(txtTasa.getText()));
 
-            impuesto.getTraslados().add(T);
+//            impuesto.getTraslados().add(T);
 
             if(impuesto.getTotalImpuestosTrasladados()!=null) {
                 impuesto.setTotalImpuestosTrasladados(impuesto.getTotalImpuestosTrasladados().add(T.getImporte()));
@@ -423,7 +423,7 @@ public class ImpuestosPanel extends javax.swing.JPanel {
         
         //modificamos el objeto local impuesto
         impuesto.setRetenciones(null);
-        impuesto.setTraslados(Tlist);
+//        impuesto.setTraslados(Tlist);
 
         impuesto.setTotalImpuestosRetenidos(new BigDecimal("0.0"));
         impuesto.setTotalImpuestosTrasladados(this.getSubTot().multiply(new BigDecimal(IVAdefault)));
