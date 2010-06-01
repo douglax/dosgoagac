@@ -11,6 +11,7 @@
 package com.agac.gui;
 
 import com.agac.bo.Comprobante;
+import com.agac.bo.Concepto;
 import com.agac.bo.Emisor;
 import com.agac.bo.InformacionAduanera;
 import java.awt.FileDialog;
@@ -20,9 +21,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.Iterator;
+import java.util.Calendar;
 import java.util.List;
-import java.util.Vector;
 import java.util.prefs.PreferenceChangeEvent;
 import java.util.prefs.PreferenceChangeListener;
 import java.util.prefs.Preferences;
@@ -176,7 +176,7 @@ public class ReporteMensualPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
 
         String linea = "";
-        String qryIA = "";
+        String qryIA = "Select c from Comprobante c where c.fecha BETWEEN ?1 and ?2";
 
         ArrayList<String> lstPedimento = new ArrayList<String>();
         ArrayList<String> lstFecha = new ArrayList<String>();
@@ -187,9 +187,29 @@ public class ReporteMensualPanel extends javax.swing.JPanel {
         String concatAduana = "";
 
 
+        //Obtenemos fecha de inicio y fin de mes que queremos calcular
+        Calendar fechaInicio = Calendar.getInstance();
+        Calendar fechaFin = Calendar.getInstance();
+
+
+        fechaInicio.set(Integer.parseInt(cboAno.getItemAt(cboAno.getSelectedIndex()).toString() ),
+                cboMes.getSelectedIndex()-1, 1);
+        fechaFin.set(Integer.parseInt(cboAno.getItemAt(cboAno.getSelectedIndex()).toString() ),
+                cboMes.getSelectedIndex()-1, fechaFin.getActualMaximum(Calendar.DAY_OF_MONTH));
+
+
+        //debug
+
+        System.out.println("inicio: " + fechaInicio.getTime().toString() );
+        System.out.println("fin: " + fechaFin.getTime().toString() );
+
         List<Comprobante> results = null;
         List<InformacionAduanera> infoAduanera = null;
-        results = DbServices.getComprobantesDelMes(emisor.getRfc(), cboMes.getSelectedIndex() , Integer.parseInt(cboAno.getSelectedItem().toString()));
+        //results = DbServices.getComprobantesDelMes(emisor.getRfc(), cboMes.getSelectedIndex() , Integer.parseInt(cboAno.getSelectedItem().toString()));
+
+        results = DbServices.getListWithParameters(qryIA, fechaInicio.getTime(), fechaFin.getTime());
+
+
 
         if (results.isEmpty()) {
             // Mensaje no hay registros
@@ -202,34 +222,36 @@ public class ReporteMensualPanel extends javax.swing.JPanel {
 
 
                 // Recorremos los resultados y los escribimos al archivo
-                for (Iterator it = results.iterator(); it.hasNext();) {
-                    Vector resultRow = (Vector) it.next();
+
+                
+                for (Comprobante c : results) {
+
+                    
 
 
                     linea = "|";
-                    linea += resultRow.elementAt(0);                    //RFC
-                    linea += "|" + resultRow.elementAt(1);              //Serie
-                    linea += "|" + resultRow.elementAt(2).toString();   //folio
-                    linea += "|" + resultRow.elementAt(3).toString();   //NoAprobacion
-                    linea += "|" + resultRow.elementAt(4).toString();   //fecha
-                    linea += "|" + resultRow.elementAt(5).toString();   //monto
-                    linea += "|" + resultRow.elementAt(6);             //IVA
-                    linea += "|" + resultRow.elementAt(7);             //Estado del comprobante
+                    linea += c.getReceptor().getRfc();                    //RFC
+                    linea += "|" + c.getSerie();                          //Serie
+                    linea += "|" + c.getFolio();                          //folio
+                    linea += "|" + c.getNoAprobacion();                   //NoAprobacion
+                    linea += "|" + c.getFecha().toString();               //fecha
+                    linea += "|" + c.getTotal().toString();                //monto
+                    linea += "|" + c.getIVA().toString();                 //IVA
+                    linea += "|" + "1" ;            //Estado del comprobante
 
-                    // buscamos registros de información aduanera del concepto
-
-                    //qryIA = "Select i from InformacionAduanera i JOIN  " +
-                    //        "JOIN i.Concepto p " +
-                    //        "JOIN p.Comprobante c WHERE c.ID= ?1";
-
-                    qryIA = "Select i from InformacionAduanera i JOIN i.Concepto_InformacionAduanera x " +
-                    "JOIN x.Concepto p JOIN p.ComprobanteConcepto k " +
-                    "JOIN k.Comprobante c WHERE c.ID= ?1";
+                    // buscamos registros de información aduanera de todos los conceptos del comprobante
 
 
+                    infoAduanera.clear();
+
+                    for (Concepto x : c.getConceptos()) {
+                        for (InformacionAduanera i : x.getInfoAduanera()) {
+                            infoAduanera.add(i);
+                        }
+                    }
 
 
-                    infoAduanera = DbServices.getListWithParameters(qryIA, resultRow.elementAt(8).toString());
+                    // Complementamos la línea según lo obtenido de Informació Aduanera
 
                     if (infoAduanera.isEmpty()) {
                         linea += "|||";
@@ -278,7 +300,7 @@ public class ReporteMensualPanel extends javax.swing.JPanel {
 
 
 
-                }
+                } // for comprobante
 
                 out.close();
             } catch (IOException e) {
