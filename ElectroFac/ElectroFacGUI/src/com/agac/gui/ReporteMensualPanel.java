@@ -204,7 +204,8 @@ public class ReporteMensualPanel extends javax.swing.JPanel {
         System.out.println("fin: " + fechaFin.getTime().toString() );
 
         List<Comprobante> results = null;
-        List<InformacionAduanera> infoAduanera = null;
+        ArrayList<InformacionAduanera> infoAduanera = new ArrayList<InformacionAduanera>();
+        
         //results = DbServices.getComprobantesDelMes(emisor.getRfc(), cboMes.getSelectedIndex() , Integer.parseInt(cboAno.getSelectedItem().toString()));
 
         results = DbServices.getListWithParameters(qryIA, fechaInicio.getTime(), fechaFin.getTime());

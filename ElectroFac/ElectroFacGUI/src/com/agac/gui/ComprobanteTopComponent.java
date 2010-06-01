@@ -1080,7 +1080,9 @@ public final class ComprobanteTopComponent extends TopComponent {
             comprobante.setTotal(comprobante.calcularTotal());
             lblSubtotal.setText(nf.format(comprobante.getSubTotal().doubleValue()));
             //jLabel33.setText(nf.format(comprobante.getTotal().doubleValue()));
-            refrescaIva();
+
+            //TODO: checar el código de la función porque no permite agregar conceptos con informacion aduanera
+            //  refrescaIva();
 
         } catch (Exception ex) {
             Exception e = new Exception("No se pudo agregar el concepto, verifique los datos");
@@ -1674,6 +1676,8 @@ public final class ComprobanteTopComponent extends TopComponent {
         NumberFormat nf = NumberFormat.getCurrencyInstance();
         lblIVA.setText(nf.format(comprobante.getIVA()));
     }
+
+
     DocumentListener listenDescuento = new DocumentListener() {
 
         @Override
