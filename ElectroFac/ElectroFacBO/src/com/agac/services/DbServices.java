@@ -124,9 +124,7 @@ public class DbServices {
         return l;
 
     }
-
-
-
+    
  public static <U> List<U> getComprobantesDelMesPrueba(String rfcEmisor, int mes, int ano) {
 
         if (emf == null) {
@@ -159,13 +157,6 @@ public class DbServices {
         return l;
 
     }
-
-
-
-
-
-
-
 
     public static void closeDbServices() {
         if ((emf != null) && (emf.isOpen())) {

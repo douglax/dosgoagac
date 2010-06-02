@@ -23,6 +23,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import com.agac.libraries.NumberToLetterConverter;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.OneToOne;
 
@@ -57,10 +58,10 @@ public class Comprobante implements Serializable {
     private Receptor receptor;
     @XmlElementWrapper(name = "Conceptos")
     @XmlElement(name = "Concepto")
-    @OneToMany
+    @OneToMany(cascade=CascadeType.ALL)
     private List<Concepto> conceptos;
     @XmlElement(name = "Impuestos", required = true)
-    @OneToOne
+    @OneToOne(cascade=CascadeType.ALL)
     private Impuesto impuesto;
     @XmlAttribute(required = true)
     private String version = "2.0";
@@ -125,20 +126,13 @@ public class Comprobante implements Serializable {
     }
     
     public Double getIVA() {
-        Double IV = 0.0;
+        Double iva = 0.0;
         if (this.getImpuesto() != null) {
-            for (int i = 0; i < this.getImpuesto().getRetenciones().size(); i++) {
-                if (this.getImpuesto().getRetenciones().get(i).getImpuesto().equals("I.V.A.")) {
-                    IV += this.getImpuesto().getRetenciones().get(i).getImporte().doubleValue();
-                }
-            }
-            for (int i = 0; i < this.getImpuesto().getTraslados().size(); i++) {
-                if (this.getImpuesto().getTraslados().get(i).getImpuesto().equals("I.V.A.")) {
-                    IV += this.getImpuesto().getTraslados().get(i).getImporte().doubleValue();
-                }
-            }
+            Traslado t = getImpuesto().getTraslados().get("IVA");
+            if(t != null)
+                iva = t.getImporte().doubleValue();
         }
-        return IV;
+        return iva;
     }
 
     public void setIVA(Double IVA) {

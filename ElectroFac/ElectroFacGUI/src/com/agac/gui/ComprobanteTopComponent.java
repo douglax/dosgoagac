@@ -1076,13 +1076,11 @@ public final class ComprobanteTopComponent extends TopComponent {
             txtPrecio.setText("");
             txtCantidad.requestFocus();
             NumberFormat nf = NumberFormat.getCurrencyInstance();
-            comprobante.setSubTotal(comprobante.calcularSubTotal());
+            comprobante.setSubTotal(comprobante.calcularSubTotal());            
+            lblSubtotal.setText(nf.format(comprobante.getSubTotal().doubleValue()));            
+            refrescaIva();
             comprobante.setTotal(comprobante.calcularTotal());
-            lblSubtotal.setText(nf.format(comprobante.getSubTotal().doubleValue()));
-            //jLabel33.setText(nf.format(comprobante.getTotal().doubleValue()));
-
-            //TODO: checar el código de la función porque no permite agregar conceptos con informacion aduanera
-            //  refrescaIva();
+            jLabel33.setText(nf.format(comprobante.getTotal().doubleValue()));
 
         } catch (Exception ex) {
             Exception e = new Exception("No se pudo agregar el concepto, verifique los datos");
@@ -1461,7 +1459,7 @@ public final class ComprobanteTopComponent extends TopComponent {
         return comprobante;
     }
     Preferences pref = NbPreferences.forModule(OpcionesdelSistemaPanel.class);
-    String IVAdefault = pref.get("IVA", "0.0");
+    double IVAdefault = Double.parseDouble(pref.get("IVA", "0.0"));
 
     public void setComprobante(Comprobante comprobante) {
         this.comprobante = comprobante;
@@ -1566,7 +1564,10 @@ public final class ComprobanteTopComponent extends TopComponent {
                                                 comprobante.setNoCertificado(sd.getSerialNumber().toString());
                                                 comprobante.setSello(sd.generar(cadena));
                                                 comprobante.setCadenaOriginal(cadena);
-                                                comprobante = DbServices.saveObject(comprobante, true);
+                                                if(isNew)
+                                                    comprobante = DbServices.saveObject(comprobante, false);
+                                                else
+                                                    comprobante = DbServices.saveObject(comprobante, true);
                                                 comprobante.addPropertyChangeListener(new PropertyChangeListener() {
 
                                                     @Override
@@ -1665,14 +1666,17 @@ public final class ComprobanteTopComponent extends TopComponent {
     public void refrescaIva() {
         Traslado T = new Traslado();
         T.setImpuesto("IVA");
-        T.setImporte(comprobante.getSubTotal().multiply(new BigDecimal(IVAdefault)));
-        T.setTasa(new BigDecimal(IVAdefault));
+        T.setImporte(new BigDecimal(Double.toString(
+                comprobante.calcularSubTotal().doubleValue() * IVAdefault)));
+        T.setTasa(new BigDecimal(Double.toString(IVAdefault)));
         if(impuesto.getTraslados() == null)
             impuesto.setTraslados(new TreeMap<String, Traslado>());
         impuesto.getTraslados().put("IVA", T);
         comprobante.setImpuesto(impuesto);
-        comprobante.setIVA(comprobante.getSubTotal().doubleValue() * Double.parseDouble(IVAdefault));
-        comprobante.getImpuesto().setTotalImpuestosTrasladados(comprobante.getSubTotal().multiply(new BigDecimal(IVAdefault)));
+        comprobante.setIVA(comprobante.calcularSubTotal().doubleValue() * IVAdefault);
+//        comprobante.getImpuesto().setTotalImpuestosTrasladados(
+//                comprobante.calcularSubTotal().doubleValue()*IVAdefault));
+
         NumberFormat nf = NumberFormat.getCurrencyInstance();
         lblIVA.setText(nf.format(comprobante.getIVA()));
     }

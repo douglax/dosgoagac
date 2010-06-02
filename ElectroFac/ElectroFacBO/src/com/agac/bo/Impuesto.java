@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -42,10 +43,10 @@ public class Impuesto implements Serializable {
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
     
-    @OneToMany
+    @OneToMany(cascade=CascadeType.ALL)
     private Map<String,Retencion> retenciones;
     
-    @OneToMany
+    @OneToMany(cascade=CascadeType.ALL)
     private Map<String,Traslado> traslados;
 
     @XmlJavaTypeAdapter(BigDecimalAdapter.class)
