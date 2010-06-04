@@ -17,6 +17,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.MapKey;
 import javax.persistence.OneToMany;
 import javax.persistence.Transient;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -44,9 +45,11 @@ public class Impuesto implements Serializable {
     private Long id;
     
     @OneToMany(cascade=CascadeType.ALL)
+    @MapKey(name="impuesto")
     private Map<String,Retencion> retenciones;
     
     @OneToMany(cascade=CascadeType.ALL)
+    @MapKey(name="impuesto")
     private Map<String,Traslado> traslados;
 
     @XmlJavaTypeAdapter(BigDecimalAdapter.class)

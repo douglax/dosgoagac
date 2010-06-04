@@ -1076,8 +1076,8 @@ public final class ComprobanteTopComponent extends TopComponent {
             txtPrecio.setText("");
             txtCantidad.requestFocus();
             NumberFormat nf = NumberFormat.getCurrencyInstance();
-            comprobante.setSubTotal(comprobante.calcularSubTotal());            
-            lblSubtotal.setText(nf.format(comprobante.getSubTotal().doubleValue()));            
+            comprobante.setSubTotal(comprobante.calcularSubTotal());
+            lblSubtotal.setText(nf.format(comprobante.getSubTotal().doubleValue()));
             refrescaIva();
             comprobante.setTotal(comprobante.calcularTotal());
             jLabel33.setText(nf.format(comprobante.getTotal().doubleValue()));
@@ -1564,10 +1564,7 @@ public final class ComprobanteTopComponent extends TopComponent {
                                                 comprobante.setNoCertificado(sd.getSerialNumber().toString());
                                                 comprobante.setSello(sd.generar(cadena));
                                                 comprobante.setCadenaOriginal(cadena);
-                                                if(isNew)
-                                                    comprobante = DbServices.saveObject(comprobante, false);
-                                                else
-                                                    comprobante = DbServices.saveObject(comprobante, true);
+                                                comprobante = DbServices.saveObject(comprobante, true);
                                                 comprobante.addPropertyChangeListener(new PropertyChangeListener() {
 
                                                     @Override
@@ -1669,8 +1666,9 @@ public final class ComprobanteTopComponent extends TopComponent {
         T.setImporte(new BigDecimal(Double.toString(
                 comprobante.calcularSubTotal().doubleValue() * IVAdefault)));
         T.setTasa(new BigDecimal(Double.toString(IVAdefault)));
-        if(impuesto.getTraslados() == null)
+        if (impuesto.getTraslados() == null) {
             impuesto.setTraslados(new TreeMap<String, Traslado>());
+        }
         impuesto.getTraslados().put("IVA", T);
         comprobante.setImpuesto(impuesto);
         comprobante.setIVA(comprobante.calcularSubTotal().doubleValue() * IVAdefault);
@@ -1680,8 +1678,6 @@ public final class ComprobanteTopComponent extends TopComponent {
         NumberFormat nf = NumberFormat.getCurrencyInstance();
         lblIVA.setText(nf.format(comprobante.getIVA()));
     }
-
-
     DocumentListener listenDescuento = new DocumentListener() {
 
         @Override
