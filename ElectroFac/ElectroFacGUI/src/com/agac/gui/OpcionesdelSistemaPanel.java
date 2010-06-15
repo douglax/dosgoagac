@@ -359,6 +359,8 @@ final class OpcionesdelSistemaPanel extends javax.swing.JPanel {
         //txtISR.setText(Preferences.systemNodeForPackage(OpcionesdelSistemaPanel.class).get("ISR","0.30" ));
         //txtIEPS.setText(Preferences.systemNodeForPackage(OpcionesdelSistemaPanel.class).get("IVA","0.50" ));
 
+        String layout = "reporte.jasper";
+
         txtIVA.setText(NbPreferences.forModule(OpcionesdelSistemaPanel.class).get("IVA","0.16"));
         txtISR.setText(NbPreferences.forModule(OpcionesdelSistemaPanel.class).get("ISR","0.30"));
         txtIEPS.setText(NbPreferences.forModule(OpcionesdelSistemaPanel.class).get("IEPS","0.50"));
@@ -370,6 +372,15 @@ final class OpcionesdelSistemaPanel extends javax.swing.JPanel {
                 NbPreferences.forModule(OpcionesdelSistemaPanel.class).get("ESTADO", ""));
         txtRutaReportes.setText(
                 NbPreferences.forModule(OpcionesdelSistemaPanel.class).get("RUTAREPORTES", ""));
+
+        if (NbPreferences.forModule(OpcionesdelSistemaPanel.class).get("REPORTE", "reporte.jasper").equals("reporte.jasper" )) {
+                this.optReporte1.setSelected(true);
+        }
+        if (NbPreferences.forModule(OpcionesdelSistemaPanel.class).get("REPORTE", "reporte.jasper").equals("reporte1.jasper" )) {
+                this.optReporte2.setSelected(true);
+        }
+
+
 
     }
 
@@ -386,6 +397,8 @@ final class OpcionesdelSistemaPanel extends javax.swing.JPanel {
       //  Preferences.userNodeForPackage(OpcionesdelSistemaPanel.class).put("ISR", txtISR.getText() );
       //  Preferences.userNodeForPackage(OpcionesdelSistemaPanel.class).put("IEPS", txtIEPS.getText() );
 
+        String layout = "reporte.jasper";
+
         NbPreferences.forModule(OpcionesdelSistemaPanel.class).put("IVA", txtIVA.getText());
         NbPreferences.forModule(OpcionesdelSistemaPanel.class).put("ISR", txtISR.getText());
         NbPreferences.forModule(OpcionesdelSistemaPanel.class).put("IEPS", txtIEPS.getText());
@@ -393,6 +406,10 @@ final class OpcionesdelSistemaPanel extends javax.swing.JPanel {
         NbPreferences.forModule(OpcionesdelSistemaPanel.class).put("MUNICIPIO", txtMunicipio.getText());
         NbPreferences.forModule(OpcionesdelSistemaPanel.class).put("ESTADO", txtEstado.getText());
         NbPreferences.forModule(OpcionesdelSistemaPanel.class).put("RUTAREPORTES", txtRutaReportes.getText());
+
+        if (optReporte2.isSelected()) layout = "reporte1.jasper";
+
+        NbPreferences.forModule(OpcionesdelSistemaPanel.class).put("REPORTE", layout);
 
     }
 

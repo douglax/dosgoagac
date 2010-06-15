@@ -37,6 +37,8 @@ import java.util.TooManyListenersException;
 import java.util.TreeMap;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.logging.Logger;
+import java.util.prefs.PreferenceChangeEvent;
+import java.util.prefs.PreferenceChangeListener;
 import java.util.prefs.Preferences;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
@@ -100,6 +102,25 @@ public final class ComprobanteTopComponent extends TopComponent {
         }
         jPanel1.setDropTarget(dp);
         jTable1.getColumnModel().getColumn(3).setPreferredWidth(250);
+
+        // Listeners para cambio de opciones del sistema
+
+
+        pref.addPreferenceChangeListener(new PreferenceChangeListener() {
+
+        @Override
+        public void preferenceChange(PreferenceChangeEvent evt) {
+           if (evt.getKey().equals("IVA")) {
+                IVAdefault = Double.parseDouble( evt.getNewValue());
+               }
+           if (evt.getKey().equals("REPORTE")) {
+               layout = evt.getNewValue();
+           }
+        }});
+
+
+
+
     }
 
     /** This method is called from within the constructor to
@@ -1458,8 +1479,11 @@ public final class ComprobanteTopComponent extends TopComponent {
     public Comprobante getComprobante() {
         return comprobante;
     }
+
     Preferences pref = NbPreferences.forModule(OpcionesdelSistemaPanel.class);
     double IVAdefault = Double.parseDouble(pref.get("IVA", "0.0"));
+    String layout = pref.get("REPORTE", "reporte.jasper");
+
 
     public void setComprobante(Comprobante comprobante) {
         this.comprobante = comprobante;
@@ -1600,13 +1624,15 @@ public final class ComprobanteTopComponent extends TopComponent {
 
             @Override
             public void print() {
+
+
                 DialogDisplayer.getDefault().notify(new NotifyDescriptor.Confirmation(
                         "¿Desea imprimir la factura?", "Impresión",
                         NotifyDescriptor.OK_CANCEL_OPTION,
                         NotifyDescriptor.QUESTION_MESSAGE));
                 try {
                     InputStream in = getClass().getClassLoader().getResourceAsStream(
-                            "com/agac/gui/resourses/reports/reporte.jasper");
+                            "com/agac/gui/resourses/reports/" + layout);
                     List<Comprobante> l = new ArrayList<Comprobante>();
                     l.add(comprobante);
                     JRBeanCollectionDataSource ds = new JRBeanCollectionDataSource(l);
