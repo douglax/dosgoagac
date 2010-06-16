@@ -61,11 +61,17 @@ public class EmpresaNode extends AbstractNode {
     @Override
     public Action[] getActions(boolean bln) {
         return new Action[]{new OpenAction(),
-                    new CrearFactura(),
+                    null,
+                    new CrearFactura("Ingreso"),
+                    new CrearFactura("Arrendamiento"),
+                    new CrearFactura("Honorarios"),
+                    null,
                     new AdminFolios(),
                     new CatalogoArticulos(),
+                    null,
                     new AddLogo(),
                     new VerLogo(),
+                    null,
                     new ReporteMensual()
                 };
     }
@@ -164,16 +170,16 @@ public class EmpresaNode extends AbstractNode {
 
     private class CrearFactura extends AbstractAction {
 
-        public CrearFactura() {
-            putValue(NAME, "Crear Comprobante de Ingreso");
+        private String tipo = null;
+
+         public CrearFactura(String tipoDeFatura) {
+            tipo = tipoDeFatura;
+            putValue(NAME, "Crear Comprobante de " + tipo);
         }
 
         @Override
         public void actionPerformed(ActionEvent e) {
-//            final ProgressHandle ph = ProgressHandleFactory.createHandle("");
-//            ph.start();
-//            ph.switchToIndeterminate();
-//            ph.setDisplayName("Creando Factura...");
+
             final MenuTopComponent frm =
                     (MenuTopComponent) WindowManager.getDefault().findTopComponent("MenuTopComponent");
             try {
@@ -183,10 +189,10 @@ public class EmpresaNode extends AbstractNode {
                     @Override
                     public void run() {
                         Comprobante c = new Comprobante();
-                        c.setTipoDeComprobante("Ingreso");
+                        c.setTipoDeComprobante(tipo);
                         ComprobanteTopComponent ctc = new ComprobanteTopComponent();
                         ctc.setComprobante(c);
-                        ctc.setDisplayName("Nuevo Comprobante");
+                        ctc.setDisplayName("Nuevo Comprobante de " + tipo);
                         ctc.componentOpened();
                         ctc.getComprobante().setEmisor(getLookup().lookup(Emisor.class));
                         ctc.open();
@@ -198,7 +204,7 @@ public class EmpresaNode extends AbstractNode {
                 Exceptions.printStackTrace(ex);
             }
         }
-    }
+    }   
 
     private class AdminFolios extends AbstractAction {
 
