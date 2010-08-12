@@ -5,6 +5,7 @@ import com.agac.bo.Emisor;
 import com.agac.bo.Receptor;
 import com.agac.gui.ComprobanteTopComponent;
 import com.agac.gui.MenuTopComponent;
+import com.agac.services.DbServices;
 import java.awt.event.ActionEvent;
 import javax.swing.AbstractAction;
 import javax.swing.Action;
@@ -56,7 +57,7 @@ public class ComprobanteNode extends AbstractNode {
 
 
     Comprobante c = getLookup().lookup (Comprobante.class);
-    if (c!=null && c.getFolio() % 2 == 0) {
+    if (c!=null && c.getStatus() == 0) {
         // comprobante cancelado aparece en gris
         return "<font color='666666'>" + c.getAnoAprobacion() + c.getSerie() + c.getFolio() + "</font>";
     } else {
@@ -238,9 +239,11 @@ public class ComprobanteNode extends AbstractNode {
             Object result = DialogDisplayer.getDefault().notify(msg);
             if (NotifyDescriptor.YES_OPTION.equals(result)) {
                 //Cancelar folio
+                
                try {
-            //        emisor.setSeries(series);
-            //        emisor = DbServices.saveObject(emisor, true);
+
+                   comprobante.setStatus(0);
+                   comprobante = DbServices.saveObject(comprobante, true);
                 } catch (Exception ex) {
                     Exceptions.printStackTrace(ex);
                 }

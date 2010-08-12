@@ -108,6 +108,17 @@ public class Comprobante implements Serializable {
     @XmlTransient
     @Column(length=10000)
     private String cadenaOriginal;
+    @XmlTransient
+    private int status;
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
 
     public String getCadenaOriginal() {
         return cadenaOriginal;

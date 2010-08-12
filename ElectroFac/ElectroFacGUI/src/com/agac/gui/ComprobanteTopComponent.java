@@ -1588,6 +1588,10 @@ public final class ComprobanteTopComponent extends TopComponent {
                                                 comprobante.setNoCertificado(sd.getSerialNumber().toString());
                                                 comprobante.setSello(sd.generar(cadena));
                                                 comprobante.setCadenaOriginal(cadena);
+
+                                                //status 1 = activo, 0 = cancelado
+                                                comprobante.setStatus(1);
+
                                                 comprobante = DbServices.saveObject(comprobante, true);
                                                 comprobante.addPropertyChangeListener(new PropertyChangeListener() {
 
