@@ -9,7 +9,10 @@ import java.awt.event.ActionEvent;
 import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.SwingUtilities;
+import org.openide.DialogDisplayer;
 import org.openide.ErrorManager;
+import org.openide.NotifyDescriptor;
+import org.openide.NotifyDescriptor.Confirmation;
 import org.openide.nodes.AbstractNode;
 import org.openide.nodes.Children;
 import org.openide.nodes.PropertySupport;
@@ -30,6 +33,15 @@ public class ComprobanteNode extends AbstractNode {
         setDisplayName(c.getAnoAprobacion() + c.getSerie() + c.getFolio());
         setIconBaseWithExtension("com/agac/gui/resourses/Comprobante24.png");
     }
+
+
+    @Override
+    public Action[] getActions(boolean bln) {
+        return new Action[]{new OpenAction(),
+                    new CancelFolio()
+                };
+    }
+
 
 
     @Override
@@ -149,6 +161,10 @@ public class ComprobanteNode extends AbstractNode {
 
     private class OpenAction extends AbstractAction {
 
+        public OpenAction() {
+            putValue(NAME, "Abrir Comprobante");
+        }
+
         @Override
         public void actionPerformed(ActionEvent e) {
             final MenuTopComponent frm =
@@ -177,4 +193,39 @@ public class ComprobanteNode extends AbstractNode {
 
         }
     }
+
+
+    //
+
+        private class CancelFolio extends AbstractAction {
+
+        public CancelFolio() {
+            putValue(NAME, "Cancelar Folio");
+        }
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            Comprobante comprobante = getLookup().lookup(Comprobante.class);
+
+            Confirmation msg = new NotifyDescriptor.Confirmation(
+                        "El cambio que está a punto de efectuar es irreversible \nEstá seguro de cancelar el folio?", "Confirmar cancelación",
+                        NotifyDescriptor.OK_CANCEL_OPTION,
+                        NotifyDescriptor.QUESTION_MESSAGE);
+            Object result = DialogDisplayer.getDefault().notify(msg);
+            if (NotifyDescriptor.YES_OPTION.equals(result)) {
+                //Cancelar folio
+               try {
+            //        emisor.setSeries(series);
+            //        emisor = DbServices.saveObject(emisor, true);
+                } catch (Exception ex) {
+                    Exceptions.printStackTrace(ex);
+                }
+
+            }
+
+
+
+        }
+    } //class CancelFolio
+
 }
