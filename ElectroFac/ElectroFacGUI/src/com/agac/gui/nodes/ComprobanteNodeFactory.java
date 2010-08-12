@@ -24,6 +24,7 @@ public class ComprobanteNodeFactory extends ChildFactory<Comprobante> {
         List<Comprobante> l = DbServices.getListWithParameters(
                 "Select c from Comprobante c where c.emisor = ?1", emisor);
         for (Comprobante e : l) {
+
             list.add(e);
         }
         return true;

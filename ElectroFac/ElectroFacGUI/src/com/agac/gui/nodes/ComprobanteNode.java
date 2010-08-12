@@ -30,6 +30,8 @@ public class ComprobanteNode extends AbstractNode {
 
     public ComprobanteNode(Comprobante c) {
         super(Children.LEAF, Lookups.singleton(c));
+
+
         setDisplayName(c.getAnoAprobacion() + c.getSerie() + c.getFolio());
         setIconBaseWithExtension("com/agac/gui/resourses/Comprobante24.png");
     }
@@ -41,6 +43,28 @@ public class ComprobanteNode extends AbstractNode {
                     new CancelFolio()
                 };
     }
+
+
+    @Override
+    public String getHtmlDisplayName() {
+
+
+    //When painting, the Explorer component showing the nodes calls getHtmlDisplayName() first.
+    //If it gets a non-null value back, then it will use the HTML string it received and a fast,
+    //lightweight HTML renderer to render it. If it is null, then it will fall back to
+    //whatever is returned by getDisplayName().
+
+
+    Comprobante c = getLookup().lookup (Comprobante.class);
+    if (c!=null && c.getFolio() % 2 == 0) {
+        // comprobante cancelado aparece en gris
+        return "<font color='666666'>" + c.getAnoAprobacion() + c.getSerie() + c.getFolio() + "</font>";
+    } else {
+        //return null;
+        return "<strong>" + c.getAnoAprobacion() + c.getSerie() + c.getFolio() + "</strong>";
+    }
+}
+
 
 
 
