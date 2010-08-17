@@ -1387,10 +1387,13 @@ public final class ComprobanteTopComponent extends TopComponent {
 
             @Override
             public void propertyChange(PropertyChangeEvent evt) {
-                saveNode.enableSave(validaCampos());
+                if (validaCampos() && (isNew || comprobante.getStatus()==1))
+                saveNode.enableSave(true);
             }
         });
+        //if(!isNew && comprobante.getStatus()== 0) saveNode.enableSave(false);
         setActivatedNodes(new Node[]{saveNode = new NodeForSave()});
+
 
     }
 
