@@ -12,7 +12,7 @@ import org.openide.util.HelpCtx;
 import org.openide.util.Lookup;
 
 @OptionsPanelController.TopLevelRegistration(categoryName = "#OptionsCategory_Name_OpcionesdelSistema",
-iconBase = "com/agac/gui/resourses/application_edit.png",
+iconBase = "com/agac/gui/resourses/multitool.png",
 keywords = "#OptionsCategory_Keywords_OpcionesdelSistema",
 keywordsCategory = "OpcionesdelSistema")
 public final class OpcionesdelSistemaOptionsPanelController extends OptionsPanelController {
