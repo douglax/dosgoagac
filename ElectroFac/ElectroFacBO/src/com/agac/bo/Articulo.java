@@ -61,6 +61,12 @@ public class Articulo implements Serializable {
     }
 
     @Override
+    public String toString() {
+        return id.getIdentificador() + " - " + descripcion + " - " + precio.toString();
+    }
+
+
+    @Override
     public int hashCode() {
         int hash = 7;
         hash = 37 * hash + (this.id != null ? this.id.hashCode() : 0);
