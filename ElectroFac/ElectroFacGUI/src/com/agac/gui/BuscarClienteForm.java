@@ -20,7 +20,7 @@ import javax.swing.JList;
 
 /**
  *
- * @author Carlos
+ * @author alex
  */
 public class BuscarClienteForm extends javax.swing.JPanel {
 
