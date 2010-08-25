@@ -77,6 +77,9 @@ public final class ComprobanteTopComponent extends TopComponent {
     private static final String PREFERRED_ID = "ComprobanteTopComponent";
     private boolean isNew = true;
 
+    private static Color ColorBotonTrue = Color.blue;
+    private static Color ColorBotonFalse = Color.black;
+
     public void setIsNew(boolean val) {
         isNew = val;
     }
@@ -172,9 +175,9 @@ public final class ComprobanteTopComponent extends TopComponent {
         txtDescripcion = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
         txtPrecio = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btnPartes = new javax.swing.JButton();
+        btnInfoAduanera = new javax.swing.JButton();
+        btnCtaPredial = new javax.swing.JButton();
         btnAddConcepto = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -490,21 +493,21 @@ public final class ComprobanteTopComponent extends TopComponent {
         binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, this, org.jdesktop.beansbinding.ELProperty.create("${concepto.valorUnitario}"), txtPrecio, org.jdesktop.beansbinding.BeanProperty.create("text"));
         bindingGroup.addBinding(binding);
 
-        org.openide.awt.Mnemonics.setLocalizedText(jButton1, org.openide.util.NbBundle.getMessage(ComprobanteTopComponent.class, "ComprobanteTopComponent.jButton1.text")); // NOI18N
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        org.openide.awt.Mnemonics.setLocalizedText(btnPartes, org.openide.util.NbBundle.getMessage(ComprobanteTopComponent.class, "ComprobanteTopComponent.btnPartes.text")); // NOI18N
+        btnPartes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnPartesActionPerformed(evt);
             }
         });
 
-        org.openide.awt.Mnemonics.setLocalizedText(jButton2, org.openide.util.NbBundle.getMessage(ComprobanteTopComponent.class, "ComprobanteTopComponent.jButton2.text")); // NOI18N
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        org.openide.awt.Mnemonics.setLocalizedText(btnInfoAduanera, org.openide.util.NbBundle.getMessage(ComprobanteTopComponent.class, "ComprobanteTopComponent.btnInfoAduanera.text")); // NOI18N
+        btnInfoAduanera.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnInfoAduaneraActionPerformed(evt);
             }
         });
 
-        org.openide.awt.Mnemonics.setLocalizedText(jButton3, org.openide.util.NbBundle.getMessage(ComprobanteTopComponent.class, "ComprobanteTopComponent.jButton3.text")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(btnCtaPredial, org.openide.util.NbBundle.getMessage(ComprobanteTopComponent.class, "ComprobanteTopComponent.btnCtaPredial.text")); // NOI18N
 
         btnAddConcepto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/agac/gui/resourses/add.png"))); // NOI18N
         org.openide.awt.Mnemonics.setLocalizedText(btnAddConcepto, org.openide.util.NbBundle.getMessage(ComprobanteTopComponent.class, "ComprobanteTopComponent.btnAddConcepto.text")); // NOI18N
@@ -545,6 +548,11 @@ public final class ComprobanteTopComponent extends TopComponent {
                 return canEdit [columnIndex];
             }
         });
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jTable1.addInputMethodListener(new java.awt.event.InputMethodListener() {
             public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
                 jTable1InputMethodTextChanged(evt);
@@ -555,6 +563,14 @@ public final class ComprobanteTopComponent extends TopComponent {
         jTable1.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
                 jTable1PropertyChange(evt);
+            }
+        });
+        jTable1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTable1KeyTyped(evt);
+            }
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTable1KeyPressed(evt);
             }
         });
         jScrollPane1.setViewportView(jTable1);
@@ -598,11 +614,11 @@ public final class ComprobanteTopComponent extends TopComponent {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jButton1)
+                        .addComponent(btnPartes)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton2)
+                        .addComponent(btnInfoAduanera)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton3)
+                        .addComponent(btnCtaPredial)
                         .addGap(292, 292, 292))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -673,9 +689,9 @@ public final class ComprobanteTopComponent extends TopComponent {
                             .addComponent(btnAddConcepto, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton1)
-                            .addComponent(jButton2)
-                            .addComponent(jButton3))
+                            .addComponent(btnPartes)
+                            .addComponent(btnInfoAduanera)
+                            .addComponent(btnCtaPredial))
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
@@ -1150,7 +1166,7 @@ public final class ComprobanteTopComponent extends TopComponent {
         }
     }//GEN-LAST:event_btnAddConceptoActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnPartesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPartesActionPerformed
         PartesPanel pp = new PartesPanel();
         pp.setConcepto(concepto);
         DialogDescriptor dd = new DialogDescriptor(pp, "Partes", true, null);
@@ -1160,9 +1176,9 @@ public final class ComprobanteTopComponent extends TopComponent {
             txtDescripcion.setText("Multiples Partes ...");
             txtPrecio.setText(concepto.getTotalPartes().toString());
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnPartesActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnInfoAduaneraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInfoAduaneraActionPerformed
         List<InformacionAduanera> infoAduanera = new ArrayList<InformacionAduanera>();
         if (concepto.getInfoAduanera() != null) {
             infoAduanera.addAll(concepto.getInfoAduanera());
@@ -1175,7 +1191,7 @@ public final class ComprobanteTopComponent extends TopComponent {
         if (NotifyDescriptor.OK_OPTION.equals(result)) {
             concepto.setInfoAduanera(infoAduanera);
         }
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btnInfoAduaneraActionPerformed
 
     private void btnImpuestosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImpuestosActionPerformed
         ImpuestosPanel impPanel = new ImpuestosPanel(comprobante);
@@ -1347,24 +1363,44 @@ public final class ComprobanteTopComponent extends TopComponent {
         }
 
     }//GEN-LAST:event_btnCatalogoActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+
+        if(isNew || comprobante.getStatus()==1){
+            System.out.println("M " +jTable1.getSelectedRow());
+            this.pintaBoton(comprobante.getConceptos().get(jTable1.getSelectedRow()));
+        }
+
+    }//GEN-LAST:event_jTable1MouseClicked
+
+    private void jTable1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTable1KeyTyped
+    }//GEN-LAST:event_jTable1KeyTyped
+
+    private void jTable1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTable1KeyPressed
+
+        if(isNew || comprobante.getStatus()==1){
+            System.out.println("K " + jTable1.getSelectedRow());
+            this.pintaBoton(comprobante.getConceptos().get(jTable1.getSelectedRow()));
+        }
+    }//GEN-LAST:event_jTable1KeyPressed
     // <editor-fold defaultstate="collapsed" desc="Variables de Instancia">
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTabbedPane TabOpciones;
     private javax.swing.JButton btnAddConcepto;
     private javax.swing.JButton btnCatalogo;
+    private javax.swing.JButton btnCtaPredial;
     private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnEliminar;
     private javax.swing.ButtonGroup btnGrpConceptos;
     private javax.swing.ButtonGroup btnGrpFormaPago;
     private javax.swing.JButton btnImpuestos;
+    private javax.swing.JButton btnInfoAduanera;
+    private javax.swing.JButton btnPartes;
     private javax.swing.JComboBox cboMotivoDesc;
     private javax.swing.JComboBox cboUnidad;
     private javax.swing.JCheckBox chkCondiciones;
     private javax.swing.JCheckBox chkDescuento;
     private javax.swing.JComboBox cmbSeries;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton5;
     private javax.swing.JComboBox jComboBox2;
     private javax.swing.JLabel jLabel1;
@@ -1495,8 +1531,9 @@ public final class ComprobanteTopComponent extends TopComponent {
         //if(!isNew && comprobante.getStatus()== 0) saveNode.enableSave(false);
         setActivatedNodes(new Node[]{saveNode = new NodeForSave()});
 
-
     }
+
+
 
     @Override
     public void componentClosed() {
@@ -1810,6 +1847,32 @@ public final class ComprobanteTopComponent extends TopComponent {
         NumberFormat nf = NumberFormat.getCurrencyInstance();
         lblIVA.setText(nf.format(comprobante.getIVA()));
     }
+
+
+    public void pintaBoton(Concepto cto) {
+
+        if(cto.getCuentaPredial() != null){
+           this.btnCtaPredial.setForeground(ColorBotonTrue);
+        } else {
+           this.btnCtaPredial.setForeground(ColorBotonFalse);
+        }
+
+
+        if(cto.getInfoAduanera() != null ) {
+            this.btnInfoAduanera.setForeground(ColorBotonTrue);
+        } else {
+            this.btnInfoAduanera.setForeground(ColorBotonFalse);
+        }
+
+        if(cto.getParte() != null) {
+            this.btnPartes.setForeground(ColorBotonTrue);
+        } else {
+            this.btnPartes.setForeground(ColorBotonFalse);
+        }
+
+
+    }
+
     DocumentListener listenDescuento = new DocumentListener() {
 
         @Override
