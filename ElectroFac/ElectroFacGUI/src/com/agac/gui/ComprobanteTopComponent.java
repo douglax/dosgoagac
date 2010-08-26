@@ -588,6 +588,11 @@ public final class ComprobanteTopComponent extends TopComponent {
         btnEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/agac/gui/resourses/pencil.png"))); // NOI18N
         org.openide.awt.Mnemonics.setLocalizedText(btnEditar, org.openide.util.NbBundle.getMessage(ComprobanteTopComponent.class, "ComprobanteTopComponent.btnEditar.text")); // NOI18N
         btnEditar.setToolTipText(org.openide.util.NbBundle.getMessage(ComprobanteTopComponent.class, "ComprobanteTopComponent.btnEditar.toolTipText")); // NOI18N
+        btnEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarActionPerformed(evt);
+            }
+        });
 
         btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/agac/gui/resourses/delete.png"))); // NOI18N
         org.openide.awt.Mnemonics.setLocalizedText(btnEliminar, org.openide.util.NbBundle.getMessage(ComprobanteTopComponent.class, "ComprobanteTopComponent.btnEliminar.text")); // NOI18N
@@ -1383,6 +1388,22 @@ public final class ComprobanteTopComponent extends TopComponent {
             this.pintaBoton(comprobante.getConceptos().get(jTable1.getSelectedRow()));
         }
     }//GEN-LAST:event_jTable1KeyPressed
+
+    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+
+        if(jTable1.getSelectedRow() != -1) {
+
+           // Llenamos componentes con valores del objeto
+
+           this.txtCantidad.setText(String.valueOf(comprobante.getConceptos().get(jTable1.getSelectedRow()).getCantidad()));
+           this.txtIdentificador.setText(String.valueOf(comprobante.getConceptos().get(jTable1.getSelectedRow()).getId()));
+           //this.cboUnidad
+           this.txtDescripcion.setText(comprobante.getConceptos().get(jTable1.getSelectedRow()).getDescripcion());
+           this.txtPrecio.setText(comprobante.getConceptos().get(jTable1.getSelectedRow()).getValorUnitario().toString());
+           
+        }
+
+    }//GEN-LAST:event_btnEditarActionPerformed
     // <editor-fold defaultstate="collapsed" desc="Variables de Instancia">
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTabbedPane TabOpciones;
