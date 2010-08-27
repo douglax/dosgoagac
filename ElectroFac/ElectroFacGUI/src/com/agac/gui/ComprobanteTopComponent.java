@@ -80,6 +80,9 @@ public final class ComprobanteTopComponent extends TopComponent {
     private static Color ColorBotonTrue = Color.blue;
     private static Color ColorBotonFalse = Color.black;
 
+    private boolean editandoConcepto = false;
+    private int indexConcepto = 0;
+
     public void setIsNew(boolean val) {
         isNew = val;
     }
@@ -571,6 +574,9 @@ public final class ComprobanteTopComponent extends TopComponent {
             }
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jTable1KeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTable1KeyReleased(evt);
             }
         });
         jScrollPane1.setViewportView(jTable1);
@@ -1383,16 +1389,15 @@ public final class ComprobanteTopComponent extends TopComponent {
 
     private void jTable1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTable1KeyPressed
 
-        if(isNew || comprobante.getStatus()==1){
-            System.out.println("K " + jTable1.getSelectedRow());
-            this.pintaBoton(comprobante.getConceptos().get(jTable1.getSelectedRow()));
-        }
+
     }//GEN-LAST:event_jTable1KeyPressed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
 
         if(jTable1.getSelectedRow() != -1) {
 
+           editandoConcepto = true;
+           indexConcepto = jTable1.getSelectedRow();
            // Llenamos componentes con valores del objeto
 
            this.txtCantidad.setText(String.valueOf(comprobante.getConceptos().get(jTable1.getSelectedRow()).getCantidad()));
@@ -1404,6 +1409,14 @@ public final class ComprobanteTopComponent extends TopComponent {
         }
 
     }//GEN-LAST:event_btnEditarActionPerformed
+
+    private void jTable1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTable1KeyReleased
+        
+        if(isNew || comprobante.getStatus()==1){
+            System.out.println("K " + jTable1.getSelectedRow());
+            this.pintaBoton(comprobante.getConceptos().get(jTable1.getSelectedRow()));
+        }
+    }//GEN-LAST:event_jTable1KeyReleased
     // <editor-fold defaultstate="collapsed" desc="Variables de Instancia">
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTabbedPane TabOpciones;
@@ -1890,8 +1903,6 @@ public final class ComprobanteTopComponent extends TopComponent {
         } else {
             this.btnPartes.setForeground(ColorBotonFalse);
         }
-
-
     }
 
     DocumentListener listenDescuento = new DocumentListener() {
