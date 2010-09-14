@@ -355,7 +355,7 @@ public final class ComprobanteTopComponent extends TopComponent {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 654, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 650, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -365,21 +365,21 @@ public final class ComprobanteTopComponent extends TopComponent {
                                     .addComponent(jLabel9))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(txtRazonSocial, javax.swing.GroupLayout.DEFAULT_SIZE, 372, Short.MAX_VALUE)
-                                    .addComponent(txtCalle, javax.swing.GroupLayout.DEFAULT_SIZE, 372, Short.MAX_VALUE)
+                                    .addComponent(txtRazonSocial, javax.swing.GroupLayout.DEFAULT_SIZE, 368, Short.MAX_VALUE)
+                                    .addComponent(txtCalle, javax.swing.GroupLayout.DEFAULT_SIZE, 368, Short.MAX_VALUE)
                                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                                         .addComponent(txtPais, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
                                         .addComponent(jLabel10)
                                         .addGap(18, 18, 18)
-                                        .addComponent(txtCP, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE))
+                                        .addComponent(txtCP, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(txtLocalidad, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jLabel7)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(txtMunicipio, javax.swing.GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE))
-                                    .addComponent(txtColonia, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 372, Short.MAX_VALUE))
+                                        .addComponent(txtMunicipio, javax.swing.GroupLayout.DEFAULT_SIZE, 212, Short.MAX_VALUE))
+                                    .addComponent(txtColonia, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 368, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -511,6 +511,11 @@ public final class ComprobanteTopComponent extends TopComponent {
         });
 
         org.openide.awt.Mnemonics.setLocalizedText(btnCtaPredial, org.openide.util.NbBundle.getMessage(ComprobanteTopComponent.class, "ComprobanteTopComponent.btnCtaPredial.text")); // NOI18N
+        btnCtaPredial.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCtaPredialActionPerformed(evt);
+            }
+        });
 
         btnAddConcepto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/agac/gui/resourses/add.png"))); // NOI18N
         org.openide.awt.Mnemonics.setLocalizedText(btnAddConcepto, org.openide.util.NbBundle.getMessage(ComprobanteTopComponent.class, "ComprobanteTopComponent.btnAddConcepto.text")); // NOI18N
@@ -629,8 +634,7 @@ public final class ComprobanteTopComponent extends TopComponent {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnInfoAduanera)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnCtaPredial)
-                        .addGap(292, 292, 292))
+                        .addComponent(btnCtaPredial))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 688, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1121,7 +1125,7 @@ public final class ComprobanteTopComponent extends TopComponent {
                     .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 806, Short.MAX_VALUE)
                         .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 806, Short.MAX_VALUE)))
-                .addContainerGap(136, Short.MAX_VALUE))
+                .addContainerGap(132, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1397,18 +1401,19 @@ public final class ComprobanteTopComponent extends TopComponent {
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
 
+        
+
         if(jTable1.getSelectedRow() != -1) {
 
            editandoConcepto = true;
            indexConcepto = jTable1.getSelectedRow();
-           // Llenamos componentes con valores del objeto
+           EditarConcepto frm = new EditarConcepto(this.getComprobante().getConceptos().get(indexConcepto));
 
-           this.txtCantidad.setText(String.valueOf(comprobante.getConceptos().get(jTable1.getSelectedRow()).getCantidad()));
-           this.txtIdentificador.setText(String.valueOf(comprobante.getConceptos().get(jTable1.getSelectedRow()).getId()));
-           //this.cboUnidad
-           this.txtDescripcion.setText(comprobante.getConceptos().get(jTable1.getSelectedRow()).getDescripcion());
-           this.txtPrecio.setText(comprobante.getConceptos().get(jTable1.getSelectedRow()).getValorUnitario().toString());
-           
+        DialogDescriptor dd = new DialogDescriptor(frm, "Concepto", true, null);
+        Object result = DialogDisplayer.getDefault().notify(dd);
+        if (NotifyDescriptor.OK_OPTION.equals(result)) {
+            this.getComprobante().getConceptos().set(indexConcepto, frm.getConcepto() );
+        }
         }
 
     }//GEN-LAST:event_btnEditarActionPerformed
@@ -1420,6 +1425,10 @@ public final class ComprobanteTopComponent extends TopComponent {
             this.pintaBoton(comprobante.getConceptos().get(jTable1.getSelectedRow()));
         }
     }//GEN-LAST:event_jTable1KeyReleased
+
+    private void btnCtaPredialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCtaPredialActionPerformed
+        
+    }//GEN-LAST:event_btnCtaPredialActionPerformed
     // <editor-fold defaultstate="collapsed" desc="Variables de Instancia">
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTabbedPane TabOpciones;
