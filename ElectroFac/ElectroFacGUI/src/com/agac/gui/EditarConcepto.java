@@ -12,6 +12,10 @@
 package com.agac.gui;
 
 import com.agac.bo.Concepto;
+import com.agac.bo.Parte;
+import java.math.BigDecimal;
+import javax.swing.table.DefaultTableModel;
+
 
 /**
  *
@@ -27,6 +31,7 @@ public class EditarConcepto extends javax.swing.JFrame {
     public EditarConcepto(Concepto concepto){
         initComponents();
         this.concepto = concepto;
+        LlenaCampos();
     }
 
 
@@ -198,11 +203,11 @@ public class EditarConcepto extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(btnAgregar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtCantidad, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtPrecio)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jComboBox1)
                         .addComponent(txtIdentificador)
-                        .addComponent(txtDescripcion)
-                        .addComponent(txtPrecio)))
+                        .addComponent(txtDescripcion)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -297,7 +302,6 @@ public class EditarConcepto extends javax.swing.JFrame {
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 189, Short.MAX_VALUE)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -501,5 +505,17 @@ public class EditarConcepto extends javax.swing.JFrame {
     private javax.swing.JTextField txtNoDoc;
     private javax.swing.JTextField txtPrecio;
     // End of variables declaration//GEN-END:variables
+
+
+private void LlenaCampos(){
+    if (concepto.getParte() != null) {
+            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+            for (Parte p : concepto.getParte()) {
+                model.addRow(new Object[]{p.getCantidad(), p.getUnidad(), p.getDescripcion(), p.getValorUnitario(),
+                   p.getCantidad().multiply(p.getValorUnitario())    });
+            }
+    }
+} // LlenaCampos
+
 
 }
