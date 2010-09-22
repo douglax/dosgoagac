@@ -22,6 +22,8 @@ public class BigDecimalAdapter extends XmlAdapter<String, BigDecimal>{
 
     @Override
     public String marshal(BigDecimal v) throws Exception {
+        if(v == null)
+            return "";
         DecimalFormat df = new DecimalFormat();
         df.setMaximumFractionDigits(6);
         df.setMinimumFractionDigits(6);

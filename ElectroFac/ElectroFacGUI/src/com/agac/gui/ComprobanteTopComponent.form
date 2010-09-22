@@ -71,7 +71,7 @@
                               <Component id="jPanel2" alignment="0" pref="806" max="32767" attributes="1"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="132" max="32767" attributes="0"/>
+                      <EmptySpace pref="136" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -119,7 +119,7 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace pref="650" max="32767" attributes="0"/>
+                                  <EmptySpace pref="654" max="32767" attributes="0"/>
                               </Group>
                               <Group type="102" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
@@ -131,23 +131,23 @@
                                           </Group>
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="1" attributes="0">
-                                              <Component id="txtRazonSocial" alignment="1" pref="368" max="32767" attributes="1"/>
-                                              <Component id="txtCalle" alignment="1" pref="368" max="32767" attributes="1"/>
+                                              <Component id="txtRazonSocial" alignment="1" pref="372" max="32767" attributes="1"/>
+                                              <Component id="txtCalle" alignment="1" pref="372" max="32767" attributes="1"/>
                                               <Group type="102" alignment="0" attributes="0">
                                                   <Component id="txtPais" min="-2" pref="155" max="-2" attributes="0"/>
                                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                                   <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
                                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                                  <Component id="txtCP" pref="156" max="32767" attributes="0"/>
+                                                  <Component id="txtCP" pref="160" max="32767" attributes="0"/>
                                               </Group>
                                               <Group type="102" alignment="1" attributes="1">
                                                   <Component id="txtLocalidad" min="-2" pref="128" max="-2" attributes="0"/>
                                                   <EmptySpace max="-2" attributes="0"/>
                                                   <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
                                                   <EmptySpace max="-2" attributes="0"/>
-                                                  <Component id="txtMunicipio" pref="212" max="32767" attributes="1"/>
+                                                  <Component id="txtMunicipio" pref="216" max="32767" attributes="1"/>
                                               </Group>
-                                              <Component id="txtColonia" alignment="0" pref="368" max="32767" attributes="1"/>
+                                              <Component id="txtColonia" alignment="0" pref="372" max="32767" attributes="1"/>
                                           </Group>
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -534,6 +534,7 @@
                                   <Component id="btnInfoAduanera" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="btnCtaPredial" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="292" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -769,9 +770,6 @@
                       <ResourceString bundle="com/agac/gui/Bundle.properties" key="ComprobanteTopComponent.btnCtaPredial.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
                     </Property>
                   </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCtaPredialActionPerformed"/>
-                  </Events>
                 </Component>
                 <Component class="javax.swing.JButton" name="btnAddConcepto">
                   <Properties>

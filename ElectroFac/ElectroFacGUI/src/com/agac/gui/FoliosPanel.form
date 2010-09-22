@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.1" encoding="UTF-8" ?>
 
 <Form version="1.5" maxVersion="1.7" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
   <AccessibilityProperties>
@@ -82,7 +82,7 @@
                                   <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                                   <Component id="btnAdd" min="-2" pref="35" max="-2" attributes="0"/>
                               </Group>
-                              <Component id="jLabel5" pref="203" max="32767" attributes="1"/>
+                              <Component id="jLabel5" pref="210" max="32767" attributes="1"/>
                           </Group>
                       </Group>
                       <Component id="jScrollPane1" alignment="0" pref="574" max="32767" attributes="1"/>
@@ -210,6 +210,9 @@
                   </Table>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jTable1MouseClicked"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

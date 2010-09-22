@@ -3,6 +3,7 @@ package com.agac.gui;
 import com.agac.bo.Serie;
 
 import java.util.List;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -96,6 +97,11 @@ public class FoliosPanel extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         btnAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/agac/gui/resourses/add.png"))); // NOI18N
@@ -137,7 +143,7 @@ public class FoliosPanel extends javax.swing.JPanel {
                                 .addComponent(txtAnoAprob, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(28, 28, 28)
                                 .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE)))
+                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 574, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -203,6 +209,18 @@ public class FoliosPanel extends javax.swing.JPanel {
         txtFolioInicial.setText("");
         txtNumAprob.setText("");
     }//GEN-LAST:event_btnAddActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        
+        JTable tbl = (JTable)evt.getSource();
+        if(tbl.getSelectedRow() == -1)
+            return;
+        Serie s = serieList.get(tbl.getSelectedRow());
+        System.out.println(s.getNumAutorización());
+        DefaultTableModel model = (DefaultTableModel)tbl.getModel();
+        s.setActiva(Boolean.parseBoolean(model.getValueAt(tbl.getSelectedRow(), 5).toString()));
+        
+    }//GEN-LAST:event_jTable1MouseClicked
     private List<Serie> serieList;
 
     public List<Serie> getSeries() {

@@ -33,7 +33,7 @@ public class CadenaOriginal {
         sb.append("|").append(Integer.toString(c.getFolio()));
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(c.getFecha());
-        sb.append("|" + formatFecha(calendar));
+        sb.append("|").append(formatFecha(calendar));
         sb.append("|" + c.getNoAprobacion());
         sb.append("|" + Integer.toString(c.getAnoAprobacion()));
         sb.append("|" + c.getTipoDeComprobante().trim());

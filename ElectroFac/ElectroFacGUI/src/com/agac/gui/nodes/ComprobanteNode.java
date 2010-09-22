@@ -1,15 +1,18 @@
 package com.agac.gui.nodes;
 
 import com.agac.bo.Comprobante;
-import com.agac.bo.Emisor;
 import com.agac.bo.Receptor;
 import com.agac.gui.ComprobanteTopComponent;
 import com.agac.gui.MenuTopComponent;
 import com.agac.services.DbServices;
 import java.awt.event.ActionEvent;
+import java.io.FileWriter;
+import java.io.StringWriter;
 import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.SwingUtilities;
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.Marshaller;
 import org.openide.DialogDisplayer;
 import org.openide.ErrorManager;
 import org.openide.NotifyDescriptor;
@@ -37,37 +40,33 @@ public class ComprobanteNode extends AbstractNode {
         setIconBaseWithExtension("com/agac/gui/resourses/Comprobante24.png");
     }
 
-
     @Override
     public Action[] getActions(boolean bln) {
-        return new Action[]{new OpenAction(),
-                    new CancelFolio()
+        return new Action[]{
+                    new OpenAction(),
+                    new CancelFolio(),
+                    null,
+                    new GenerarXML()
                 };
     }
-
 
     @Override
     public String getHtmlDisplayName() {
 
+        //When painting, the Explorer component showing the nodes calls getHtmlDisplayName() first.
+        //If it gets a non-null value back, then it will use the HTML string it received and a fast,
+        //lightweight HTML renderer to render it. If it is null, then it will fall back to
+        //whatever is returned by getDisplayName().
 
-    //When painting, the Explorer component showing the nodes calls getHtmlDisplayName() first.
-    //If it gets a non-null value back, then it will use the HTML string it received and a fast,
-    //lightweight HTML renderer to render it. If it is null, then it will fall back to
-    //whatever is returned by getDisplayName().
-
-
-    Comprobante c = getLookup().lookup (Comprobante.class);
-    if (c!=null && c.getStatus() == 0) {
-        // comprobante cancelado aparece en gris
-        return "<font color='666666'>" + c.getAnoAprobacion() + c.getSerie() + c.getFolio() + "</font>";
-    } else {
-        //return null;
-        return "<strong>" + c.getAnoAprobacion() + c.getSerie() + c.getFolio() + "</strong>";
+        Comprobante c = getLookup().lookup(Comprobante.class);
+        if (c != null && c.getStatus() == 0) {
+            // comprobante cancelado aparece en gris
+            return "<font color='666666'>" + c.getAnoAprobacion() + c.getSerie() + c.getFolio() + "</font>";
+        } else {
+            //return null;
+            return "<strong>" + c.getAnoAprobacion() + c.getSerie() + c.getFolio() + "</strong>";
+        }
     }
-}
-
-
-
 
     @Override
     protected Sheet createSheet() {
@@ -77,9 +76,6 @@ public class ComprobanteNode extends AbstractNode {
 
         Comprobante c = getLookup().lookup(Comprobante.class);
         Receptor r = c.getReceptor();
-
-
-
 
         try {
 
@@ -114,8 +110,8 @@ public class ComprobanteNode extends AbstractNode {
             set.setName("Datos");
             set.setDisplayName("Datos del Comprobante");
 
-            
-            Property  nombre = new PropertySupport.Reflection<String>(r, String.class,
+
+            Property nombre = new PropertySupport.Reflection<String>(r, String.class,
                     "getNombre", null);
             Property rfc = new PropertySupport.Reflection<String>(r, String.class,
                     "getRfc", null);
@@ -130,9 +126,9 @@ public class ComprobanteNode extends AbstractNode {
             Property municipio = new PropertySupport.Reflection<String>(r.getDomicilio(), String.class,
                     "getMunicipio", null);
             Property estado = new PropertySupport.Reflection<String>(r.getDomicilio(), String.class,
-                "getEstado", null);
+                    "getEstado", null);
             Property pais = new PropertySupport.Reflection<String>(r.getDomicilio(), String.class,
-                "getPais", null);
+                    "getPais", null);
 
             nombre.setName("nombre");
             nombre.setDisplayName("Nombre del Cliente");
@@ -152,7 +148,6 @@ public class ComprobanteNode extends AbstractNode {
             estado.setDisplayName("Estado");
             pais.setName("pais");
             pais.setDisplayName("País");
-
             receptor.put(nombre);
             receptor.put(rfc);
             receptor.put(calle);
@@ -165,9 +160,6 @@ public class ComprobanteNode extends AbstractNode {
             receptor.setName("Receptor");
             receptor.setDisplayName("Datos del Cliente");
 
-
-            
-
         } catch (NoSuchMethodException ex) {
             ErrorManager.getDefault();
         }
@@ -175,9 +167,6 @@ public class ComprobanteNode extends AbstractNode {
         sheet.put(receptor);
         return sheet;
     }
-
-
-
 
     @Override
     public Action getPreferredAction() {
@@ -205,7 +194,7 @@ public class ComprobanteNode extends AbstractNode {
                         ctc.setIsNew(false);
                         ctc.setComprobante(c);
                         ctc.setDisplayName(c.getAnoAprobacion() + c.getSerie() + c.getFolio());
-                        ctc.componentOpened();                        
+                        ctc.componentOpened();
                         ctc.open();
                         ctc.requestActive();
                         ctc.enablePrint();
@@ -215,14 +204,11 @@ public class ComprobanteNode extends AbstractNode {
             } catch (Exception ex) {
                 Exceptions.printStackTrace(ex);
             }
-
         }
     }
 
-
     //
-
-        private class CancelFolio extends AbstractAction {
+    private class CancelFolio extends AbstractAction {
 
         public CancelFolio() {
             putValue(NAME, "Cancelar Folio");
@@ -231,28 +217,41 @@ public class ComprobanteNode extends AbstractNode {
         @Override
         public void actionPerformed(ActionEvent e) {
             Comprobante comprobante = getLookup().lookup(Comprobante.class);
-
             Confirmation msg = new NotifyDescriptor.Confirmation(
-                        "El cambio que está a punto de efectuar es irreversible \nEstá seguro de cancelar el folio?", "Confirmar cancelación",
-                        NotifyDescriptor.OK_CANCEL_OPTION,
-                        NotifyDescriptor.QUESTION_MESSAGE);
+                    "El cambio que está a punto de efectuar es irreversible \nEstá seguro de cancelar el folio?", "Confirmar cancelación",
+                    NotifyDescriptor.OK_CANCEL_OPTION,
+                    NotifyDescriptor.QUESTION_MESSAGE);
             Object result = DialogDisplayer.getDefault().notify(msg);
             if (NotifyDescriptor.YES_OPTION.equals(result)) {
                 //Cancelar folio
-                
-               try {
-
-                   comprobante.setStatus(0);
-                   comprobante = DbServices.saveObject(comprobante, true);
+                try {
+                    comprobante.setStatus(0);
+                    comprobante = DbServices.saveObject(comprobante, true);
                 } catch (Exception ex) {
                     Exceptions.printStackTrace(ex);
                 }
-
             }
-
-
-
         }
     } //class CancelFolio
 
+    private class GenerarXML extends AbstractAction {
+
+        public GenerarXML() {
+            putValue(NAME, "Generar Archivo XML ...");
+        }
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            try {
+                JAXBContext ctx = JAXBContext.newInstance(Comprobante.class);
+                Marshaller m = ctx.createMarshaller();
+                FileWriter writer = new FileWriter("c:\\temp\\archivo.xml");
+                m.marshal((Comprobante)getLookup().lookup(Comprobante.class), writer);
+                writer.flush();
+                writer.close();
+            } catch (Exception ex) {
+                Exceptions.printStackTrace(ex);
+            }
+        }
+    }
 }
