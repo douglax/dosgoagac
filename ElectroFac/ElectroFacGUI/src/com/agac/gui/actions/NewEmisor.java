@@ -8,8 +8,8 @@ import com.agac.gui.EmisorTopComponent;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import com.agac.services.StringEncrypter;
 
-//import com.agac.libraries.StringEncrypter;
 
 public final class NewEmisor implements ActionListener {
 
