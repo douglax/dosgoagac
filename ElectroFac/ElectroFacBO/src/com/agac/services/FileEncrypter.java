@@ -19,7 +19,11 @@ public class FileEncrypter {
     private static FileInputStream inFile;
     private static FileOutputStream outFile;
 
-    private void Encrypt(String filename, String password) {
+    public void FileEncrypter(){
+        
+    }
+
+    public static void Encrypt(String filename, String password) {
 
         try {
             inFile = new FileInputStream(filename);
@@ -85,12 +89,13 @@ public class FileEncrypter {
 
     }//encrypt
 
-    private void Decrypt(String filename, String password) {
+    public static ByteArrayOutputStream Decrypt(String filename, String password) {
 
 
         try {
             inFile = new FileInputStream(filename);
-            outFile = new FileOutputStream(filename + ".dcr");
+            //outFile = new FileOutputStream(filename + ".dcr");
+            ByteArrayOutputStream outSt = new ByteArrayOutputStream();
 
             PBEKeySpec keySpec = new PBEKeySpec(password.toCharArray());
             SecretKeyFactory keyFactory =
@@ -116,22 +121,27 @@ public class FileEncrypter {
             while ((bytesRead = inFile.read(input)) != -1) {
                 byte[] output = cipher.update(input, 0, bytesRead);
                 if (output != null) {
-                    outFile.write(output);
+                    //outFile.write(output);
+                    outSt.write(output);
                 }
             }
 
             byte[] output = cipher.doFinal();
             if (output != null) {
-                outFile.write(output);
+                //outFile.write(output);
+                outSt.write(output);
             }
 
             inFile.close();
-            outFile.flush();
-            outFile.close();
+            //outFile.flush();
+            //outFile.close();
+
+            return outSt;
 
         } catch (Exception e) {
         }
 
+        return null;
 
     } //Decrypt
 } //class

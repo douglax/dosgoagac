@@ -18,6 +18,8 @@ import java.util.prefs.Preferences;
 import org.openide.util.NbPreferences;
 
 import com.agac.services.StringEncrypter;
+import com.agac.services.FileEncrypter;
+import java.io.ByteArrayOutputStream;
 
 /**
  *
@@ -34,7 +36,9 @@ public class LicenciasPanel extends javax.swing.JPanel {
 
 
     private void prueba(){
-        StringEncrypter.testUsingPassPhrase();
+        //StringEncrypter.testUsingPassPhrase();
+        FileEncrypter.Encrypt("c:\\pruebas\\clave.txt","pasguord");
+
     }
 
 
@@ -45,17 +49,55 @@ public class LicenciasPanel extends javax.swing.JPanel {
 
         String licencia = pref.get("LICENCIA", "DEMO");
 
-        //Desencriptar cadena
-        StringEncrypter encripta = new StringEncrypter("My Pass Phrase");
-
-
-        String cadena = encripta.decrypt(licencia);
+        //Desencriptar archivo
         
+        ByteArrayOutputStream baos = FileEncrypter.Decrypt(licencia,"pasguord");
+        if(baos != null){
+ 
+                System.out.println(baos.toString());
+                String cadena = baos.toString();
+                String remain;
 
-//        String cadena = encripta.decrypt(licencia);
+                //Extraemos la fecha primero
+                String fecha = cadena.substring(0, cadena.indexOf("\n") );
+                txtFecha.setText(fecha);
 
-        System.out.println("encriptada: " + licencia);
-        System.out.println("desencriptada: " + cadena);
+                remain = cadena.substring(cadena.indexOf("\n") + 1,cadena.length());
+                System.out.println("Remain-> " + remain);
+
+                cadena = remain;
+
+                //Extraemos el número de comprobantes
+                String numero = cadena.substring(0, cadena.indexOf("\n") );
+                txtComprobantes.setText(numero);
+
+                remain = cadena.substring(cadena.indexOf("\n") + 1,cadena.length());
+                System.out.println("Remain-> " + remain.trim());
+
+                cadena = remain;
+
+                //Extraemos los RFC y los agregamos a la tabla
+
+                // La cadena remanente debe tener una longitud multiplo de 14
+                // ya que cada RFC ocupa 13 posiciones + \n
+                // ej.
+                // AAAA010101XXX\n
+                // BBBB020202YYY\n
+                // CCCC030303ZZZ\n
+                // El algoritmo se basa en extraer subcadenas de 14 caractéres
+                // y sustraer el último
+
+                int cuantos = remain.length() / 14;
+                System.out.println(String.valueOf(cuantos) );
+                String rfc;
+                for (int c=0;c<cuantos;c++) {
+                    rfc = cadena.substring(0,13);
+                    model.addRow(new Object[] {rfc});
+                    cadena = cadena.substring(cadena.indexOf("\n") + 1,cadena.length());
+
+                }
+
+        }
         
         //descomponer cadena en elementos y llenar campos
 
@@ -64,7 +106,7 @@ public class LicenciasPanel extends javax.swing.JPanel {
 
         //System.out.println("primer evento # -> " + cadena.indexOf("#"));
         //String fecha =cadena.substring(0,cadena.indexOf("#") );
-        //System.out.println("fecha-> " + fecha);
+        System.out.println("Stop! Hammertime!");
         
 
     }
@@ -90,11 +132,7 @@ public class LicenciasPanel extends javax.swing.JPanel {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null},
-                {null},
-                {null},
-                {null},
-                {null}
+
             },
             new String [] {
                 "Emisores Autorizados"
@@ -143,13 +181,13 @@ public class LicenciasPanel extends javax.swing.JPanel {
                 .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 452, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 452, Short.MAX_VALUE)
-                        .addGroup(layout.createSequentialGroup()
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 452, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                             .addComponent(jLabel2)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                             .addComponent(txtComprobantes))
-                        .addGroup(layout.createSequentialGroup()
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                             .addComponent(jLabel1)
                             .addGap(87, 87, 87)
                             .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))))
