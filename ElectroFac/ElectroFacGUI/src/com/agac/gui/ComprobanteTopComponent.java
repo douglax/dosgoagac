@@ -1750,18 +1750,19 @@ public final class ComprobanteTopComponent extends TopComponent {
                                             try {
 
                                                 if (optUnPago.isSelected()) {
-                                                    comprobante.setFormaDePago("Pago en una sola exibición");
+                                                    comprobante.setFormaDePago("Pago en una sola exibicion");
                                                 } else {
                                                     comprobante.setFormaDePago("Parcialidad " + txtParcialidad.getText() + " de " + txtParcialidadTotales.getText());
                                                 }
                                                 String cadena = new CadenaOriginal(comprobante).toString();
+                                                System.out.println(cadena);
                                                 SelloDigital sd = new SelloDigital();
                                                 sd.cargarLlavePrivada(
                                                         comprobante.getEmisor().getRutaLlave(),
                                                         new TripleDES().desencriptar(
                                                         comprobante.getEmisor().getPasswd()));
                                                 sd.cargarLlavePublicaDeCertificado(comprobante.getEmisor().getRutaCertificado());
-                                                comprobante.setNoCertificado(sd.getSerialNumber().toString());
+                                                comprobante.setNoCertificado(sd.getSerialNumberSATFormat());
                                                 comprobante.setSello(sd.generar(cadena));
                                                 comprobante.setCadenaOriginal(cadena);
 

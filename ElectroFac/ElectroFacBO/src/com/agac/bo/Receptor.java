@@ -47,7 +47,7 @@ public class Receptor implements Serializable {
     }
 
     @OneToOne(cascade=CascadeType.ALL)
-    @XmlElement(name="Domicilio", required=true)
+    @XmlElement(name="Domicilio", required=true, namespace="http://www.sat.gob.mx/cfd/2")
     private Ubicacion domicilio = new Ubicacion();
     @XmlAttribute(name = "rfc", required = true)
     private String rfc;

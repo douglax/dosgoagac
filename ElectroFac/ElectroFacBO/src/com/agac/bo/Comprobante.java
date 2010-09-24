@@ -50,18 +50,18 @@ public class Comprobante implements Serializable {
         this.Id = Id;
         propertyChangeSupport.firePropertyChange("Id", oldId, Id);
     }
-    @XmlElement(name = "Emisor", required = true)
+    @XmlElement(name = "Emisor", required = true, namespace = "http://www.sat.gob.mx/cfd/2")
     @ManyToOne
     private Emisor emisor;
-    @XmlElement(name = "Receptor", required = true)
+    @XmlElement(name = "Receptor", required = true, namespace = "http://www.sat.gob.mx/cfd/2")
     @ManyToOne
     private Receptor receptor;
-    @XmlElementWrapper(name = "Conceptos")
-    @XmlElement(name = "Concepto")
-    @OneToMany(cascade=CascadeType.ALL)
+    @XmlElementWrapper(name = "Conceptos", namespace="http://www.sat.gob.mx/cfd/2")
+    @XmlElement(name = "Concepto", namespace="http://www.sat.gob.mx/cfd/2")
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Concepto> conceptos;
-    @XmlElement(name = "Impuestos", required = true)
-    @OneToOne(cascade=CascadeType.ALL)
+    @XmlElement(name = "Impuestos", required = true, namespace="http://www.sat.gob.mx/cfd/2")
+    @OneToOne(cascade = CascadeType.ALL)
     private Impuesto impuesto;
     @XmlAttribute(required = true)
     private String version = "2.0";
@@ -100,13 +100,13 @@ public class Comprobante implements Serializable {
     @XmlAttribute(required = true)
     private String tipoDeComprobante;
     @XmlTransient
-    @Column(length=1000)
+    @Column(length = 1000)
     private String cantidadConLetra = "";
     @XmlTransient
     @Transient
     private Double IVA;
     @XmlTransient
-    @Column(length=10000)
+    @Column(length = 10000)
     private String cadenaOriginal;
     @XmlTransient
     private int status;
@@ -118,7 +118,6 @@ public class Comprobante implements Serializable {
     public void setStatus(int status) {
         this.status = status;
     }
-
 
     public String getCadenaOriginal() {
         return cadenaOriginal;
@@ -132,16 +131,18 @@ public class Comprobante implements Serializable {
     public String getCantidadConLetra() {
         return cantidadConLetra;
     }
+
     public void setCantidadConLetra(BigDecimal cantidad) {
-        this.cantidadConLetra = NumberToLetterConverter.convertNumberToLetter(cantidad.toString());         
+        this.cantidadConLetra = NumberToLetterConverter.convertNumberToLetter(cantidad.toString());
     }
-    
+
     public Double getIVA() {
         Double iva = 0.0;
         if (this.getImpuesto() != null) {
             Traslado t = getImpuesto().getTraslados().get("IVA");
-            if(t != null)
+            if (t != null) {
                 iva = t.getImporte().doubleValue();
+            }
         }
         return iva;
     }
@@ -308,7 +309,7 @@ public class Comprobante implements Serializable {
         propertyChangeSupport.firePropertyChange("serie", null, serie);
     }
 
-    public BigDecimal getSubTotal() {        
+    public BigDecimal getSubTotal() {
         return subTotal;
     }
 
@@ -326,7 +327,7 @@ public class Comprobante implements Serializable {
         propertyChangeSupport.firePropertyChange("tipoDeComprobante", null, tipoDeComprobante);
     }
 
-    public BigDecimal getTotal() {        
+    public BigDecimal getTotal() {
         return total;
     }
 
@@ -398,7 +399,7 @@ public class Comprobante implements Serializable {
         return hash;
     }
 
-    public BigDecimal calcularSubTotal(){
+    public BigDecimal calcularSubTotal() {
         BigDecimal sub = new BigDecimal("0.0");
         for (Concepto c : getConceptos()) {
             sub = sub.add(c.getImporte());
@@ -406,20 +407,20 @@ public class Comprobante implements Serializable {
         return sub;
     }
 
-    public BigDecimal calcularImpuestos(){
+    public BigDecimal calcularImpuestos() {
         BigDecimal tot = new BigDecimal("0");
-        if(impuesto != null){
-            for(Traslado t : impuesto.getTraslados().values()){
+        if (impuesto != null) {
+            for (Traslado t : impuesto.getTraslados().values()) {
                 tot = tot.add(t.getImporte());
             }
-            for(Retencion r : impuesto.getRetenciones().values()){
+            for (Retencion r : impuesto.getRetenciones().values()) {
                 tot = tot.add(r.getImporte());
             }
         }
         return tot;
     }
 
-    public BigDecimal calcularTotal(){
+    public BigDecimal calcularTotal() {
         return calcularSubTotal().add(calcularImpuestos());
     }
 }

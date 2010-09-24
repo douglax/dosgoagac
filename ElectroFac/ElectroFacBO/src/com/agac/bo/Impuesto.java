@@ -128,14 +128,14 @@ public class Impuesto implements Serializable {
         this.id = id;
     }
     
-    @XmlElementWrapper(name="Traslados")
-    @XmlElement(name = "Traslado")
+    @XmlElementWrapper(name="Traslados",  namespace = "http://www.sat.gob.mx/cfd/2")
+    @XmlElement(name = "Traslado",  namespace = "http://www.sat.gob.mx/cfd/2")
     public List<Traslado> getTrasladosList(){
         return new ArrayList<Traslado>(traslados.values());
     }
 
-    @XmlElementWrapper(name="Retenciones")
-    @XmlElement(name = "Retencion")
+    @XmlElementWrapper(name="Retenciones",  namespace = "http://www.sat.gob.mx/cfd/2")
+    @XmlElement(name = "Retencion",  namespace = "http://www.sat.gob.mx/cfd/2")
      public List<Retencion> getRetencionesList(){
         return new ArrayList<Retencion>(retenciones.values());
     }

@@ -62,7 +62,7 @@ public class EmpresaNode extends AbstractNode {
     public Action[] getActions(boolean bln) {
         return new Action[]{new OpenAction(),
                     null,
-                    new CrearFactura("Ingreso"),
+                    new CrearFactura("ingreso"),
                     new CrearFactura("Arrendamiento"),
                     new CrearFactura("Honorarios"),
                     null,

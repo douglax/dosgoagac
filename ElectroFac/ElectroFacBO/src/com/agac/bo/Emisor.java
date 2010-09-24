@@ -79,7 +79,7 @@ public class Emisor implements Serializable {
         this.rfc = rfc;
         propertyChangeSupport.firePropertyChange("rfc", oldRfc, rfc);
     }
-    @XmlElement(name = "ExpedidoEn", required = true)
+    @XmlElement(name = "ExpedidoEn", required = true, namespace="http://www.sat.gob.mx/cfd/2")
     @OneToOne(cascade = CascadeType.ALL)
     private Ubicacion expedidoEn = new Ubicacion();
 
@@ -92,7 +92,7 @@ public class Emisor implements Serializable {
         this.expedidoEn = expedidoEn;
         propertyChangeSupport.firePropertyChange("expedidoEn", oldExpedidoEn, expedidoEn);
     }
-    @XmlElement(name = "DomicilioFiscal", required = true)
+    @XmlElement(name = "DomicilioFiscal", required = true, namespace="http://www.sat.gob.mx/cfd/2")
     @OneToOne(cascade = CascadeType.ALL)
     private UbicacionFiscal domicilioFiscal = new UbicacionFiscal();
 

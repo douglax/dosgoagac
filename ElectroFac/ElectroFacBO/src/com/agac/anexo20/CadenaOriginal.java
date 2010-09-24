@@ -198,7 +198,7 @@ public class CadenaOriginal {
 
     private String formatFecha(Calendar fecha) {
         String s = Integer.toString(fecha.get(Calendar.YEAR)) + "-";
-        String tmp = Integer.toString((Calendar.MONTH + 1));
+        String tmp = Integer.toString(fecha.get(Calendar.MONTH)+1);
         if (tmp.length() == 1) {
             tmp = "0" + tmp;
         }
@@ -219,7 +219,7 @@ public class CadenaOriginal {
             tmp = "0" + tmp;
         }
         s += tmp + ".";
-        s += Integer.toString(fecha.get(Calendar.MILLISECOND));
+        s += Integer.toString(fecha.get(Calendar.MILLISECOND)).substring(0, 1);
         return s;
     }
 

@@ -49,6 +49,7 @@ public class SelloDigital {
         InputStream in = new FileInputStream(fileName);
         CertificateFactory cf = CertificateFactory.getInstance("X.509");
         Certificate crl = cf.generateCertificate(in);
+        
         serialNumber = ((X509Certificate)crl).getSerialNumber();
         mPublicKey = crl.getPublicKey();
 
@@ -82,6 +83,17 @@ public class SelloDigital {
 
     public BigInteger getSerialNumber() {
         return serialNumber;
+    }
+
+    public String getSerialNumberSATFormat() {
+        String formato = serialNumber.toString(16);
+        String tmp = "";
+        int valor = 0;
+        for(int i = 0; i<formato.length()-1; i+=2){
+            valor = Integer.parseInt(formato.substring(i,i+2), 16);
+            tmp+= Character.toString((char)valor);
+        }
+        return tmp;
     }
 
 }

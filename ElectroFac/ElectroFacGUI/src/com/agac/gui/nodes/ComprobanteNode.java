@@ -7,7 +7,6 @@ import com.agac.gui.MenuTopComponent;
 import com.agac.services.DbServices;
 import java.awt.event.ActionEvent;
 import java.io.FileWriter;
-import java.io.StringWriter;
 import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.SwingUtilities;
@@ -245,8 +244,10 @@ public class ComprobanteNode extends AbstractNode {
             try {
                 JAXBContext ctx = JAXBContext.newInstance(Comprobante.class);
                 Marshaller m = ctx.createMarshaller();
+                m.setProperty(Marshaller.JAXB_ENCODING, "UTF-8");
+                m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
                 FileWriter writer = new FileWriter("c:\\temp\\archivo.xml");
-                m.marshal((Comprobante)getLookup().lookup(Comprobante.class), writer);
+                m.marshal((Comprobante) getLookup().lookup(Comprobante.class), writer);
                 writer.flush();
                 writer.close();
             } catch (Exception ex) {
