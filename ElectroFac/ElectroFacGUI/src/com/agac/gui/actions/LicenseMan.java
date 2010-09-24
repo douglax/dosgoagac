@@ -20,8 +20,7 @@ public class LicenseMan implements ActionListener {
     
     @Override
     public void actionPerformed(ActionEvent e) {
-        System.out.println("Estoy en LicenseMan");
-
+       
         LicenciasPanel lic = new LicenciasPanel();
         DialogDescriptor d2 = new DialogDescriptor(lic, "Información sobre Licencias", true, null);
 

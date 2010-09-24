@@ -15,6 +15,9 @@ import javax.swing.table.DefaultTableModel;
 import java.util.prefs.PreferenceChangeEvent;
 import java.util.prefs.PreferenceChangeListener;
 import java.util.prefs.Preferences;
+import org.openide.util.NbPreferences;
+
+import com.agac.services.StringEncrypter;
 
 /**
  *
@@ -26,16 +29,43 @@ public class LicenciasPanel extends javax.swing.JPanel {
     public LicenciasPanel() {
         initComponents();
         LlenaCampos();
-
+        //prueba();
     }
 
+
+    private void prueba(){
+        StringEncrypter.testUsingPassPhrase();
+    }
 
 
     private void LlenaCampos(){
 
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        Preferences pref = NbPreferences.forModule(OpcionesdelSistemaPanel.class);
 
-        //String Cadena = nbPreferences;
+        String licencia = pref.get("LICENCIA", "DEMO");
+
+        //Desencriptar cadena
+        StringEncrypter encripta = new StringEncrypter("My Pass Phrase");
+
+
+        String cadena = encripta.decrypt(licencia);
+        
+
+//        String cadena = encripta.decrypt(licencia);
+
+        System.out.println("encriptada: " + licencia);
+        System.out.println("desencriptada: " + cadena);
+        
+        //descomponer cadena en elementos y llenar campos
+
+        //El formato de la cadena es el siguiente
+        //  fecha#número de comprobante@RFC|RFC|RFC|
+
+        //System.out.println("primer evento # -> " + cadena.indexOf("#"));
+        //String fecha =cadena.substring(0,cadena.indexOf("#") );
+        //System.out.println("fecha-> " + fecha);
+        
 
     }
 

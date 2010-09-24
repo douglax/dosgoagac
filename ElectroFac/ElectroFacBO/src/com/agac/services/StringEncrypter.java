@@ -157,9 +157,13 @@ public class StringEncrypter {
             return new String(utf8, "UTF8");
 
         } catch (BadPaddingException e) {
+            System.out.println("BadPadding");
         } catch (IllegalBlockSizeException e) {
+            System.out.println("IllegalBlockSize");
         } catch (UnsupportedEncodingException e) {
+            System.out.println("UnSupportedEncoding");
         } catch (IOException e) {
+            System.out.println("IO");
         }
         return null;
     }
@@ -240,7 +244,7 @@ public class StringEncrypter {
         System.out.println("+----------------------------------------+");
         System.out.println();
 
-        String secretString = "Attack at dawn!";
+        String secretString = "22/07/2011#100|AAAA010101XXX|BBBB020202YYY|CCCC030303ZZZ";
         String passPhrase   = "My Pass Phrase";
 
         // Create encrypter/decrypter class
