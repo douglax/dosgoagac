@@ -20,7 +20,9 @@ public class LicenseMan implements ActionListener {
     
     @Override
     public void actionPerformed(ActionEvent e) {
-       
+
+
+        
         LicenciasPanel lic = new LicenciasPanel();
         DialogDescriptor d2 = new DialogDescriptor(lic, "Información sobre Licencias", true, null);
 
@@ -29,7 +31,7 @@ public class LicenseMan implements ActionListener {
         if (DialogDescriptor.OK_OPTION.equals(result)) {
           
         }
-
+        
 
     }
 

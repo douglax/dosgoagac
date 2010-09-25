@@ -11,6 +11,7 @@
 
 package com.agac.gui;
 
+import com.agac.bo.Emisor;
 import javax.swing.table.DefaultTableModel;
 import java.util.prefs.PreferenceChangeEvent;
 import java.util.prefs.PreferenceChangeListener;
@@ -20,6 +21,10 @@ import org.openide.util.NbPreferences;
 import com.agac.services.StringEncrypter;
 import com.agac.services.FileEncrypter;
 import java.io.ByteArrayOutputStream;
+
+import com.agac.services.DbServices;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -31,6 +36,9 @@ public class LicenciasPanel extends javax.swing.JPanel {
     public LicenciasPanel() {
         initComponents();
         LlenaCampos();
+
+        validaLicencias();
+
         //prueba();
     }
 
@@ -99,17 +107,50 @@ public class LicenciasPanel extends javax.swing.JPanel {
 
         }
         
-        //descomponer cadena en elementos y llenar campos
 
-        //El formato de la cadena es el siguiente
-        //  fecha#número de comprobante@RFC|RFC|RFC|
-
-        //System.out.println("primer evento # -> " + cadena.indexOf("#"));
-        //String fecha =cadena.substring(0,cadena.indexOf("#") );
         System.out.println("Stop! Hammertime!");
-        
-
+      
     }
+
+
+    private void validaLicencias()  {
+        // Este método valida las licencias obtenidas del archivo
+        //compara si existen los registros y si no los agrega a la BD
+
+
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        List<Emisor> lista = null;
+        String qry;
+
+        if (model.getRowCount() != 0) {
+
+            //Iterar a través de la tabla y checar VS Db
+            for (int c=0;c<model.getRowCount();c++) {
+            qry = "Select e from Emisor e where UPPER(e.rfc) = ?1";
+            lista = DbServices.getListWithParameters(qry, model.getValueAt(c, 0).toString());
+                if (lista.size() > 0 ) {
+                    Emisor emi = new Emisor();
+                    emi.setRfc(model.getValueAt(c, 0).toString().trim());
+                    try {
+                        DbServices.saveObject(emi, true);
+                    } catch (Exception e) {
+                       // throw new Exception("Ocurrio un error al guardar los datos",
+                    //e);
+                    }
+                }
+
+
+
+            }//for
+
+
+        } //if
+
+
+
+
+    } //validaLicencias
+
 
 
     /** This method is called from within the constructor to

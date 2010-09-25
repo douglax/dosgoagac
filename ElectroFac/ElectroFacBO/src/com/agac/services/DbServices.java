@@ -36,7 +36,7 @@ public class DbServices {
             }
             em.close();
             throw new Exception(
-                    "Ocurrio un error al guadar los datos, verifique que todos los campos requeridos estan llenos",
+                    "Ocurrio un error al guardar los datos, verifique que todos los campos requeridos estan llenos",
                     e);
         }
         return u;
