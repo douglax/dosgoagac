@@ -25,60 +25,62 @@ import javax.crypto.NoSuchPaddingException;
  *
  * @author Carlos Aguirre
  */
-public class SelloDigital {    
-    
-    
+public class SelloDigital {
+
     private PrivateKey mPrivateKey;
     private PublicKey mPublicKey;
     private BigInteger serialNumber;
-    
+
     public SelloDigital() {
-        super();        
+        super();
     }
-    
+
     public void cargarLlavePrivada(String fileName, String password) throws FileNotFoundException, GeneralSecurityException, IOException {
         mPrivateKey = Pkcs8KeyReader.loadKey(new File(fileName), password.toCharArray());
     }
 
-     public void cargarLlavePrivada(PrivateKey pk){
+    public void cargarLlavePrivada(PrivateKey pk) {
         mPrivateKey = pk;
     }
-    
-    public void cargarLlavePublicaDeCertificado(String fileName) throws FileNotFoundException, CertificateException, 
-        IOException{
+
+    public void cargarLlavePublicaDeCertificado(String fileName) throws FileNotFoundException, CertificateException,
+            IOException {
         InputStream in = new FileInputStream(fileName);
         CertificateFactory cf = CertificateFactory.getInstance("X.509");
         Certificate crl = cf.generateCertificate(in);
-        
-        serialNumber = ((X509Certificate)crl).getSerialNumber();
+
+        serialNumber = ((X509Certificate) crl).getSerialNumber();
         mPublicKey = crl.getPublicKey();
 
-        in.close();        
+        in.close();
     }
-    
-    public String generar(String cadenaOriginal) throws NoSuchAlgorithmException, NoSuchPaddingException, 
-        InvalidKeyException, IllegalBlockSizeException, BadPaddingException{                
+
+    public String generar(String cadenaOriginal) throws NoSuchAlgorithmException, NoSuchPaddingException,
+            InvalidKeyException, IllegalBlockSizeException, BadPaddingException {
         MessageDigest md = MessageDigest.getInstance("MD5");
-        byte[] msg = md.digest(cadenaOriginal.getBytes()); 
+        byte[] msg = md.digest(cadenaOriginal.getBytes());
+        System.out.println(getHex(msg));
         Cipher c = Cipher.getInstance("RSA");
         c.init(Cipher.ENCRYPT_MODE, mPrivateKey);
         byte[] b = c.doFinal(msg);
-        return new sun.misc.BASE64Encoder().encode(b);       
+        return new sun.misc.BASE64Encoder().encode(b);
     }
-    
-    public boolean verificar(String sello, String cadenaOriginal) throws IOException, 
-        NoSuchAlgorithmException,  NoSuchPaddingException, InvalidKeyException, IllegalBlockSizeException,  
-            BadPaddingException{
+
+    public boolean verificar(String sello, String cadenaOriginal) throws IOException,
+            NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException, IllegalBlockSizeException,
+            BadPaddingException {
         byte[] b = new sun.misc.BASE64Decoder().decodeBuffer(sello);
         Cipher c = Cipher.getInstance("RSA");
-        c.init(Cipher.DECRYPT_MODE, mPublicKey); 
+        c.init(Cipher.DECRYPT_MODE, mPublicKey);
         byte[] dec = c.doFinal(b);
         MessageDigest md = MessageDigest.getInstance("MD5");
-        byte[] msg = md.digest(cadenaOriginal.getBytes()); 
-        for(int i=0; i<dec.length; i++)
-            if(dec[i] != msg[i])    
+        byte[] msg = md.digest(cadenaOriginal.getBytes());
+        for (int i = 0; i < dec.length; i++) {
+            if (dec[i] != msg[i]) {
                 return false;
-        return true;        
+            }
+        }
+        return true;
     }
 
     public BigInteger getSerialNumber() {
@@ -89,11 +91,22 @@ public class SelloDigital {
         String formato = serialNumber.toString(16);
         String tmp = "";
         int valor = 0;
-        for(int i = 0; i<formato.length()-1; i+=2){
-            valor = Integer.parseInt(formato.substring(i,i+2), 16);
-            tmp+= Character.toString((char)valor);
+        for (int i = 0; i < formato.length() - 1; i += 2) {
+            valor = Integer.parseInt(formato.substring(i, i + 2), 16);
+            tmp += Character.toString((char) valor);
         }
         return tmp;
     }
 
+    public static String getHex(byte[] raw) {
+        String HEXES = "0123456789ABCDEF";
+        if (raw == null) {
+            return null;
+        }
+        final StringBuilder hex = new StringBuilder(2 * raw.length);
+        for (final byte b : raw) {
+            hex.append(HEXES.charAt((b & 0xF0) >> 4)).append(HEXES.charAt((b & 0x0F)));
+        }
+        return hex.toString().toLowerCase();
+    }
 }
