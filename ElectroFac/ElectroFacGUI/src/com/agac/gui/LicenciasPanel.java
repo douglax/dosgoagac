@@ -37,7 +37,7 @@ public class LicenciasPanel extends javax.swing.JPanel {
         initComponents();
         LlenaCampos();
 
-        validaLicencias();
+        //validaLicencias();
 
         //prueba();
     }
@@ -113,43 +113,6 @@ public class LicenciasPanel extends javax.swing.JPanel {
     }
 
 
-    private void validaLicencias()  {
-        // Este método valida las licencias obtenidas del archivo
-        //compara si existen los registros y si no los agrega a la BD
-
-
-        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-        List<Emisor> lista = null;
-        String qry;
-
-        if (model.getRowCount() != 0) {
-
-            //Iterar a través de la tabla y checar VS Db
-            for (int c=0;c<model.getRowCount();c++) {
-            qry = "Select e from Emisor e where UPPER(e.rfc) = ?1";
-            lista = DbServices.getListWithParameters(qry, model.getValueAt(c, 0).toString());
-                if (lista.size() > 0 ) {
-                    Emisor emi = new Emisor();
-                    emi.setRfc(model.getValueAt(c, 0).toString().trim());
-                    try {
-                        DbServices.saveObject(emi, true);
-                    } catch (Exception e) {
-                       // throw new Exception("Ocurrio un error al guardar los datos",
-                    //e);
-                    }
-                }
-
-
-
-            }//for
-
-
-        } //if
-
-
-
-
-    } //validaLicencias
 
 
 
@@ -170,6 +133,7 @@ public class LicenciasPanel extends javax.swing.JPanel {
         txtComprobantes = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTextPane1 = new javax.swing.JTextPane();
+        jButton1 = new javax.swing.JButton();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -214,6 +178,14 @@ public class LicenciasPanel extends javax.swing.JPanel {
         jTextPane1.setText(org.openide.util.NbBundle.getMessage(LicenciasPanel.class, "LicenciasPanel.jTextPane1.text")); // NOI18N
         jScrollPane2.setViewportView(jTextPane1);
 
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/agac/gui/resourses/pencil.png"))); // NOI18N
+        jButton1.setText(org.openide.util.NbBundle.getMessage(LicenciasPanel.class, "LicenciasPanel.jButton1.text")); // NOI18N
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -221,8 +193,6 @@ public class LicenciasPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 452, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 452, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                             .addComponent(jLabel2)
@@ -231,30 +201,74 @@ public class LicenciasPanel extends javax.swing.JPanel {
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                             .addComponent(jLabel1)
                             .addGap(87, 87, 87)
-                            .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(21, Short.MAX_VALUE))
+                            .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING, 0, 0, Short.MAX_VALUE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 343, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(txtComprobantes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel1)
+                            .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(txtComprobantes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(46, 46, 46)
+                        .addComponent(jButton1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(55, 55, 55))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        List<Emisor> lista = null;
+        String qry;
+
+        // Si hay registros en la tabla y además hay un renglón seleccionado
+        if (model.getRowCount() != 0 && jTable1.getSelectedRow() != -1  ) {
+
+
+            qry = "Select e from Emisor e where UPPER(e.rfc) = ?1";
+            lista = DbServices.getListWithParameters(qry, model.getValueAt(jTable1.getSelectedRow(), 0).toString());
+                if (lista.size() > 0 ) {
+                    // La clave existe, solo modificar
+                    EmisorTopComponent etc = new EmisorTopComponent();
+                    etc.setEmisor(lista.get(0));
+                    etc.open();
+                    etc.requestActive();
+                } else {
+                    //No existe, agregar
+                    EmisorTopComponent etc = new EmisorTopComponent(model.getValueAt(jTable1.getSelectedRow(), 0).toString().trim());
+                    etc.open();
+                    etc.requestActive();
+                }
+
+
+        } //if
+
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
