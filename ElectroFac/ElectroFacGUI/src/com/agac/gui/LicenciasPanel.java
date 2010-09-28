@@ -56,10 +56,15 @@ public class LicenciasPanel extends javax.swing.JPanel {
         Preferences pref = NbPreferences.forModule(OpcionesdelSistemaPanel.class);
 
         String licencia = pref.get("LICENCIA", "DEMO");
+        String password = pref.get("PASSWORD","DEMO");
 
+
+        System.out.println("Archivo-> " + licencia + " || clave-> " + password);
         //Desencriptar archivo
         
-        ByteArrayOutputStream baos = FileEncrypter.Decrypt(licencia,"pasguord");
+        ByteArrayOutputStream baos = FileEncrypter.Decrypt(licencia,password);
+
+
         if(baos != null){
  
                 System.out.println(baos.toString());
