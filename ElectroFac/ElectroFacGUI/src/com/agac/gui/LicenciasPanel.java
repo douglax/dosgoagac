@@ -12,6 +12,7 @@
 package com.agac.gui;
 
 import com.agac.bo.Emisor;
+import com.agac.bo.Licencia;
 import javax.swing.table.DefaultTableModel;
 import java.util.prefs.PreferenceChangeEvent;
 import java.util.prefs.PreferenceChangeListener;
@@ -23,6 +24,7 @@ import com.agac.services.FileEncrypter;
 import java.io.ByteArrayOutputStream;
 
 import com.agac.services.DbServices;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,6 +33,18 @@ import java.util.List;
  * @author alejandro.acosta
  */
 public class LicenciasPanel extends javax.swing.JPanel {
+
+    Licencia licencia = new Licencia();
+
+    public Licencia getLicencia() {
+        return licencia;
+    }
+
+    public void setLicencia(Licencia licencia) {
+        this.licencia = licencia;
+    }
+
+
 
     /** Creates new form LicenciasPanel */
     public LicenciasPanel() {
@@ -55,14 +69,14 @@ public class LicenciasPanel extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         Preferences pref = NbPreferences.forModule(OpcionesdelSistemaPanel.class);
 
-        String licencia = pref.get("LICENCIA", "DEMO");
+        String archivo = pref.get("LICENCIA", "DEMO");
         String password = pref.get("PASSWORD","DEMO");
 
 
-        System.out.println("Archivo-> " + licencia + " || clave-> " + password);
+        System.out.println("Archivo-> " + archivo + " || clave-> " + password);
         //Desencriptar archivo
         
-        ByteArrayOutputStream baos = FileEncrypter.Decrypt(licencia,password);
+        ByteArrayOutputStream baos = FileEncrypter.Decrypt(archivo,password);
 
 
         if(baos != null){
@@ -75,6 +89,11 @@ public class LicenciasPanel extends javax.swing.JPanel {
                 String fecha = cadena.substring(0, cadena.indexOf("\n") );
                 txtFecha.setText(fecha);
 
+                licencia.setFecha(new Date(System.currentTimeMillis()));
+                licencia.setId(Integer.valueOf("1"));
+
+
+
                 remain = cadena.substring(cadena.indexOf("\n") + 1,cadena.length());
                 System.out.println("Remain-> " + remain);
 
@@ -83,6 +102,8 @@ public class LicenciasPanel extends javax.swing.JPanel {
                 //Extraemos el número de comprobantes
                 String numero = cadena.substring(0, cadena.indexOf("\n") );
                 txtComprobantes.setText(numero);
+
+                licencia.setAutorizados( Integer.parseInt(numero.trim()));
 
                 remain = cadena.substring(cadena.indexOf("\n") + 1,cadena.length());
                 System.out.println("Remain-> " + remain.trim());
@@ -110,6 +131,9 @@ public class LicenciasPanel extends javax.swing.JPanel {
 
                 }
 
+                //prueba
+                licencia.setEmitidos(Integer.valueOf("0"));
+                licencia.setFolio("44");
         }
         
 

@@ -16,6 +16,7 @@
     <class>com.agac.bo.Impuesto</class>
     <class>com.agac.bo.Retencion</class>
     <class>com.agac.bo.Traslado</class>
+    <class>com.agac.bo.Licencia</class>
     <properties>
       <property name="toplink.jdbc.user" value=""/>
       <property name="toplink.jdbc.password" value=""/>

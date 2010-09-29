@@ -5,9 +5,12 @@
 
 package com.agac.gui.actions;
 
+import com.agac.bo.Licencia;
 import com.agac.gui.LicenciasPanel;
+import com.agac.services.DbServices;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 import org.openide.DialogDescriptor;
 import org.openide.DialogDisplayer;
 
@@ -17,7 +20,7 @@ import org.openide.DialogDisplayer;
  */
 public class LicenseMan implements ActionListener {
 
-    
+    Licencia licencia = new Licencia();
     @Override
     public void actionPerformed(ActionEvent e) {
 
@@ -29,8 +32,14 @@ public class LicenseMan implements ActionListener {
         Object result = DialogDisplayer.getDefault().notify(d2);
 
         if (DialogDescriptor.OK_OPTION.equals(result)) {
-          
-        }
+            
+//            List<Licencia> lista = null;
+//            String qry;
+//            qry = "Select l from Licencia e where UPPER(e.folio) = ?1";
+//            lista = DbServices.getListWithParameters(qry, 1);
+
+            licencia = lic.getLicencia();
+        }//if
         
 
     }
