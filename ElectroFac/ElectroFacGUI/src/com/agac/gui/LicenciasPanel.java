@@ -42,6 +42,7 @@ public class LicenciasPanel extends javax.swing.JPanel {
 
     public void setLicencia(Licencia licencia) {
         this.licencia = licencia;
+        firePropertyChange("licencia", null, licencia);
     }
 
 

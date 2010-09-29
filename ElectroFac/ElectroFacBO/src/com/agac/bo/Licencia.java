@@ -17,6 +17,7 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import javax.persistence.Id;
 import javax.persistence.Transient;
 import javax.xml.bind.annotation.XmlTransient;
 
@@ -25,30 +26,27 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author alejandro.acosta
  */
 
-@XmlAccessorType(XmlAccessType.FIELD)
+
 @Entity
 public class Licencia implements Serializable{
 
     //
-    @EmbeddedId
+    @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-    @XmlAttribute(name = "folio", required = true)
     @Column(nullable = false)
     private String folio;
 
 
-
-    @XmlAttribute(name = "autorizados", required = true)
     @Column(nullable = false)
     private int autorizados;
 
-    @XmlAttribute(name = "fecha", required = true)
+
     @Column(nullable = false)
     private Date fecha;
 
-    @XmlAttribute(name = "emitidos", required = true)
+
     @Column(nullable = false)
     private int emitidos;
 
@@ -106,8 +104,8 @@ public class Licencia implements Serializable{
 
     
 
-    @XmlTransient
-    @Transient
+  
+  
     private PropertyChangeSupport propertyChangeSupport = new PropertyChangeSupport(this);
 
     public void addPropertyChangeListener(PropertyChangeListener listener) {
