@@ -91,7 +91,7 @@ public class LicenciasPanel extends javax.swing.JPanel {
                 txtFecha.setText(fecha);
 
                 licencia.setFecha(new Date(System.currentTimeMillis()));
-                licencia.setId(Integer.valueOf("1"));
+                licencia.setId(Long.valueOf("1"));
 
 
 

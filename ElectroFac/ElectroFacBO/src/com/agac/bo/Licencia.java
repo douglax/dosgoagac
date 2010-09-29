@@ -33,7 +33,7 @@ public class Licencia implements Serializable{
     //
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private Long id;
 
     @Column(nullable = false)
     private String folio;
@@ -51,12 +51,12 @@ public class Licencia implements Serializable{
     private int emitidos;
 
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
-        int oldId = id;
+    public void setId(Long id) {
+        Long oldId = id;
         this.id = id;
         propertyChangeSupport.firePropertyChange("id", oldId, id);
     }
