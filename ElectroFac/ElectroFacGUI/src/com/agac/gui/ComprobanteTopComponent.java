@@ -1770,6 +1770,7 @@ public final class ComprobanteTopComponent extends TopComponent {
                                                 comprobante.setStatus(1);
 
                                                 comprobante = DbServices.saveObject(comprobante, true);
+                                                DbServices.ActualizaEmitidos();
                                                 comprobante.addPropertyChangeListener(new PropertyChangeListener() {
 
                                                     @Override
@@ -1788,6 +1789,7 @@ public final class ComprobanteTopComponent extends TopComponent {
                                     "MenuTopComponent")).refreshNode();
                             enableSave(false);
                             enablePrint(true);
+
                         } catch (Exception ex) {
                             Exceptions.printStackTrace(ex);
                         } finally {
@@ -1798,8 +1800,11 @@ public final class ComprobanteTopComponent extends TopComponent {
                     Object result = DialogDisplayer.getDefault().notify(msg);
                 }
 
-            }
-        }
+            } // save
+
+
+
+        } //saveCooki
 
         private class PrintCookieImpl implements PrintCookie {
 

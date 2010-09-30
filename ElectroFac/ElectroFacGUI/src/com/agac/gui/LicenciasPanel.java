@@ -42,7 +42,6 @@ public class LicenciasPanel extends javax.swing.JPanel {
 
     public void setLicencia(Licencia licencia) {
         this.licencia = licencia;
-        firePropertyChange("licencia", null, licencia);
     }
 
 
@@ -60,7 +59,7 @@ public class LicenciasPanel extends javax.swing.JPanel {
 
     private void prueba(){
         //StringEncrypter.testUsingPassPhrase();
-        FileEncrypter.Encrypt("c:\\pruebas\\clave.txt","pasguord");
+        FileEncrypter.Encrypt("c:\\pruebas\\clave2.txt","pasguord");
 
     }
 
@@ -86,11 +85,18 @@ public class LicenciasPanel extends javax.swing.JPanel {
                 String cadena = baos.toString();
                 String remain;
 
-                //Extraemos la fecha primero
-                String fecha = cadena.substring(0, cadena.indexOf("\n") );
+                //Extraemos el folio
+                String folio = cadena.substring(0, cadena.indexOf("\n") ).trim();
+                licencia.setFolio(folio);
+                remain = cadena.substring(cadena.indexOf("\n") + 1,cadena.length());
+                cadena = remain;
+
+                //Extraemos la fecha 
+                String fecha = cadena.substring(0, cadena.indexOf("\n") ).trim();
                 txtFecha.setText(fecha);
 
                 licencia.setFecha(new Date(System.currentTimeMillis()));
+                licencia.setFecha(Date.valueOf(fecha));
                 licencia.setId(Long.valueOf("1"));
 
 
@@ -100,11 +106,13 @@ public class LicenciasPanel extends javax.swing.JPanel {
 
                 cadena = remain;
 
+
+
                 //Extraemos el número de comprobantes
                 String numero = cadena.substring(0, cadena.indexOf("\n") );
                 txtComprobantes.setText(numero);
 
-                licencia.setAutorizados( Integer.parseInt(numero.trim()));
+                licencia.setAutorizados( Long.parseLong(numero.trim()));
 
                 remain = cadena.substring(cadena.indexOf("\n") + 1,cadena.length());
                 System.out.println("Remain-> " + remain.trim());
@@ -132,9 +140,24 @@ public class LicenciasPanel extends javax.swing.JPanel {
 
                 }
 
-                //prueba
-                licencia.setEmitidos(Integer.valueOf("0"));
-                licencia.setFolio("44");
+                //checar si existe la licencia y obtener el valor previo de
+                //los comprobantes autorizado
+                List<Licencia> lic = null;
+
+                String qry = "Select l from Licencia l where l.folio = ?1";
+                lic = DbServices.getListWithParameters(qry,folio);
+
+                if(lic.size() > 0) {
+                    // Existe licencia previa
+
+                    licencia.setEmitidos(lic.get(0).getEmitidos());
+                } else {
+                    licencia.setEmitidos(Long.valueOf("0"));
+                }
+
+
+                
+                
         }
         
 

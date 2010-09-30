@@ -6,6 +6,7 @@ package com.agac.gui.nodes;
 
 import com.agac.bo.Comprobante;
 import com.agac.bo.Emisor;
+import com.agac.bo.Licencia;
 import com.agac.bo.Serie;
 import com.agac.gui.ArticulosPanel;
 import com.agac.gui.ComprobanteTopComponent;
@@ -24,6 +25,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 import javax.imageio.ImageIO;
@@ -31,6 +33,7 @@ import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import org.openide.DialogDescriptor;
@@ -173,13 +176,16 @@ public class EmpresaNode extends AbstractNode {
         private String tipo = null;
 
          public CrearFactura(String tipoDeFatura) {
-            tipo = tipoDeFatura;
-            putValue(NAME, "Crear Comprobante de " + tipo);
+            
+                tipo = tipoDeFatura;
+                putValue(NAME, "Crear Comprobante de " + tipo);
+            
         }
 
         @Override
         public void actionPerformed(ActionEvent e) {
 
+            if(checaLicencia()){
             final MenuTopComponent frm =
                     (MenuTopComponent) WindowManager.getDefault().findTopComponent("MenuTopComponent");
             try {
@@ -203,8 +209,66 @@ public class EmpresaNode extends AbstractNode {
             } catch (Exception ex) {
                 Exceptions.printStackTrace(ex);
             }
-        }
-    }   
+            }
+        } //action performed
+
+        private boolean checaLicencia (){
+
+            String mensaje = "";
+            boolean valido = true;
+            List<Licencia> lic = null;
+            String qry = "Select l from Licencia l";
+            lic = DbServices.getList(qry);
+
+            if (!lic.isEmpty()) {
+                // Si hay archivo de licencia
+
+
+                //checar si la licemcia no contempla comprobantes ilimitados
+                if(lic.get(0).getAutorizados() != -1) {
+
+                // checar si no ha excedido autorizados
+                if( lic.get(0).getAutorizados() <= lic.get(0).getEmitidos()) {
+                    // No puede emitir comprobante
+                    valido = false;
+                    mensaje += "Se ha excedido en el número de Comprobantes emitidios\nque contempla su licencia de uso\n";
+                }
+
+                }
+
+
+                //checar si no ha expirado la fecha
+               java.sql.Date hoy = new java.sql.Date(System.currentTimeMillis());
+
+                if(lic.get(0).getFecha().before(hoy) ){
+                    valido = false;
+                    mensaje += "El tiempo de uso del programa ha expirado de acuerdo a la licencia\n";
+                }
+
+            } //licencia no existe
+            else {
+                valido = false;
+                mensaje += "No se encontró información de su licencia";
+            }
+
+
+            if(valido){
+                return true;
+            } else {
+
+                JOptionPane.showMessageDialog(null, mensaje,"Error por licenciamiento",JOptionPane.ERROR_MESSAGE);
+
+                return false;
+
+                //msgbox
+
+            }
+
+
+        } //checalicencia
+
+
+    } // Class CrearFactura
 
     private class AdminFolios extends AbstractAction {
 

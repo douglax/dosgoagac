@@ -92,6 +92,33 @@ public class DbServices {
             return ((Integer)num) + 1;
     }
 
+public static void ActualizaEmitidos() {
+        if (emf == null) {
+            emf = Persistence.createEntityManagerFactory("ElectroFacBOPU");
+        }
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        Query qry = em.createQuery(
+                "Select MAX(l.emitidos) from Licencia l" );
+
+        Object num = qry.getSingleResult();
+
+
+        Long siguiente = (Long) num + 1;
+
+        Query upd = em.createNativeQuery("Update Licencia set emitidos=" + siguiente);
+
+        int x = upd.executeUpdate();
+        em.getTransaction().commit();
+        em.close();
+
+
+
+
+    }
+
+
+
     public static <U> List<U> getComprobantesDelMes(String rfcEmisor, int mes, int ano) {
 
         if (emf == null) {

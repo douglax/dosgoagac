@@ -40,7 +40,7 @@ public class Licencia implements Serializable{
 
 
     @Column(nullable = false)
-    private int autorizados;
+    private Long autorizados;
 
 
     @Column(nullable = false)
@@ -48,7 +48,7 @@ public class Licencia implements Serializable{
 
 
     @Column(nullable = false)
-    private int emitidos;
+    private Long emitidos;
 
 
     public Long getId() {
@@ -57,28 +57,22 @@ public class Licencia implements Serializable{
 
     public void setId(Long id) {
         Long oldId = id;
-        this.id = id;
-        propertyChangeSupport.firePropertyChange("id", oldId, id);
     }
 
-    public int getAutorizados() {
+    public Long getAutorizados() {
         return autorizados;
     }
 
-    public void setAutorizados(int autorizados) {
-        int oldAut = autorizados;
+    public void setAutorizados(Long autorizados) {
         this.autorizados = autorizados;
-        propertyChangeSupport.firePropertyChange("autorizados", oldAut, autorizados);
     }
 
-    public int getEmitidos() {
+    public Long getEmitidos() {
         return emitidos;
     }
 
-    public void setEmitidos(int emitidos) {
-        int oldEmi = emitidos;
+    public void setEmitidos(Long emitidos) {
         this.emitidos = emitidos;
-        propertyChangeSupport.firePropertyChange("emitidos", oldEmi, emitidos);
     }
 
     public Date getFecha() {
@@ -86,9 +80,8 @@ public class Licencia implements Serializable{
     }
 
     public void setFecha(Date fecha) {
-        Date oldFecha = fecha;
         this.fecha = fecha;
-        propertyChangeSupport.firePropertyChange("fecha", oldFecha, fecha);
+
     }
 
     public String getFolio() {
@@ -96,26 +89,8 @@ public class Licencia implements Serializable{
     }
 
     public void setFolio(String folio) {
-        String oldFolio = folio;
         this.folio = folio;
-        propertyChangeSupport.firePropertyChange("folio",oldFolio,folio);
     }
-
-
-    
-
-  
-  
-    private PropertyChangeSupport propertyChangeSupport = new PropertyChangeSupport(this);
-
-    public void addPropertyChangeListener(PropertyChangeListener listener) {
-        propertyChangeSupport.addPropertyChangeListener(listener);
-
-    }
-
-    public void removePropertyChangeListener(PropertyChangeListener listener) {
-        propertyChangeSupport.removePropertyChangeListener(listener);
-     }
 
 
 }

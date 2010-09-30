@@ -32,13 +32,16 @@ public class LicenseMan implements ActionListener {
         Object result = DialogDisplayer.getDefault().notify(d2);
 
         if (DialogDescriptor.OK_OPTION.equals(result)) {
-            
-//            List<Licencia> lista = null;
-//            String qry;
-//            qry = "Select l from Licencia e where UPPER(e.folio) = ?1";
-//            lista = DbServices.getListWithParameters(qry, 1);
 
             licencia = lic.getLicencia();
+
+            try {
+            DbServices.saveObject(licencia, true);
+            } catch (Exception s) {
+
+            }
+
+
         }//if
         
 
