@@ -3,11 +3,11 @@
  * and open the template in the editor.
  */
 
-package licenseman;
+package licenciador;
 
 /**
  *
- * @author alejandro.acosta
+ * @author alex
  */
 public class Main {
 
@@ -15,9 +15,13 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
-        Licencias lic = new Licencias();
-        lic.setVisible(true);
+        
+    
+
+                NewJFrame fram = new NewJFrame();
+                
+                
+                fram.setVisible(true);
     }
 
 }
