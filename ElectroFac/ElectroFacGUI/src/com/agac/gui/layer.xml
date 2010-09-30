@@ -31,6 +31,13 @@
                 <attr name="instanceCreate" methodvalue="org.openide.awt.Actions.alwaysEnabled"/>
                 <attr name="noIconInMenu" boolvalue="false"/>
             </file>
+            <file name="com-agac-gui-actions-BackupMan.instance">
+                <attr name="delegate" newvalue="com.agac.gui.actions.BackupMan"/>
+                <attr name="displayName" bundlevalue="com.agac.gui.actions.Bundle#CTL_BackupMan"/>
+                <attr name="iconBase" stringvalue="com/agac/gui/resourses/textfield_key.png"/>
+                <attr name="instanceCreate" methodvalue="org.openide.awt.Actions.alwaysEnabled"/>
+                <attr name="noIconInMenu" boolvalue="false"/>
+            </file>
         </folder>
         <folder name="Window">
             <file name="com-agac-gui-ComprobanteAction.instance">                
@@ -107,6 +114,10 @@
             <file name="com-agac-gui-actions-LicenseMan.shadow">
                 <attr name="originalFile" stringvalue="Actions/BpelNodes/com-agac-gui-actions-LicenseMan.instance"/>
                 <attr name="position" intvalue="150"/>
+            </file>
+            <file name="com-agac-gui-actions-BackupMan.shadow">
+                <attr name="originalFile" stringvalue="Actions/BpelNodes/com-agac-gui-actions-BackupMan.instance"/>
+                <attr name="position" intvalue="180"/>
             </file>
         </folder>
         <file name="UndoRedo_hidden"/>
