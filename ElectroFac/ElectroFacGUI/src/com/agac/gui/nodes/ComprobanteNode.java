@@ -21,6 +21,7 @@ import org.openide.nodes.Children;
 import org.openide.nodes.PropertySupport;
 import org.openide.nodes.Sheet;
 import org.openide.util.Exceptions;
+import org.openide.util.NbPreferences;
 import org.openide.util.Utilities;
 import org.openide.util.lookup.Lookups;
 import org.openide.windows.WindowManager;
@@ -242,14 +243,20 @@ public class ComprobanteNode extends AbstractNode {
         @Override
         public void actionPerformed(ActionEvent e) {
             try {
+                Comprobante c = (Comprobante) getLookup().lookup(Comprobante.class);
+
                 JAXBContext ctx = JAXBContext.newInstance(Comprobante.class);
                 Marshaller m = ctx.createMarshaller();
                 m.setProperty(Marshaller.JAXB_ENCODING, "UTF-8");
                 m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
-                FileWriter writer = new FileWriter("c:\\temp\\archivo.xml");
+                FileWriter writer = new FileWriter(
+                        NbPreferences.forModule(ComprobanteNode.class).get("COMPROBANTE", "")
+                        + "/" + c.getEmisor().getRfc() + c.getSerie() + c.getFolio() + ".xml");
                 m.marshal((Comprobante) getLookup().lookup(Comprobante.class), writer);
                 writer.flush();
                 writer.close();
+                DialogDisplayer.getDefault().notify(new NotifyDescriptor.Message(
+                        "Archivo generado con exito"));
             } catch (Exception ex) {
                 Exceptions.printStackTrace(ex);
             }

@@ -4,10 +4,6 @@
  */
 package com.agac.gui;
 
-
-
-
-
 import java.awt.FileDialog;
 import org.openide.util.NbPreferences;
 import java.awt.image.BufferedImage;
@@ -15,10 +11,8 @@ import javax.imageio.ImageIO;
 import java.io.File;
 import java.io.IOException;
 import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import org.openide.windows.WindowManager;
-
-
-
 
 final class OpcionesdelSistemaPanel extends javax.swing.JPanel {
 
@@ -62,6 +56,10 @@ final class OpcionesdelSistemaPanel extends javax.swing.JPanel {
         jPanel4 = new javax.swing.JPanel();
         txtRutaReportes = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
+        txtComprobantes = new javax.swing.JTextField();
+        jButton2 = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         txtLicencia = new javax.swing.JTextField();
         btnLicencia = new javax.swing.JButton();
@@ -101,7 +99,7 @@ final class OpcionesdelSistemaPanel extends javax.swing.JPanel {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(txtEstado, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtMunicipio, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -154,7 +152,7 @@ final class OpcionesdelSistemaPanel extends javax.swing.JPanel {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(picLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(174, Short.MAX_VALUE))
+                .addContainerGap(349, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -216,7 +214,7 @@ final class OpcionesdelSistemaPanel extends javax.swing.JPanel {
                     .addComponent(txtIEPS)
                     .addComponent(txtISR)
                     .addComponent(txtIVA, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(65, Short.MAX_VALUE))
+                .addContainerGap(200, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -247,23 +245,51 @@ final class OpcionesdelSistemaPanel extends javax.swing.JPanel {
             }
         });
 
+        txtComprobantes.setText(org.openide.util.NbBundle.getMessage(OpcionesdelSistemaPanel.class, "OpcionesdelSistemaPanel.txtComprobantes.text")); // NOI18N
+
+        org.openide.awt.Mnemonics.setLocalizedText(jButton2, org.openide.util.NbBundle.getMessage(OpcionesdelSistemaPanel.class, "OpcionesdelSistemaPanel.jButton2.text")); // NOI18N
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        org.openide.awt.Mnemonics.setLocalizedText(jLabel8, org.openide.util.NbBundle.getMessage(OpcionesdelSistemaPanel.class, "OpcionesdelSistemaPanel.jLabel8.text")); // NOI18N
+
+        org.openide.awt.Mnemonics.setLocalizedText(jLabel9, org.openide.util.NbBundle.getMessage(OpcionesdelSistemaPanel.class, "OpcionesdelSistemaPanel.jLabel9.text")); // NOI18N
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(txtRutaReportes, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButton1))
+                .addContainerGap()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel8)
+                    .addComponent(txtComprobantes, javax.swing.GroupLayout.DEFAULT_SIZE, 292, Short.MAX_VALUE)
+                    .addComponent(jLabel9)
+                    .addComponent(txtRutaReportes, javax.swing.GroupLayout.DEFAULT_SIZE, 292, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton2)
+                    .addComponent(jButton1))
+                .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
+                .addComponent(jLabel9)
+                .addGap(4, 4, 4)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtRutaReportes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtComprobantes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton2))
+                .addContainerGap())
         );
 
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(OpcionesdelSistemaPanel.class, "OpcionesdelSistemaPanel.jPanel5.border.title"))); // NOI18N
@@ -292,7 +318,7 @@ final class OpcionesdelSistemaPanel extends javax.swing.JPanel {
                         .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(txtLicencia, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE))
+                    .addComponent(txtLicencia, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnLicencia))
         );
@@ -305,7 +331,8 @@ final class OpcionesdelSistemaPanel extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(58, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -317,16 +344,14 @@ final class OpcionesdelSistemaPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addGap(36, 36, 36))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addContainerGap())))
         );
@@ -335,15 +360,18 @@ final class OpcionesdelSistemaPanel extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(12, 12, 12)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(12, 12, 12))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
                     .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26))
+                .addGap(30, 30, 30))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -366,15 +394,14 @@ final class OpcionesdelSistemaPanel extends javax.swing.JPanel {
         if (optReporte2.isSelected()) {
 
             txtReporte.setText("Hoja tamaño carta\n\nLogo cuadrado de 100x100\norientación superior izquierda  ");
-            
-          try {
 
-            image = ImageIO.read(new File("com/agac/gui/resourses/report1_thumb.jpg"));
-            picLabel.setIcon(new ImageIcon( image ));
-          }
-          catch (IOException e) {
+            try {
+
+                image = ImageIO.read(new File("com/agac/gui/resourses/report1_thumb.jpg"));
+                picLabel.setIcon(new ImageIcon(image));
+            } catch (IOException e) {
                 System.out.println(e.getMessage() + " - " + e.getLocalizedMessage());
-          }
+            }
 
 
         }
@@ -382,7 +409,7 @@ final class OpcionesdelSistemaPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_optReporte2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       
+
 
         FileDialog fd = new FileDialog(WindowManager.getDefault().getMainWindow(),
                 "Archivo de reporte", FileDialog.SAVE);
@@ -391,7 +418,7 @@ final class OpcionesdelSistemaPanel extends javax.swing.JPanel {
 
 
 
-        txtRutaReportes.setText(fd.getDirectory() );
+        txtRutaReportes.setText(fd.getDirectory());
 
 
 
@@ -404,8 +431,15 @@ final class OpcionesdelSistemaPanel extends javax.swing.JPanel {
         fd.setFile("*.des");
         fd.setVisible(true);
 
-        txtLicencia.setText(fd.getDirectory() + fd.getFile() );
+        txtLicencia.setText(fd.getDirectory() + fd.getFile());
     }//GEN-LAST:event_btnLicenciaActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        final JFileChooser fc = new JFileChooser();
+        fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        fc.showOpenDialog(null);
+        txtComprobantes.setText(fc.getSelectedFile().toString());
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     void load() {
         // TODO read settings and initialize GUI
@@ -422,9 +456,9 @@ final class OpcionesdelSistemaPanel extends javax.swing.JPanel {
 
         String layout = "reporte.jasper";
 
-        txtIVA.setText(NbPreferences.forModule(OpcionesdelSistemaPanel.class).get("IVA","0.16"));
-        txtISR.setText(NbPreferences.forModule(OpcionesdelSistemaPanel.class).get("ISR","0.30"));
-        txtIEPS.setText(NbPreferences.forModule(OpcionesdelSistemaPanel.class).get("IEPS","0.50"));
+        txtIVA.setText(NbPreferences.forModule(OpcionesdelSistemaPanel.class).get("IVA", "0.16"));
+        txtISR.setText(NbPreferences.forModule(OpcionesdelSistemaPanel.class).get("ISR", "0.30"));
+        txtIEPS.setText(NbPreferences.forModule(OpcionesdelSistemaPanel.class).get("IEPS", "0.50"));
         txtLocalidad.setText(
                 NbPreferences.forModule(OpcionesdelSistemaPanel.class).get("LOCALIDAD", ""));
         txtMunicipio.setText(
@@ -434,14 +468,17 @@ final class OpcionesdelSistemaPanel extends javax.swing.JPanel {
         txtRutaReportes.setText(
                 NbPreferences.forModule(OpcionesdelSistemaPanel.class).get("RUTAREPORTES", ""));
         txtLicencia.setText(
-                NbPreferences.forModule(OpcionesdelSistemaPanel.class).get("LICENCIA","DEMO"));
+                NbPreferences.forModule(OpcionesdelSistemaPanel.class).get("LICENCIA", "DEMO"));
         txtPassword.setText(
-                NbPreferences.forModule(OpcionesdelSistemaPanel.class).get("PASSWORD","DEMO"));
-        if (NbPreferences.forModule(OpcionesdelSistemaPanel.class).get("REPORTE", "reporte.jasper").equals("reporte.jasper" )) {
-                this.optReporte1.setSelected(true);
+                NbPreferences.forModule(OpcionesdelSistemaPanel.class).get("PASSWORD", "DEMO"));
+        txtComprobantes.setText(
+                NbPreferences.forModule(OpcionesdelSistemaPanel.class).get("COMPROBANTE", ""));
+        
+        if (NbPreferences.forModule(OpcionesdelSistemaPanel.class).get("REPORTE", "reporte.jasper").equals("reporte.jasper")) {
+            this.optReporte1.setSelected(true);
         }
-        if (NbPreferences.forModule(OpcionesdelSistemaPanel.class).get("REPORTE", "reporte.jasper").equals("reporte1.jasper" )) {
-                this.optReporte2.setSelected(true);
+        if (NbPreferences.forModule(OpcionesdelSistemaPanel.class).get("REPORTE", "reporte.jasper").equals("reporte1.jasper")) {
+            this.optReporte2.setSelected(true);
         }
 
 
@@ -457,9 +494,9 @@ final class OpcionesdelSistemaPanel extends javax.swing.JPanel {
         // or:
         // SomeSystemOption.getDefault().setSomeStringProperty(someTextField.getText());
 
-      //  Preferences.userNodeForPackage(OpcionesdelSistemaPanel.class).put("IVA", txtIVA.getText() );
-      //  Preferences.userNodeForPackage(OpcionesdelSistemaPanel.class).put("ISR", txtISR.getText() );
-      //  Preferences.userNodeForPackage(OpcionesdelSistemaPanel.class).put("IEPS", txtIEPS.getText() );
+        //  Preferences.userNodeForPackage(OpcionesdelSistemaPanel.class).put("IVA", txtIVA.getText() );
+        //  Preferences.userNodeForPackage(OpcionesdelSistemaPanel.class).put("ISR", txtISR.getText() );
+        //  Preferences.userNodeForPackage(OpcionesdelSistemaPanel.class).put("IEPS", txtIEPS.getText() );
 
         String layout = "reporte.jasper";
 
@@ -470,9 +507,13 @@ final class OpcionesdelSistemaPanel extends javax.swing.JPanel {
         NbPreferences.forModule(OpcionesdelSistemaPanel.class).put("MUNICIPIO", txtMunicipio.getText());
         NbPreferences.forModule(OpcionesdelSistemaPanel.class).put("ESTADO", txtEstado.getText());
         NbPreferences.forModule(OpcionesdelSistemaPanel.class).put("RUTAREPORTES", txtRutaReportes.getText());
-        NbPreferences.forModule(OpcionesdelSistemaPanel.class).put("LICENCIA",txtLicencia.getText());
-        NbPreferences.forModule(OpcionesdelSistemaPanel.class).put("PASSWORD",txtPassword.getText());
-        if (optReporte2.isSelected()) layout = "reporte1.jasper";
+        NbPreferences.forModule(OpcionesdelSistemaPanel.class).put("LICENCIA", txtLicencia.getText());
+        NbPreferences.forModule(OpcionesdelSistemaPanel.class).put("PASSWORD", txtPassword.getText());
+        NbPreferences.forModule(OpcionesdelSistemaPanel.class).put("COMPROBANTE", txtComprobantes.getText());
+        
+        if (optReporte2.isSelected()) {
+            layout = "reporte1.jasper";
+        }
 
         NbPreferences.forModule(OpcionesdelSistemaPanel.class).put("REPORTE", layout);
 
@@ -486,6 +527,7 @@ final class OpcionesdelSistemaPanel extends javax.swing.JPanel {
     private javax.swing.ButtonGroup btnGroupPlantillas;
     private javax.swing.JButton btnLicencia;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -493,6 +535,8 @@ final class OpcionesdelSistemaPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -502,6 +546,7 @@ final class OpcionesdelSistemaPanel extends javax.swing.JPanel {
     private javax.swing.JRadioButton optReporte1;
     private javax.swing.JRadioButton optReporte2;
     private javax.swing.JLabel picLabel;
+    private javax.swing.JTextField txtComprobantes;
     private javax.swing.JTextField txtEstado;
     private javax.swing.JTextField txtIEPS;
     private javax.swing.JTextField txtISR;

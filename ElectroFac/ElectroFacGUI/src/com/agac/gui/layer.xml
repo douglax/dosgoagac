@@ -61,10 +61,6 @@
     <folder name="Menu">
         <file name="Edit_hidden"/>
         <folder name="File">
-            <file name="com-agac-gui-actions-NewEmisor.shadow">
-                <attr name="originalFile" stringvalue="Actions/BpelNodes/com-agac-gui-actions-NewEmisor.instance"/>
-                <attr name="position" intvalue="300"/>
-            </file>
             <file name="com-agac-gui-actions-NuevoCliente-separatorBefore.instance">
                 <attr name="instanceClass" stringvalue="javax.swing.JSeparator"/>
                 <attr name="position" intvalue="0"/>
@@ -106,10 +102,6 @@
             <file name="com-agac-gui-actions-NuevoCliente.shadow">
                 <attr name="originalFile" stringvalue="Actions/BpelNodes/com-agac-gui-actions-NuevoCliente.instance"/>
                 <attr name="position" intvalue="30"/>
-            </file>
-            <file name="com-agac-gui-actions-NewEmisor.shadow">
-                <attr name="originalFile" stringvalue="Actions/BpelNodes/com-agac-gui-actions-NewEmisor.instance"/>
-                <attr name="position" intvalue="40"/>
             </file>
             <file name="com-agac-gui-actions-LicenseMan.shadow">
                 <attr name="originalFile" stringvalue="Actions/BpelNodes/com-agac-gui-actions-LicenseMan.instance"/>
