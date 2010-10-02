@@ -80,8 +80,8 @@ public final class ComprobanteTopComponent extends TopComponent {
     private static Color ColorBotonTrue = Color.blue;
     private static Color ColorBotonFalse = Color.black;
 
-    private boolean editandoConcepto = false;
-    private int indexConcepto = 0;
+    
+    
 
     public void setIsNew(boolean val) {
         isNew = val;
@@ -1173,6 +1173,7 @@ public final class ComprobanteTopComponent extends TopComponent {
             comprobante.setTotal(comprobante.calcularTotal());
             jLabel33.setText(nf.format(comprobante.getTotal().doubleValue()));
 
+
         } catch (Exception ex) {
             Exception e = new Exception("No se pudo agregar el concepto, verifique los datos");
             NotifyDescriptor n = new NotifyDescriptor.Exception(e);
@@ -1349,6 +1350,7 @@ public final class ComprobanteTopComponent extends TopComponent {
 
                     comprobante.getConceptos().remove(posicion);
 
+                    refrescaIva();
                     saveNode.enableSave(true);
 
 
@@ -1399,8 +1401,7 @@ public final class ComprobanteTopComponent extends TopComponent {
 
         if(jTable1.getSelectedRow() != -1) {
 
-           editandoConcepto = true;
-           indexConcepto = jTable1.getSelectedRow();
+
            // Llenamos componentes con valores del objeto
 
            this.txtCantidad.setText(String.valueOf(comprobante.getConceptos().get(jTable1.getSelectedRow()).getCantidad()));
@@ -1889,6 +1890,14 @@ public final class ComprobanteTopComponent extends TopComponent {
 
         NumberFormat nf = NumberFormat.getCurrencyInstance();
         lblIVA.setText(nf.format(comprobante.getIVA()));
+
+        btnImpuestos.setEnabled(true);
+
+        /*if (comprobante.getImpuesto().getTraslados().isEmpty() ||
+                comprobante.getImpuesto().getRetenciones().isEmpty()) {
+            btnImpuestos.setEnabled(false);
+        } */
+
     }
 
 

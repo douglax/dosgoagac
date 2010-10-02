@@ -27,6 +27,10 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
 import org.openide.util.NbPreferences;
+import java.util.Map;
+import java.util.TreeMap;
+
+
 
 /**
  *
@@ -56,14 +60,19 @@ public class ImpuestosPanel extends javax.swing.JPanel {
 
         // recorremos primero Retenciones
 
+
+        Map<String, Retencion> retencionMap = new TreeMap<String, Retencion>();
+
         List<Retencion> retencionList = new ArrayList<Retencion>();
 //        retencionList = impuesto.getRetenciones() ;
-        for (Retencion r : retencionList) {
-            
+
+        for (Retencion r: retencionMap.values()) {
+
             modelo.addRow(new Object[]{"Retencion", r.getImpuesto(), r.getImporte(), null});
             impuesto.getTotalImpuestosRetenidos().add(r.getImporte());
             //totRet.add(r.getImporte());
         }
+
         // luego recorremos traslados
 
         ArrayList<Traslado> trasladoList = new ArrayList<Traslado>();
