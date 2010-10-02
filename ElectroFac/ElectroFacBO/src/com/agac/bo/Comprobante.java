@@ -56,11 +56,11 @@ public class Comprobante implements Serializable {
     @XmlElement(name = "Receptor", required = true, namespace = "http://www.sat.gob.mx/cfd/2")
     @ManyToOne
     private Receptor receptor;
-    @XmlElementWrapper(name = "Conceptos", namespace="http://www.sat.gob.mx/cfd/2")
-    @XmlElement(name = "Concepto", namespace="http://www.sat.gob.mx/cfd/2")
+    @XmlElementWrapper(name = "Conceptos", namespace = "http://www.sat.gob.mx/cfd/2")
+    @XmlElement(name = "Concepto", namespace = "http://www.sat.gob.mx/cfd/2")
     @OneToMany(cascade = CascadeType.ALL)
     private List<Concepto> conceptos;
-    @XmlElement(name = "Impuestos", required = true, namespace="http://www.sat.gob.mx/cfd/2")
+    @XmlElement(name = "Impuestos", required = true, namespace = "http://www.sat.gob.mx/cfd/2")
     @OneToOne(cascade = CascadeType.ALL)
     private Impuesto impuesto;
     @XmlAttribute(required = true)
@@ -408,16 +408,24 @@ public class Comprobante implements Serializable {
     }
 
     public BigDecimal calcularImpuestos() {
-        BigDecimal tot = new BigDecimal("0");
+        BigDecimal totTras = new BigDecimal("0");
+        BigDecimal totRet = new BigDecimal("0");
+
         if (impuesto != null) {
-            for (Traslado t : impuesto.getTraslados().values()) {
-                tot = tot.add(t.getImporte());
+            if (impuesto.getTraslados() != null) {
+                for (Traslado t : impuesto.getTraslados().values()) {
+                    totTras = totTras.add(t.getImporte());
+                }
+                impuesto.setTotalImpuestosTrasladados(totTras);
             }
-            for (Retencion r : impuesto.getRetenciones().values()) {
-                tot = tot.add(r.getImporte());
+            if (impuesto.getRetenciones() != null) {
+                for (Retencion r : impuesto.getRetenciones().values()) {
+                    totRet = totRet.add(r.getImporte());
+                }
+                impuesto.setTotalImpuestosRetenidos(totRet);
             }
         }
-        return tot;
+        return totTras.add(totRet);
     }
 
     public BigDecimal calcularTotal() {

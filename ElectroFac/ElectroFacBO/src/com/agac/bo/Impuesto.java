@@ -39,76 +39,66 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 })
 @Entity
 public class Impuesto implements Serializable {
-    
-    @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
-    private Long id;
-    
-    @OneToMany(cascade=CascadeType.ALL)
-    @MapKey(name="impuesto")
-    private Map<String,Retencion> retenciones;
-    
-    @OneToMany(cascade=CascadeType.ALL)
-    @MapKey(name="impuesto")
-    private Map<String,Traslado> traslados;
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+    @OneToMany(cascade = CascadeType.ALL)
+    @MapKey(name = "impuesto")
+    private Map<String, Retencion> retenciones;
+    @OneToMany(cascade = CascadeType.ALL)
+    @MapKey(name = "impuesto")
+    private Map<String, Traslado> traslados;
     @XmlJavaTypeAdapter(BigDecimalAdapter.class)
     @XmlAttribute
     private BigDecimal totalImpuestosRetenidos;
-
     @XmlJavaTypeAdapter(BigDecimalAdapter.class)
     @XmlAttribute
     private BigDecimal totalImpuestosTrasladados;
 
-    public Map<String,Retencion> getRetenciones() {
-        if (retenciones == null) {
-            retenciones = new TreeMap<String,Retencion>();
-        }
+    public Map<String, Retencion> getRetenciones() {
+
         return retenciones;
     }
 
-
-    public void setRetenciones(Map<String,Retencion> retenciones) {
-        Map<String,Retencion> oldParte = this.retenciones;
+    public void setRetenciones(Map<String, Retencion> retenciones) {
+        Map<String, Retencion> oldParte = this.retenciones;
         this.retenciones = retenciones;
         propertyChangeSupport.firePropertyChange("retencion", oldParte, retenciones);
     }
 
-
-    public Map<String,Traslado> getTraslados() {
+    public Map<String, Traslado> getTraslados() {
         if (traslados == null) {
-            traslados = new TreeMap<String,Traslado>();
+            traslados = new TreeMap<String, Traslado>();
         }
         return traslados;
     }
 
-
-    public void setTraslados(Map<String,Traslado> traslados) {
-        Map<String,Traslado> oldParte = this.traslados;
+    public void setTraslados(Map<String, Traslado> traslados) {
+        Map<String, Traslado> oldParte = this.traslados;
         this.traslados = traslados;
         propertyChangeSupport.firePropertyChange("traslados", oldParte, traslados);
     }
 
-
     public BigDecimal getTotalImpuestosRetenidos() {
-        return totalImpuestosRetenidos;
+        if (totalImpuestosRetenidos.equals(new BigDecimal("0"))) {
+            return null;
+        } else {
+            return totalImpuestosRetenidos;
+        }
     }
-
 
     public void setTotalImpuestosRetenidos(BigDecimal value) {
         this.totalImpuestosRetenidos = value;
     }
 
-
     public BigDecimal getTotalImpuestosTrasladados() {
         return totalImpuestosTrasladados;
     }
 
-
     public void setTotalImpuestosTrasladados(BigDecimal value) {
         this.totalImpuestosTrasladados = value;
     }
-
     @Transient
     private PropertyChangeSupport propertyChangeSupport = new PropertyChangeSupport(this);
 
@@ -127,16 +117,20 @@ public class Impuesto implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
-    
-    @XmlElementWrapper(name="Traslados",  namespace = "http://www.sat.gob.mx/cfd/2")
-    @XmlElement(name = "Traslado",  namespace = "http://www.sat.gob.mx/cfd/2")
-    public List<Traslado> getTrasladosList(){
+
+    @XmlElementWrapper(name = "Traslados", namespace = "http://www.sat.gob.mx/cfd/2")
+    @XmlElement(name = "Traslado", namespace = "http://www.sat.gob.mx/cfd/2")
+    public List<Traslado> getTrasladosList() {
         return new ArrayList<Traslado>(traslados.values());
     }
 
-    @XmlElementWrapper(name="Retenciones",  namespace = "http://www.sat.gob.mx/cfd/2")
-    @XmlElement(name = "Retencion",  namespace = "http://www.sat.gob.mx/cfd/2")
-     public List<Retencion> getRetencionesList(){
-        return new ArrayList<Retencion>(retenciones.values());
+    @XmlElementWrapper(name = "Retenciones", namespace = "http://www.sat.gob.mx/cfd/2")
+    @XmlElement(name = "Retencion", namespace = "http://www.sat.gob.mx/cfd/2")
+    public List<Retencion> getRetencionesList() {
+        if (retenciones == null || retenciones.isEmpty()) {
+            return null;
+        } else {
+            return new ArrayList<Retencion>(retenciones.values());
+        }
     }
 }
