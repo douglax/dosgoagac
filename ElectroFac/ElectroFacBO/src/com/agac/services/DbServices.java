@@ -2,11 +2,17 @@ package com.agac.services;
 
 import com.agac.bo.Emisor;
 import com.agac.bo.Serie;
+import java.sql.Connection;
+import java.sql.DriverManager;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
+import oracle.toplink.essentials.internal.ejb.cmp3.EntityManagerImpl;
+import oracle.toplink.essentials.internal.sessions.AbstractSession;
+import oracle.toplink.essentials.sessions.UnitOfWork;
+import oracle.toplink.essentials.threetier.ClientSession;
 
 /**
  *
@@ -230,4 +236,19 @@ public static void ActualizaEmitidos() {
         em.close();
         return obj;
     }
+
+
+     public static Connection getDBconnection(){
+        if (emf == null) {
+            emf = Persistence.createEntityManagerFactory("ElectroFacBOPU");
+        }
+
+        oracle.toplink.essentials.ejb.cmp3.EntityManager em =
+               ( oracle.toplink.essentials.ejb.cmp3.EntityManager)emf.createEntityManager().getDelegate();
+        Connection conn = (Connection)em.getSession().getLogin().connectToDatasource(null);
+
+           //System.out.println(emf.createEntityManager().getDelegate());
+        return conn;
+}
+    
 }

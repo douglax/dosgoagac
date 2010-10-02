@@ -34,7 +34,7 @@
             <file name="com-agac-gui-actions-BackupMan.instance">
                 <attr name="delegate" newvalue="com.agac.gui.actions.BackupMan"/>
                 <attr name="displayName" bundlevalue="com.agac.gui.actions.Bundle#CTL_BackupMan"/>
-                <attr name="iconBase" stringvalue="com/agac/gui/resourses/textfield_key.png"/>
+                <attr name="iconBase" stringvalue="com/agac/gui/resourses/database_save.png"/>
                 <attr name="instanceCreate" methodvalue="org.openide.awt.Actions.alwaysEnabled"/>
                 <attr name="noIconInMenu" boolvalue="false"/>
             </file>

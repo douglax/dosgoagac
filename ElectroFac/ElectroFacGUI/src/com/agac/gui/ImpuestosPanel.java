@@ -75,9 +75,12 @@ public class ImpuestosPanel extends javax.swing.JPanel {
 
         // luego recorremos traslados
 
+        Map<String, Traslado> trasladoMap = new TreeMap<String, Traslado>();
+
         ArrayList<Traslado> trasladoList = new ArrayList<Traslado>();
-        trasladoList = (ArrayList) impuesto.getTraslados() ;
-        for (Traslado t : trasladoList) {
+        //trasladoList = (ArrayList) impuesto.getTraslados() ;
+        
+        for (Traslado t : trasladoMap.values()) {
             //TM = t.getImporte();
             modelo.addRow(new Object[]{"Traslado", t.getImpuesto(), t.getImporte(), t.getTasa() });
             impuesto.getTotalImpuestosTrasladados().add(t.getImporte());
@@ -413,6 +416,9 @@ public class ImpuestosPanel extends javax.swing.JPanel {
 
         DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
         ArrayList<Traslado> Tlist = new ArrayList<Traslado>();
+
+        Map<String, Traslado> Tmap = new TreeMap<String, Traslado>();
+
         Traslado T = new Traslado();
 
         while (modelo.getRowCount() > 0) {
@@ -428,8 +434,12 @@ public class ImpuestosPanel extends javax.swing.JPanel {
         T.setImpuesto("I.V.A.");
         T.setImporte(this.getSubTot().multiply(new BigDecimal(IVAdefault)));
         T.setTasa(new BigDecimal(IVAdefault));
-        Tlist.add(T);
-        
+
+
+        //Tlist.add(T);
+
+        Tmap.put("I.V.A.", T);
+
         //modificamos el objeto local impuesto
         impuesto.setRetenciones(null);
 //        impuesto.setTraslados(Tlist);

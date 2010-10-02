@@ -6,6 +6,7 @@
 package com.agac.gui.actions;
 
 import com.agac.bo.Licencia;
+import com.agac.gui.BackupPanel;
 import com.agac.gui.LicenciasPanel;
 import com.agac.services.DbServices;
 import java.awt.event.ActionEvent;
@@ -26,8 +27,9 @@ public class BackupMan implements ActionListener{
 
 
 
-        LicenciasPanel lic = new LicenciasPanel();
-        DialogDescriptor d2 = new DialogDescriptor(lic, "Información sobre Licencias", true, null);
+        BackupPanel bac = new BackupPanel();
+            //LicenciasPanel lic = new LicenciasPanel();
+        DialogDescriptor d2 = new DialogDescriptor(bac, "Respaldo / Recuperación de la Base de Datos", true, null);
 
         Object result = DialogDisplayer.getDefault().notify(d2);
 

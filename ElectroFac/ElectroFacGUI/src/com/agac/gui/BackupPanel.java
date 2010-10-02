@@ -10,6 +10,7 @@
  */
 package com.agac.gui;
 
+import com.agac.services.DbServices;
 import java.awt.FileDialog;
 import java.sql.CallableStatement;
 import java.sql.Connection;
@@ -202,7 +203,7 @@ public class BackupPanel extends javax.swing.JPanel {
         fd.setFile("*.bkp");
         fd.setVisible(true);
 
-        txtLoad.setText(fd.getDirectory() + fd.getFile());
+        txtLoad.setText(fd.getDirectory() );
     }//GEN-LAST:event_btnLoadActionPerformed
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
@@ -216,13 +217,20 @@ public class BackupPanel extends javax.swing.JPanel {
 
     private void btnBackupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackupActionPerformed
 
-        try {
-            InitialContext ic = new InitialContext();
+     try {
+            //Class.forName("org.apache.derby.jdbc.EmbeddedDriver");
+            //java.sql.Connection conn = DriverManager.getConnection("jdbc:derby:efactura");
+            
 
-            DataSource ds = (DataSource) ic.lookup("java:comp/env/jdbc/efactura");
-            Connection con = ds.getConnection();
-            backupDatabase(con, txtSave.getText());
+         System.out.println(DbServices.getDBconnection());
+            backupDatabase(DbServices.getDBconnection(), txtSave.getText() );
+
+            //backupDatabase(conn, txtSave.getText() );
+
         } catch (Exception c) {
+            System.out.println("************* no jaló !!!! *****************");
+            System.out.println(c.getMessage());
+            System.out.println(c.getStackTrace());
         }
 
 
@@ -253,7 +261,7 @@ public class BackupPanel extends javax.swing.JPanel {
     }
 
     private void restoreDatabase(String filename) throws SQLException {
-        String dbURL = "jdbc:derby:salesdb;restoreFrom=" + filename;
+        String dbURL = "jdbc:derby:efactura;restoreFrom=" + filename;
         Connection conn = DriverManager.getConnection(dbURL);
 
     }
