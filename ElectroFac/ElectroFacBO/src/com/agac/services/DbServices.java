@@ -83,29 +83,29 @@ public class DbServices {
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
         Query qry = em.createQuery(
-                "Select MAX(c.folio) from Comprobante c where c.emisor = ?1 " +
-                "and c.anoAprobacion = ?2 and c.serie = ?3 and c.noAprobacion = ?4");
+                "Select MAX(c.folio) from Comprobante c where c.emisor = ?1 "
+                + "and c.anoAprobacion = ?2 and c.serie = ?3 and c.noAprobacion = ?4");
         qry = qry.setParameter(1, emisor).setParameter(2, serie.getAnoAprob()).setParameter(
                 3, serie.getNumSerie()).setParameter(4, Integer.parseInt(serie.getNumAutorización()));
         Object num = qry.getSingleResult();
         em.getTransaction().commit();
         em.close();
-        if(num == null){
+        if (num == null) {
             num = serie.getFolioInicial().intValue();
-            return (Integer)num;
+            return (Integer) num;
+        } else {
+            return ((Integer) num) + 1;
         }
-        else
-            return ((Integer)num) + 1;
     }
 
-public static void ActualizaEmitidos() {
+    public static void ActualizaEmitidos() {
         if (emf == null) {
             emf = Persistence.createEntityManagerFactory("ElectroFacBOPU");
         }
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
         Query qry = em.createQuery(
-                "Select MAX(l.emitidos) from Licencia l" );
+                "Select MAX(l.emitidos) from Licencia l");
 
         Object num = qry.getSingleResult();
 
@@ -122,8 +122,6 @@ public static void ActualizaEmitidos() {
 
 
     }
-
-
 
     public static <U> List<U> getComprobantesDelMes(String rfcEmisor, int mes, int ano) {
 
@@ -144,9 +142,9 @@ public static void ActualizaEmitidos() {
 
         //Version 2
         Query query = em.createNativeQuery(
-        "select r.rfc, c.serie, c.folio, c.noaprobacion, c.fecha, c.total,'IVA' as \"IVA\", '1' as \"Estado\", c.ID " +
-        "from   COMPROBANTE c inner join EMISOR e on (c.EMISOR_ID = e.ID) inner join Receptor r on (c.receptor_id = r.ID) " +
-        "where e.RFC = '" + rfcEmisor + "' and MONTH(c.FECHA) = " + mes + " and YEAR(c.fecha) = " + ano);
+                "select r.rfc, c.serie, c.folio, c.noaprobacion, c.fecha, c.total,'IVA' as \"IVA\", '1' as \"Estado\", c.ID "
+                + "from   COMPROBANTE c inner join EMISOR e on (c.EMISOR_ID = e.ID) inner join Receptor r on (c.receptor_id = r.ID) "
+                + "where e.RFC = '" + rfcEmisor + "' and MONTH(c.FECHA) = " + mes + " and YEAR(c.fecha) = " + ano);
 
 
         //List resultRows = query.getResultList();
@@ -157,8 +155,8 @@ public static void ActualizaEmitidos() {
         return l;
 
     }
-    
- public static <U> List<U> getComprobantesDelMesPrueba(String rfcEmisor, int mes, int ano) {
+
+    public static <U> List<U> getComprobantesDelMesPrueba(String rfcEmisor, int mes, int ano) {
 
         if (emf == null) {
             emf = Persistence.createEntityManagerFactory("ElectroFacBOPU");
@@ -177,9 +175,9 @@ public static void ActualizaEmitidos() {
 
         //Version 2
         Query query = em.createNativeQuery(
-        "select r.rfc, c.serie, c.folio, c.noaprobacion, c.fecha, c.total,'IVA' as \"IVA\", '1' as \"Estado\", c.ID " +
-        "from   COMPROBANTE c inner join EMISOR e on (c.EMISOR_ID = e.ID) inner join Receptor r on (c.receptor_id = r.ID) " +
-        "where e.RFC = '" + rfcEmisor + "' and MONTH(c.FECHA) = " + mes + " and YEAR(c.fecha) = " + ano);
+                "select r.rfc, c.serie, c.folio, c.noaprobacion, c.fecha, c.total,'IVA' as \"IVA\", '1' as \"Estado\", c.ID "
+                + "from   COMPROBANTE c inner join EMISOR e on (c.EMISOR_ID = e.ID) inner join Receptor r on (c.receptor_id = r.ID) "
+                + "where e.RFC = '" + rfcEmisor + "' and MONTH(c.FECHA) = " + mes + " and YEAR(c.fecha) = " + ano);
 
 
         //List resultRows = query.getResultList();
@@ -208,7 +206,7 @@ public static void ActualizaEmitidos() {
         }
     }
 
-    public static <U> U find(Class<U> u, Object pk){
+    public static <U> U find(Class<U> u, Object pk) {
         if (emf == null) {
             emf = Persistence.createEntityManagerFactory("ElectroFacBOPU");
         }
@@ -231,24 +229,53 @@ public static void ActualizaEmitidos() {
         for (int i = 0; i < params.length; i++) {
             qry = qry.setParameter(i + 1, params[i]);
         }
-        U obj = (U)qry.getSingleResult();
+        U obj = (U) qry.getSingleResult();
         em.getTransaction().commit();
         em.close();
         return obj;
     }
 
-
-     public static Connection getDBconnection(){
+    public static Connection getDBconnection() {
         if (emf == null) {
             emf = Persistence.createEntityManagerFactory("ElectroFacBOPU");
         }
 
         oracle.toplink.essentials.ejb.cmp3.EntityManager em =
-               ( oracle.toplink.essentials.ejb.cmp3.EntityManager)emf.createEntityManager().getDelegate();
-        Connection conn = (Connection)em.getSession().getLogin().connectToDatasource(null);
+                (oracle.toplink.essentials.ejb.cmp3.EntityManager) emf.createEntityManager().getDelegate();
+        Connection conn = (Connection) em.getSession().getLogin().connectToDatasource(null);
 
-           //System.out.println(emf.createEntityManager().getDelegate());
+        //System.out.println(emf.createEntityManager().getDelegate());
         return conn;
-}
-    
+    }
+
+    public static void backupDB(String s, String ruta) {
+        System.out.println("Entrando a backupDB");
+        if (emf == null) {
+            emf = Persistence.createEntityManagerFactory("ElectroFacBOPU");
+        }
+
+        System.out.println("checamos si emf == null");
+
+        EntityManager em = emf.createEntityManager();
+
+        System.out.println("creamos entitymanager em");
+
+
+        em.getTransaction().begin();
+        System.out.println("Inicia transacción");
+        Query qry = em.createNativeQuery(s);
+        System.out.println("creamos nativequery");
+
+
+        qry = qry.setParameter(1, ruta);
+
+
+        qry.executeUpdate();
+        System.out.println("Ejecutamos query");
+        em.getTransaction().commit();
+        em.close();
+        //return obj;
+
+
+    }
 }

@@ -18,9 +18,11 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
+import javax.swing.JFileChooser;
 import org.openide.DialogDisplayer;
 import org.openide.NotifyDescriptor;
 import org.openide.NotifyDescriptor.Confirmation;
+import org.openide.NotifyDescriptor.Message;
 import org.openide.windows.WindowManager;
 
 /**
@@ -134,6 +136,9 @@ public class BackupPanel extends javax.swing.JPanel {
             }
         });
 
+        jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
+        jScrollPane1.setEnabled(false);
+
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
@@ -149,17 +154,16 @@ public class BackupPanel extends javax.swing.JPanel {
                         .addComponent(btnRestore)
                         .addContainerGap())
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(txtLoad, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
-                        .addComponent(btnLoad)
-                        .addGap(21, 21, 21))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(177, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(53, 53, 53))
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 409, Short.MAX_VALUE)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(txtLoad, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                                .addComponent(btnLoad)))
+                        .addGap(21, 21, 21))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -198,36 +202,44 @@ public class BackupPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLoadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoadActionPerformed
-        FileDialog fd = new FileDialog(WindowManager.getDefault().getMainWindow(),
-                "Archivo de Respaldo", FileDialog.LOAD);
-        fd.setFile("*.bkp");
-        fd.setVisible(true);
 
-        txtLoad.setText(fd.getDirectory() );
+        final JFileChooser fc = new JFileChooser();
+        fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        fc.showOpenDialog(null);
+        txtLoad.setText(fc.getSelectedFile().toString());
+
     }//GEN-LAST:event_btnLoadActionPerformed
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-        FileDialog fd = new FileDialog(WindowManager.getDefault().getMainWindow(),
-                "Archivo de Respaldo", FileDialog.SAVE);
-        fd.setFile("*.bkp");
-        fd.setVisible(true);
 
-        txtSave.setText(fd.getDirectory() + fd.getFile());
+
+        final JFileChooser fc = new JFileChooser();
+        fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        fc.showOpenDialog(null);
+        txtSave.setText(fc.getSelectedFile().toString());
+
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void btnBackupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackupActionPerformed
 
-     try {
+        try {
             //Class.forName("org.apache.derby.jdbc.EmbeddedDriver");
             //java.sql.Connection conn = DriverManager.getConnection("jdbc:derby:efactura");
-            
 
-         System.out.println(DbServices.getDBconnection());
-            backupDatabase(DbServices.getDBconnection(), txtSave.getText() );
+
+            System.out.println("Stop!!!");
+            //  backupDatabase(DbServices.getDBconnection(), txtSave.getText() );
 
             //backupDatabase(conn, txtSave.getText() );
 
+            String sqlstmt = "CALL SYSCS_UTIL.SYSCS_BACKUP_DATABASE(?)";
+            DbServices.backupDB(sqlstmt, txtSave.getText());
+            Message msg = new NotifyDescriptor.Message("El respaldo de la base de datos fue realizado con éxito!", NotifyDescriptor.INFORMATION_MESSAGE);
+            DialogDisplayer.getDefault().notify(msg);
+
         } catch (Exception c) {
+            Message msg = new NotifyDescriptor.Message("Ocurrió un error durante el respaldo de la Base de Datos\nIntente nuevamente", NotifyDescriptor.ERROR_MESSAGE);
+            DialogDisplayer.getDefault().notify(msg);
             System.out.println("************* no jaló !!!! *****************");
             System.out.println(c.getMessage());
             System.out.println(c.getStackTrace());
@@ -239,32 +251,34 @@ public class BackupPanel extends javax.swing.JPanel {
     private void btnRestoreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRestoreActionPerformed
 
         Confirmation msg = new NotifyDescriptor.Confirmation(
-                "Los cambios que está a punto de efectuar son irreversibles" +
-                "\nEstá seguro de continuar?", "Restaurar base de datos",
+                "Los cambios que está a punto de efectuar son irreversibles"
+                + "\nEstá seguro de continuar?", "Restaurar base de datos",
                 NotifyDescriptor.OK_CANCEL_OPTION,
                 NotifyDescriptor.WARNING_MESSAGE);
         Object result = DialogDisplayer.getDefault().notify(msg);
         if (NotifyDescriptor.YES_OPTION.equals(result)) {
             try {
-                restoreDatabase(txtLoad.getText());
+                // DbServices.closeDbServices();
+
+                // Class.forName("org.apache.derby.jdbc.EmbeddedDriver");
+                String dbURL = "jdbc:derby:efactura;restoreFrom=" + txtLoad.getText();
+                Connection conn = DriverManager.getConnection(dbURL);
+                //conn.close();
+
+                Message msgok = new NotifyDescriptor.Message("La recuperación de la base de datos fue exitosa!", NotifyDescriptor.INFORMATION_MESSAGE);
+                DialogDisplayer.getDefault().notify(msgok);
             } catch (Exception r) {
+
+                System.out.println("********************* cagadero *******************");
+                System.out.println(r.getMessage());
+                Message msgmal = new NotifyDescriptor.Message(
+                        "Ocurrió un error en la recuperación de la Base de Datos", NotifyDescriptor.ERROR_MESSAGE);
+
+                DialogDisplayer.getDefault().notify(msgmal);
+
             }
         }
     }//GEN-LAST:event_btnRestoreActionPerformed
-
-    private void backupDatabase(Connection conn, String filename) throws SQLException {
-        String sqlstmt = "CALL SYSCS_UTIL.SYSCS_BACKUP_DATABASE(?)";
-        CallableStatement cs = conn.prepareCall(sqlstmt);
-        cs.setString(1, filename);
-        cs.execute();
-        cs.close();
-    }
-
-    private void restoreDatabase(String filename) throws SQLException {
-        String dbURL = "jdbc:derby:efactura;restoreFrom=" + filename;
-        Connection conn = DriverManager.getConnection(dbURL);
-
-    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBackup;
     private javax.swing.JButton btnLoad;
