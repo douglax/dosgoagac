@@ -11,7 +11,6 @@
 
 package com.agac.gui;
 
-import com.agac.bo.Emisor;
 import com.agac.bo.Receptor;
 import com.agac.services.DbServices;
 import java.util.List;
@@ -113,8 +112,8 @@ public class BuscarClienteForm extends javax.swing.JPanel {
         String qry = "";
         List<Receptor> results = null;
         if(rdbRfc.isSelected()){
-            qry = "Select r from Receptor r where UPPER(r.rfc) = ?1 order by r.nombre";
-            results = DbServices.getListWithParameters(qry, txtBusqueda.getText().toUpperCase());
+            qry = "Select r from Receptor r where UPPER(r.rfc) like ?1 order by r.nombre";
+            results = DbServices.getListWithParameters(qry, "%" + txtBusqueda.getText().toUpperCase() + "%");
         }else{
             qry = "Select r from Receptor r where UPPER(r.nombre) like ?1 order by r.nombre";
             results = DbServices.getListWithParameters(qry, "%" + txtBusqueda.getText().toUpperCase() + "%");

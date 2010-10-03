@@ -81,7 +81,7 @@ public class Impuesto implements Serializable {
     }
 
     public BigDecimal getTotalImpuestosRetenidos() {
-        if (totalImpuestosRetenidos.equals(new BigDecimal("0"))) {
+        if (totalImpuestosRetenidos.equals(new BigDecimal("0")) || totalImpuestosRetenidos == null) {
             return null;
         } else {
             return totalImpuestosRetenidos;
