@@ -1,10 +1,18 @@
 package com.agac.gui;
 
+import com.agac.bo.Comprobante;
+import com.agac.bo.Emisor;
 import com.agac.bo.Serie;
+import com.agac.services.DbServices;
+import java.util.ArrayList;
 
 import java.util.List;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import org.openide.DialogDisplayer;
+import org.openide.NotifyDescriptor;
+import org.openide.NotifyDescriptor.Message;
+import org.openide.util.lookup.Lookups;
 
 /**
  *
@@ -14,7 +22,13 @@ public class FoliosPanel extends javax.swing.JPanel {
 
     /** Creates new form InformacionAduaneraPanel */
     public FoliosPanel() {
+
         initComponents();
+    }
+
+    public FoliosPanel(Emisor em) {
+        initComponents();
+        this.emisor = em;
     }
     private Serie serie = new Serie();
 
@@ -25,6 +39,15 @@ public class FoliosPanel extends javax.swing.JPanel {
     public void setSerie(Serie serie) {
         this.serie = serie;
         firePropertyChange("serie", null, serie);
+    }
+    private Emisor emisor = new Emisor();
+
+    public Emisor getEmisor() {
+        return emisor;
+    }
+
+    public void setEmisor(Emisor emisor) {
+        this.emisor = emisor;
     }
 
     @SuppressWarnings("unchecked")
@@ -46,6 +69,7 @@ public class FoliosPanel extends javax.swing.JPanel {
         jTable1 = new javax.swing.JTable();
         btnAdd = new javax.swing.JButton();
         txtNumAprob = new javax.swing.JFormattedTextField();
+        btnEliminar = new javax.swing.JButton();
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(FoliosPanel.class, "FoliosPanel.jPanel1.border.title"))); // NOI18N
 
@@ -118,6 +142,14 @@ public class FoliosPanel extends javax.swing.JPanel {
         binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, this, org.jdesktop.beansbinding.ELProperty.create("${serie.numAutorización}"), txtNumAprob, org.jdesktop.beansbinding.BeanProperty.create("value"));
         bindingGroup.addBinding(binding);
 
+        btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/agac/gui/resourses/delete.png"))); // NOI18N
+        btnEliminar.setText(org.openide.util.NbBundle.getMessage(FoliosPanel.class, "FoliosPanel.btnEliminar.text")); // NOI18N
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -146,8 +178,11 @@ public class FoliosPanel extends javax.swing.JPanel {
                                 .addComponent(txtAnoAprob, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(28, 28, 28)
                                 .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 594, Short.MAX_VALUE))
+                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 547, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -159,17 +194,22 @@ public class FoliosPanel extends javax.swing.JPanel {
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(txtSerie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(txtFolioInicial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(txtFolioFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(txtAnoAprob, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(txtNumAprob, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(btnAdd, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(txtSerie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtFolioInicial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtFolioFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtAnoAprob, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtNumAprob, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btnAdd, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(66, 66, 66)
+                        .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
 
@@ -179,15 +219,15 @@ public class FoliosPanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         getAccessibleContext().setAccessibleParent(this);
@@ -214,16 +254,55 @@ public class FoliosPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-        
-        JTable tbl = (JTable)evt.getSource();
-        if(tbl.getSelectedRow() == -1)
+
+        JTable tbl = (JTable) evt.getSource();
+        if (tbl.getSelectedRow() == -1) {
             return;
+        }
         Serie s = serieList.get(tbl.getSelectedRow());
         System.out.println(s.getNumAutorización());
-        DefaultTableModel model = (DefaultTableModel)tbl.getModel();
+        DefaultTableModel model = (DefaultTableModel) tbl.getModel();
         s.setActiva(Boolean.parseBoolean(model.getValueAt(tbl.getSelectedRow(), 5).toString()));
-        
+
     }//GEN-LAST:event_jTable1MouseClicked
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+
+
+        if (jTable1.getSelectedRow() != -1) {
+            List<Comprobante> lista = new ArrayList<Comprobante>();
+            //Emisor emisor = getLookup().lookup(Emisor.class);
+            String ser = jTable1.getValueAt(jTable1.getSelectedRow(), 0).toString();
+
+            String qry = "Select c from Comprobante c where c.emisor=?1 and c.serie=?2";
+            lista = DbServices.getListWithParameters(qry, this.getEmisor(), ser);
+            if (lista.isEmpty()) {
+
+                DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+                int posicion = jTable1.getSelectedRow();
+
+                if (posicion >= 0) {
+
+
+
+                    for (int c = 0; c < jTable1.getRowCount(); c++) {
+                        if (c == posicion) {
+                            model.removeRow(c);
+                        }
+                    }
+
+
+                    this.getSeries().remove(posicion);
+
+                }
+
+            } else {
+                Message msg = new NotifyDescriptor.Message("Esta serie cuenta con comprobantes emitidos\ny no puede ser eliminada! ", NotifyDescriptor.ERROR_MESSAGE);
+                DialogDisplayer.getDefault().notify(msg);
+            }
+        }
+
+    }//GEN-LAST:event_btnEliminarActionPerformed
     private List<Serie> serieList;
 
     public List<Serie> getSeries() {
@@ -247,6 +326,7 @@ public class FoliosPanel extends javax.swing.JPanel {
 //  *****************************************************************
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
+    private javax.swing.JButton btnEliminar;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

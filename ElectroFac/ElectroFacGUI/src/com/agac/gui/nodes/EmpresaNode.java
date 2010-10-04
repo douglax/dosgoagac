@@ -283,7 +283,7 @@ public class EmpresaNode extends AbstractNode {
             if (emisor.getSeries() != null) {
                 series.addAll(emisor.getSeries());
             }
-            FoliosPanel folPan = new FoliosPanel();
+            FoliosPanel folPan = new FoliosPanel(emisor);
             folPan.setSeries(series);
             DialogDescriptor dd = new DialogDescriptor(folPan, "Folios", true, null);
             Object result = DialogDisplayer.getDefault().notify(dd);

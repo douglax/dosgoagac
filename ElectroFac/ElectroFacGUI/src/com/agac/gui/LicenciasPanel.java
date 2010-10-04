@@ -8,7 +8,6 @@
  *
  * Created on 23/09/2010, 01:43:59 PM
  */
-
 package com.agac.gui;
 
 import com.agac.bo.Emisor;
@@ -44,8 +43,6 @@ public class LicenciasPanel extends javax.swing.JPanel {
         this.licencia = licencia;
     }
 
-
-
     /** Creates new form LicenciasPanel */
     public LicenciasPanel() {
         initComponents();
@@ -56,118 +53,118 @@ public class LicenciasPanel extends javax.swing.JPanel {
         //prueba();
     }
 
-
-    private void prueba(){
+    private void prueba() {
         //StringEncrypter.testUsingPassPhrase();
-        FileEncrypter.Encrypt("c:\\pruebas\\clave2.txt","pasguord");
+        FileEncrypter.Encrypt("c:\\pruebas\\clave2.txt", "pasguord");
 
     }
 
-
-    private void LlenaCampos(){
+    private void LlenaCampos() {
 
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         Preferences pref = NbPreferences.forModule(OpcionesdelSistemaPanel.class);
 
         String archivo = pref.get("LICENCIA", "DEMO");
-        String password = pref.get("PASSWORD","DEMO");
+        String password = pref.get("PASSWORD", "DEMO");
 
 
         System.out.println("Archivo-> " + archivo + " || clave-> " + password);
         //Desencriptar archivo
-        
-        ByteArrayOutputStream baos = FileEncrypter.Decrypt(archivo,password);
+
+        ByteArrayOutputStream baos = FileEncrypter.Decrypt(archivo, password);
 
 
-        if(baos != null){
- 
-                System.out.println(baos.toString());
-                String cadena = baos.toString();
-                String remain;
+        if (baos != null) {
 
-                //Extraemos el folio
-                String folio = cadena.substring(0, cadena.indexOf("\n") ).trim();
-                licencia.setFolio(folio);
-                remain = cadena.substring(cadena.indexOf("\n") + 1,cadena.length());
-                cadena = remain;
+            System.out.println(baos.toString());
+            String cadena = baos.toString();
+            String remain;
 
-                //Extraemos la fecha 
-                String fecha = cadena.substring(0, cadena.indexOf("\n") ).trim();
-                txtFecha.setText(fecha);
+            //Extraemos el folio
+            String folio = cadena.substring(0, cadena.indexOf("\n")).trim();
+            licencia.setFolio(folio);
+            remain = cadena.substring(cadena.indexOf("\n") + 1, cadena.length());
+            cadena = remain;
 
-                licencia.setFecha(new Date(System.currentTimeMillis()));
-                licencia.setFecha(Date.valueOf(fecha));
-                licencia.setId(Long.valueOf("1"));
+            //Extraemos la fecha
+            String fecha = cadena.substring(0, cadena.indexOf("\n")).trim();
+            txtFecha.setText(fecha);
 
-
-
-                remain = cadena.substring(cadena.indexOf("\n") + 1,cadena.length());
-                System.out.println("Remain-> " + remain);
-
-                cadena = remain;
+            licencia.setFecha(new Date(System.currentTimeMillis()));
+            licencia.setFecha(Date.valueOf(fecha));
+            licencia.setId(Long.valueOf("1"));
 
 
 
-                //Extraemos el número de comprobantes
-                String numero = cadena.substring(0, cadena.indexOf("\n") );
+            remain = cadena.substring(cadena.indexOf("\n") + 1, cadena.length());
+            System.out.println("Remain-> " + remain);
+
+            cadena = remain;
+
+
+
+            //Extraemos el número de comprobantes
+            String numero = cadena.substring(0, cadena.indexOf("\n")).trim();
+
+
+
+            if (numero.equals("-1")) {
+                txtComprobantes.setText("ilimitado");
+            } else {
                 txtComprobantes.setText(numero);
+            }
+            licencia.setAutorizados(Long.parseLong(numero.trim()));
 
-                licencia.setAutorizados( Long.parseLong(numero.trim()));
+            remain = cadena.substring(cadena.indexOf("\n") + 1, cadena.length());
+            System.out.println("Remain-> " + remain.trim());
 
-                remain = cadena.substring(cadena.indexOf("\n") + 1,cadena.length());
-                System.out.println("Remain-> " + remain.trim());
+            cadena = remain;
 
-                cadena = remain;
+            //Extraemos los RFC y los agregamos a la tabla
 
-                //Extraemos los RFC y los agregamos a la tabla
+            // La cadena remanente debe tener una longitud multiplo de 14
+            // ya que cada RFC ocupa 13 posiciones + \n
+            // ej.
+            // AAAA010101XXX\n
+            // BBBB020202YYY\n
+            // CCCC030303ZZZ\n
+            // El algoritmo se basa en extraer subcadenas de 14 caractéres
+            // y sustraer el último
 
-                // La cadena remanente debe tener una longitud multiplo de 14
-                // ya que cada RFC ocupa 13 posiciones + \n
-                // ej.
-                // AAAA010101XXX\n
-                // BBBB020202YYY\n
-                // CCCC030303ZZZ\n
-                // El algoritmo se basa en extraer subcadenas de 14 caractéres
-                // y sustraer el último
+            int cuantos = remain.length() / 14;
+            System.out.println(String.valueOf(cuantos));
+            String rfc;
+            for (int c = 0; c < cuantos; c++) {
+                rfc = cadena.substring(0, 13);
+                model.addRow(new Object[]{rfc});
+                cadena = cadena.substring(cadena.indexOf("\n") + 1, cadena.length());
 
-                int cuantos = remain.length() / 14;
-                System.out.println(String.valueOf(cuantos) );
-                String rfc;
-                for (int c=0;c<cuantos;c++) {
-                    rfc = cadena.substring(0,13);
-                    model.addRow(new Object[] {rfc});
-                    cadena = cadena.substring(cadena.indexOf("\n") + 1,cadena.length());
+            }
 
-                }
+            //checar si existe la licencia y obtener el valor previo de
+            //los comprobantes autorizado
+            List<Licencia> lic = null;
 
-                //checar si existe la licencia y obtener el valor previo de
-                //los comprobantes autorizado
-                List<Licencia> lic = null;
+            String qry = "Select l from Licencia l where l.folio = ?1";
+            lic = DbServices.getListWithParameters(qry, folio);
 
-                String qry = "Select l from Licencia l where l.folio = ?1";
-                lic = DbServices.getListWithParameters(qry,folio);
+            if (lic.size() > 0) {
+                // Existe licencia previa
 
-                if(lic.size() > 0) {
-                    // Existe licencia previa
-
-                    licencia.setEmitidos(lic.get(0).getEmitidos());
-                } else {
-                    licencia.setEmitidos(Long.valueOf("0"));
-                }
+                licencia.setEmitidos(lic.get(0).getEmitidos());
+            } else {
+                licencia.setEmitidos(Long.valueOf("0"));
+            }
 
 
-                
-                
+
+
         }
-        
+
 
         System.out.println("Stop! Hammertime!");
-      
+
     }
-
-
-
-
 
     /** This method is called from within the constructor to
      * initialize the form.
@@ -296,30 +293,29 @@ public class LicenciasPanel extends javax.swing.JPanel {
         String qry;
 
         // Si hay registros en la tabla y además hay un renglón seleccionado
-        if (model.getRowCount() != 0 && jTable1.getSelectedRow() != -1  ) {
+        if (model.getRowCount() != 0 && jTable1.getSelectedRow() != -1) {
 
 
             qry = "Select e from Emisor e where UPPER(e.rfc) = ?1";
             lista = DbServices.getListWithParameters(qry, model.getValueAt(jTable1.getSelectedRow(), 0).toString());
-                if (lista.size() > 0 ) {
-                    // La clave existe, solo modificar
-                    EmisorTopComponent etc = new EmisorTopComponent();
-                    etc.setEmisor(lista.get(0));
-                    etc.open();
-                    etc.requestActive();
-                } else {
-                    //No existe, agregar
-                    EmisorTopComponent etc = new EmisorTopComponent(model.getValueAt(jTable1.getSelectedRow(), 0).toString().trim());
-                    etc.open();
-                    etc.requestActive();
-                }
+            if (lista.size() > 0) {
+                // La clave existe, solo modificar
+                EmisorTopComponent etc = new EmisorTopComponent();
+                etc.setEmisor(lista.get(0));
+                etc.open();
+                etc.requestActive();
+                this.setVisible(false);
+            } else {
+                //No existe, agregar
+                EmisorTopComponent etc = new EmisorTopComponent(model.getValueAt(jTable1.getSelectedRow(), 0).toString().trim());
+                etc.open();
+                etc.requestActive();
+            }
 
 
         } //if
 
     }//GEN-LAST:event_jButton1ActionPerformed
-
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
@@ -331,5 +327,4 @@ public class LicenciasPanel extends javax.swing.JPanel {
     private javax.swing.JTextField txtComprobantes;
     private javax.swing.JTextField txtFecha;
     // End of variables declaration//GEN-END:variables
-
 }
