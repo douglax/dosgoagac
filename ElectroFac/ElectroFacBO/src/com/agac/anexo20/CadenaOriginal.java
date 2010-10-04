@@ -212,7 +212,11 @@ public class CadenaOriginal {
             tmp = "0" + tmp;
         }
         s += tmp + "-";
-        s += Integer.toString(fecha.get(Calendar.DAY_OF_MONTH)) + "T";
+        tmp = Integer.toString(fecha.get(Calendar.DAY_OF_MONTH));
+        if (tmp.length() == 1) {
+            tmp = "0" + tmp;
+        }
+        s += tmp + "T";
         tmp = Integer.toString(fecha.get(Calendar.HOUR_OF_DAY));
         if (tmp.length() == 1) {
             tmp = "0" + tmp;

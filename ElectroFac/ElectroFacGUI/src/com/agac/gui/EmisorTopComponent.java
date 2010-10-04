@@ -50,17 +50,17 @@ public final class EmisorTopComponent extends TopComponent implements PropertyCh
     public EmisorTopComponent() {
         initComponents();
         inicializaEmisor();
-        
+
     }
 
     // Se usa para nuevos emisores desde LicenseMan
-    public EmisorTopComponent(String RFC){
+    public EmisorTopComponent(String RFC) {
         initComponents();
         inicializaEmisor();
         this.txtRFC.setText(RFC);
     }
 
-    private void inicializaEmisor(){
+    private void inicializaEmisor() {
         txtCalle.getDocument().addDocumentListener(listenCalle);
         txtNombre.getDocument().addDocumentListener(listenNombre);
         txtRFC.getDocument().addDocumentListener(listenRFC);
@@ -82,8 +82,6 @@ public final class EmisorTopComponent extends TopComponent implements PropertyCh
         putClientProperty(TopComponent.PROP_UNDOCKING_DISABLED, Boolean.TRUE);
         emisor.addPropertyChangeListener(this);
     }
-
-
     private Emisor emisor = new Emisor();
 
     public Emisor getEmisor() {
@@ -685,6 +683,7 @@ public final class EmisorTopComponent extends TopComponent implements PropertyCh
 
     private void txtReferenciaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtReferenciaKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_TAB) {
+
             txtMunicipio.requestFocus();
         }
     }//GEN-LAST:event_txtReferenciaKeyPressed
@@ -833,10 +832,6 @@ public final class EmisorTopComponent extends TopComponent implements PropertyCh
     @Override
     public void componentOpened() {
         setActivatedNodes(new Node[]{saveNode = new NodeForSave()});
-        
-
-
-
     }
 
     @Override
@@ -871,6 +866,8 @@ public final class EmisorTopComponent extends TopComponent implements PropertyCh
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
+        if(saveNode == null)
+            return;
         if (validaCampos()) {
             saveNode.enableSave(true);
         } else {

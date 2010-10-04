@@ -71,7 +71,7 @@ public class UbicacionFiscal implements Serializable {
 
     @XmlAttribute(required = true)
     @Column(nullable = false)
-    private String pais = "México";
+    private String pais = "MEXICO";
 
     @XmlAttribute(required = true)
     @Column(nullable = false)

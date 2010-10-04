@@ -27,12 +27,16 @@ public class SqlDateAdapter extends XmlAdapter<String, Date> {
         fecha.setTimeInMillis(v.getTime());
 
         String s = Integer.toString(fecha.get(Calendar.YEAR)) + "-";
-        String tmp = Integer.toString(fecha.get(Calendar.MONTH)+1);
+        String tmp = Integer.toString(fecha.get(Calendar.MONTH) + 1);
         if (tmp.length() == 1) {
             tmp = "0" + tmp;
         }
         s += tmp + "-";
-        s += Integer.toString(fecha.get(Calendar.DAY_OF_MONTH)) + "T";
+        tmp = Integer.toString(fecha.get(Calendar.DAY_OF_MONTH));
+        if (tmp.length() == 1) {
+            tmp = "0" + tmp;
+        }
+        s += tmp + "T";
         tmp = Integer.toString(fecha.get(Calendar.HOUR_OF_DAY));
         if (tmp.length() == 1) {
             tmp = "0" + tmp;
