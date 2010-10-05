@@ -2,17 +2,14 @@ package com.agac.services;
 
 import com.agac.bo.Emisor;
 import com.agac.bo.Serie;
+import java.io.File;
 import java.sql.Connection;
-import java.sql.DriverManager;
+import java.util.Calendar;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
-import oracle.toplink.essentials.internal.ejb.cmp3.EntityManagerImpl;
-import oracle.toplink.essentials.internal.sessions.AbstractSession;
-import oracle.toplink.essentials.sessions.UnitOfWork;
-import oracle.toplink.essentials.threetier.ClientSession;
 
 /**
  *
@@ -253,29 +250,39 @@ public class DbServices {
         if (emf == null) {
             emf = Persistence.createEntityManagerFactory("ElectroFacBOPU");
         }
-
         System.out.println("checamos si emf == null");
-
         EntityManager em = emf.createEntityManager();
-
         System.out.println("creamos entitymanager em");
-
-
         em.getTransaction().begin();
         System.out.println("Inicia transacción");
         Query qry = em.createNativeQuery(s);
         System.out.println("creamos nativequery");
-
-
         qry = qry.setParameter(1, ruta);
-
-
         qry.executeUpdate();
         System.out.println("Ejecutamos query");
         em.getTransaction().commit();
         em.close();
         //return obj;
+        ZipBuilder zip = new ZipBuilder();
+        zip.setSourceFolder(ruta + File.separator + "efactura");
+        Calendar fecha = Calendar.getInstance();
+        zip.zip(ruta + File.separator + fecha.get(Calendar.YEAR) + (fecha.get(Calendar.MONTH) + 1)
+                + fecha.get(Calendar.DAY_OF_MONTH) + ".zip");
+        //Borramos el directorio
+        deleteDir(new File(ruta + File.separator + "efactura"));
 
+    }
 
+    private static boolean deleteDir(File dir) {
+        if (dir.isDirectory()) {
+            String[] children = dir.list();
+            for (int i = 0; i < children.length; i++) {
+                boolean success = deleteDir(new File(dir, children[i]));
+                if (!success) {
+                    return false;
+                }
+            }
+        }
+        return dir.delete();
     }
 }
