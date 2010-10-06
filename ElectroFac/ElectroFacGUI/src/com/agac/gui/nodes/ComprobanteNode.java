@@ -7,6 +7,7 @@ import com.agac.gui.MenuTopComponent;
 import com.agac.services.DbServices;
 import java.awt.event.ActionEvent;
 import java.io.FileWriter;
+import java.util.prefs.Preferences;
 import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.SwingUtilities;
@@ -249,6 +250,13 @@ public class ComprobanteNode extends AbstractNode {
                 Marshaller m = ctx.createMarshaller();
                 m.setProperty(Marshaller.JAXB_ENCODING, "UTF-8");
                 m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+
+
+  //              Preferences pref = NbPreferences.forModule(OpcionesdelSistemaPanel.class);
+
+    //            String ruta = pref.get("COMPROBANTE","DEFAULT" );
+                
+
                 FileWriter writer = new FileWriter(
                         NbPreferences.forModule(ComprobanteNode.class).get("COMPROBANTE", "")
                         + "/" + c.getEmisor().getRfc() + c.getSerie() + c.getFolio() + ".xml");

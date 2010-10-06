@@ -20,6 +20,8 @@ import javax.crypto.SecretKey;
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
 import javax.crypto.spec.PBEParameterSpec;
+import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -150,7 +152,7 @@ public class NewJFrame extends javax.swing.JFrame {
 
 
 
-        txtFuente.setText(fd.getDirectory() );
+        txtFuente.setText(fd.getDirectory() + fd.getFile() );
     }//GEN-LAST:event_btnLoadActionPerformed
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
@@ -162,7 +164,7 @@ public class NewJFrame extends javax.swing.JFrame {
 
 
 
-        txtDestino.setText(fd.getDirectory() );
+        txtDestino.setText(fd.getDirectory() + fd.getFile() );
     }//GEN-LAST:event_btnSaveActionPerformed
 
 
@@ -230,7 +232,11 @@ public class NewJFrame extends javax.swing.JFrame {
             outFile.close();
 
 
+        JOptionPane.showMessageDialog(null, "Archivo generado exitosamente!");
         } catch (Exception e) {
+        JOptionPane.showMessageDialog(null, "Ocurrio un error al generar el archivo",
+                "Error",JOptionPane.ERROR_MESSAGE);
+        
         }
 
     }//encrypt
