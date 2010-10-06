@@ -186,6 +186,20 @@ public class DbServices {
 
     }
 
+    public static List getNativeQueryResult(String qry) {
+        if (emf == null) {
+            emf = Persistence.createEntityManagerFactory("ElectroFacBOPU");
+        }
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+
+        Query query = em.createNativeQuery(qry);
+        List l = query.getResultList();
+        em.getTransaction().commit();
+        em.close();
+        return l;
+    }
+
     public static void closeDbServices() {
         if ((emf != null) && (emf.isOpen())) {
             emf.close();

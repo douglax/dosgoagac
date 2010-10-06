@@ -7,7 +7,6 @@ import com.agac.gui.MenuTopComponent;
 import com.agac.services.DbServices;
 import java.awt.event.ActionEvent;
 import java.io.FileWriter;
-import java.util.prefs.Preferences;
 import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.SwingUtilities;

@@ -56,7 +56,8 @@ import org.openide.windows.WindowManager;
 public class EmpresaNode extends AbstractNode {
 
     public EmpresaNode(Emisor e) {
-        super(Children.create(new ComprobanteNodeFactory(e), true), Lookups.singleton(e));
+        //super(Children.create(new ComprobanteNodeFactory(e), true), Lookups.singleton(e));
+        super(Children.create(new YearNodeFactory(e), true), Lookups.singleton(e));
         setDisplayName(e.getNombre());
         setIconBaseWithExtension("com/agac/gui/resourses/filenew.png");
     }
