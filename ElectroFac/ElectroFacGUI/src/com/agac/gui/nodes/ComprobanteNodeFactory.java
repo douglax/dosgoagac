@@ -4,6 +4,7 @@ import com.agac.bo.Comprobante;
 import com.agac.bo.Emisor;
 import com.agac.services.DbServices;
 import java.util.List;
+import java.util.Vector;
 import org.openide.nodes.ChildFactory;
 import org.openide.nodes.Node;
 
@@ -14,18 +15,25 @@ import org.openide.nodes.Node;
 public class ComprobanteNodeFactory extends ChildFactory<Comprobante> {
 
     private Emisor emisor;
+    private Integer year;
+    private Integer month;
 
-    public ComprobanteNodeFactory(Emisor e) {
+    public ComprobanteNodeFactory(Integer year, Integer month, Emisor e) {
         emisor = e;
+        this.year = year;
+        this.month = month;
     }
 
     @Override
     protected boolean createKeys(List<Comprobante> list) {
-        List<Comprobante> l = DbServices.getListWithParameters(
-                "Select c from Comprobante c where c.emisor = ?1", emisor);
-        for (Comprobante e : l) {
-
-            list.add(e);
+        StringBuilder sb = new StringBuilder();
+        sb.append("Select ID from comprobante where emisor_id = ").append(emisor.getId()).append(
+                " and year(fecha) = ").append(year).append(" and month(fecha) = ").append(month);
+        List<Vector> l = DbServices.getNativeQueryResult(sb.toString());
+        for (Vector v : l) {
+            Long id = (Long)v.get(0);
+            Comprobante c = DbServices.find(Comprobante.class, id);
+            list.add(c);
         }
         return true;
     }

@@ -5,6 +5,7 @@
 
 package com.agac.gui.nodes;
 
+import com.agac.bo.Emisor;
 import org.openide.nodes.AbstractNode;
 import org.openide.nodes.Children;
 
@@ -14,9 +15,9 @@ import org.openide.nodes.Children;
  */
 public class YearNode extends AbstractNode{  
 
-    public YearNode(String mes) {
-        super(Children.create(new MonthNodeFactory(), true));
-        setDisplayName(mes);
+    public YearNode(Integer year, Emisor e) {
+        super(Children.create(new MonthNodeFactory(year,e), true));
+        setDisplayName(year.toString());
         setIconBaseWithExtension("com/agac/gui/resourses/folder_database.png");
     }
 

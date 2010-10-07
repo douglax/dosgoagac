@@ -7,8 +7,8 @@ package com.agac.gui.nodes;
 
 import com.agac.bo.Emisor;
 import com.agac.services.DbServices;
-import java.util.Iterator;
 import java.util.List;
+import java.util.Vector;
 import org.openide.nodes.ChildFactory;
 import org.openide.nodes.Node;
 
@@ -16,7 +16,7 @@ import org.openide.nodes.Node;
  *
  * @author Carlos
  */
-public class YearNodeFactory extends ChildFactory<String>{
+public class YearNodeFactory extends ChildFactory<Integer>{
 
     Emisor emisor;
 
@@ -25,17 +25,18 @@ public class YearNodeFactory extends ChildFactory<String>{
     }
     
     @Override
-    protected boolean createKeys(List<String> list) {
-        List lista = DbServices.getNativeQueryResult(
-                "select distinct year(fecha) from comprobante where emisor_id = 53");
-        for(Iterator i = lista.iterator(); i.hasNext();){
-            list.add(i.next().toString());
+    protected boolean createKeys(List<Integer> list) {
+        List<Vector> lista = DbServices.getNativeQueryResult(
+                "Select distinct year(fecha) from comprobante where emisor_id = " + emisor.getId().toString());
+        for(Vector i : lista){
+            
+            list.add((Integer)i.get(0));
         }
         return true;
     }
 
     @Override
-    protected Node createNodeForKey(String key) {
-        return new YearNode(key);
+    protected Node createNodeForKey(Integer key) {
+        return new YearNode(key, emisor);
     }
 }
