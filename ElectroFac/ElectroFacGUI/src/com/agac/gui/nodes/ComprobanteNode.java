@@ -5,10 +5,13 @@ import com.agac.bo.Receptor;
 import com.agac.gui.ComprobanteTopComponent;
 import com.agac.gui.MenuTopComponent;
 import com.agac.services.DbServices;
+import java.awt.FileDialog;
 import java.awt.event.ActionEvent;
 import java.io.FileWriter;
+import java.util.prefs.Preferences;
 import javax.swing.AbstractAction;
 import javax.swing.Action;
+import javax.swing.JFileChooser;
 import javax.swing.SwingUtilities;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Marshaller;
@@ -16,6 +19,7 @@ import org.openide.DialogDisplayer;
 import org.openide.ErrorManager;
 import org.openide.NotifyDescriptor;
 import org.openide.NotifyDescriptor.Confirmation;
+import org.openide.NotifyDescriptor.Message;
 import org.openide.nodes.AbstractNode;
 import org.openide.nodes.Children;
 import org.openide.nodes.PropertySupport;
@@ -251,14 +255,35 @@ public class ComprobanteNode extends AbstractNode {
                 m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
 
 
-  //              Preferences pref = NbPreferences.forModule(OpcionesdelSistemaPanel.class);
+                // Preferences pref = NbPreferences.forModule(OpcionesdelSistemaPanel.class);
 
-    //            String ruta = pref.get("COMPROBANTE","DEFAULT" );
-                
+                //            String ruta = pref.get("COMPROBANTE","DEFAULT" );
 
-                FileWriter writer = new FileWriter(
-                        NbPreferences.forModule(ComprobanteNode.class).get("COMPROBANTE", "")
-                        + "/" + c.getEmisor().getRfc() + c.getSerie() + c.getFolio() + ".xml");
+                String filename;
+                String ruta = NbPreferences.forModule(ComprobanteNode.class).get("COMPROBANTE", "");
+
+                if (!ruta.equals("")) {
+                    filename = ruta + "/" + c.getEmisor().getRfc() + c.getSerie() + c.getFolio() + ".xml";
+                } else {
+
+                    Message msg = new NotifyDescriptor.Message(
+                            "No existe ruta predeterminada para guardar comprobantes\nregistrada en las opciones del sistema."
+                            + "\n\nLe sugerimos ingresar la ruta para mayor comodidad en el futuro.",
+                            NotifyDescriptor.INFORMATION_MESSAGE);
+                    DialogDisplayer.getDefault().notify(msg);
+
+                    final JFileChooser fc = new JFileChooser();
+                    fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+                    fc.showOpenDialog(null);
+                    filename = fc.getSelectedFile().toString() + "/" + c.getEmisor().getRfc() + c.getSerie() + c.getFolio() + ".xml";
+
+                }
+
+                /*FileWriter writer = new FileWriter(
+                NbPreferences.forModule(ComprobanteNode.class).get("COMPROBANTE", "")
+                + "/" + c.getEmisor().getRfc() + c.getSerie() + c.getFolio() + ".xml");
+                 */
+                FileWriter writer = new FileWriter(filename);
                 m.marshal((Comprobante) getLookup().lookup(Comprobante.class), writer);
                 writer.flush();
                 writer.close();
