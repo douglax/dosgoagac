@@ -27,7 +27,8 @@ public class YearNodeFactory extends ChildFactory<Integer>{
     @Override
     protected boolean createKeys(List<Integer> list) {
         List<Vector> lista = DbServices.getNativeQueryResult(
-                "Select distinct year(fecha) from comprobante where emisor_id = " + emisor.getId().toString());
+                "Select distinct year(fecha) from comprobante where emisor_id = " + emisor.getId().toString()
+                + " order by year(fecha) desc");
         for(Vector i : lista){
             
             list.add((Integer)i.get(0));

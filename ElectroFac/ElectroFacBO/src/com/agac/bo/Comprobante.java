@@ -26,6 +26,7 @@ import com.agac.libraries.NumberToLetterConverter;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.OneToOne;
+import javax.xml.bind.annotation.XmlType;
 
 /**
  *
@@ -33,6 +34,11 @@ import javax.persistence.OneToOne;
  */
 @XmlRootElement(name = "Comprobante", namespace = "http://www.sat.gob.mx/cfd/2")
 @XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(propOrder={
+    "tipoDeComprobante", "metodoDePago", "descuento",
+    "formaDePago", "anoAprobacion", "noAprobacion", "total", "subTotal", "noCertificado", "sello",
+    "fecha", "folio", "version", "serie", "emisor", "receptor", "conceptos", "impuesto"
+})
 @Entity
 public class Comprobante implements Serializable {
 
