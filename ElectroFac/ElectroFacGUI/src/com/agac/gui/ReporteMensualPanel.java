@@ -26,6 +26,10 @@ import java.util.List;
 import java.util.prefs.PreferenceChangeEvent;
 import java.util.prefs.PreferenceChangeListener;
 import java.util.prefs.Preferences;
+import javax.swing.JFileChooser;
+import org.openide.DialogDisplayer;
+import org.openide.NotifyDescriptor;
+import org.openide.NotifyDescriptor.Message;
 import org.openide.util.NbPreferences;
 
 /**
@@ -39,7 +43,7 @@ public class ReporteMensualPanel extends javax.swing.JPanel {
         initComponents();
 
 
-     //   txtRuta.setText(RutaReportes + "1" + emisor.getRfc() + mesAnumero() + cboAno.getSelectedItem().toString() + ".txt" );
+        //   txtRuta.setText(RutaReportes + "1" + emisor.getRfc() + mesAnumero() + cboAno.getSelectedItem().toString() + ".txt" );
 
         pref.addPreferenceChangeListener(new PreferenceChangeListener() {
 
@@ -153,8 +157,17 @@ public class ReporteMensualPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        // TODO add your handling code here:
+      
+        String ruta = pref.get("RUTAREPORTES", "");
 
+        if (!ruta.equals("")) {
+            RutaReportes = ruta;
+        } else {
+            Message msg = new NotifyDescriptor.Message(
+                    "No existe ruta predeterminada para guardar reportes mensuales\nregistrada en las opciones del sistema."
+                    + "\n\nLe sugerimos ingresar la ruta para mayor comodidad en el futuro.",
+                    NotifyDescriptor.INFORMATION_MESSAGE);
+            DialogDisplayer.getDefault().notify(msg);
 
 
         FileDialog fd = new FileDialog(WindowManager.getDefault().getMainWindow(),
@@ -165,12 +178,36 @@ public class ReporteMensualPanel extends javax.swing.JPanel {
 
         RutaReportes = fd.getDirectory();
 
+        }
         txtRuta.setText(RutaReportes + "1" + emisor.getRfc() + mesAnumero() + cboAno.getSelectedItem().toString() + ".txt");
 
 
     }//GEN-LAST:event_btnBuscarActionPerformed
 
+    private String checaSiHayRuta() {
 
+
+        String filename = "";
+        String ruta = pref.get("RUTAREPORTES", "");
+
+        if (!ruta.equals("")) {
+            return ruta;
+        } else {
+            Message msg = new NotifyDescriptor.Message(
+                    "No existe ruta predeterminada para guardar reportes mensuales\nregistrada en las opciones del sistema."
+                    + "\n\nLe sugerimos ingresar la ruta para mayor comodidad en el futuro.",
+                    NotifyDescriptor.INFORMATION_MESSAGE);
+            DialogDisplayer.getDefault().notify(msg);
+
+            final JFileChooser fc = new JFileChooser();
+            fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+            fc.showOpenDialog(null);
+            filename = fc.getSelectedFile().toString();
+            return filename;
+        }
+
+
+    }
 
     private void btnGenerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarActionPerformed
         // TODO add your handling code here:
@@ -192,20 +229,20 @@ public class ReporteMensualPanel extends javax.swing.JPanel {
         Calendar fechaFin = Calendar.getInstance();
 
 
-        fechaInicio.set(Integer.parseInt(cboAno.getItemAt(cboAno.getSelectedIndex()).toString() ),
-                cboMes.getSelectedIndex()-1, 1);
-        fechaFin.set(Integer.parseInt(cboAno.getItemAt(cboAno.getSelectedIndex()).toString() ),
-                cboMes.getSelectedIndex()-1, fechaFin.getActualMaximum(Calendar.DAY_OF_MONTH));
+        fechaInicio.set(Integer.parseInt(cboAno.getItemAt(cboAno.getSelectedIndex()).toString()),
+                cboMes.getSelectedIndex() - 1, 1);
+        fechaFin.set(Integer.parseInt(cboAno.getItemAt(cboAno.getSelectedIndex()).toString()),
+                cboMes.getSelectedIndex() - 1, fechaFin.getActualMaximum(Calendar.DAY_OF_MONTH));
 
 
         //debug
 
-        System.out.println("inicio: " + fechaInicio.getTime().toString() );
-        System.out.println("fin: " + fechaFin.getTime().toString() );
+        System.out.println("inicio: " + fechaInicio.getTime().toString());
+        System.out.println("fin: " + fechaFin.getTime().toString());
 
         List<Comprobante> results = null;
         ArrayList<InformacionAduanera> infoAduanera = new ArrayList<InformacionAduanera>();
-        
+
         //results = DbServices.getComprobantesDelMes(emisor.getRfc(), cboMes.getSelectedIndex() , Integer.parseInt(cboAno.getSelectedItem().toString()));
 
         results = DbServices.getListWithParameters(qryIA, fechaInicio.getTime(), fechaFin.getTime());
@@ -224,10 +261,10 @@ public class ReporteMensualPanel extends javax.swing.JPanel {
 
                 // Recorremos los resultados y los escribimos al archivo
 
-                
+
                 for (Comprobante c : results) {
 
-                    
+
 
 
                     linea = "|";
@@ -238,7 +275,7 @@ public class ReporteMensualPanel extends javax.swing.JPanel {
                     linea += "|" + c.getFecha().toString();               //fecha
                     linea += "|" + c.getTotal().toString();                //monto
                     linea += "|" + c.getIVA().toString();                 //IVA
-                    linea += "|" + "1" ;            //Estado del comprobante
+                    linea += "|" + "1";            //Estado del comprobante
 
                     // buscamos registros de información aduanera de todos los conceptos del comprobante
 
@@ -258,37 +295,37 @@ public class ReporteMensualPanel extends javax.swing.JPanel {
                         linea += "|||";
                     } else {
 
-                        lstPedimento.clear() ;
+                        lstPedimento.clear();
                         lstFecha.clear();
                         lstAduana.clear();
 
                         // Recorremos Información Aduanera para llenar las listas
-                        for(InformacionAduanera i : infoAduanera){
-                           lstPedimento.add(i.getNumero());
-                           lstFecha.add(i.getFecha().toString());
-                           lstAduana.add(i.getAduana());
+                        for (InformacionAduanera i : infoAduanera) {
+                            lstPedimento.add(i.getNumero());
+                            lstFecha.add(i.getFecha().toString());
+                            lstAduana.add(i.getAduana());
                         }
 
                         // Recorremos las listas recien creadas para completar la línea
 
                         concatPedimento = "";
-                        for(String i : lstPedimento) {
-                            concatPedimento +=  i + ",";
+                        for (String i : lstPedimento) {
+                            concatPedimento += i + ",";
                         }
                         // Remover la última coma
-                        concatPedimento = concatPedimento.substring(0,concatPedimento.length()-1);
+                        concatPedimento = concatPedimento.substring(0, concatPedimento.length() - 1);
 
                         concatFecha = "";
-                        for(String i : lstFecha) {
-                            concatFecha +=  i + ",";
+                        for (String i : lstFecha) {
+                            concatFecha += i + ",";
                         }
-                        concatFecha = concatFecha.substring(0,concatFecha.length()-1);
+                        concatFecha = concatFecha.substring(0, concatFecha.length() - 1);
 
                         concatAduana = "";
-                        for(String i : lstAduana) {
-                            concatAduana +=  i + ",";
+                        for (String i : lstAduana) {
+                            concatAduana += i + ",";
                         }
-                        concatAduana = concatAduana.substring(0,concatAduana.length()-1);
+                        concatAduana = concatAduana.substring(0, concatAduana.length() - 1);
 
                         //juntamos los valores y los agregamos a linea
                         linea += "|" + concatPedimento + "|" + concatFecha + "|" + concatAduana;
@@ -304,8 +341,19 @@ public class ReporteMensualPanel extends javax.swing.JPanel {
                 } // for comprobante
 
                 out.close();
+
+
+
+                Message msg = new NotifyDescriptor.Message(
+                        "El archivo fue generado exitosamente",
+                        NotifyDescriptor.INFORMATION_MESSAGE);
+                DialogDisplayer.getDefault().notify(msg);
             } catch (IOException e) {
                 System.out.println(e.getMessage());
+                Message msg = new NotifyDescriptor.Message(
+                        "Ocurrió un error al generar el archivo",
+                        NotifyDescriptor.ERROR_MESSAGE);
+                DialogDisplayer.getDefault().notify(msg);
             }
 
         } //if
@@ -315,19 +363,19 @@ public class ReporteMensualPanel extends javax.swing.JPanel {
     private void cboMesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboMesActionPerformed
         // TODO add your handling code here:
 
-        if(cboMes.getSelectedIndex() > 0) {
-            txtRuta.setText(RutaReportes + "1" + emisor.getRfc() + mesAnumero() + cboAno.getSelectedItem().toString() + ".txt" );
-            btnGenerar.setEnabled(true); }
-        else
+        if (cboMes.getSelectedIndex() > 0) {
+            txtRuta.setText(RutaReportes + "1" + emisor.getRfc() + mesAnumero() + cboAno.getSelectedItem().toString() + ".txt");
+            btnGenerar.setEnabled(true);
+        } else {
             btnGenerar.setEnabled(false);
+        }
     }//GEN-LAST:event_cboMesActionPerformed
 
     private void cboAnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboAnoActionPerformed
         // TODO add your handling code here:
 
-        txtRuta.setText(RutaReportes + "1" + emisor.getRfc() + mesAnumero() + cboAno.getSelectedItem().toString() + ".txt" );
+        txtRuta.setText(RutaReportes + "1" + emisor.getRfc() + mesAnumero() + cboAno.getSelectedItem().toString() + ".txt");
     }//GEN-LAST:event_cboAnoActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnGenerar;
@@ -337,7 +385,6 @@ public class ReporteMensualPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JTextField txtRuta;
     // End of variables declaration//GEN-END:variables
-
     private Emisor emisor = new Emisor();
     Preferences pref = NbPreferences.forModule(OpcionesdelSistemaPanel.class);
     String RutaReportes = pref.get("RUTAREPORTES", "");
@@ -354,8 +401,8 @@ public class ReporteMensualPanel extends javax.swing.JPanel {
         String mes = "";
 
         if (cboMes.getSelectedIndex() < 10) {
-            mes = "0" + cboMes.getSelectedIndex(); }
-        else {
+            mes = "0" + cboMes.getSelectedIndex();
+        } else {
             mes = String.valueOf(cboMes.getSelectedIndex());
         }
 

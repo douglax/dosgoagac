@@ -33,13 +33,10 @@
                           <Component id="jPanel1" max="32767" attributes="1"/>
                           <Component id="jPanel5" alignment="0" max="32767" attributes="1"/>
                       </Group>
-                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="jPanel2" max="32767" attributes="1"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="jPanel2" alignment="0" max="32767" attributes="1"/>
               </Group>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -103,7 +100,7 @@
                           </Group>
                       </Group>
                   </Group>
-                  <EmptySpace pref="36" max="32767" attributes="0"/>
+                  <EmptySpace pref="47" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -306,7 +303,7 @@
                       <Component id="txtISR" alignment="0" max="32767" attributes="1"/>
                       <Component id="txtIVA" alignment="0" min="-2" pref="48" max="-2" attributes="1"/>
                   </Group>
-                  <EmptySpace pref="200" max="32767" attributes="0"/>
+                  <EmptySpace pref="210" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -407,9 +404,9 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jLabel8" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtComprobantes" alignment="0" pref="292" max="32767" attributes="1"/>
+                      <Component id="txtComprobantes" alignment="0" pref="333" max="32767" attributes="1"/>
                       <Component id="jLabel9" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtRutaReportes" alignment="0" pref="292" max="32767" attributes="1"/>
+                      <Component id="txtRutaReportes" alignment="0" pref="333" max="32767" attributes="1"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
@@ -444,6 +441,9 @@
       <SubComponents>
         <Component class="javax.swing.JTextField" name="txtRutaReportes">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+            </Property>
             <Property name="editable" type="boolean" value="false"/>
             <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
               <ResourceString bundle="com/agac/gui/Bundle.properties" key="OpcionesdelSistemaPanel.txtRutaReportes.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
@@ -462,6 +462,10 @@
         </Component>
         <Component class="javax.swing.JTextField" name="txtComprobantes">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+            </Property>
+            <Property name="editable" type="boolean" value="false"/>
             <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
               <ResourceString bundle="com/agac/gui/Bundle.properties" key="OpcionesdelSistemaPanel.txtComprobantes.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
             </Property>
@@ -515,7 +519,7 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="txtPassword" min="-2" pref="116" max="-2" attributes="0"/>
                       </Group>
-                      <Component id="txtLicencia" alignment="1" pref="300" max="32767" attributes="0"/>
+                      <Component id="txtLicencia" alignment="1" pref="345" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="btnLicencia" min="-2" max="-2" attributes="0"/>
