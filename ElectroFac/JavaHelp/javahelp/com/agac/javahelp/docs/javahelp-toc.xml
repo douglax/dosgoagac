@@ -8,5 +8,6 @@ and open the template in the editor.
     <tocitem text="Ayuda de ecofactura">
     <tocitem text="Acerca de esta ayuda" target="com.agac.javahelp.about"/>
     <tocitem text="Elementos del Sistema" target="com.agac.javahelp.elementos"/>
+    <tocitem text="Configuración del Sistema" target="com.agac.javahelp.configuracion"/>
     </tocitem>
 </toc>

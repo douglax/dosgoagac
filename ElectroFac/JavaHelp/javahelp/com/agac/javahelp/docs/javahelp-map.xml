@@ -7,4 +7,5 @@ and open the template in the editor.
 <map version="2.0">
     <mapID target="com.agac.javahelp.about" url="javahelp-about.html"/>
     <mapID target="com.agac.javahelp.elementos" url="elementosdelsistema.html"/>
+    <mapID target="com.agac.javahelp.configuracion" url="configuracion.html"/>
 </map>
