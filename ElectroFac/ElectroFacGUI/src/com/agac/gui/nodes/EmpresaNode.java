@@ -372,7 +372,7 @@ public class EmpresaNode extends AbstractNode {
     private class CatalogoArticulos extends AbstractAction{
 
         public CatalogoArticulos(){
-            putValue(NAME, "Catálogo de artículos...");
+            putValue(NAME, "Catálogo de Conceptos...");
         }
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -380,7 +380,7 @@ public class EmpresaNode extends AbstractNode {
             ap.setEmisor(getLookup().lookup(Emisor.class));
             DialogDisplayer.getDefault().notify(
                         new DialogDescriptor(ap,
-                        "Artículos", true, null));
+                        "Conceptos de Facturación", true, null));
         }
     }
 

@@ -10,5 +10,6 @@ and open the template in the editor.
     <mapID target="com.agac.javahelp.configuracion" url="configuracion.html"/>
     <mapID target="com.agac.javahelp.emisores" url="emisores.html"/>
     <mapID target="com.agac.javahelp.folios" url="folios.html"/>
+    <mapID target="com.agac.javahelp.catalogo" url="catalogo.html"/>
     <mapID target="com.agac.javahelp.logotipo" url="logotipo.html"/>
 </map>

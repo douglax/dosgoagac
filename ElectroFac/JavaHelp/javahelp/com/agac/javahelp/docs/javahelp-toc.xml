@@ -11,5 +11,6 @@ and open the template in the editor.
     <tocitem text="Configuración del Sistema" target="com.agac.javahelp.configuracion"/>
     <tocitem text="Agregar Emisores" target="com.agac.javahelp.emisores"/>
     <tocitem text="Administración de Folios" target="com.agac.javahelp.folios"/>
+    <tocitem text="Catálogo de Conceptos de Facturación" target="com.agac.javahelp.catalogo"/>
     <tocitem text="Agregar logotipo de la Empresa" target="com.agac.javahelp.logotipo"/>
 </toc>
