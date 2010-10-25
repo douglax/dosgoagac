@@ -55,14 +55,15 @@ and open the template in the editor.
 
         <strong>*1</strong>.- Si desea obtener los conceptos desde el catálogo, puede presionar el botón "Buscar"
          (ícono Binoculares) para acceder directamente al catálogo.<br>
-         <strong>*2</strong>.- Si existe información adicional para cada concepto deberá ingresarla <strong><strike>
-         ANTES</strike></strong> de agregar el concepto presionando el botón (+), de otra forma NO se incluíra en
+         <strong>*2</strong>.- Si existe información adicional para cada concepto deberá ingresarla <strong><u>
+         ANTES</u></strong> de agregar el concepto presionando el botón (+), de otra forma NO se incluíra en
          el concepto. <br>
 
          <h2>4.- Información de Impuestos</h2>
         Una vez ingresados los conceptos de facturación, cfdex sumará los importes individuales y calculará
         subtotal, IVA y total. Si la naturaleza del comprobante requiere que usted declare otros impuestos tales como
-        Retenciones o Traslados puede hacerlo presionando el botón <i>Impuestos</i>.<br>
+        Retenciones o Traslados puede hacerlo presionando el botón <i>Impuestos</i>.
+        <img src="../images/botonimpuestos.png" alt="botón impuestos" align="top" <br>
 
 
         <h2>5.- Información adicional</h2
@@ -75,6 +76,72 @@ and open the template in the editor.
         ha dado de alta varias series y algunas se encuentren marcadas como activas.<br>
         Usted únicamente deberá seleccionar la serie, ya que el folio se cuenta automáticamente a
         partir de los comprobantes que se hayan emitido por serie.
+
+
+        <h2>6.- Salvar el comprobante</h2>
+
+        <p>
+            Una vez que haya ingresado correctamente por lo menos toda la información obligatoria en
+            el comprobante podrá guardarlo en cfdex, notará que el <strong>Botón Salvar</strong> (ícono disco) en la
+            <i>barra de herramientas</i> se habilitará y le permitira guardar.<br> <br>
+
+            Una vez guardado el comprobante, éste se ubicará en el <i>árbol del menú</i> debajo de la empresa
+            emisora que lo generó. El comprobante que aparece bajo el nodo de empresas está conformado por
+            el año de aprobación seguido de la serie y número de folio.<bR>
+
+            
+            Desde ahí ahora podrá abrirlo para revisión, imprimirlo o generar su respectivo archivo .xml
+        </p>
+        <br><br>
+
+        Note que en la parte inferior de la pantalla del comprobante aparece el <strong>Sello Digital</strong> del
+        comprobante, éste se genera a partir de los archivos de certificado y llave del emisor y garantiza la
+        autenticidad del comprobante.<br><br>
+        <p>
+            <i>Nota.-</i> Si el botón guardar no se encuentra activo es indicativo de que el comprobante no
+            cuenta con todos los elementos requeridos o que algún dato no cuenta con el formato debido. Le sugerimos
+            que revise la información ingresada.
+        </p><br>
+
+        <br>
+
+
+        <h2>7.- Imprimir el comprobante</h2>
+
+        <p>
+            Si aún se encuentra en la ventana donde se generó el comprobante, notará que el <strong>botón imprimir</strong>
+            (ícono impresora) de la <i>Barra de Herramientas</i> se encuentra habilitado, basta presionarlo para que
+            aparezca la ventana de diálogo de impresión donde podrá seleccionar la impresora deseada y sus opciones, incluso
+            podrá optar por imprimir el comprobante en un archivo .pdf para enviarlo con mayor facilidad al cliente que se lo
+            requiera.
+        </p> <br>
+
+        <p>
+            Si usted desea imprimir cualquier comprobante desde el árbol del menú, deberá primeramente abrirlo
+            dando doble click sobre el mismo y posteriormente presionar el botón imprimir de la barra de herramientas.
+        </p>
+        <br>
+        <br>
+
+        <h2>8.- Generar archivo .xml del comprobante</h2>
+
+        Deberá seleccionar el comprobante desde el árbol del menú, bajo la empresa emisora que lo generó
+        y dar click con el <i>botón derecho</i> del ratón y seleccionar <i>Generar Archivo XML ...</i> del menú
+        contextual que aparece.<br>
+        La ubicación del archivo dependerá del directorio que haya seleccionado en el <i>Panel de Opciones</i> de
+        cfdex.<br> <br>
+
+        <h2>9.- Cancelar un comprobante</h2>
+
+        Una vez que se ha emitido un comprobante, este no podrá ser eliminado debido a las disposiciones del SAT y
+        por la numeración de folios, sin embargo, el SAT si considera la cancelación de folios si por algún error u
+        omisión en el comprobante original.<br><br>
+        Solamente deberá dar click derecho sobre el comprobante y seleccionar <strong>"Cancelar folio"</strong> del
+        menú contextual que aparece y confirmar la operación.<br><br>
+
+        Una vez cancelado el folió este aparecerá en el árbol en color gris indicando que está inactivo, pero
+        <strong>no será eliminado</strong> y de hecho <strong>seguirá apareciendo</strong> en el <i>
+            Reporte Mensual</i> que se envía al SAT en calidad de Folio Cancelado.
 
     </body>
 </html>

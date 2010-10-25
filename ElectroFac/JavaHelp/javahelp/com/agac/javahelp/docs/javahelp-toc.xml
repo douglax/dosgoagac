@@ -15,4 +15,5 @@ and open the template in the editor.
     <tocitem text="Agregar logotipo de la Empresa" target="com.agac.javahelp.logotipo"/>
     <tocitem text="Administración de Clientes" target="com.agac.javahelp.clientes"/>
     <tocitem text="Emitir Comprobantes Fiscales Digitales" target="com.agac.javahelp.comprobantes"/>
+    <tocitem text="Respaldo y Recuperación de la Base de Datos" target="com.agac.javahelp.respaldo"/>
 </toc>
