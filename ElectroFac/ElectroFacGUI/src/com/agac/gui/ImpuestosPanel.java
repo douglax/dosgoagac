@@ -36,7 +36,7 @@ import java.util.TreeMap;
  *
  * @author alex
  */
-public class ImpuestosPanel extends javax.swing.JPanel {
+public final class ImpuestosPanel extends javax.swing.JPanel {
         public ImpuestosPanel(Comprobante comprobante) {
         initComponents();
         txtImporte.getDocument().addDocumentListener(listenImporte);
