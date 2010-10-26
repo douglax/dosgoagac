@@ -88,12 +88,16 @@ public final class ImpuestosPanel extends javax.swing.JPanel {
         }
         txtTasa.setText(IVAdefault);
         subTot = comprobante.getSubTotal();
-        if(impuesto.getTotalImpuestosRetenidos() != null)
-        txtTotalRetenidos.setText(nf.format(impuesto.getTotalImpuestosRetenidos()));
 
         if(impuesto.getTotalImpuestosTrasladados() != null)
         txtTotalTrasladados.setText(nf.format(impuesto.getTotalImpuestosTrasladados()));
-        }
+
+
+        if(impuesto.getTotalImpuestosRetenidos() != null)
+        txtTotalRetenidos.setText(nf.format(impuesto.getTotalImpuestosRetenidos()));
+
+    }
+
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is

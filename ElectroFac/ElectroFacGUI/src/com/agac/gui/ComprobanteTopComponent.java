@@ -1209,7 +1209,7 @@ public final class ComprobanteTopComponent extends TopComponent {
     }//GEN-LAST:event_btnInfoAduaneraActionPerformed
 
     private void btnImpuestosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImpuestosActionPerformed
-        ImpuestosPanel impPanel = new ImpuestosPanel(comprobante);
+        ImpuestosPanel impPanel = new ImpuestosPanel(this.getComprobante());
         DialogDescriptor d2 = new DialogDescriptor(impPanel, "Impuestos", true, null);
         //DialogDisplayer.getDefault().notify(d2);
         //comprobante.setImpuesto(impPanel.getImpuesto());

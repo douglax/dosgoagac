@@ -51,10 +51,10 @@ public class Impuesto implements Serializable {
     private Map<String, Traslado> traslados;
     @XmlJavaTypeAdapter(BigDecimalAdapter.class)
     @XmlAttribute
-    private BigDecimal totalImpuestosRetenidos;
+    private BigDecimal totalImpuestosRetenidos = new BigDecimal("0.0");
     @XmlJavaTypeAdapter(BigDecimalAdapter.class)
     @XmlAttribute
-    private BigDecimal totalImpuestosTrasladados;
+    private BigDecimal totalImpuestosTrasladados = new BigDecimal("0.0");
 
     public Map<String, Retencion> getRetenciones() {
 
