@@ -5,15 +5,24 @@ and open the template in the editor.
 -->
 <!DOCTYPE toc PUBLIC "-//Sun Microsystems Inc.//DTD JavaHelp TOC Version 2.0//EN" "http://java.sun.com/products/javahelp/toc_2_0.dtd">
 <toc version="2.0">
-    <tocitem text="Ayuda de ecofactura"/>
-    <tocitem text="Acerca de esta ayuda" target="com.agac.javahelp.about"/>
-    <tocitem text="Elementos del Sistema" target="com.agac.javahelp.elementos"/>
-    <tocitem text="Configuración del Sistema" target="com.agac.javahelp.configuracion"/>
-    <tocitem text="Agregar Emisores" target="com.agac.javahelp.emisores"/>
-    <tocitem text="Administración de Folios" target="com.agac.javahelp.folios"/>
-    <tocitem text="Catálogo de Conceptos de Facturación" target="com.agac.javahelp.catalogo"/>
-    <tocitem text="Agregar logotipo de la Empresa" target="com.agac.javahelp.logotipo"/>
-    <tocitem text="Administración de Clientes" target="com.agac.javahelp.clientes"/>
-    <tocitem text="Emitir Comprobantes Fiscales Digitales" target="com.agac.javahelp.comprobantes"/>
-    <tocitem text="Respaldo y Recuperación de la Base de Datos" target="com.agac.javahelp.respaldo"/>
+    <tocitem text="Acerca de Cfdex" target="com.agac.javahelp.about"/>
+    <tocitem text="Conociendo el sistema">
+        <tocitem text="Elementos del Sistema" target="com.agac.javahelp.elementos"/>
+        <tocitem text="Configuración del Sistema" target="com.agac.javahelp.configuracion"/>
+    </tocitem>
+    <tocitem text="Empresas Emisoras">
+        <tocitem text="Agregar Emisores" target="com.agac.javahelp.emisores"/>
+        <tocitem text="Administración de Folios" target="com.agac.javahelp.folios"/>
+        <tocitem text="Catálogo de Conceptos de Facturación" target="com.agac.javahelp.catalogo"/>
+        <tocitem text="Agregar logotipo de la Empresa" target="com.agac.javahelp.logotipo"/>
+    </tocitem>
+    <tocitem text="Clientes">
+        <tocitem text="Administración de Clientes" target="com.agac.javahelp.clientes"/>
+    </tocitem>
+    <tocitem text="Comprobantes Fiscales Digitales">
+        <tocitem text="Operaciones con Comprobantes Fiscales Digitales" target="com.agac.javahelp.comprobantes"/>
+    </tocitem>
+    <tocitem text="Herramientas adicionales">
+        <tocitem text="Respaldo y Recuperación de la Base de Datos" target="com.agac.javahelp.respaldo"/>
+    </tocitem>
 </toc>
