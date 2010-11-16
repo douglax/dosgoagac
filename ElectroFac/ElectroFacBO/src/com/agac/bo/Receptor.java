@@ -53,6 +53,22 @@ public class Receptor implements Serializable {
     private String rfc;
     @XmlAttribute
     private String nombre;
+    @XmlAttribute
+    private String email;
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+
+        String oldEmail = this.email;
+        this.email = email;
+        propertyChangeSupport.firePropertyChange("email", oldEmail, email);
+
+    }
+
+
 
     public String getNombre() {
         return nombre;

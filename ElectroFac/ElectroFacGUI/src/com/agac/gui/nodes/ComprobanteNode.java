@@ -5,9 +5,12 @@ import com.agac.bo.Receptor;
 import com.agac.gui.ComprobanteTopComponent;
 import com.agac.gui.MenuTopComponent;
 import com.agac.services.DbServices;
+import java.awt.Desktop;
 import java.awt.FileDialog;
 import java.awt.event.ActionEvent;
+import java.io.File;
 import java.io.FileWriter;
+import java.net.URI;
 import java.util.prefs.Preferences;
 import javax.swing.AbstractAction;
 import javax.swing.Action;
@@ -49,6 +52,7 @@ public class ComprobanteNode extends AbstractNode {
         return new Action[]{
                     new OpenAction(),
                     new CancelFolio(),
+                    new EnviarEmail(),
                     null,
                     new GenerarXML()
                 };
@@ -293,5 +297,93 @@ public class ComprobanteNode extends AbstractNode {
                 Exceptions.printStackTrace(ex);
             }
         }
+    } //GenerarXML
+
+
+
+    private class EnviarEmail extends AbstractAction {
+
+        public EnviarEmail() {
+            putValue(NAME, "Enviar por correo electrónico");
+        }
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            Comprobante comprobante = getLookup().lookup(Comprobante.class);
+
+            String filename;
+            String ruta = NbPreferences.forModule(ComprobanteNode.class).get("COMPROBANTE", "");
+            String destinatario = comprobante.getReceptor().getEmail();
+            boolean existe = false;
+
+            if (!ruta.equals("")) {
+                 filename = ruta + "/" + comprobante.getEmisor().getRfc() + comprobante.getSerie() + comprobante.getFolio() + ".xml";
+                 File f = new File(filename);
+                 if(f.exists()) existe = true;
+
+            }
+
+
+            if (!existe) {
+                // no se encontró ruta predefinida
+                 Message msg = new NotifyDescriptor.Message(
+                   "No se encontró el archivo en la ruta predeterminada para guardar comprobantes\n"
+                   + "registrada en las opciones del sistema."
+                    + "\n\nPor favor selecciona la carpeta donde se encuentra el comprobante.",
+                    NotifyDescriptor.INFORMATION_MESSAGE);
+                    DialogDisplayer.getDefault().notify(msg);
+
+                    final JFileChooser fc = new JFileChooser();
+                    fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+                    fc.showOpenDialog(null);
+                    filename = fc.getSelectedFile().toString() + "/" + comprobante.getEmisor().getRfc() +
+                      comprobante.getSerie() + comprobante.getFolio() + ".xml";
+                    File f = new File(filename);
+                    if(f.exists()) existe = true;
+
+            }
+
+
+
+            if(!existe) {
+                    Message msg = new NotifyDescriptor.Message(
+                   "El archivo no se encuentra en la ruta predeterminada o en"
+                            + " la ruta seleccionada\n"
+                    + "\nPor favor verifique la ubicación del archivo y vuelva a intentar",
+                    NotifyDescriptor.INFORMATION_MESSAGE);
+                    DialogDisplayer.getDefault().notify(msg);
+            } else {
+
+                // enviarlo por correo
+
+              try {
+                Desktop desktop;
+                if (Desktop.isDesktopSupported()  && (desktop = Desktop.getDesktop()).isSupported(Desktop.Action.MAIL)) {
+                URI mailto = new URI("mailto:john@example.com?subject=Hello%20World");
+                desktop.mail(mailto); }
+        } catch (Exception m) {
+
+
+                   Message msg = new NotifyDescriptor.Message(
+                   "El mensaje no pudo ser enviado"
+                           + "\n\nMensaje de error: " + m.getMessage(),
+                    NotifyDescriptor.ERROR_MESSAGE);
+                    DialogDisplayer.getDefault().notify(msg);
     }
+
+
+
+
+            
+
+
+
+        }
+
+        }
+    } //class EnviarEmail
+
+
+
+
 }
