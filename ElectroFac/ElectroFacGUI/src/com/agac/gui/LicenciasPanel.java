@@ -131,15 +131,24 @@ public class LicenciasPanel extends javax.swing.JPanel {
             // El algoritmo se basa en extraer subcadenas de 14 caractéres
             // y sustraer el último
 
-            int cuantos = remain.length() / 14;
-            System.out.println(String.valueOf(cuantos));
             String rfc;
-            for (int c = 0; c < cuantos; c++) {
-                rfc = cadena.substring(0, 13);
-                model.addRow(new Object[]{rfc});
-                cadena = cadena.substring(cadena.indexOf("\n") + 1, cadena.length());
 
+
+            while (true) {
+                remain = cadena;
+                rfc = remain.substring(0, remain.indexOf("\n"));
+                cadena = cadena.substring(cadena.indexOf("\n") + 1, cadena.length());
+                model.addRow(new Object[]{rfc});
+                System.out.println("RFC-> " + rfc.trim());
+                System.out.println("cadena " + cadena.trim());
+                System.out.println("caracteres restante " + cadena.length());
+
+                if (cadena.length() < 1) {
+                    break;
+                }
             }
+
+
 
             //checar si existe la licencia y obtener el valor previo de
             //los comprobantes autorizado
@@ -162,7 +171,7 @@ public class LicenciasPanel extends javax.swing.JPanel {
         }
 
 
-        System.out.println("Stop! Hammertime!");
+        
 
     }
 

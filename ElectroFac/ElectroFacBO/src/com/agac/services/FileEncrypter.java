@@ -28,7 +28,7 @@ public class FileEncrypter {
         try {
             inFile = new FileInputStream(filename);
             outFile = new FileOutputStream(filename + ".des");
-
+            password.concat("starbucks");
             // Use PBEKeySpec to create a key based on a password.
             // The password is passed as a character array
 
@@ -94,6 +94,7 @@ public class FileEncrypter {
 
         try {
             inFile = new FileInputStream(filename);
+            password.concat("starbucks");
             //outFile = new FileOutputStream(filename + ".dcr");
             ByteArrayOutputStream outSt = new ByteArrayOutputStream();
 

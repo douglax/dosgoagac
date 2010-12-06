@@ -88,6 +88,11 @@
             </file>
             </folder>
     </folder>
+    <folder name="OptionsDialog">
+        <file name="Advanced.instance_hidden"/>
+        <file name="General.instance_hidden"/>
+        <file name="Keymaps.instance_hidden"/>
+    </folder>
     <folder name="Toolbars">
         <folder name="File">
             <file name="org-openide-actions-SaveAction.instance">
@@ -131,6 +136,9 @@
                 <file name="MenuTopComponent.wstcref" url="MenuTopComponentWstcref.xml"/>
             </folder>            
             <folder name="output"/>
+            <folder name="properties">
+                <file name="properties.wstcref" url="propertiesWstcref.xml"/>
+            </folder>
         </folder>
     </folder>
 </filesystem>

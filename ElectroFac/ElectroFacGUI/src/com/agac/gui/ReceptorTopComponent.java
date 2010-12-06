@@ -424,6 +424,13 @@ public final class ReceptorTopComponent extends TopComponent implements Property
             valida = false;
         }
 
+        if (txtRFC.getText().length() == 13) {
+            receptor.setPersona("FISICA");
+        } else {
+            receptor.setPersona("MORAL");
+        }
+
+
 
         return valida;
     } // validaCampos()

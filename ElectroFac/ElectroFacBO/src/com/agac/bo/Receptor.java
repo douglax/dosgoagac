@@ -9,6 +9,7 @@ import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.io.Serializable;
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -55,6 +56,19 @@ public class Receptor implements Serializable {
     private String nombre;
     @XmlAttribute
     private String email;
+    @Column(nullable = false)
+    private String persona;
+
+    public String getPersona() {
+        return persona;
+    }
+
+    public void setPersona(String persona) {
+        this.persona = persona;
+    }
+
+
+        
 
     public String getEmail() {
         return email;

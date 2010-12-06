@@ -44,10 +44,13 @@ public class ClienteNode extends AbstractNode {
         try {
             Property nombre = new PropertySupport.Reflection<String>(r, String.class, "getNombre", null);
             Property rfc = new PropertySupport.Reflection<String>(r, String.class, "getRfc", null);
+            Property persona = new PropertySupport.Reflection<String>(r, String.class, "getPersona", null);
             nombre.setName("nombre");
             nombre.setDisplayName("Nombre");
             rfc.setName("rfc");
             rfc.setDisplayName("R.F.C.");
+            persona.setName("persona");
+            persona.setDisplayName("Tipo de Persona");
 
             Property calle = new PropertySupport.Reflection<String>(r.getDomicilio(), String.class,
                     "getCalle", null);
@@ -82,6 +85,7 @@ public class ClienteNode extends AbstractNode {
 
             set.put(nombre);
             set.put(rfc);
+            set.put(persona);
             set.setName("Datos");
             set.setDisplayName("Datos del Cliente");
 

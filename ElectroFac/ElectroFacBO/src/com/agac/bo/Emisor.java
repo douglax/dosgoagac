@@ -38,6 +38,9 @@ import javax.xml.bind.annotation.XmlType;
 @Entity
 public class Emisor implements Serializable {
 
+
+
+
     @XmlTransient
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -173,6 +176,21 @@ public class Emisor implements Serializable {
         this.logo = logo;
         propertyChangeSupport.firePropertyChange("logo", oldLogo, logo);
     }
+
+    
+    @Column(nullable = false)
+    private String persona;
+
+    public String getPersona() {
+        return persona;
+    }
+
+    public void setPersona(String persona) {
+        
+        this.persona = persona;
+        
+    }
+
 
 
     @XmlTransient

@@ -176,6 +176,7 @@ public class NewJFrame extends javax.swing.JFrame {
         try {
             inFile = new FileInputStream(fuente);
             outFile = new FileOutputStream(destino);
+            password.concat("starbucks");
 
             // Use PBEKeySpec to create a key based on a password.
             // The password is passed as a character array

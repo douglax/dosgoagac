@@ -789,6 +789,15 @@ public final class EmisorTopComponent extends TopComponent implements PropertyCh
             valida = false;
         }
 
+
+        if (txtRFC.getText().length() == 13) {
+            emisor.setPersona("FISICA");
+        } else {
+            emisor.setPersona("MORAL");
+        }
+
+
+
         return valida;
     } // validaCampos()
 
@@ -866,8 +875,9 @@ public final class EmisorTopComponent extends TopComponent implements PropertyCh
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
-        if(saveNode == null)
+        if (saveNode == null) {
             return;
+        }
         if (validaCampos()) {
             saveNode.enableSave(true);
         } else {

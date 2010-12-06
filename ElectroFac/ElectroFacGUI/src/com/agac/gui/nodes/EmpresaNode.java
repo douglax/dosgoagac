@@ -95,10 +95,13 @@ public class EmpresaNode extends AbstractNode {
         try {
             Property nombre = new PropertySupport.Reflection<String>(e, String.class, "getNombre", null);
             Property rfc = new PropertySupport.Reflection<String>(e, String.class, "getRfc", null);
+            Property persona = new PropertySupport.Reflection<String>(e, String.class, "getPersona", null);
             nombre.setName("nombre");
             nombre.setDisplayName("Nombre");
             rfc.setName("rfc");
             rfc.setDisplayName("R.F.C.");
+            persona.setName("persona");
+            persona.setDisplayName("Tipo de persona");
 
             Property calle = new PropertySupport.Reflection<String>(e.getDomicilioFiscal(), String.class,
                     "getCalle", null);
@@ -135,6 +138,7 @@ public class EmpresaNode extends AbstractNode {
 
             set.put(nombre);
             set.put(rfc);
+            set.put(persona);
             set.setName("Datos");
             set.setDisplayName("Datos de la Empresa");
 
