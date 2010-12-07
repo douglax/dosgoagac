@@ -71,10 +71,14 @@
             </file>
         </folder>
         <folder name="View">
+            <file name="ToggleFullScreenAction.shadow_hidden"/>
             <file name="com-agac-gui-actions-VerEmisores.shadow">
                 <attr name="originalFile" stringvalue="Actions/BpelNodes/com-agac-gui-actions-VerEmisores.instance"/>
                 <attr name="position" intvalue="100"/>
             </file>
+            <file name="org-netbeans-core-actions-HTMLViewAction.shadow_hidden"/>
+            <file name="org-netbeans-core-actions-LogAction.shadow_hidden"/>
+            <file name="org-netbeans-core-windows-actions-ToolbarsListAction.instance_hidden"/>
         </folder>
         <folder name="Window">
             <file name="ComprobanteAction.shadow">
