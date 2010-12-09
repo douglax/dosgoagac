@@ -56,6 +56,7 @@ public class Receptor implements Serializable {
     private String nombre;
     @XmlAttribute
     private String email;
+    @XmlTransient
     @Column(nullable = false)
     private String persona;
 

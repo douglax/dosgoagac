@@ -177,7 +177,7 @@ public class Emisor implements Serializable {
         propertyChangeSupport.firePropertyChange("logo", oldLogo, logo);
     }
 
-    
+    @XmlTransient
     @Column(nullable = false)
     private String persona;
 
