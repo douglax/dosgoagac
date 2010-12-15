@@ -39,6 +39,10 @@
 	<field name="conceptos" class="java.lang.Object"/>
 	<field name="cantidadConLetra" class="java.lang.String"/>
 	<field name="fecha" class="java.util.Date"/>
+	<field name="conceptos(0).valorUnitario" class="java.math.BigDecimal"/>
+	<field name="impuesto.retenciones.get(&quot;ISR&quot;)" class="java.math.BigDecimal"/>
+	<field name="impuesto.retenciones.get(&quot;IVA&quot;)" class="java.math.BigDecimal"/>
+	<field name="conceptos(0).descripcion" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -222,9 +226,9 @@
 				<text><![CDATA[TOTAL]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="478" y="56" width="79" height="14"/>
+				<reportElement x="478" y="56" width="78" height="14"/>
 				<textElement textAlignment="Right"/>
-				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{subTotal}]]></textFieldExpression>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{conceptos(0).valorUnitario}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="479" y="80" width="79" height="14"/>
@@ -237,14 +241,14 @@
 				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{subTotal}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="480" y="174" width="79" height="14"/>
+				<reportElement x="480" y="174" width="76" height="14"/>
 				<textElement textAlignment="Right"/>
-				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{subTotal}]]></textFieldExpression>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{impuesto.retenciones.get("ISR")}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="481" y="204" width="79" height="14"/>
 				<textElement textAlignment="Right"/>
-				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{subTotal}]]></textFieldExpression>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{impuesto.retenciones.get("IVA")}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="480" y="234" width="79" height="14"/>
@@ -262,7 +266,7 @@
 			<textField>
 				<reportElement x="9" y="285" width="362" height="16"/>
 				<textElement/>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{conceptos}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{conceptos(0).descripcion}]]></textFieldExpression>
 			</textField>
 		</band>
 		<band height="8"/>
