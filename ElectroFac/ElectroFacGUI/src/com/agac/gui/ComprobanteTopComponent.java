@@ -619,7 +619,7 @@ public final class ComprobanteTopComponent extends TopComponent {
             }
         });
 
-        cmbIvaTraslado.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "16", "0" }));
+        cmbIvaTraslado.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "16%", "11%", "0" }));
 
         org.openide.awt.Mnemonics.setLocalizedText(jLabel26, org.openide.util.NbBundle.getMessage(ComprobanteTopComponent.class, "ComprobanteTopComponent.jLabel26.text")); // NOI18N
 
@@ -1150,7 +1150,12 @@ public final class ComprobanteTopComponent extends TopComponent {
             NumberFormat nf = NumberFormat.getCurrencyInstance();
             comprobante.setSubTotal(comprobante.calcularSubTotal());
             lblSubtotal.setText(nf.format(comprobante.getSubTotal().doubleValue()));
-            double iva = Double.parseDouble(cmbIvaTraslado.getSelectedItem().toString());
+            double iva = 0;
+            if(cmbIvaTraslado.getSelectedItem().toString().equals("0")){
+                iva = Double.parseDouble(cmbIvaTraslado.getSelectedItem().toString());
+            }else{
+                iva = Double.parseDouble(cmbIvaTraslado.getSelectedItem().toString().substring(0, 2));
+            }
             iva /= 100;
             refrescaIva(iva);
             comprobante.setTotal(comprobante.calcularTotal());
@@ -1198,7 +1203,7 @@ public final class ComprobanteTopComponent extends TopComponent {
         //comprobante.setImpuesto(impPanel.getImpuesto());
         Object result = DialogDisplayer.getDefault().notify(d2);
         if (DialogDescriptor.OK_OPTION.equals(result)) {
-            comprobante.setImpuesto(impPanel.getImpuesto());
+            //comprobante.setImpuesto(impPanel.getImpuesto());
         }
         //refrescaImpuestos();
         NumberFormat nf = NumberFormat.getCurrencyInstance();
@@ -1834,8 +1839,9 @@ public final class ComprobanteTopComponent extends TopComponent {
     }
 
     public void refrescaIva(double iva) {
-        if(iva == 0)
+        if (iva == 0) {
             return;
+        }
         Traslado T = new Traslado();
         T.setImpuesto("IVA");
         T.setImporte(new BigDecimal(Double.toString(

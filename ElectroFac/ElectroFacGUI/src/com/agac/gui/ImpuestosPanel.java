@@ -11,91 +11,21 @@
 package com.agac.gui;
 
 import com.agac.bo.Comprobante;
-import com.agac.bo.Impuesto;
 import com.agac.bo.Retencion;
-import com.agac.bo.Traslado;
-import java.awt.Color;
-import java.awt.Font;
 import java.math.BigDecimal;
 import java.text.NumberFormat;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.prefs.PreferenceChangeEvent;
-import java.util.prefs.PreferenceChangeListener;
-import java.util.prefs.Preferences;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
-import javax.swing.table.DefaultTableModel;
-import org.openide.util.NbPreferences;
-import java.util.Map;
 import java.util.TreeMap;
-
-
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author alex
  */
 public final class ImpuestosPanel extends javax.swing.JPanel {
-        public ImpuestosPanel(Comprobante comprobante) {
+
+    public ImpuestosPanel(Comprobante comprobante) {
         initComponents();
-        txtImporte.getDocument().addDocumentListener(listenImporte);
-        txtTasa.getDocument().addDocumentListener(listenTasa);
-        DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
-        pref.addPreferenceChangeListener(new PreferenceChangeListener() {
-            @Override
-            public void preferenceChange(PreferenceChangeEvent evt) {
-                if (evt.getKey().equals("IVA")) {
-                    IVAdefault = evt.getNewValue();
-                }
-                if (evt.getKey().equals("ISR")) {
-                    ISRdefault = evt.getNewValue();
-                }
-                if (evt.getKey().equals("IEPS")) {
-                    IEPSdefault = evt.getNewValue();
-                }
-            }
-        });
-        this.setImpuesto(comprobante.getImpuesto());
-
-        // recorremos primero Retenciones
-
-
-        Map<String, Retencion> retencionMap = new TreeMap<String, Retencion>();
-
-        List<Retencion> retencionList = new ArrayList<Retencion>();
-//        retencionList = impuesto.getRetenciones() ;
-
-        for (Retencion r: retencionMap.values()) {
-
-            modelo.addRow(new Object[]{"Retencion", r.getImpuesto(), r.getImporte(), null});
-            impuesto.getTotalImpuestosRetenidos().add(r.getImporte());
-            //totRet.add(r.getImporte());
-        }
-
-        // luego recorremos traslados
-
-        Map<String, Traslado> trasladoMap = new TreeMap<String, Traslado>();
-
-        ArrayList<Traslado> trasladoList = new ArrayList<Traslado>();
-        //trasladoList = (ArrayList) impuesto.getTraslados() ;
-        
-        for (Traslado t : trasladoMap.values()) {
-            //TM = t.getImporte();
-            modelo.addRow(new Object[]{"Traslado", t.getImpuesto(), t.getImporte(), t.getTasa() });
-            impuesto.getTotalImpuestosTrasladados().add(t.getImporte());
-            //totTras.add(TM);
-        }
-        txtTasa.setText(IVAdefault);
-        subTot = comprobante.getSubTotal();
-
-        if(impuesto.getTotalImpuestosTrasladados() != null)
-        txtTotalTrasladados.setText(nf.format(impuesto.getTotalImpuestosTrasladados()));
-
-
-        if(impuesto.getTotalImpuestosRetenidos() != null)
-        txtTotalRetenidos.setText(nf.format(impuesto.getTotalImpuestosRetenidos()));
-
+        this.comprobante = comprobante;
     }
 
     /** This method is called from within the constructor to
@@ -109,15 +39,14 @@ public final class ImpuestosPanel extends javax.swing.JPanel {
 
         jLabel6 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         btnAdd = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
-        cboTipoImpuesto = new javax.swing.JComboBox();
-        cboImpuesto = new javax.swing.JComboBox();
+        cmbImpuesto = new javax.swing.JComboBox();
         txtImporte = new javax.swing.JTextField();
         txtTasa = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jLabel5 = new javax.swing.JLabel();
@@ -129,8 +58,6 @@ public final class ImpuestosPanel extends javax.swing.JPanel {
         jLabel6.setText(org.openide.util.NbBundle.getMessage(ImpuestosPanel.class, "ImpuestosPanel.jLabel6.text")); // NOI18N
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(ImpuestosPanel.class, "ImpuestosPanel.jPanel1.border.title"))); // NOI18N
-
-        jLabel1.setText(org.openide.util.NbBundle.getMessage(ImpuestosPanel.class, "ImpuestosPanel.jLabel1.text")); // NOI18N
 
         jLabel2.setText(org.openide.util.NbBundle.getMessage(ImpuestosPanel.class, "ImpuestosPanel.jLabel2.text")); // NOI18N
 
@@ -149,17 +76,10 @@ public final class ImpuestosPanel extends javax.swing.JPanel {
 
         jLabel4.setText(org.openide.util.NbBundle.getMessage(ImpuestosPanel.class, "ImpuestosPanel.jLabel4.text")); // NOI18N
 
-        cboTipoImpuesto.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Traslado", "Retención" }));
-        cboTipoImpuesto.addActionListener(new java.awt.event.ActionListener() {
+        cmbImpuesto.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "IVA", "ISR" }));
+        cmbImpuesto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cboTipoImpuestoActionPerformed(evt);
-            }
-        });
-
-        cboImpuesto.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "I.V.A.", "I.E.P.S." }));
-        cboImpuesto.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cboImpuestoActionPerformed(evt);
+                cmbImpuestoActionPerformed(evt);
             }
         });
 
@@ -178,53 +98,48 @@ public final class ImpuestosPanel extends javax.swing.JPanel {
             }
         });
 
+        jLabel1.setText(org.openide.util.NbBundle.getMessage(ImpuestosPanel.class, "ImpuestosPanel.jLabel1.text")); // NOI18N
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel1)
-                        .addGap(88, 88, 88)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(cboTipoImpuesto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(cboImpuesto, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmbImpuesto, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(23, 23, 23)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4)
+                    .addComponent(txtTasa, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(46, 46, 46)
-                        .addComponent(jLabel3)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel4))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(txtImporte, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtImporte, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtTasa, javax.swing.GroupLayout.DEFAULT_SIZE, 58, Short.MAX_VALUE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel3))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel4))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(cboTipoImpuesto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cboImpuesto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtImporte, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtTasa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtTasa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cmbImpuesto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel1)
+                        .addComponent(txtImporte, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -233,14 +148,14 @@ public final class ImpuestosPanel extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Tipo", "Impuesto", "Importe", "Tasa"
+                "Impuesto", "Importe", "Tasa"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.Double.class, java.lang.Double.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -256,14 +171,14 @@ public final class ImpuestosPanel extends javax.swing.JPanel {
         jLabel5.setText(org.openide.util.NbBundle.getMessage(ImpuestosPanel.class, "ImpuestosPanel.jLabel5.text")); // NOI18N
 
         txtTotalRetenidos.setEditable(false);
-        txtTotalRetenidos.setFont(new java.awt.Font("DejaVu Sans", 1, 11)); // NOI18N
+        txtTotalRetenidos.setFont(new java.awt.Font("DejaVu Sans", 1, 11));
         txtTotalRetenidos.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         txtTotalRetenidos.setText(org.openide.util.NbBundle.getMessage(ImpuestosPanel.class, "ImpuestosPanel.txtTotalRetenidos.text")); // NOI18N
 
         jLabel7.setText(org.openide.util.NbBundle.getMessage(ImpuestosPanel.class, "ImpuestosPanel.jLabel7.text")); // NOI18N
 
         txtTotalTrasladados.setEditable(false);
-        txtTotalTrasladados.setFont(new java.awt.Font("DejaVu Sans", 1, 11)); // NOI18N
+        txtTotalTrasladados.setFont(new java.awt.Font("DejaVu Sans", 1, 11));
         txtTotalTrasladados.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         txtTotalTrasladados.setText(org.openide.util.NbBundle.getMessage(ImpuestosPanel.class, "ImpuestosPanel.txtTotalTrasladados.text")); // NOI18N
 
@@ -280,9 +195,7 @@ public final class ImpuestosPanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 399, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -292,8 +205,10 @@ public final class ImpuestosPanel extends javax.swing.JPanel {
                             .addComponent(txtTotalTrasladados)
                             .addComponent(txtTotalRetenidos, javax.swing.GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE))
                         .addGap(31, 31, 31)
-                        .addComponent(btnLimpiar)))
-                .addContainerGap(40, Short.MAX_VALUE))
+                        .addComponent(btnLimpiar))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, 0, 0, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -301,7 +216,7 @@ public final class ImpuestosPanel extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
@@ -314,265 +229,49 @@ public final class ImpuestosPanel extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-    //Preferences pref = Preferences.userNodeForPackage(OpcionesdelSistemaPanel.class);
-    Preferences pref = NbPreferences.forModule(OpcionesdelSistemaPanel.class);
-    String IVAdefault = pref.get("IVA", "0.0");
-    String ISRdefault = pref.get("ISR", "0.0");
-    String IEPSdefault = pref.get("IEPS", "0.0");
-
-
-    private BigDecimal subTot = new BigDecimal(0.0);
-
-    public BigDecimal getSubTot() {
-        return subTot;
-    }
-
-    public void setSubTot(BigDecimal subTot) {
-        this.subTot = subTot;
-    }
-
-
+   
 
 //  *****************************************************************
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
 
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         Retencion R = new Retencion();
-        Traslado T = new Traslado();
-
-        if (cboTipoImpuesto.getSelectedIndex() == 1) {
-            // Retencion
-            model.addRow(new Object[]{"Retención", cboImpuesto.getSelectedItem(), Double.parseDouble(txtImporte.getText()), null});
-            
-            R.setImpuesto(cboImpuesto.getSelectedItem().toString());
-            R.setImporte(new BigDecimal(txtImporte.getText()));
-//            impuesto.getRetenciones().add(R);
-            if(impuesto.getTotalImpuestosRetenidos()!=null) {
-                impuesto.setTotalImpuestosRetenidos(impuesto.getTotalImpuestosRetenidos().add(R.getImporte()));                
-            } else {
-                impuesto.setTotalImpuestosRetenidos(R.getImporte());
-            }
-            txtTotalRetenidos.setText(nf.format(  impuesto.getTotalImpuestosRetenidos()  ) );
-
-        } else if (cboTipoImpuesto.getSelectedIndex() == 0) {
-            // Traslado
-            model.addRow(new Object[]{"Traslado", cboImpuesto.getSelectedItem(), Double.parseDouble(txtImporte.getText()), Double.parseDouble(txtTasa.getText())});
-
-            T.setImpuesto(cboImpuesto.getSelectedItem().toString());
-            T.setImporte(new BigDecimal(txtImporte.getText()));
-            T.setTasa(new BigDecimal(txtTasa.getText()));
-
-//            impuesto.getTraslados().add(T);
-
-            if(impuesto.getTotalImpuestosTrasladados()!=null) {
-                impuesto.setTotalImpuestosTrasladados(impuesto.getTotalImpuestosTrasladados().add(T.getImporte()));
-            } else {
-                impuesto.setTotalImpuestosTrasladados(T.getImporte());
-            }            
-            txtTotalTrasladados.setText(nf.format(impuesto.getTotalImpuestosTrasladados()));
-        }
-
-
-
+        R.setImpuesto(cmbImpuesto.getSelectedItem().toString());
+        double tasa = (Double.parseDouble(txtTasa.getText()) / 100);
+        BigDecimal importe = comprobante.calcularSubTotal().multiply(new BigDecimal(Double.toString(tasa)));
+        R.setImporte(importe);
+        Object fila[] = new Object[3];
+        fila[0] = R.getImpuesto();
+        fila[1] = NumberFormat.getCurrencyInstance().format(R.getImporte());
+        fila[2] = Double.toString(tasa * 100) + "%";
+        model.addRow(fila);
+        if(comprobante.getImpuesto().getRetenciones() == null)
+            comprobante.getImpuesto().setRetenciones(new TreeMap<String, Retencion>());
+        comprobante.getImpuesto().getRetenciones().put(R.getImpuesto(), R);
 
 }//GEN-LAST:event_btnAddActionPerformed
 
-    private void cboImpuestoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboImpuestoActionPerformed
-        // TODO add your handling code here:
+    private void cmbImpuestoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbImpuestoActionPerformed
+    }//GEN-LAST:event_cmbImpuestoActionPerformed
 
-   
-
-    }//GEN-LAST:event_cboImpuestoActionPerformed
-
-    private void cboTipoImpuestoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboTipoImpuestoActionPerformed
-        // TODO add your handling code here:
-
-    //    BigDecimal temp = this.getSubTot();
-
-        if (cboTipoImpuesto.getSelectedIndex() == 1) {
-            cboImpuesto.removeAllItems();
-            cboImpuesto.addItem(new String("I.V.A."));
-            cboImpuesto.addItem(new String("I.S.R."));
-            txtTasa.setEnabled(false);
-        } else if (cboTipoImpuesto.getSelectedIndex() == 0) {
-            cboImpuesto.removeAllItems();
-            cboImpuesto.addItem(new String("I.V.A."));
-            cboImpuesto.addItem(new String("I.E.P.S."));
-            txtTasa.setEnabled(true);
-
-            txtTasa.setText(IVAdefault);
-
-        }
-
-            // Como el impuesto siempre se inicia en IVA
-            // se inicia
-//            cboImpuesto.setSelectedIndex(0);
-//
-//
-//            temp.multiply(new BigDecimal(IVAdefault));
-//            txtImporte.setText( temp.toString() );
-
-    }//GEN-LAST:event_cboTipoImpuestoActionPerformed
-
-  
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
-        // TODO add your handling code here:
-
-        DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
-        ArrayList<Traslado> Tlist = new ArrayList<Traslado>();
-
-        Map<String, Traslado> Tmap = new TreeMap<String, Traslado>();
-
-        Traslado T = new Traslado();
-
-        while (modelo.getRowCount() > 0) {
-            modelo.removeRow(0);
-        }
-
-        // agregamos IVA de todos modos
-
-
-        modelo.addRow(new Object[]{"Traslado", "I.V.A.",Double.parseDouble(this.getSubTot().toString())* Double.parseDouble(IVAdefault), Double.parseDouble(IVAdefault)});
-
-        // Creamos un traslado de IVA y lo agregamos a una lista
-        T.setImpuesto("I.V.A.");
-        T.setImporte(this.getSubTot().multiply(new BigDecimal(IVAdefault)));
-        T.setTasa(new BigDecimal(IVAdefault));
-
-
-        //Tlist.add(T);
-
-        Tmap.put("I.V.A.", T);
-
-        //modificamos el objeto local impuesto
-        impuesto.setRetenciones(null);
-//        impuesto.setTraslados(Tlist);
-
-        impuesto.setTotalImpuestosRetenidos(new BigDecimal("0.0"));
-        impuesto.setTotalImpuestosTrasladados(this.getSubTot().multiply(new BigDecimal(IVAdefault)));
-        
-
-        txtTotalRetenidos.setText("0.0");
-        txtTotalTrasladados.setText(nf.format(impuesto.getTotalImpuestosTrasladados()));
-
-        
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
     private void txtImporteFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtImporteFocusLost
-        // TODO add your handling code here:
-        listenImporte.insertUpdate(null);
-        
-
     }//GEN-LAST:event_txtImporteFocusLost
 
     private void txtTasaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtTasaFocusLost
-        // TODO add your handling code here:
-                listenTasa.insertUpdate(null);
+        if (txtTasa.getText().length() > 0) {
+            double tasa = Double.parseDouble(txtTasa.getText());
+            tasa /= 100;
+            BigDecimal importe = comprobante.calcularSubTotal().multiply(new BigDecimal(Double.toString(tasa)));
+            txtImporte.setText(NumberFormat.getCurrencyInstance().format(importe));
+        }
     }//GEN-LAST:event_txtTasaFocusLost
-
-    BigDecimal subtotal = new BigDecimal("0.0");
-    
-    private Impuesto impuesto = new Impuesto();
-    public Impuesto getImpuesto() {
-        return impuesto;
-    }
-
-    public void setImpuesto(Impuesto impuesto) {
-        this.impuesto = impuesto;
-    }
-    NumberFormat nf = NumberFormat.getCurrencyInstance();
-    DocumentListener listenImporte = new DocumentListener() {
-        @Override
-        public void insertUpdate(DocumentEvent event){
-            validar();
-        }
-
-        @Override
-        public void removeUpdate(DocumentEvent event) {
-            validar();
-        }
-
-        @Override
-        public void changedUpdate(DocumentEvent event) {
-
-        }
-
-        public void validar() {
-            try {
-                Double test = Double.parseDouble(txtImporte.getText().trim());
-
-                //Tampoco se valen importes negativos
-                if(test<0)
-                    throw(new NumberFormatException());
-
-
-                txtImporte.setForeground(Color.black);
-                txtImporte.setFont(txtImporte.getFont().deriveFont(Font.PLAIN));
-                btnAdd.setEnabled(true);
-            }
-            catch (NumberFormatException e) {
-                // mensaje si tiene formato erroneo
-
-                java.awt.Toolkit toolkit = java.awt.Toolkit.getDefaultToolkit();
-                toolkit.beep();
-                System.out.println("Errrrror");
-                txtImporte.requestFocus();
-                txtImporte.setForeground(Color.red);
-                txtImporte.setFont(txtImporte.getFont().deriveFont(Font.BOLD));
-                btnAdd.setEnabled(false);
-            }
-        }
-    };
-    DocumentListener listenTasa = new DocumentListener() {
-
-        @Override
-        public void insertUpdate(DocumentEvent event){
-            validar();
-        }
-
-        @Override
-        public void removeUpdate(DocumentEvent event) {
-            validar();
-        }
-
-        @Override
-        public void changedUpdate(DocumentEvent event) {
-
-        }
-
-        public void validar() {
-            try {
-                Double test = Double.parseDouble(txtTasa.getText().trim());
-
-                //Tampoco se valen importes negativos
-                if(test<0)
-                    throw(new NumberFormatException());
-
-
-                txtTasa.setForeground(Color.black);
-                txtTasa.setFont(txtTasa.getFont().deriveFont(Font.PLAIN));
-                btnAdd.setEnabled(true);
-            }
-            catch (NumberFormatException e) {
-                // mensaje si tiene formato erroneo
-
-
-                txtTasa.requestFocus();
-                txtTasa.setForeground(Color.red);
-                txtTasa.setFont(txtTasa.getFont().deriveFont(Font.BOLD));
-                btnAdd.setEnabled(false);
-            }
-        }
-
-    };
-
-
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnLimpiar;
-    private javax.swing.JComboBox cboImpuesto;
-    private javax.swing.JComboBox cboTipoImpuesto;
+    private javax.swing.JComboBox cmbImpuesto;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -588,4 +287,5 @@ public final class ImpuestosPanel extends javax.swing.JPanel {
     private javax.swing.JTextField txtTotalRetenidos;
     private javax.swing.JTextField txtTotalTrasladados;
     // End of variables declaration//GEN-END:variables
+    Comprobante comprobante;
 }
