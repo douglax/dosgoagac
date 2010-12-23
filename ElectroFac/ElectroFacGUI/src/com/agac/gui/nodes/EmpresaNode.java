@@ -14,6 +14,7 @@ import com.agac.gui.EmisorTopComponent;
 import com.agac.gui.FoliosPanel;
 import com.agac.gui.MenuTopComponent;
 import com.agac.gui.ReporteMensualPanel;
+import com.agac.gui.ReporteRangoPanel;
 import com.agac.services.DbServices;
 import java.awt.BorderLayout;
 import java.awt.FileDialog;
@@ -36,6 +37,10 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.view.JasperViewer;
 import org.openide.DialogDescriptor;
 import org.openide.DialogDisplayer;
 import org.openide.ErrorManager;
@@ -76,7 +81,9 @@ public class EmpresaNode extends AbstractNode {
                     new AddLogo(),
                     new VerLogo(),
                     null,
-                    new ReporteMensual()
+                    new ReporteMensual(),
+                    null,
+                    new reportePorRangoFecha()
                 };
     }
 
@@ -117,9 +124,9 @@ public class EmpresaNode extends AbstractNode {
             Property municipio = new PropertySupport.Reflection<String>(e.getDomicilioFiscal(), String.class,
                     "getMunicipio", null);
             Property estado = new PropertySupport.Reflection<String>(e.getDomicilioFiscal(), String.class,
-                "getEstado", null);
+                    "getEstado", null);
             Property pais = new PropertySupport.Reflection<String>(e.getDomicilioFiscal(), String.class,
-                "getPais", null);
+                    "getPais", null);
 
             noExt.setName("noExterior");
             noExt.setDisplayName("Número Exterior");
@@ -134,7 +141,7 @@ public class EmpresaNode extends AbstractNode {
             pais.setName("pais");
             pais.setDisplayName("País");
 
-       
+
 
             set.put(nombre);
             set.put(rfc);
@@ -180,44 +187,44 @@ public class EmpresaNode extends AbstractNode {
 
         private String tipo = null;
 
-         public CrearFactura(String tipoDeFatura) {
-            
-                tipo = tipoDeFatura;
-                putValue(NAME, "Crear Comprobante de " + tipo);
-            
+        public CrearFactura(String tipoDeFatura) {
+
+            tipo = tipoDeFatura;
+            putValue(NAME, "Crear Comprobante de " + tipo);
+
         }
 
         @Override
         public void actionPerformed(ActionEvent e) {
 
-            if(checaLicencia()){
-            final MenuTopComponent frm =
-                    (MenuTopComponent) WindowManager.getDefault().findTopComponent("MenuTopComponent");
-            try {
-                frm.getBeanTreeView1().setCursor(Utilities.createProgressCursor(frm));
-                SwingUtilities.invokeLater(new Runnable() {
+            if (checaLicencia()) {
+                final MenuTopComponent frm =
+                        (MenuTopComponent) WindowManager.getDefault().findTopComponent("MenuTopComponent");
+                try {
+                    frm.getBeanTreeView1().setCursor(Utilities.createProgressCursor(frm));
+                    SwingUtilities.invokeLater(new Runnable() {
 
-                    @Override
-                    public void run() {
-                        Comprobante c = new Comprobante();
-                        c.setTipoDeComprobante(tipo);
-                        ComprobanteTopComponent ctc = new ComprobanteTopComponent();
-                        ctc.setComprobante(c);
-                        ctc.setDisplayName("Nuevo Comprobante de " + tipo);
-                        ctc.componentOpened();
-                        ctc.getComprobante().setEmisor(getLookup().lookup(Emisor.class));
-                        ctc.open();
-                        ctc.requestActive();
-                        frm.getBeanTreeView1().setCursor(null);
-                    }
-                });
-            } catch (Exception ex) {
-                Exceptions.printStackTrace(ex);
-            }
+                        @Override
+                        public void run() {
+                            Comprobante c = new Comprobante();
+                            c.setTipoDeComprobante(tipo);
+                            ComprobanteTopComponent ctc = new ComprobanteTopComponent();
+                            ctc.setComprobante(c);
+                            ctc.setDisplayName("Nuevo Comprobante de " + tipo);
+                            ctc.componentOpened();
+                            ctc.getComprobante().setEmisor(getLookup().lookup(Emisor.class));
+                            ctc.open();
+                            ctc.requestActive();
+                            frm.getBeanTreeView1().setCursor(null);
+                        }
+                    });
+                } catch (Exception ex) {
+                    Exceptions.printStackTrace(ex);
+                }
             }
         } //action performed
 
-        private boolean checaLicencia (){
+        private boolean checaLicencia() {
 
             String mensaje = "";
             boolean valido = true;
@@ -230,22 +237,22 @@ public class EmpresaNode extends AbstractNode {
 
 
                 //checar si la licemcia no contempla comprobantes ilimitados
-                if(lic.get(0).getAutorizados() != -1) {
+                if (lic.get(0).getAutorizados() != -1) {
 
-                // checar si no ha excedido autorizados
-                if( lic.get(0).getAutorizados() <= lic.get(0).getEmitidos()) {
-                    // No puede emitir comprobante
-                    valido = false;
-                    mensaje += "Se ha excedido en el número de Comprobantes emitidios\nque contempla su licencia de uso\n";
-                }
+                    // checar si no ha excedido autorizados
+                    if (lic.get(0).getAutorizados() <= lic.get(0).getEmitidos()) {
+                        // No puede emitir comprobante
+                        valido = false;
+                        mensaje += "Se ha excedido en el número de Comprobantes emitidios\nque contempla su licencia de uso\n";
+                    }
 
                 }
 
 
                 //checar si no ha expirado la fecha
-               java.sql.Date hoy = new java.sql.Date(System.currentTimeMillis());
+                java.sql.Date hoy = new java.sql.Date(System.currentTimeMillis());
 
-                if(lic.get(0).getFecha().before(hoy) ){
+                if (lic.get(0).getFecha().before(hoy)) {
                     valido = false;
                     mensaje += "El tiempo de uso del programa ha expirado de acuerdo a la licencia\n";
                 }
@@ -257,11 +264,11 @@ public class EmpresaNode extends AbstractNode {
             }
 
 
-            if(valido){
+            if (valido) {
                 return true;
             } else {
 
-                JOptionPane.showMessageDialog(null, mensaje,"Error por licenciamiento",JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, mensaje, "Error por licenciamiento", JOptionPane.ERROR_MESSAGE);
 
                 return false;
 
@@ -271,8 +278,6 @@ public class EmpresaNode extends AbstractNode {
 
 
         } //checalicencia
-
-
     } // Class CrearFactura
 
     private class AdminFolios extends AbstractAction {
@@ -351,16 +356,16 @@ public class EmpresaNode extends AbstractNode {
                 panel.setLayout(new BorderLayout());
                 JLabel logo = new JLabel();
                 Emisor emisor = getLookup().lookup(Emisor.class);
-                if(emisor.getLogo() == null){
+                if (emisor.getLogo() == null) {
                     DialogDisplayer.getDefault().notify(
-                        new NotifyDescriptor.Message("No existe imagen para este emisor"));
+                            new NotifyDescriptor.Message("No existe imagen para este emisor"));
                     return;
                 }
                 InputStream in = new ByteArrayInputStream(emisor.getLogo());
                 Image img = ImageIO.read(in);
-                if(img == null){
+                if (img == null) {
                     DialogDisplayer.getDefault().notify(
-                        new NotifyDescriptor.Message("No existe imagen para este emisor"));
+                            new NotifyDescriptor.Message("No existe imagen para este emisor"));
                     return;
                 }
                 logo.setIcon(new ImageIcon(img));
@@ -373,35 +378,86 @@ public class EmpresaNode extends AbstractNode {
         }
     }
 
-    private class CatalogoArticulos extends AbstractAction{
+    private class CatalogoArticulos extends AbstractAction {
 
-        public CatalogoArticulos(){
+        public CatalogoArticulos() {
             putValue(NAME, "Catálogo de Conceptos...");
         }
+
         @Override
         public void actionPerformed(ActionEvent e) {
             ArticulosPanel ap = new ArticulosPanel();
             ap.setEmisor(getLookup().lookup(Emisor.class));
             DialogDisplayer.getDefault().notify(
-                        new DialogDescriptor(ap,
-                        "Conceptos de Facturación", true, null));
+                    new DialogDescriptor(ap,
+                    "Conceptos de Facturación", true, null));
         }
     }
 
-
     private class ReporteMensual extends AbstractAction {
-        public ReporteMensual(){
-            putValue(NAME, "Generar Reporte Mensual");
+
+        public ReporteMensual() {
+            putValue(NAME, "Generar archivo de Reporte Mensual");
         }
+
         @Override
-        public void actionPerformed(ActionEvent e){
+        public void actionPerformed(ActionEvent e) {
             ReporteMensualPanel rm = new ReporteMensualPanel();
             rm.setEmisor(getLookup().lookup(Emisor.class));
             DialogDisplayer.getDefault().notify(
-                        new DialogDescriptor(rm,
-                        "Reporte Mensual", true, null));
+                    new DialogDescriptor(rm,
+                    "Reporte Mensual", true, null));
         }
     }
 
+    private class reportePorRangoFecha extends AbstractAction {
 
+        public reportePorRangoFecha() {
+            putValue(NAME, "Reporte por rango de fecha");
+        }
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+
+
+
+
+            Emisor emisor = getLookup().lookup(Emisor.class);
+            List<Comprobante> comprobantes = new ArrayList<Comprobante>();
+
+            ReporteRangoPanel panel = new ReporteRangoPanel();
+
+
+            DialogDescriptor dd = new DialogDescriptor(panel, "Ingrese el rango de fechas", true, null);
+            Object result = DialogDisplayer.getDefault().notify(dd);
+            if (NotifyDescriptor.OK_OPTION.equals(result)) {
+
+                if (panel.getFechaInicio() != null && panel.getFechaFinal() != null) {
+
+                    try {
+
+                        String qry = "Select c from Comprobante c where c.fecha between ?1 and ?2 ";
+                        comprobantes = DbServices.getListWithParameters(qry, panel.getFechaInicio(), panel.getFechaFinal());
+                        if (!comprobantes.isEmpty()) {
+
+                            InputStream in = getClass().getClassLoader().getResourceAsStream(
+                                    "com/agac/gui/resourses/reports/porRango.jasper");
+
+                            JRBeanCollectionDataSource ds = new JRBeanCollectionDataSource(comprobantes);
+                            JasperPrint print = JasperFillManager.fillReport(in, null, ds);
+                            JasperViewer.viewReport(print, false);
+
+                        }
+
+                    } catch (Exception ex) {
+                        Exceptions.printStackTrace(ex);
+                        
+
+
+                    }
+
+                }
+            }
+        }
+    }
 }
