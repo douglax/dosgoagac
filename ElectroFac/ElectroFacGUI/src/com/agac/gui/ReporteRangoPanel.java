@@ -10,7 +10,7 @@
  */
 package com.agac.gui;
 
-import java.sql.Date;
+import java.util.Date;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -115,7 +115,7 @@ public class ReporteRangoPanel extends javax.swing.JPanel {
 
     public Date getFechaInicio() {
 
-                String str_date = txtInicio.getText();
+        String str_date = txtInicio.getText();
         DateFormat formatter;
         Date date;
         formatter = new SimpleDateFormat("dd/mm/yyyy");
