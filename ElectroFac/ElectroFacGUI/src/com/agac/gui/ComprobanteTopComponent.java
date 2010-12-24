@@ -1251,12 +1251,21 @@ public final class ComprobanteTopComponent extends TopComponent {
         //comprobante.setImpuesto(impPanel.getImpuesto());
         Object result = DialogDisplayer.getDefault().notify(d2);
         if (DialogDescriptor.OK_OPTION.equals(result)) {
-            //comprobante.setImpuesto(impPanel.getImpuesto());
+
+            if (comprobante.getImpuesto().getRetenciones().get("ISR") != null) {
+                BigDecimal amnt = comprobante.getImpuesto().getRetenciones().get("ISR").getImporte();
+                lblRetISR.setText(NumberFormat.getCurrencyInstance().format(amnt));
+            }
+            if (comprobante.getImpuesto().getRetenciones().get("IVA") != null) {
+                BigDecimal amnt = comprobante.getImpuesto().getRetenciones().get("IVA").getImporte();
+                lblRetIVA.setText(NumberFormat.getCurrencyInstance().format(amnt));
+            }
+
+            comprobante.setTotal(comprobante.calcularTotal());
+            jLabel33.setText(NumberFormat.getCurrencyInstance().format(comprobante.getTotal().doubleValue()));
+
         }
-        //refrescaImpuestos();
-        NumberFormat nf = NumberFormat.getCurrencyInstance();
-        lblIVA.setText(nf.format(comprobante.getIVA()));
-        jLabel33.setText(nf.format(comprobante.getTotal()));
+
     }//GEN-LAST:event_btnImpuestosActionPerformed
 
     private void optUnPagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_optUnPagoActionPerformed
@@ -1697,7 +1706,7 @@ public final class ComprobanteTopComponent extends TopComponent {
             this.lblRetISR.setVisible(true);
             this.lblRetIVA.setVisible(true);
 
-            if (comprobante.getImpuesto().getRetenciones() != null ) {
+            if (comprobante.getImpuesto().getRetenciones() != null) {
                 if (comprobante.getImpuesto().getRetenciones().get("ISR") != null) {
                     lblRetISR.setText(comprobante.getImpuesto().getRetenciones().get("ISR").toString());
                 }
