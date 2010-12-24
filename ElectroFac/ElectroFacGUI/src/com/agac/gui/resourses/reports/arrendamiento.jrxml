@@ -1,0 +1,368 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="honorarios" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="153"/>
+	<subDataset name="dataset1">
+		<field name="cantidad" class="java.lang.Double"/>
+		<field name="unidad" class="java.lang.String"/>
+		<field name="noIdentificacion" class="java.lang.String"/>
+		<field name="descripcion" class="java.lang.String"/>
+		<field name="valorUnitario" class="java.math.BigDecimal"/>
+		<field name="importe" class="java.math.BigDecimal"/>
+	</subDataset>
+	<field name="emisor.nombre" class="java.lang.String"/>
+	<field name="emisor.rfc" class="java.lang.String"/>
+	<field name="folio" class="java.lang.Integer"/>
+	<field name="emisor.logo" class="java.lang.Object"/>
+	<field name="emisor.domicilioFiscal.calle" class="java.lang.String"/>
+	<field name="emisor.domicilioFiscal.noExterior" class="java.lang.String"/>
+	<field name="emisor.domicilioFiscal.colonia" class="java.lang.String"/>
+	<field name="emisor.domicilioFiscal.localidad" class="java.lang.String"/>
+	<field name="emisor.domicilioFiscal.municipio" class="java.lang.String"/>
+	<field name="emisor.domicilioFiscal.estado" class="java.lang.String"/>
+	<field name="emisor.domicilioFiscal.pais" class="java.lang.String"/>
+	<field name="emisor.domicilioFiscal.codigoPostal" class="java.lang.String"/>
+	<field name="receptor.nombre" class="java.lang.String"/>
+	<field name="receptor.rfc" class="java.lang.String"/>
+	<field name="receptor.domicilio.calle" class="java.lang.String"/>
+	<field name="receptor.domicilio.noExterior" class="java.lang.String"/>
+	<field name="receptor.domicilio.colonia" class="java.lang.String"/>
+	<field name="receptor.domicilio.localidad" class="java.lang.String"/>
+	<field name="receptor.domicilio.municipio" class="java.lang.String"/>
+	<field name="receptor.domicilio.codigoPostal" class="java.lang.String"/>
+	<field name="subTotal" class="java.math.BigDecimal"/>
+	<field name="IVA" class="java.lang.Double"/>
+	<field name="total" class="java.math.BigDecimal"/>
+	<field name="receptor.domicilio.estado" class="java.lang.String"/>
+	<field name="receptor.domicilio.pais" class="java.lang.String"/>
+	<field name="conceptos(0).descripcion" class="java.lang.Object"/>
+	<field name="cantidadConLetra" class="java.lang.String"/>
+	<field name="fecha" class="java.util.Date"/>
+	<field name="impuesto.retenciones.get(&quot;ISR&quot;)" class="java.math.BigDecimal"/>
+	<field name="impuesto.retenciones.get(&quot;IVA&quot;)" class="java.lang.String"/>
+	<field name="conceptos(0).valorUnitario" class="java.math.BigDecimal"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="71" splitType="Stretch">
+			<rectangle radius="10">
+				<reportElement x="459" y="-2" width="113" height="39"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="488" y="-2" width="55" height="20"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Número]]></text>
+			</staticText>
+			<line>
+				<reportElement x="459" y="14" width="113" height="1"/>
+				<graphicElement>
+					<pen lineWidth="3.0"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement x="467" y="18" width="100" height="20" forecolor="#FF0000"/>
+				<textElement textAlignment="Center">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$F{folio}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="3" y="5" width="454" height="33" backcolor="#CCCCCC"/>
+				<textElement>
+					<font size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[RECIBO DE ARRENDAMIENTO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="355" y="48" width="48" height="20"/>
+				<textElement/>
+				<text><![CDATA[FECHA:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="443" y="48" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.util.Date"><![CDATA[$F{fecha}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="8" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="6" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="306" splitType="Stretch">
+			<rectangle>
+				<reportElement x="4" y="0" width="363" height="95"/>
+			</rectangle>
+			<textField>
+				<reportElement x="5" y="125" width="362" height="16"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{receptor.nombre}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="7" y="143" width="357" height="1"/>
+			</line>
+			<textField>
+				<reportElement x="4" y="0" width="363" height="20"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{emisor.nombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="4" y="20" width="363" height="17"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["R.F.C. " + $F{emisor.rfc}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="4" y="38" width="363" height="20"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{emisor.domicilioFiscal.calle} + " " + $F{emisor.domicilioFiscal.noExterior} +" Colonia " + $F{emisor.domicilioFiscal.colonia} + " C.P. " + $F{emisor.domicilioFiscal.codigoPostal}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="8" y="62" width="359" height="20"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{emisor.domicilioFiscal.localidad} + " " + $F{emisor.domicilioFiscal.municipio} + ", " + $F{emisor.domicilioFiscal.estado} + ", " + $F{emisor.domicilioFiscal.pais}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="8" y="166" width="158" height="14"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA["R.F.C.  " + $F{receptor.rfc}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="8" y="202" width="359" height="15"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{receptor.domicilio.calle} + " " + $F{receptor.domicilio.noExterior} + ", Colonia " + $F{receptor.domicilio.colonia} + " C.P. " + $F{receptor.domicilio.codigoPostal}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="8" y="241" width="359" height="17"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{receptor.domicilio.localidad} + " " + $F{receptor.domicilio.municipio} + ", " + $F{receptor.domicilio.estado} + ", " + $F{receptor.domicilio.pais}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="6" y="110" width="61" height="15"/>
+				<textElement/>
+				<text><![CDATA[NOMBRE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="6" y="148" width="100" height="15"/>
+				<textElement/>
+				<text><![CDATA[R.F.C.]]></text>
+			</staticText>
+			<line>
+				<reportElement x="7" y="183" width="357" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="8" y="187" width="158" height="13"/>
+				<textElement/>
+				<text><![CDATA[DOMICILIO DEL INMUEBLE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="8" y="224" width="122" height="14"/>
+				<textElement/>
+				<text><![CDATA[POBLACION / ENTIDAD]]></text>
+			</staticText>
+			<line>
+				<reportElement x="8" y="220" width="357" height="1"/>
+			</line>
+			<staticText>
+				<reportElement mode="Opaque" x="399" y="5" width="157" height="20" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ANALISIS DE COBRO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="447" y="29" width="63" height="19"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[IMPORTE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="376" y="56" width="71" height="14"/>
+				<textElement/>
+				<text><![CDATA[RENTA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="378" y="81" width="71" height="14"/>
+				<textElement/>
+				<text><![CDATA[I.V.A.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="379" y="107" width="71" height="14"/>
+				<textElement/>
+				<text><![CDATA[SUBTOTAL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="380" y="147" width="87" height="15" backcolor="#CCCCCC"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[RETENCIONES]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="380" y="174" width="77" height="14"/>
+				<textElement/>
+				<text><![CDATA[RETENCION ISR]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="379" y="204" width="77" height="14"/>
+				<textElement/>
+				<text><![CDATA[RETENCION IVA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="382" y="236" width="77" height="14"/>
+				<textElement/>
+				<text><![CDATA[TOTAL]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="478" y="56" width="81" height="14"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{conceptos(0).valorUnitario}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="479" y="80" width="79" height="14"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{IVA}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="477" y="107" width="79" height="14"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{subTotal}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="480" y="174" width="76" height="14"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{impuesto.retenciones.get("ISR")}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="481" y="204" width="77" height="14"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{impuesto.retenciones.get("ISR")}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="480" y="234" width="79" height="14"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{total}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="8" y="267" width="122" height="14"/>
+				<textElement/>
+				<text><![CDATA[CONCEPTO]]></text>
+			</staticText>
+			<line>
+				<reportElement x="8" y="261" width="357" height="1"/>
+			</line>
+			<textField>
+				<reportElement x="9" y="285" width="362" height="16"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{conceptos(0).descripcion}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="8"/>
+	</detail>
+	<columnFooter>
+		<band height="162" splitType="Stretch">
+			<rectangle>
+				<reportElement x="1" y="57" width="404" height="20" backcolor="#C0C0C0"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="4" y="62" width="125" height="17"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cantidad con letra]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="1" y="82" width="404" height="21"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{cantidadConLetra}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="2" width="117" height="13"/>
+				<textElement>
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cadena original:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="3" y="15" width="569" height="34"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[Aqui va la cadena original | Aqui va la cadena original | Aqui va la cadena original | Aqui va la cadena original | Aqui va la cadena original | Aqui va la cadena original | Aqui va la cadena original | Aqui va la cadena original | Aqui va la cadena original | Aqui va la cadena original | Aqui va la cadena original | Aqui va la cadena original | Aqui va la cadena original | ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="107" width="363" height="17"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[IMPUESTO RETENIDO DE CONFORMIDAD A LA LEY DEL IMPUESTO AL VALOR AGREGADO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="140" width="567" height="16"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[La reproducción no autorizada de este comprobante constituye un delito en los términos de las disposiciones fiscales.]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="158" width="572" height="1"/>
+				<graphicElement>
+					<pen lineWidth="1.5"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="98" splitType="Stretch">
+			<staticText>
+				<reportElement x="2" y="43" width="569" height="34"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Sello Digital - Sello Digital - Sello Digital - Sello Digital - Sello Digital - Sello Digital - Sello Digital - Sello Digital - Sello Digital - Sello Digital - Sello Digital - Sello Digital - Sello Digital - Sello Digital - Sello Digital - Sello Digital - Sello Digital - Sello Digital - Sello Digital - Sello Digital - Sello Digital - Sello Digital - Sello Digital - ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="3" width="445" height="11"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Este documento es una impresión de un Comprobante Fiscal Digital]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="14" width="150" height="11"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Numero de aprobación de folios:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="255" y="14" width="150" height="11"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Certificado:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="28" width="100" height="11"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Sello Digital:]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="79" splitType="Stretch"/>
+	</summary>
+</jasperReport>

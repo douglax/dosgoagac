@@ -1067,14 +1067,14 @@ public final class ComprobanteTopComponent extends TopComponent {
         binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, this, org.jdesktop.beansbinding.ELProperty.create("${comprobante.IVA}"), lblIVA, org.jdesktop.beansbinding.BeanProperty.create("text"));
         bindingGroup.addBinding(binding);
 
-        jLabel33.setFont(new java.awt.Font("Tahoma", 1, 14));
+        jLabel33.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel33.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel33.setPreferredSize(new java.awt.Dimension(0, 20));
 
         binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, this, org.jdesktop.beansbinding.ELProperty.create("${comprobante.total}"), jLabel33, org.jdesktop.beansbinding.BeanProperty.create("text"));
         bindingGroup.addBinding(binding);
 
-        lblRet1.setFont(new java.awt.Font("DejaVu Sans", 1, 11)); // NOI18N
+        lblRet1.setFont(new java.awt.Font("DejaVu Sans", 1, 11));
         org.openide.awt.Mnemonics.setLocalizedText(lblRet1, org.openide.util.NbBundle.getMessage(ComprobanteTopComponent.class, "ComprobanteTopComponent.lblRet1.text")); // NOI18N
         lblRet1.setFocusable(false);
         lblRet1.setRequestFocusEnabled(false);
@@ -1085,7 +1085,7 @@ public final class ComprobanteTopComponent extends TopComponent {
         lblRet2.setRequestFocusEnabled(false);
 
         lblRetIVA.setBackground(new java.awt.Color(0, 0, 255));
-        lblRetIVA.setFont(new java.awt.Font("DejaVu Sans", 1, 11)); // NOI18N
+        lblRetIVA.setFont(new java.awt.Font("DejaVu Sans", 1, 11));
         lblRetIVA.setForeground(new java.awt.Color(255, 255, 255));
         lblRetIVA.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblRetIVA.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -1094,7 +1094,7 @@ public final class ComprobanteTopComponent extends TopComponent {
         lblRetIVA.setRequestFocusEnabled(false);
 
         lblRetISR.setBackground(new java.awt.Color(0, 0, 255));
-        lblRetISR.setFont(new java.awt.Font("DejaVu Sans", 1, 11)); // NOI18N
+        lblRetISR.setFont(new java.awt.Font("DejaVu Sans", 1, 11));
         lblRetISR.setForeground(new java.awt.Color(255, 255, 255));
         lblRetISR.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblRetISR.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -1116,15 +1116,15 @@ public final class ComprobanteTopComponent extends TopComponent {
                             .addComponent(jLabel29))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel33, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE)
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(lblDescuento, javax.swing.GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE)
                                     .addComponent(lblSubtotal, javax.swing.GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE))
                                 .addGap(21, 21, 21))
-                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jLabel33, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(lblRetIVA, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(lblIVA, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(lblIVA, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(lblRetISR, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addComponent(lblRet2)
                     .addComponent(lblRet1))
@@ -1165,7 +1165,7 @@ public final class ComprobanteTopComponent extends TopComponent {
         jPanel3Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {lblDescuento, lblIVA, lblSubtotal});
 
         jPanel5.add(jPanel3);
-        jPanel3.setBounds(580, 553, 253, 230);
+        jPanel3.setBounds(580, 553, 241, 230);
 
         jScrollPane3.setViewportView(jPanel5);
 
@@ -1698,7 +1698,7 @@ public final class ComprobanteTopComponent extends TopComponent {
 
     public void setComprobante(Comprobante comprobante) {
         this.comprobante = comprobante;
-
+        NumberFormat nf = NumberFormat.getCurrencyInstance();
 
         if (!comprobante.getTipoDeComprobante().equals("ingreso")) {
             this.lblRet1.setVisible(true);
@@ -1708,10 +1708,10 @@ public final class ComprobanteTopComponent extends TopComponent {
 
             if (comprobante.getImpuesto().getRetenciones() != null) {
                 if (comprobante.getImpuesto().getRetenciones().get("ISR") != null) {
-                    lblRetISR.setText(comprobante.getImpuesto().getRetenciones().get("ISR").toString());
+                   lblRetISR.setText(nf.format(comprobante.getImpuesto().getRetenciones().get("ISR").getImporte().doubleValue()));
                 }
                 if (comprobante.getImpuesto().getRetenciones().get("IVA") != null) {
-                    lblRetIVA.setText(comprobante.getImpuesto().getRetenciones().get("IVA").toString());
+                    lblRetIVA.setText(nf.format(comprobante.getImpuesto().getRetenciones().get("IVA").getImporte().doubleValue()));
                 }
             }
 
@@ -1874,14 +1874,23 @@ public final class ComprobanteTopComponent extends TopComponent {
             @Override
             public void print() {
 
+                String archivo = "";
+                if(comprobante.getTipoDeComprobante().equals("ingreso")) {
+                    archivo = "com/agac/gui/resourses/reports/report1.jasper";
+                }
+                if(comprobante.getTipoDeComprobante().equals("Arrendamiento")) {
+                    archivo = "com/agac/gui/resourses/reports/arrendamiento.jasper";
+                }
+                if(comprobante.getTipoDeComprobante().equals("Honorarios")) {
+                    archivo = "com/agac/gui/resourses/reports/honorarios.jasper";
+                }
 
                 DialogDisplayer.getDefault().notify(new NotifyDescriptor.Confirmation(
                         "¿Desea imprimir la factura?", "Impresión",
                         NotifyDescriptor.OK_CANCEL_OPTION,
                         NotifyDescriptor.QUESTION_MESSAGE));
                 try {
-                    InputStream in = getClass().getClassLoader().getResourceAsStream(
-                            "com/agac/gui/resourses/reports/" + layout);
+                    InputStream in = getClass().getClassLoader().getResourceAsStream(archivo);
                     List<Comprobante> l = new ArrayList<Comprobante>();
                     l.add(comprobante);
                     JRBeanCollectionDataSource ds = new JRBeanCollectionDataSource(l);

@@ -410,6 +410,10 @@ public class Comprobante implements Serializable {
         for (Concepto c : getConceptos()) {
             sub = sub.add(c.getImporte());
         }
+   //     if(this.getDescuento() != null && this.getDescuento().compareTo(new BigDecimal("0.0")) != 0 )     {
+   //         sub.subtract(this.getDescuento());
+   //     }
+
         return sub;
     }
 
@@ -431,7 +435,8 @@ public class Comprobante implements Serializable {
                 impuesto.setTotalImpuestosRetenidos(totRet);
             }
         }
-        return totTras.add(totRet);
+        return totTras.subtract(totRet);
+        //return totTras.add(totRet);
     }
 
     public BigDecimal calcularTraslados() {
@@ -443,10 +448,10 @@ public class Comprobante implements Serializable {
                 for (Traslado t : impuesto.getTraslados().values()) {
                     totTras = totTras.add(t.getImporte());
                 }
-                impuesto.setTotalImpuestosTrasladados(totTras);
+    
             }
         }
-
+        impuesto.setTotalImpuestosTrasladados(totTras);
         return totTras;
     }
 
@@ -467,6 +472,11 @@ public class Comprobante implements Serializable {
     }
 
     public BigDecimal calcularTotal() {
-        return calcularSubTotal().add(calcularTraslados()).subtract(calcularRetenciones());
+        BigDecimal tot = calcularSubTotal();
+        tot.add(calcularTraslados());
+        tot.subtract(calcularRetenciones());
+
+        return tot;
+        //return calcularSubTotal().add(calcularTraslados()).subtract(calcularRetenciones());
     }
 }
