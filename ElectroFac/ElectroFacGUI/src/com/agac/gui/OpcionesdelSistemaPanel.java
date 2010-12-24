@@ -398,7 +398,7 @@ final class OpcionesdelSistemaPanel extends javax.swing.JPanel {
 
             try {
 
-                image = ImageIO.read(new File("com/agac/gui/resourses/report1_thumb.jpg"));
+                image = ImageIO.read(new File("com/agac/gui/resourses/report1_thumb.png"));
                 picLabel.setIcon(new ImageIcon(image));
             } catch (IOException e) {
                 System.out.println(e.getMessage() + " - " + e.getLocalizedMessage());

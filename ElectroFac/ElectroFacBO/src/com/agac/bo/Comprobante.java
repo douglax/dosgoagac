@@ -116,6 +116,60 @@ public class Comprobante implements Serializable {
     private String cadenaOriginal;
     @XmlTransient
     private int status;
+    @XmlTransient
+    @Column(nullable = false)
+    private BigDecimal ISRretenido = new BigDecimal(0);
+    @XmlTransient
+    @Column(nullable = false)
+    private BigDecimal IVAretenido = new BigDecimal(0);
+
+    public BigDecimal getISRretenido() {
+
+        return ISRretenido;
+    }
+
+
+
+    public void setISRretenido() {
+
+        BigDecimal totRet = new BigDecimal("0");
+
+        if (impuesto != null) {
+
+            if (impuesto.getRetenciones() != null) {
+                for (Retencion r : impuesto.getRetenciones().values()) {
+                    if (r.getImpuesto().equals("ISR")) {
+                        totRet = totRet.add(r.getImporte());
+                    }
+                }
+
+            }
+        }
+        this.ISRretenido = totRet;
+        
+    }
+
+    public BigDecimal getIVAretenido() {
+        return IVAretenido;
+    }
+
+    public void setIVAretenido() {
+
+       BigDecimal totRet = new BigDecimal("0");
+
+        if (impuesto != null) {
+
+            if (impuesto.getRetenciones() != null) {
+                for (Retencion r : impuesto.getRetenciones().values()) {
+                    if (r.getImpuesto().equals("IVA")) {
+                        totRet = totRet.add(r.getImporte());
+                    }
+                }
+
+            }
+        }
+        this.IVAretenido = totRet;
+    }
 
     public int getStatus() {
         return status;
@@ -410,9 +464,9 @@ public class Comprobante implements Serializable {
         for (Concepto c : getConceptos()) {
             sub = sub.add(c.getImporte());
         }
-   //     if(this.getDescuento() != null && this.getDescuento().compareTo(new BigDecimal("0.0")) != 0 )     {
-   //         sub.subtract(this.getDescuento());
-   //     }
+        //     if(this.getDescuento() != null && this.getDescuento().compareTo(new BigDecimal("0.0")) != 0 )     {
+        //         sub.subtract(this.getDescuento());
+        //     }
 
         return sub;
     }
@@ -448,7 +502,7 @@ public class Comprobante implements Serializable {
                 for (Traslado t : impuesto.getTraslados().values()) {
                     totTras = totTras.add(t.getImporte());
                 }
-    
+
             }
         }
         impuesto.setTotalImpuestosTrasladados(totTras);

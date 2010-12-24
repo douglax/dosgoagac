@@ -1820,6 +1820,8 @@ public final class ComprobanteTopComponent extends TopComponent {
                                                 } else {
                                                     comprobante.setFormaDePago("Parcialidad " + txtParcialidad.getText() + " de " + txtParcialidadTotales.getText());
                                                 }
+                                                comprobante.setISRretenido();
+                                                comprobante.setIVAretenido();
                                                 String cadena = new CadenaOriginal(comprobante).toString();
                                                 System.out.println(cadena);
                                                 SelloDigital sd = new SelloDigital();
@@ -1831,6 +1833,8 @@ public final class ComprobanteTopComponent extends TopComponent {
                                                 comprobante.setNoCertificado(sd.getSerialNumberSATFormat());
                                                 comprobante.setSello(sd.generar(cadena));
                                                 comprobante.setCadenaOriginal(cadena);
+                                                
+                                                
 
                                                 //status 1 = activo, 0 = cancelado
                                                 comprobante.setStatus(1);

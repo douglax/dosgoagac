@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="honorarios" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="153"/>
+	<property name="ireport.y" value="57"/>
 	<subDataset name="dataset1">
 		<field name="cantidad" class="java.lang.Double"/>
 		<field name="unidad" class="java.lang.String"/>
@@ -39,9 +39,8 @@
 	<field name="conceptos(0).descripcion" class="java.lang.Object"/>
 	<field name="cantidadConLetra" class="java.lang.String"/>
 	<field name="fecha" class="java.util.Date"/>
-	<field name="impuesto.retenciones.get(&quot;ISR&quot;)" class="java.math.BigDecimal"/>
-	<field name="impuesto.retenciones.get(&quot;IVA&quot;)" class="java.lang.String"/>
-	<field name="conceptos(0).valorUnitario" class="java.math.BigDecimal"/>
+	<field name="ISRretenido" class="java.math.BigDecimal"/>
+	<field name="IVAretenido" class="java.math.BigDecimal"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -198,11 +197,6 @@
 				<text><![CDATA[I.V.A.]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="379" y="107" width="71" height="14"/>
-				<textElement/>
-				<text><![CDATA[SUBTOTAL]]></text>
-			</staticText>
-			<staticText>
 				<reportElement mode="Opaque" x="380" y="147" width="87" height="15" backcolor="#CCCCCC"/>
 				<textElement>
 					<font size="12"/>
@@ -227,7 +221,7 @@
 			<textField>
 				<reportElement x="478" y="56" width="81" height="14"/>
 				<textElement textAlignment="Right"/>
-				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{conceptos(0).valorUnitario}]]></textFieldExpression>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{subTotal}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="479" y="80" width="79" height="14"/>
@@ -235,19 +229,14 @@
 				<textFieldExpression class="java.lang.Double"><![CDATA[$F{IVA}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="477" y="107" width="79" height="14"/>
-				<textElement textAlignment="Right"/>
-				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{subTotal}]]></textFieldExpression>
-			</textField>
-			<textField>
 				<reportElement x="480" y="174" width="76" height="14"/>
 				<textElement textAlignment="Right"/>
-				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{impuesto.retenciones.get("ISR")}]]></textFieldExpression>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{ISRretenido}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="481" y="204" width="77" height="14"/>
 				<textElement textAlignment="Right"/>
-				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{impuesto.retenciones.get("ISR")}]]></textFieldExpression>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{IVAretenido}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="480" y="234" width="79" height="14"/>
