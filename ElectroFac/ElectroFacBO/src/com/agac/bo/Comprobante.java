@@ -34,7 +34,7 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlRootElement(name = "Comprobante", namespace = "http://www.sat.gob.mx/cfd/2")
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(propOrder={
+@XmlType(propOrder = {
     "tipoDeComprobante", "metodoDePago", "descuento",
     "formaDePago", "anoAprobacion", "noAprobacion", "total", "subTotal", "noCertificado", "sello",
     "fecha", "folio", "version", "serie", "emisor", "receptor", "conceptos", "impuesto"
@@ -434,7 +434,39 @@ public class Comprobante implements Serializable {
         return totTras.add(totRet);
     }
 
+    public BigDecimal calcularTraslados() {
+        BigDecimal totTras = new BigDecimal("0");
+
+
+        if (impuesto != null) {
+            if (impuesto.getTraslados() != null) {
+                for (Traslado t : impuesto.getTraslados().values()) {
+                    totTras = totTras.add(t.getImporte());
+                }
+                impuesto.setTotalImpuestosTrasladados(totTras);
+            }
+        }
+
+        return totTras;
+    }
+
+    public BigDecimal calcularRetenciones() {
+
+        BigDecimal totRet = new BigDecimal("0");
+
+        if (impuesto != null) {
+
+            if (impuesto.getRetenciones() != null) {
+                for (Retencion r : impuesto.getRetenciones().values()) {
+                    totRet = totRet.add(r.getImporte());
+                }
+                impuesto.setTotalImpuestosRetenidos(totRet);
+            }
+        }
+        return totRet;
+    }
+
     public BigDecimal calcularTotal() {
-        return calcularSubTotal().add(calcularImpuestos());
+        return calcularSubTotal().add(calcularTraslados()).subtract(calcularRetenciones());
     }
 }

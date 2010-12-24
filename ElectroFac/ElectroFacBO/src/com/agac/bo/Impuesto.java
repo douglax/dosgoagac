@@ -133,4 +133,6 @@ public class Impuesto implements Serializable {
             return new ArrayList<Retencion>(retenciones.values());
         }
     }
+
+    
 }
