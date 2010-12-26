@@ -10,6 +10,7 @@ import com.agac.bo.Receptor;
 import com.agac.bo.Impuesto;
 import com.agac.bo.Traslado;
 import com.agac.bo.InformacionAduanera;
+import com.agac.bo.Retencion;
 import com.agac.bo.Serie;
 import com.agac.gui.nodes.ClienteNode;
 import com.agac.gui.resourses.TripleDES;
@@ -1206,6 +1207,45 @@ public final class ComprobanteTopComponent extends TopComponent {
             }
             iva /= 100;
             refrescaIva(iva);
+
+
+            // Calcular automáticamente las retenciones de IVA e ISR
+
+
+
+            if (comprobante.getEmisor().getPersona().equals("FISICA") && comprobante.getReceptor().getPersona().equals("MORAL")) {
+                if (!comprobante.getTipoDeComprobante().equals("ingreso")) {
+                    double porcRetIVA = .10;
+                    double porcRetISR = .1066667;
+                    double tasa = 0.0;
+                    BigDecimal importeRetiva = new BigDecimal(0);
+                    BigDecimal importeRetisr = new BigDecimal(0);
+
+                    Retencion Riva = new Retencion();
+                    Riva.setImpuesto("IVA");
+                    tasa = (porcRetIVA);
+                    importeRetiva = comprobante.calcularSubTotal().multiply(new BigDecimal(Double.toString(tasa)));
+                    Riva.setImporte(importeRetiva);
+
+                    Retencion Risr = new Retencion();
+                    Risr.setImpuesto("ISR");
+                    tasa = (porcRetISR);
+                    importeRetisr = comprobante.calcularSubTotal().multiply(new BigDecimal(Double.toString(tasa)));
+                    Risr.setImporte(importeRetisr);
+
+
+                    if (comprobante.getImpuesto().getRetenciones() == null) {
+                        comprobante.getImpuesto().setRetenciones(new TreeMap<String, Retencion>());
+                    }
+                    comprobante.getImpuesto().getRetenciones().put(Riva.getImpuesto(), Riva);
+                    comprobante.getImpuesto().getRetenciones().put(Risr.getImpuesto(), Risr);
+
+                    this.lblRetIVA.setText(nf.format(importeRetiva));
+                    this.lblRetISR.setText(nf.format(importeRetisr));
+                }
+            }
+// termina retenciones
+
             comprobante.setTotal(comprobante.calcularTotal());
             jLabel33.setText(nf.format(comprobante.getTotal().doubleValue()));
 
@@ -1708,7 +1748,7 @@ public final class ComprobanteTopComponent extends TopComponent {
 
             if (comprobante.getImpuesto().getRetenciones() != null) {
                 if (comprobante.getImpuesto().getRetenciones().get("ISR") != null) {
-                   lblRetISR.setText(nf.format(comprobante.getImpuesto().getRetenciones().get("ISR").getImporte().doubleValue()));
+                    lblRetISR.setText(nf.format(comprobante.getImpuesto().getRetenciones().get("ISR").getImporte().doubleValue()));
                 }
                 if (comprobante.getImpuesto().getRetenciones().get("IVA") != null) {
                     lblRetIVA.setText(nf.format(comprobante.getImpuesto().getRetenciones().get("IVA").getImporte().doubleValue()));
@@ -1833,8 +1873,8 @@ public final class ComprobanteTopComponent extends TopComponent {
                                                 comprobante.setNoCertificado(sd.getSerialNumberSATFormat());
                                                 comprobante.setSello(sd.generar(cadena));
                                                 comprobante.setCadenaOriginal(cadena);
-                                                
-                                                
+
+
 
                                                 //status 1 = activo, 0 = cancelado
                                                 comprobante.setStatus(1);
@@ -1879,13 +1919,13 @@ public final class ComprobanteTopComponent extends TopComponent {
             public void print() {
 
                 String archivo = "";
-                if(comprobante.getTipoDeComprobante().equals("ingreso")) {
+                if (comprobante.getTipoDeComprobante().equals("ingreso")) {
                     archivo = "com/agac/gui/resourses/reports/report1.jasper";
                 }
-                if(comprobante.getTipoDeComprobante().equals("Arrendamiento")) {
+                if (comprobante.getTipoDeComprobante().equals("Arrendamiento")) {
                     archivo = "com/agac/gui/resourses/reports/arrendamiento.jasper";
                 }
-                if(comprobante.getTipoDeComprobante().equals("Honorarios")) {
+                if (comprobante.getTipoDeComprobante().equals("Honorarios")) {
                     archivo = "com/agac/gui/resourses/reports/honorarios.jasper";
                 }
 
@@ -1966,6 +2006,9 @@ public final class ComprobanteTopComponent extends TopComponent {
         NumberFormat nf = NumberFormat.getCurrencyInstance();
         lblIVA.setText(nf.format(comprobante.getIVA()));
         btnImpuestos.setEnabled(true);
+
+
+
     }
 
     public void pintaBoton(Concepto cto) {
