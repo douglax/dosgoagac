@@ -447,6 +447,9 @@ public class EmpresaNode extends AbstractNode {
                             JasperPrint print = JasperFillManager.fillReport(in, null, ds);
                             JasperViewer.viewReport(print, false);
 
+                        } else {
+                            DialogDisplayer.getDefault().notify(
+                                new NotifyDescriptor.Message("No existen registros para el rango especificado"));
                         }
 
                     } catch (Exception ex) {

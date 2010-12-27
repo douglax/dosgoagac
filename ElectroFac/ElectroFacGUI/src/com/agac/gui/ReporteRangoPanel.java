@@ -38,21 +38,12 @@ public class ReporteRangoPanel extends javax.swing.JPanel {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        txtInicio = new javax.swing.JTextField();
-        txtFin = new javax.swing.JTextField();
+        jXDatePickerInicio = new org.jdesktop.swingx.JXDatePicker();
+        jXDatePickerFin = new org.jdesktop.swingx.JXDatePicker();
 
         jLabel1.setText(org.openide.util.NbBundle.getMessage(ReporteRangoPanel.class, "ReporteRangoPanel.jLabel1.text")); // NOI18N
 
         jLabel2.setText(org.openide.util.NbBundle.getMessage(ReporteRangoPanel.class, "ReporteRangoPanel.jLabel2.text")); // NOI18N
-
-        txtInicio.setText(org.openide.util.NbBundle.getMessage(ReporteRangoPanel.class, "ReporteRangoPanel.txtInicio.text")); // NOI18N
-        txtInicio.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtInicioActionPerformed(evt);
-            }
-        });
-
-        txtFin.setText(org.openide.util.NbBundle.getMessage(ReporteRangoPanel.class, "ReporteRangoPanel.txtFin.text")); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -63,49 +54,32 @@ public class ReporteRangoPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
                     .addComponent(jLabel2))
-                .addGap(52, 52, 52)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtFin)
-                    .addComponent(txtInicio, javax.swing.GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE))
-                .addContainerGap(166, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jXDatePickerInicio, javax.swing.GroupLayout.DEFAULT_SIZE, 261, Short.MAX_VALUE)
+                    .addComponent(jXDatePickerFin, javax.swing.GroupLayout.DEFAULT_SIZE, 261, Short.MAX_VALUE))
+                .addGap(30, 30, 30))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(29, 29, 29)
+                .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(txtInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jXDatePickerInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(22, 22, 22)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(txtFin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(90, Short.MAX_VALUE))
+                    .addComponent(jXDatePickerFin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(74, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
     private Date fechaInicio;
     private Date fechaFinal;
 
     public Date getFechaFinal() {
-        String str_date = txtFin.getText();
-        DateFormat formatter;
-        Date date;
-        formatter = new SimpleDateFormat("dd/mm/yyyy");
-        try {
-            date = (Date) formatter.parse(str_date);
-            return date;
 
-
-
-        } catch (ParseException e) {
-
-            System.out.println("Exception :" + e);
-            return null;
-        }
-
-
-
-
+        return new java.sql.Date(this.jXDatePickerFin.getDate().getTime());
        
     }
 
@@ -115,35 +89,17 @@ public class ReporteRangoPanel extends javax.swing.JPanel {
 
     public Date getFechaInicio() {
 
-        String str_date = txtInicio.getText();
-        DateFormat formatter;
-        Date date;
-        formatter = new SimpleDateFormat("dd/mm/yyyy");
-        try {
-            date = (Date) formatter.parse(str_date);
-            return date;
-
-
-
-        } catch (ParseException e) {
-             
-            System.out.println("Exception :" + e);
-            return null;
-        }
-
+        return new java.sql.Date(this.jXDatePickerInicio.getDate().getTime());
     }
 
     public void setFechaInicio(Date fechaInicio) {
         this.fechaInicio = fechaInicio;
     }
 
-    private void txtInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtInicioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtInicioActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JTextField txtFin;
-    private javax.swing.JTextField txtInicio;
+    private org.jdesktop.swingx.JXDatePicker jXDatePickerFin;
+    private org.jdesktop.swingx.JXDatePicker jXDatePickerInicio;
     // End of variables declaration//GEN-END:variables
 }
