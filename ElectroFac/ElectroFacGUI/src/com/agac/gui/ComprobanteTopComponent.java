@@ -1862,6 +1862,8 @@ public final class ComprobanteTopComponent extends TopComponent {
                                                 }
                                                 comprobante.setISRretenido();
                                                 comprobante.setIVAretenido();
+                                                comprobante.setConceptoUnico();
+
                                                 String cadena = new CadenaOriginal(comprobante).toString();
                                                 System.out.println(cadena);
                                                 SelloDigital sd = new SelloDigital();

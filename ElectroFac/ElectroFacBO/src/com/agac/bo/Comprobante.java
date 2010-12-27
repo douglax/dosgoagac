@@ -123,6 +123,30 @@ public class Comprobante implements Serializable {
     @Column(nullable = false)
     private BigDecimal IVAretenido = new BigDecimal(0);
 
+    @XmlTransient
+    @Column(nullable = false)
+    private String conceptoUnico;
+
+    public String getConceptoUnico() {
+
+        return conceptoUnico;
+    }
+
+    public void setConceptoUnico() {
+
+
+        if (!this.getConceptos().isEmpty()) {
+             this.conceptoUnico =   this.getConceptos().get(0).getDescripcion();
+        } else {
+            this.conceptoUnico = "";
+        }
+
+    }
+
+
+
+
+
     public BigDecimal getISRretenido() {
 
         return ISRretenido;
