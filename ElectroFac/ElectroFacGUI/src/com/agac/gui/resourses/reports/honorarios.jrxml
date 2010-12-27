@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="honorarios" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
 	<property name="ireport.zoom" value="1.0"/>
-	<property name="ireport.x" value="9"/>
+	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="105"/>
 	<subDataset name="dataset1">
 		<field name="cantidad" class="java.lang.Double"/>
@@ -39,7 +39,7 @@
 	<field name="conceptos" class="java.lang.Object"/>
 	<field name="cantidadConLetra" class="java.lang.String"/>
 	<field name="fecha" class="java.util.Date"/>
-	<field name="conceptos(0).descripcion" class="java.lang.String"/>
+	<field name="conceptoUnico" class="java.lang.String"/>
 	<field name="ISRretenido" class="java.math.BigDecimal"/>
 	<field name="IVAretenido" class="java.math.BigDecimal"/>
 	<background>
@@ -255,7 +255,7 @@
 			<textField>
 				<reportElement x="9" y="285" width="362" height="16"/>
 				<textElement/>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{conceptos(0).descripcion}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{conceptoUnico}]]></textFieldExpression>
 			</textField>
 		</band>
 		<band height="8"/>

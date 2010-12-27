@@ -36,7 +36,7 @@
 	<field name="total" class="java.math.BigDecimal"/>
 	<field name="receptor.domicilio.estado" class="java.lang.String"/>
 	<field name="receptor.domicilio.pais" class="java.lang.String"/>
-	<field name="conceptos(0).descripcion" class="java.lang.Object"/>
+	<field name="conceptoUnico" class="java.lang.Object"/>
 	<field name="cantidadConLetra" class="java.lang.String"/>
 	<field name="fecha" class="java.util.Date"/>
 	<field name="ISRretenido" class="java.math.BigDecimal"/>
@@ -254,7 +254,7 @@
 			<textField>
 				<reportElement x="9" y="285" width="362" height="16"/>
 				<textElement/>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{conceptos(0).descripcion}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{conceptoUnico}]]></textFieldExpression>
 			</textField>
 		</band>
 		<band height="8"/>
