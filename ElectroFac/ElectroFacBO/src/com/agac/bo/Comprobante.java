@@ -551,10 +551,10 @@ public class Comprobante implements Serializable {
 
     public BigDecimal calcularTotal() {
         BigDecimal tot = calcularSubTotal();
-        tot.add(calcularTraslados());
-        tot.subtract(calcularRetenciones());
-
-        return tot;
-        //return calcularSubTotal().add(calcularTraslados()).subtract(calcularRetenciones());
+//        tot.add(calcularTraslados());
+//        tot.subtract(calcularRetenciones());
+//
+//        return tot;
+        return calcularSubTotal().add(calcularTraslados()).subtract(calcularRetenciones());
     }
 }

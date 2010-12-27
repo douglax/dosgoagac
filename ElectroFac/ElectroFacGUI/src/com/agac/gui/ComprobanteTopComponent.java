@@ -1251,6 +1251,7 @@ public final class ComprobanteTopComponent extends TopComponent {
 
 
         } catch (Exception ex) {
+            ex.printStackTrace();
             Exception e = new Exception("No se pudo agregar el concepto, verifique los datos");
             NotifyDescriptor n = new NotifyDescriptor.Exception(e);
             DialogDisplayer.getDefault().notify(n);
@@ -1772,11 +1773,6 @@ public final class ComprobanteTopComponent extends TopComponent {
             }
         }
 
-
-
-
-
-
         firePropertyChange("comprobante", null, comprobante);
     }
     private Concepto concepto = new Concepto();
@@ -2008,8 +2004,6 @@ public final class ComprobanteTopComponent extends TopComponent {
         NumberFormat nf = NumberFormat.getCurrencyInstance();
         lblIVA.setText(nf.format(comprobante.getIVA()));
         btnImpuestos.setEnabled(true);
-
-
 
     }
 
