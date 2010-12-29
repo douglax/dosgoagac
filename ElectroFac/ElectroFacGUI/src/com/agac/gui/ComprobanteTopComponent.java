@@ -1918,7 +1918,7 @@ public final class ComprobanteTopComponent extends TopComponent {
 
                 String archivo = "";
                 if (comprobante.getTipoDeComprobante().equals("ingreso")) {
-                    archivo = "com/agac/gui/resourses/reports/report1.jasper";
+                    archivo = "com/agac/gui/resourses/reports/reporte1.jasper";
                 }
                 if (comprobante.getTipoDeComprobante().equals("Arrendamiento")) {
                     archivo = "com/agac/gui/resourses/reports/arrendamiento.jasper";

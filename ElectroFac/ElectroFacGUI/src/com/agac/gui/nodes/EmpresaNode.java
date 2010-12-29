@@ -436,7 +436,7 @@ public class EmpresaNode extends AbstractNode {
 
                     try {
 
-                        String qry = "Select c from Comprobante c where c.fecha between ?1 and ?2 Order by fecha ";
+                        String qry = "Select c from Comprobante c where c.fecha between ?1 and ?2 Order by c.fecha ";
                         comprobantes = DbServices.getListWithParameters(qry, panel.getFechaInicio(), panel.getFechaFinal());
                         if (!comprobantes.isEmpty()) {
 
