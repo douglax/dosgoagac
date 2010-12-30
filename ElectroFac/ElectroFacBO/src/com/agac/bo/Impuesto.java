@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -51,9 +52,11 @@ public class Impuesto implements Serializable {
     private Map<String, Traslado> traslados;
     @XmlJavaTypeAdapter(BigDecimalAdapter.class)
     @XmlAttribute
+    @Column(columnDefinition="Decimal(20,6)")
     private BigDecimal totalImpuestosRetenidos = new BigDecimal("0.0");
     @XmlJavaTypeAdapter(BigDecimalAdapter.class)
     @XmlAttribute
+    @Column(columnDefinition="Decimal(20,6)")
     private BigDecimal totalImpuestosTrasladados = new BigDecimal("0.0");
 
     public Map<String, Retencion> getRetenciones() {

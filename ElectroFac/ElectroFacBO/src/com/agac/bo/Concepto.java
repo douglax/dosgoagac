@@ -12,6 +12,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -79,10 +80,12 @@ public class Concepto implements Serializable {
 
     @XmlJavaTypeAdapter(BigDecimalAdapter.class)
     @XmlAttribute(required=true)
+    @Column(columnDefinition="Decimal(20,6)")
     private BigDecimal valorUnitario;
 
     @XmlJavaTypeAdapter(BigDecimalAdapter.class)
     @XmlAttribute(required=true)
+    @Column(columnDefinition="Decimal(20,6)")
     private BigDecimal importe;
 
     public BigDecimal getImporte() {

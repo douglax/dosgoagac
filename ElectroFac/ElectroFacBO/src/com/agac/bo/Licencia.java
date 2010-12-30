@@ -8,18 +8,10 @@ package com.agac.bo;
 import java.io.Serializable;
 import java.sql.Date;
 import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
-import java.beans.PropertyChangeListener;
-import java.beans.PropertyChangeSupport;
 import javax.persistence.Id;
-import javax.persistence.Transient;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *

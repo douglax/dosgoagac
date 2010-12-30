@@ -93,13 +93,16 @@ public class Comprobante implements Serializable {
     @XmlAttribute
     private String condicionesDePago;
     @XmlAttribute(required = true)
+    @Column(columnDefinition = "Decimal(20,6)")
     private BigDecimal subTotal = new BigDecimal(0);
     @XmlAttribute
     @XmlJavaTypeAdapter(BigDecimalAdapter.class)
+    @Column(columnDefinition = "Decimal(20,6)")
     private BigDecimal descuento;
     @XmlAttribute
     private String motivoDescuento;
     @XmlAttribute(required = true)
+    @Column(columnDefinition = "Decimal(20,6)")
     private BigDecimal total = new BigDecimal(0);
     @XmlAttribute
     private String metodoDePago;
@@ -117,12 +120,11 @@ public class Comprobante implements Serializable {
     @XmlTransient
     private int status;
     @XmlTransient
-    @Column(nullable = false)
+    @Column(nullable = false, columnDefinition = "Decimal(20,6)")
     private BigDecimal ISRretenido = new BigDecimal(0);
     @XmlTransient
-    @Column(nullable = false)
+    @Column(nullable = false, columnDefinition = "Decimal(20,6)")
     private BigDecimal IVAretenido = new BigDecimal(0);
-
     @XmlTransient
     @Column(nullable = false)
     private String conceptoUnico;
@@ -136,23 +138,17 @@ public class Comprobante implements Serializable {
 
 
         if (!this.getConceptos().isEmpty()) {
-             this.conceptoUnico =   this.getConceptos().get(0).getDescripcion();
+            this.conceptoUnico = this.getConceptos().get(0).getDescripcion();
         } else {
             this.conceptoUnico = "";
         }
 
     }
 
-
-
-
-
     public BigDecimal getISRretenido() {
 
         return ISRretenido;
     }
-
-
 
     public void setISRretenido() {
 
@@ -170,7 +166,7 @@ public class Comprobante implements Serializable {
             }
         }
         this.ISRretenido = totRet;
-        
+
     }
 
     public BigDecimal getIVAretenido() {
@@ -179,7 +175,7 @@ public class Comprobante implements Serializable {
 
     public void setIVAretenido() {
 
-       BigDecimal totRet = new BigDecimal("0");
+        BigDecimal totRet = new BigDecimal("0");
 
         if (impuesto != null) {
 

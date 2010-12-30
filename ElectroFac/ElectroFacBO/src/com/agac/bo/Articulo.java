@@ -18,7 +18,7 @@ public class Articulo implements Serializable {
     @EmbeddedId
     private ArticuloPK id;
     private String descripcion;
-    @Column(columnDefinition="DECIMAL(10,6)")
+    @Column(columnDefinition="DECIMAL(20,6)")
     private BigDecimal precio;
 
     public ArticuloPK getId() {
