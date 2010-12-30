@@ -126,7 +126,7 @@
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{receptor.rfc} +" - " + $F{receptor.nombre}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField pattern="¤ #,##0.00">
 				<reportElement x="470" y="4" width="64" height="20"/>
 				<textElement textAlignment="Right">
 					<font size="8"/>
