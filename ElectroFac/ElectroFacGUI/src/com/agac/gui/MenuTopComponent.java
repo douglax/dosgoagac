@@ -42,7 +42,7 @@ public final class MenuTopComponent extends TopComponent implements ExplorerMana
         an.setDisplayName("Opciones del Sistema");
         an.setIconBaseWithExtension("com/agac/gui/resourses/sitemap_color.png");
         manager.setRootContext(an);
-        
+        putClientProperty(TopComponent.PROP_CLOSING_DISABLED,Boolean.TRUE);
         associateLookup(ExplorerUtils.createLookup(manager, getActionMap()));
 
     }
@@ -99,7 +99,8 @@ public final class MenuTopComponent extends TopComponent implements ExplorerMana
 
     @Override
     public int getPersistenceType() {
-        return TopComponent.PERSISTENCE_ALWAYS;
+        //return TopComponent.PERSISTENCE_ALWAYS;
+        return TopComponent.PERSISTENCE_NEVER;
     }
 
     @Override
