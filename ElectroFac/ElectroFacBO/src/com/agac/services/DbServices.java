@@ -212,7 +212,6 @@ public class DbServices {
                 emf = Persistence.createEntityManagerFactory("ElectroFacBOPU");
             }
             EntityManager em = emf.createEntityManager();
-            System.out.println("Opening DBServices .... " + em.toString());
             em.close();
         } catch (Exception e) {
         }

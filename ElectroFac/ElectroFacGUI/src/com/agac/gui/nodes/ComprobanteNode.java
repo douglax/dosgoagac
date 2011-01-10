@@ -235,9 +235,6 @@ public class ComprobanteNode extends AbstractNode {
                 try {
                     comprobante.setStatus(0);
                     comprobante = DbServices.saveObject(comprobante, true);
-                    ((MenuTopComponent) WindowManager.getDefault().findTopComponent(
-                                    "MenuTopComponent")).refreshNode();
-
                 } catch (Exception ex) {
                     Exceptions.printStackTrace(ex);
                 }

@@ -5,16 +5,7 @@
         <data xmlns="http://www.netbeans.org/ns/nb-module-project/3">
             <code-name-base>com.agac.jasperreports</code-name-base>
             <suite-component/>
-            <module-dependencies>
-                <dependency>
-                    <code-name-base>com.agac.poi</code-name-base>
-                    <build-prerequisite/>
-                    <compile-dependency/>
-                    <run-dependency>
-                        <specification-version>1.0</specification-version>
-                    </run-dependency>
-                </dependency>
-            </module-dependencies>
+            <module-dependencies/>
             <public-packages>
                 <package>com.lowagie.text</package>
                 <package>com.lowagie.text.exceptions</package>
