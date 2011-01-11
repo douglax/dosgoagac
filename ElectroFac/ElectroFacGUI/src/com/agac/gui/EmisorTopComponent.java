@@ -834,7 +834,8 @@ public final class EmisorTopComponent extends TopComponent implements PropertyCh
 
     @Override
     public int getPersistenceType() {
-        return TopComponent.PERSISTENCE_ALWAYS;
+        //return TopComponent.PERSISTENCE_ALWAYS;
+        return TopComponent.PERSISTENCE_NEVER;
     }
     private NodeForSave saveNode;
 

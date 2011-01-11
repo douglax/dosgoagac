@@ -36,6 +36,7 @@ public final class MenuTopComponent extends TopComponent implements ExplorerMana
         setName(NbBundle.getMessage(MenuTopComponent.class, "CTL_MenuTopComponent"));
         setToolTipText(NbBundle.getMessage(MenuTopComponent.class, "HINT_MenuTopComponent"));
 //        setIcon(ImageUtilities.loadImage(ICON_PATH, true));
+        putClientProperty(TopComponent.PROP_CLOSING_DISABLED,Boolean.TRUE);
         Children.Array arr = new Children.Array();
         arr.add(new Node[]{new EmpresaRootNode(), new ClienteRootNode()});
         AbstractNode an = new AbstractNode(arr);
@@ -99,7 +100,8 @@ public final class MenuTopComponent extends TopComponent implements ExplorerMana
 
     @Override
     public int getPersistenceType() {
-        return TopComponent.PERSISTENCE_ALWAYS;
+        //return TopComponent.PERSISTENCE_ALWAYS;
+        return TopComponent.PERSISTENCE_NEVER;
     }
 
     @Override
