@@ -36,14 +36,13 @@ public final class MenuTopComponent extends TopComponent implements ExplorerMana
         setName(NbBundle.getMessage(MenuTopComponent.class, "CTL_MenuTopComponent"));
         setToolTipText(NbBundle.getMessage(MenuTopComponent.class, "HINT_MenuTopComponent"));
 //        setIcon(ImageUtilities.loadImage(ICON_PATH, true));
-        putClientProperty(TopComponent.PROP_CLOSING_DISABLED,Boolean.TRUE);
         Children.Array arr = new Children.Array();
         arr.add(new Node[]{new EmpresaRootNode(), new ClienteRootNode()});
         AbstractNode an = new AbstractNode(arr);
         an.setDisplayName("Opciones del Sistema");
         an.setIconBaseWithExtension("com/agac/gui/resourses/sitemap_color.png");
         manager.setRootContext(an);
-        
+        putClientProperty(TopComponent.PROP_CLOSING_DISABLED,Boolean.TRUE);
         associateLookup(ExplorerUtils.createLookup(manager, getActionMap()));
 
     }
