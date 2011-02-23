@@ -19,6 +19,7 @@ import javax.swing.table.DefaultTableModel;
 import org.openide.DialogDisplayer;
 import org.openide.NotifyDescriptor;
 import org.openide.NotifyDescriptor.Message;
+import org.openide.util.Exceptions;
 import org.openide.util.lookup.Lookups;
 import org.openide.windows.WindowManager;
 
@@ -333,6 +334,11 @@ public class FoliosPanel extends javax.swing.JPanel {
 
     private void btnAddCbbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddCbbActionPerformed
 
+
+
+        int posicion = jTable1.getSelectedRow();
+
+        if(posicion != -1) {
             FileDialog fd = new FileDialog(WindowManager.getDefault().getMainWindow(),
                     "Código de Barras Bidimensional");
             fd.setVisible(true);
@@ -348,19 +354,26 @@ public class FoliosPanel extends javax.swing.JPanel {
                     b = bos.toByteArray();
                     bos.close();
 
-                    //aqui me quedé
-                    Emisor emisor = getLookup().lookup(Emisor.class);
-                    emisor.setLogo(b);
+                    
+                    
+
+                    emisor.getSeries().get(posicion).setCbb(b);
+              //      Emisor emisor = getLookup().lookup(Emisor.class);
+                    //emisor.setLogo(b);
                     emisor = DbServices.saveObject(emisor, true);
                     DialogDisplayer.getDefault().notify(
                             new NotifyDescriptor.Message(
-                            "El logotipo del emisor se guardo correctamente"));
+                            "La imagen se guardócorrectamente"));
                 } catch (Exception ex) {
                     Exceptions.printStackTrace(ex);
                 }
             }
 
+        }
+
     }//GEN-LAST:event_btnAddCbbActionPerformed
+
+
     private List<Serie> serieList;
 
     public List<Serie> getSeries() {
