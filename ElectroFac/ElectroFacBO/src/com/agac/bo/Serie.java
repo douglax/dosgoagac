@@ -40,7 +40,23 @@ public class Serie implements Serializable {
     private int anoAprob;
     @XmlTransient
     private boolean activa = true;
-    
+
+    /* **** modificacion para cbb ******/
+
+    private byte[] cbb;
+
+    public byte[] getCbb() {
+        return cbb;
+    }
+
+    public void setCbb(byte[] cbb) {
+       // byte[] oldCbb = this.cbb;
+        this.cbb = cbb;
+        //propertyChangeSupport.firePropertyChange("logo", oldLogo, logo);
+    }
+
+    /* cbb */
+
     public boolean isActiva() {
         return activa;
     }
