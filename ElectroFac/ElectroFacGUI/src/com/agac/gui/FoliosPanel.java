@@ -356,14 +356,19 @@ public class FoliosPanel extends javax.swing.JPanel {
 
                     
                     
+                    this.getSeries().get(posicion).setCbb(b);
+                    //emisor.getSeries().get(posicion).setCbb(b);
 
-                    emisor.getSeries().get(posicion).setCbb(b);
-              //      Emisor emisor = getLookup().lookup(Emisor.class);
+                    //Emisor emisor = getLookup().lookup(Emisor.class);
                     //emisor.setLogo(b);
-                    emisor = DbServices.saveObject(emisor, true);
-                    DialogDisplayer.getDefault().notify(
+
+                    /* segunda version
+                   DialogDisplayer.getDefault().notify(
                             new NotifyDescriptor.Message(
                             "La imagen se guardócorrectamente"));
+
+                     */
+                    
                 } catch (Exception ex) {
                     Exceptions.printStackTrace(ex);
                 }

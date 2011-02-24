@@ -1860,6 +1860,7 @@ public final class ComprobanteTopComponent extends TopComponent {
                                                 comprobante.setIVAretenido();
                                                 comprobante.setConceptoUnico();
 
+                                                /*Modificado para version 2
                                                 String cadena = new CadenaOriginal(comprobante).toString();
                                                 System.out.println(cadena);
                                                 SelloDigital sd = new SelloDigital();
@@ -1871,8 +1872,12 @@ public final class ComprobanteTopComponent extends TopComponent {
                                                 comprobante.setNoCertificado(sd.getSerialNumberSATFormat());
                                                 comprobante.setSello(sd.generar(cadena));
                                                 comprobante.setCadenaOriginal(cadena);
+                                                */
 
-
+                                                // Sello, certificado y cadena No requeridos
+                                                comprobante.setNoCertificado("");
+                                                comprobante.setSello("");
+                                                comprobante.setCadenaOriginal("");
 
                                                 //status 1 = activo, 0 = cancelado
                                                 comprobante.setStatus(1);
@@ -1886,7 +1891,7 @@ public final class ComprobanteTopComponent extends TopComponent {
                                                         saveNode.enableSave(true);
                                                     }
                                                 });
-                                                System.out.println(cadena);
+                                               // System.out.println(cadena);
                                                 isNew = false;
                                             } catch (Exception e) {
                                                 Exceptions.printStackTrace(e);
@@ -1917,8 +1922,10 @@ public final class ComprobanteTopComponent extends TopComponent {
             public void print() {
 
                 String archivo = "";
+
+
                 if (comprobante.getTipoDeComprobante().equals("ingreso")) {
-                    archivo = "com/agac/gui/resourses/reports/reporte1.jasper";
+                    archivo = "com/agac/gui/resourses/reports/reportecbb.jasper";
                 }
                 if (comprobante.getTipoDeComprobante().equals("Arrendamiento")) {
                     archivo = "com/agac/gui/resourses/reports/arrendamiento.jasper";
@@ -1926,6 +1933,8 @@ public final class ComprobanteTopComponent extends TopComponent {
                 if (comprobante.getTipoDeComprobante().equals("Honorarios")) {
                     archivo = "com/agac/gui/resourses/reports/honorarios.jasper";
                 }
+
+
 
                 DialogDisplayer.getDefault().notify(new NotifyDescriptor.Confirmation(
                         "¿Desea imprimir la factura?", "Impresión",
