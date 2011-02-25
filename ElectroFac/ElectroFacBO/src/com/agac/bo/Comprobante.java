@@ -129,6 +129,20 @@ public class Comprobante implements Serializable {
     @Column(nullable = false)
     private String conceptoUnico;
 
+    @Transient
+    private byte[] cbb;
+
+    public byte[] getCbb() {
+        return cbb;
+    }
+
+    public void setCbb(byte[] cbb) {
+        this.cbb = cbb;
+    }
+
+
+    
+
     public String getConceptoUnico() {
 
         return conceptoUnico;

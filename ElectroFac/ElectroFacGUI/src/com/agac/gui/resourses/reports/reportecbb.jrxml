@@ -43,7 +43,7 @@
 	<field name="noAprobacion" class="java.lang.Integer"/>
 	<field name="anoAprobacion" class="java.lang.Integer"/>
 	<field name="noCertificado" class="java.lang.String"/>
-	<field name="emisor.series(0).cbb" class="java.lang.Object"/>
+	<field name="cbb" class="java.lang.Object"/>
 	<variable name="unaSerie" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
@@ -331,7 +331,7 @@
 			</line>
 			<image>
 				<reportElement x="340" y="110" width="80" height="80"/>
-				<imageExpression class="java.awt.Image"><![CDATA[net.sf.jasperreports.engine.util.JRImageLoader.loadImage((byte[]) $F{emisor.series(0).cbb})]]></imageExpression>
+				<imageExpression class="java.awt.Image"><![CDATA[net.sf.jasperreports.engine.util.JRImageLoader.loadImage((byte[]) $F{cbb})]]></imageExpression>
 			</image>
 		</band>
 	</columnFooter>

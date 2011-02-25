@@ -1941,6 +1941,20 @@ public final class ComprobanteTopComponent extends TopComponent {
                         NotifyDescriptor.OK_CANCEL_OPTION,
                         NotifyDescriptor.QUESTION_MESSAGE));
                 try {
+
+
+                    //agregamos el cbb al objeto comprobante
+
+
+                    for ( Serie s : comprobante.getEmisor().getSeries()    ) {
+                        if (s.getNumSerie().equals(comprobante.getSerie())) {
+                            comprobante.setCbb(s.getCbb());
+                        }
+                    }
+                    
+
+
+
                     InputStream in = getClass().getClassLoader().getResourceAsStream(archivo);
                     List<Comprobante> l = new ArrayList<Comprobante>();
                     l.add(comprobante);
