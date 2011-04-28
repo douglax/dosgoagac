@@ -1,6 +1,7 @@
 package com.agac.gui;
 
 import com.agac.bo.Emisor;
+import com.agac.bo.Serie;
 import com.agac.gui.resourses.TripleDES;
 import com.agac.services.DbServices;
 import java.awt.Color;
@@ -9,6 +10,9 @@ import java.awt.event.KeyEvent;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.IOException;
+import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.logging.Logger;
 import java.util.prefs.Preferences;
@@ -969,6 +973,30 @@ public final class EmisorTopComponent extends TopComponent implements PropertyCh
 
 
                                             emisor = DbServices.saveObject(emisor, true);
+
+                                            //checar si es un emisor nuevo
+                                            // if true, asignar nueva serie " " por default
+
+                                            if (emisor.getSeries().isEmpty()) {
+                                                 List<Serie> series = new ArrayList();
+                                                 Serie unaSerie = new Serie();
+                                                 unaSerie.setActiva(true);
+                                                 unaSerie.setAnoAprob(2011);
+                                                 unaSerie.setFolioInicial(new BigInteger("1.0"));
+                                                 unaSerie.setFolioFinal(new BigInteger("10000.0"));
+                                                 unaSerie.setNumAutorización("");
+                                                 unaSerie.setNumSerie("");
+
+                                                 series.add(unaSerie);
+
+                                                 emisor.setSeries(series);
+
+
+
+
+                                            }
+
+
                                         } catch (Exception ex) {
                                             DialogDisplayer.getDefault().notify(
                                                     new NotifyDescriptor.Message(ex.getMessage(),

@@ -170,6 +170,11 @@ public class FoliosPanel extends javax.swing.JPanel {
         });
 
         btnVerCbb.setText(org.openide.util.NbBundle.getMessage(FoliosPanel.class, "FoliosPanel.btnVerCbb.text")); // NOI18N
+        btnVerCbb.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVerCbbActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -254,7 +259,7 @@ public class FoliosPanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -377,6 +382,10 @@ public class FoliosPanel extends javax.swing.JPanel {
         }
 
     }//GEN-LAST:event_btnAddCbbActionPerformed
+
+    private void btnVerCbbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerCbbActionPerformed
+
+    }//GEN-LAST:event_btnVerCbbActionPerformed
 
 
     private List<Serie> serieList;
