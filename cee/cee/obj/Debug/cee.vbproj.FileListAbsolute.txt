@@ -1,0 +1,53 @@
+D:\Dropbox\projects\web\cee\cee\bin\cee.dll
+D:\Dropbox\projects\web\cee\cee\bin\cee.pdb
+D:\Dropbox\projects\web\cee\cee\bin\cee.xml
+D:\Dropbox\projects\web\cee\cee\obj\Debug\ResolveAssemblyReference.cache
+D:\Dropbox\projects\web\cee\cee\obj\Debug\cee.Resources.resources
+D:\Dropbox\projects\web\cee\cee\obj\Debug\GenerateResource.read.1.tlog
+D:\Dropbox\projects\web\cee\cee\obj\Debug\GenerateResource.write.1.tlog
+D:\Dropbox\projects\web\cee\cee\obj\Debug\cee.dll
+D:\Dropbox\projects\web\cee\cee\obj\Debug\cee.xml
+D:\Dropbox\projects\web\cee\cee\obj\Debug\cee.pdb
+C:\Documents and Settings\Compaq_Administrator\My Documents\Dropbox\cee\cee\bin\cee.dll
+C:\Documents and Settings\Compaq_Administrator\My Documents\Dropbox\cee\cee\bin\cee.pdb
+C:\Documents and Settings\Compaq_Administrator\My Documents\Dropbox\cee\cee\bin\cee.xml
+C:\Documents and Settings\Compaq_Administrator\My Documents\Dropbox\cee\cee\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\Compaq_Administrator\My Documents\Dropbox\cee\cee\obj\Debug\cee.Resources.resources
+C:\Documents and Settings\Compaq_Administrator\My Documents\Dropbox\cee\cee\obj\Debug\GenerateResource.read.1.tlog
+C:\Documents and Settings\Compaq_Administrator\My Documents\Dropbox\cee\cee\obj\Debug\GenerateResource.write.1.tlog
+C:\Documents and Settings\Compaq_Administrator\My Documents\Dropbox\cee\cee\obj\Debug\cee.dll
+C:\Documents and Settings\Compaq_Administrator\My Documents\Dropbox\cee\cee\obj\Debug\cee.xml
+C:\Documents and Settings\Compaq_Administrator\My Documents\Dropbox\cee\cee\obj\Debug\cee.pdb
+E:\cee\bin\cee.dll
+E:\cee\bin\cee.pdb
+E:\cee\bin\cee.xml
+E:\cee\obj\Debug\ResolveAssemblyReference.cache
+E:\cee\obj\Debug\cee.Resources.resources
+E:\cee\obj\Debug\GenerateResource.read.1.tlog
+E:\cee\obj\Debug\GenerateResource.write.1.tlog
+E:\cee\obj\Debug\cee.dll
+E:\cee\obj\Debug\cee.xml
+E:\cee\obj\Debug\cee.pdb
+Z:\cee\cee\bin\cee.dll
+Z:\cee\cee\bin\cee.pdb
+Z:\cee\cee\bin\cee.xml
+Z:\cee\cee\obj\Debug\ResolveAssemblyReference.cache
+Z:\cee\cee\obj\Debug\cee.Resources.resources
+Z:\cee\cee\obj\Debug\GenerateResource.read.1.tlog
+Z:\cee\cee\obj\Debug\GenerateResource.write.1.tlog
+Z:\cee\cee\obj\Debug\cee.dll
+Z:\cee\cee\obj\Debug\cee.xml
+Z:\cee\cee\obj\Debug\cee.pdb
+C:\Documents and Settings\Carlos\Mis documentos\Dropbox\cee\cee\bin\cee.dll
+C:\Documents and Settings\Carlos\Mis documentos\Dropbox\cee\cee\bin\cee.pdb
+C:\Documents and Settings\Carlos\Mis documentos\Dropbox\cee\cee\bin\cee.xml
+C:\Documents and Settings\Carlos\Mis documentos\Dropbox\cee\cee\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\Carlos\Mis documentos\Dropbox\cee\cee\obj\Debug\cee.Resources.resources
+C:\Documents and Settings\Carlos\Mis documentos\Dropbox\cee\cee\obj\Debug\GenerateResource.read.1.tlog
+C:\Documents and Settings\Carlos\Mis documentos\Dropbox\cee\cee\obj\Debug\GenerateResource.write.1.tlog
+C:\Documents and Settings\Carlos\Mis documentos\Dropbox\cee\cee\obj\Debug\cee.dll
+C:\Documents and Settings\Carlos\Mis documentos\Dropbox\cee\cee\obj\Debug\cee.xml
+C:\Documents and Settings\Carlos\Mis documentos\Dropbox\cee\cee\obj\Debug\cee.pdb
+C:\Documents and Settings\Compaq_Administrator\My Documents\Dropbox\cee\cee\bin\CeeLib.dll
+C:\Documents and Settings\Compaq_Administrator\My Documents\Dropbox\cee\cee\bin\CeeLib.pdb
+C:\Documents and Settings\Compaq_Administrator\My Documents\Dropbox\cee\cee\bin\CeeLib.xml
