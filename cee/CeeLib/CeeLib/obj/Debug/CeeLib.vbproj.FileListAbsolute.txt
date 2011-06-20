@@ -18,3 +18,13 @@ C:\Documents and Settings\Compaq_Administrator\My Documents\Dropbox\cee\CeeLib\C
 C:\Documents and Settings\Compaq_Administrator\My Documents\Dropbox\cee\CeeLib\CeeLib\obj\Debug\CeeLib.dll
 C:\Documents and Settings\Compaq_Administrator\My Documents\Dropbox\cee\CeeLib\CeeLib\obj\Debug\CeeLib.xml
 C:\Documents and Settings\Compaq_Administrator\My Documents\Dropbox\cee\CeeLib\CeeLib\obj\Debug\CeeLib.pdb
+C:\Documents and Settings\Carlos\Mis documentos\Cee\CeeLib\CeeLib\bin\Debug\CeeLib.dll
+C:\Documents and Settings\Carlos\Mis documentos\Cee\CeeLib\CeeLib\bin\Debug\CeeLib.pdb
+C:\Documents and Settings\Carlos\Mis documentos\Cee\CeeLib\CeeLib\bin\Debug\CeeLib.xml
+C:\Documents and Settings\Carlos\Mis documentos\Cee\CeeLib\CeeLib\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\Carlos\Mis documentos\Cee\CeeLib\CeeLib\obj\Debug\CeeLib.Resources.resources
+C:\Documents and Settings\Carlos\Mis documentos\Cee\CeeLib\CeeLib\obj\Debug\GenerateResource.read.1.tlog
+C:\Documents and Settings\Carlos\Mis documentos\Cee\CeeLib\CeeLib\obj\Debug\GenerateResource.write.1.tlog
+C:\Documents and Settings\Carlos\Mis documentos\Cee\CeeLib\CeeLib\obj\Debug\CeeLib.dll
+C:\Documents and Settings\Carlos\Mis documentos\Cee\CeeLib\CeeLib\obj\Debug\CeeLib.xml
+C:\Documents and Settings\Carlos\Mis documentos\Cee\CeeLib\CeeLib\obj\Debug\CeeLib.pdb
