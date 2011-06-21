@@ -8,12 +8,12 @@ Public Class Alta1
 
     End Sub
 
-    Protected Sub Button1_Click(ByVal sender As Object, ByVal e As EventArgs) Handles Button1.Click
+    Protected Sub btn_guardar_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btn_guardar.Click
         Dim c As New CeeLib.Compania()
         Dim s As ISession = Nothing
-        c.Nombre = txtNombre.Text
-        c.Direccion = txtDireccion.Text
-        c.Ciudad = txtCiudad.Text
+        c.Nombre = tb_nombre.Text
+        c.Direccion = tb_direccion.Text
+        c.Ciudad = tb_ciudad.Text
         Try
             s = NHelper.GetCurrentSession
             s.BeginTransaction()

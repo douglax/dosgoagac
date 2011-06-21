@@ -159,12 +159,11 @@
                                             </asp:Panel>
                                             <asp:Panel ID="pnl_guardar" runat="server">
                                                 <div class="form-item-btn">
-                                                    <asp:Button ID="btnGuardar" runat="server" Text="Guardar" />
+                                                    <asp:Button ID="btn_guardar" runat="server" Text="Guardar" />
                                                 </div>
                                             </asp:Panel>
                                         </div>
-                                        <asp:Label ID="Lbl_Resultado" runat="server" Font-Bold="True" 
-                                            ForeColor="#33CC33"></asp:Label>
+                                        <asp:Label ID="Lbl_Resultado" runat="server" Font-Bold="True" ForeColor="#33CC33"></asp:Label>
                                     </form>
                                 </div>
                             </div>

@@ -125,7 +125,7 @@ Public Class Alta
 
     End Sub
 
-    Private Sub btnGuardar_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnGuardar.Click
+    Private Sub btn_guardar_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btn_guardar.Click
         Dim s As Socio = oSocio
         Dim sesion As ISession = Nothing
         Try
@@ -161,7 +161,7 @@ Public Class Alta
             End If
             Lbl_Resultado.ForeColor = Drawing.Color.Green
             Lbl_Resultado.Text = "Numero de Socio: " & s.NoSocio
-            btnGuardar.Enabled = False
+            btn_guardar.Enabled = False
         Catch ex As Exception
             If sesion.Transaction.IsActive Then
                 sesion.Transaction.Rollback()

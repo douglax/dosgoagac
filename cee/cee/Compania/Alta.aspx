@@ -5,7 +5,6 @@
     <script src="../cee.js"></script>
 </head>
 <body>
-    <form id="form1" runat="server">
 <table width="100%" height="100%" border="0" cellpadding="0" cellspacing="0">
     <tr>
         <td style="vertical-align: middle;">
@@ -31,42 +30,36 @@
                             <div style="width: 500px; height: 550px; background: #ffffff; border: 1px #cccccc solid; position: absolute; top: -200px; left: 320px; padding: 2px;">
                                 <div class="titulo">Alta Compañia</div>
                                 <div class="contenido">
-                                    <table cellpadding="10" cellspacing="10">
-                                        <tr>
-                                            <td>
-                                                <label for="txtNombre">Nombre de la Compañía </label>
-                                            </td>
-                                            <td>                                                
-                                                <asp:TextBox ID="txtNombre" runat="server" Width="248px"></asp:TextBox>                                                
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <label for="txtDireccion">Dirección </label>
-                                            </td>
-                                            <td>                                                
-                                                <asp:TextBox ID="txtDireccion" runat="server" Width="248px" Height="41px" 
-                                                    Rows="3"></asp:TextBox>                                                
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <label for="txtCiudad">Ciudad </label>
-                                            </td>
-                                            <td>                                                
-                                                <asp:TextBox ID="txtCiudad" runat="server" Width="248px"></asp:TextBox>                                                
-                                            </td>
-                                        </tr>
-                                    </table>
-                                    <div>                                    
-                                        <asp:Button ID="Button1" runat="server" Text="Guardar" />
-                                    </div>
-                                    <div>
-                                        
-                                        <asp:Label ID="lblResultado" runat="server" Font-Bold="True" 
-                                            ForeColor="#33CC33"></asp:Label>
-                                        
-                                    </div>
+                                    <form runat="server">
+                                        <div class="form-items">
+                                            <asp:Panel ID="pnl_nombre" runat="server">
+                                                <div class="form-item">
+                                                    <asp:Label ID="lbl_nombre" runat="server" Text="Compañía:" Width="130" CssClass="labels"></asp:Label>
+                                                    <asp:TextBox ID="tb_nombre" runat="server" Width="248px"></asp:TextBox>
+                                                </div>
+                                            </asp:Panel>
+                                            <asp:Panel ID="pnl_direccion" runat="server">
+                                                <div class="form-item">
+                                                    <asp:Label ID="lbl_direccion" runat="server" Text="Direccion:" Width="130" CssClass="labels"></asp:Label>
+                                                    <asp:TextBox ID="tb_direccion" runat="server" Width="248px"></asp:TextBox>
+                                                </div>
+                                            </asp:Panel>
+                                            <asp:Panel ID="pnl_ciudad" runat="server">
+                                                <div class="form-item">
+                                                    <asp:Label ID="lbl_ciudad" runat="server" Text="Ciudad:" Width="130" CssClass="labels"></asp:Label>
+                                                    <asp:TextBox ID="tb_ciudad" runat="server" Width="248px"></asp:TextBox>
+                                                </div>
+                                            </asp:Panel>
+                                        </div>
+                                        <asp:Panel ID="pnl_guardar" runat="server">
+                                            <div class="form-item-btn">
+                                                <asp:Button ID="btn_guardar" runat="server" Text="Guardar" />
+                                            </div>
+                                        </asp:Panel>
+                                        <div>
+                                            <asp:Label ID="lblResultado" runat="server" Font-Bold="True" ForeColor="#33CC33"></asp:Label>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -76,6 +69,5 @@
         </td>
     </tr>
 </table>
-    </form>
 </body>
 </html>

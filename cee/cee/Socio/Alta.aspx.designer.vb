@@ -365,13 +365,13 @@ Partial Public Class Alta
     Protected WithEvents pnl_guardar As Global.System.Web.UI.WebControls.Panel
 
     '''<summary>
-    '''btnGuardar control.
+    '''btn_guardar control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents btnGuardar As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents btn_guardar As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
     '''Lbl_Resultado control.
