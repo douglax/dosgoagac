@@ -31,7 +31,42 @@
                             <div style="width: 500px; height: 550px; background: #ffffff; border: 1px #cccccc solid; position: absolute; top: -200px; left: 320px; padding: 2px;">
                                 <div class="titulo">Alta Compañia</div>
                                 <div class="contenido">
-                                    ...
+                                    <table cellpadding="10" cellspacing="10">
+                                        <tr>
+                                            <td>
+                                                <label for="txtNombre">Nombre de la Compañía </label>
+                                            </td>
+                                            <td>                                                
+                                                <asp:TextBox ID="txtNombre" runat="server" Width="248px"></asp:TextBox>                                                
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <label for="txtDireccion">Dirección </label>
+                                            </td>
+                                            <td>                                                
+                                                <asp:TextBox ID="txtDireccion" runat="server" Width="248px" Height="41px" 
+                                                    Rows="3"></asp:TextBox>                                                
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <label for="txtCiudad">Ciudad </label>
+                                            </td>
+                                            <td>                                                
+                                                <asp:TextBox ID="txtCiudad" runat="server" Width="248px"></asp:TextBox>                                                
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    <div>                                    
+                                        <asp:Button ID="Button1" runat="server" Text="Guardar" />
+                                    </div>
+                                    <div>
+                                        
+                                        <asp:Label ID="lblResultado" runat="server" Font-Bold="True" 
+                                            ForeColor="#33CC33"></asp:Label>
+                                        
+                                    </div>
                                 </div>
                             </div>
                         </div>

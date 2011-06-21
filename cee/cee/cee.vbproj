@@ -116,6 +116,9 @@
     <Content Include="Account\Login.aspx" />
     <Content Include="Account\Register.aspx" />
     <Content Include="Compania.aspx" />
+    <Content Include="Compania\Alta.aspx" />
+    <Content Include="Compania\Baja.aspx" />
+    <Content Include="Compania\Cambio.aspx" />
     <Content Include="Consulta.aspx" />
     <Content Include="Socio.aspx" />
     <Content Include="Socios.aspx" />
@@ -183,6 +186,27 @@
     <Compile Include="Compania.aspx.vb">
       <DependentUpon>Compania.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Compania\Alta.aspx.designer.vb">
+      <DependentUpon>Alta.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Compania\Alta.aspx.vb">
+      <DependentUpon>Alta.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Compania\Baja.aspx.designer.vb">
+      <DependentUpon>Baja.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Compania\Baja.aspx.vb">
+      <DependentUpon>Baja.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Compania\Cambio.aspx.designer.vb">
+      <DependentUpon>Cambio.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Compania\Cambio.aspx.vb">
+      <DependentUpon>Cambio.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Consulta.aspx.designer.vb">
       <DependentUpon>Consulta.aspx</DependentUpon>
@@ -308,7 +332,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Compania\" />
     <Folder Include="Imagenes\" />
   </ItemGroup>
   <ItemGroup>

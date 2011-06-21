@@ -7,7 +7,15 @@ Public Class Alta
     Private oSocio As New Socio
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-
+        Dim s As ISession = NHelper.GetCurrentSession
+        Dim comps As IList(Of CeeLib.Compania) = s.CreateQuery("from Compania").List(Of CeeLib.Compania)()
+        s.Close()
+        If Not comps Is Nothing Then
+            ddl_compania.DataSource = comps
+            ddl_compania.DataValueField = "Id"
+            ddl_compania.DataTextField = "Nombre"
+            ddl_compania.DataBind()
+        End If
         If Not Me.IsPostBack Then
             For i As Integer = Now.Year To Now.Year - 100 Step -1
                 Dim anoStr = New ListItem
@@ -153,6 +161,7 @@ Public Class Alta
             End If
             Lbl_Resultado.ForeColor = Drawing.Color.Green
             Lbl_Resultado.Text = "Numero de Socio: " & s.NoSocio
+            btnGuardar.Enabled = False
         Catch ex As Exception
             If sesion.Transaction.IsActive Then
                 sesion.Transaction.Rollback()

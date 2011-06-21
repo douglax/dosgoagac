@@ -1,7 +1,7 @@
 ﻿Public Class Compania
 
     Private _Id As Long
-    Public Property Id() As Long
+    Public Overridable Property Id() As Long
         Get
             Return _Id
         End Get
@@ -11,7 +11,7 @@
     End Property
 
     Private _Nombre As String
-    Public Property Nombre() As String
+    Public Overridable Property Nombre() As String
         Get
             Return _Nombre
         End Get
@@ -21,7 +21,7 @@
     End Property
 
     Private _Direccion As String
-    Public Property Direccion() As String
+    Public Overridable Property Direccion() As String
         Get
             Return _Direccion
         End Get
@@ -30,8 +30,18 @@
         End Set
     End Property
 
+    Private _Ciudad As String
+    Public Overridable Property Ciudad() As String
+        Get
+            Return _Ciudad
+        End Get
+        Set(ByVal value As String)
+            _Ciudad = value
+        End Set
+    End Property
+
     Private _Contactos As IList
-    Public Property Contactos() As IList
+    Public Overridable Property Contactos() As IList
         Get
             If _Contactos Is Nothing Then
                 _Contactos = New ArrayList()

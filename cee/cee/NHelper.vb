@@ -11,6 +11,7 @@ Public Class NHelper
         Dim cf As Configuration = New Configuration()
         cf.AddClass(GetType(CeeLib.Usuario))
         cf.AddClass(GetType(CeeLib.Socio))
+        cf.AddClass(GetType(CeeLib.Compania))
         _SessionFactory = cf.Configure.BuildSessionFactory
     End Sub
 
