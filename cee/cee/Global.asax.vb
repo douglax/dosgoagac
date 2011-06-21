@@ -4,7 +4,7 @@ Public Class Global_asax
     Inherits System.Web.HttpApplication
 
     Sub Application_Start(ByVal sender As Object, ByVal e As EventArgs)
-        ' Se desencadena al iniciar la aplicación
+        log4net.Config.XmlConfigurator.Configure()
     End Sub
 
     Sub Session_Start(ByVal sender As Object, ByVal e As EventArgs)

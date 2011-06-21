@@ -50,11 +50,24 @@
     <Reference Include="Iesi.Collections">
       <HintPath>..\NHibernate\Iesi.Collections.dll</HintPath>
     </Reference>
+    <Reference Include="LinFu.DynamicProxy">
+      <HintPath>..\NHibernate\LinFu.DynamicProxy.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\NHibernate\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="NHibernate">
       <HintPath>..\NHibernate\NHibernate.dll</HintPath>
     </Reference>
+    <Reference Include="NHibernate.ByteCode.LinFu">
+      <HintPath>..\NHibernate\NHibernate.ByteCode.LinFu.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.SQLite">
+      <HintPath>..\NHibernate\System.Data.SQLite.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Data.SqlServerCe.Entity, Version=3.5.1.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\System.Data.SqlServerCe.Entity.dll</HintPath>
@@ -102,14 +115,8 @@
     <Content Include="Account\ChangePasswordSuccess.aspx" />
     <Content Include="Account\Login.aspx" />
     <Content Include="Account\Register.aspx" />
-    <Content Include="cee.css" />
-    <Content Include="cee.js" />
     <Content Include="Compania.aspx" />
-    <Content Include="Compania\Alta.aspx" />
-    <Content Include="Compania\Baja.aspx" />
-    <Content Include="Compania\Cambio.aspx" />
-    <Content Include="Consulta.aspx" />
-    <Content Include="Socios.aspx" />
+    <Content Include="Socio\Consulta.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="Salir.aspx" />
     <Content Include="Socio\Alta.aspx" />
@@ -167,7 +174,6 @@
       <DependentUpon>Register.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
-    <Content Include="App_Code\NHelper.vb" />
     <Compile Include="Compania.aspx.designer.vb">
       <DependentUpon>Compania.aspx</DependentUpon>
     </Compile>
@@ -175,39 +181,12 @@
       <DependentUpon>Compania.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
-    <Compile Include="Compania\Alta.aspx.designer.vb">
-      <DependentUpon>Alta.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Compania\Alta.aspx.vb">
-      <DependentUpon>Alta.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Compania\Baja.aspx.designer.vb">
-      <DependentUpon>Baja.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Compania\Baja.aspx.vb">
-      <DependentUpon>Baja.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Compania\Cambio.aspx.designer.vb">
-      <DependentUpon>Cambio.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Compania\Cambio.aspx.vb">
-      <DependentUpon>Cambio.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Consulta.aspx.designer.vb">
+    <Compile Include="NHelper.vb" />
+    <Compile Include="Socio\Consulta.aspx.designer.vb">
       <DependentUpon>Consulta.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Consulta.aspx.vb">
+    <Compile Include="Socio\Consulta.aspx.vb">
       <DependentUpon>Consulta.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
-    </Compile>
-    <Compile Include="Socios.aspx.designer.vb">
-      <DependentUpon>Socios.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Socios.aspx.vb">
-      <DependentUpon>Socios.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="Login.aspx.vb">
@@ -305,6 +284,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Compania\" />
     <Folder Include="Imagenes\" />
   </ItemGroup>
   <ItemGroup>
