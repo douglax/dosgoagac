@@ -1,20 +1,19 @@
 ﻿Imports CeeLib
+Imports NHibernate
+
 Public Class Alta
     Inherits System.Web.UI.Page
+
+    Private oSocio As New Socio
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
         If Not Me.IsPostBack Then
-
             For i As Integer = Now.Year To Now.Year - 100 Step -1
-
                 Dim anoStr = New ListItem
                 anoStr.Text = i.ToString
                 anoStr.Value = i.ToString
-
                 Me.ddl_cump_ano.Items.Add(anoStr)
-
-
             Next
 
             Me.pnl_nombre.Visible = False
@@ -119,7 +118,8 @@ Public Class Alta
     End Sub
 
     Private Sub btnGuardar_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnGuardar.Click
-        Dim s As New Socio
+        Dim s As Socio = oSocio
+        Dim sesion As ISession = Nothing
         Try
             s.Nombre = tb_nombre.Text
             s.Paterno = tb_apaterno.Text
@@ -143,12 +143,21 @@ Public Class Alta
                 comp.Contactos.Add(s)
                 s.Compania = comp
             End If
+            sesion = NHelper.GetCurrentSession()
+            sesion.BeginTransaction()
+            s = sesion.Merge(s)
+            sesion.Transaction.Commit()
+            sesion.Close()
             If club.SelectedIndex = 3 OrElse 2 Then
                 's.Agencia = tb_agencia.Text
             End If
             Lbl_Resultado.ForeColor = Drawing.Color.Green
-            Lbl_Resultado.Text = "Numero de Socio: 001 "
+            Lbl_Resultado.Text = "Numero de Socio: " & s.NoSocio
         Catch ex As Exception
+            If sesion.Transaction.IsActive Then
+                sesion.Transaction.Rollback()
+                sesion.Close()
+            End If
             Lbl_Resultado.ForeColor = Drawing.Color.Red
             Lbl_Resultado.Text = "Ocurrio un error al guardar la información: " & ex.Message
         End Try

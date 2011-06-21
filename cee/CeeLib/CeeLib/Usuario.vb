@@ -1,7 +1,7 @@
 ﻿Public Class Usuario
 
     Private _Usr As String
-    Public Property Usr() As String
+    Public Overridable Property Usr() As String
         Get
             Return _Usr
         End Get
@@ -11,7 +11,7 @@
     End Property
 
     Private _Passwd As String
-    Public Property Passwd() As String
+    Public Overridable Property Passwd() As String
         Get
             Return _Passwd
         End Get

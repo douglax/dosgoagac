@@ -116,6 +116,9 @@
     <Content Include="Account\Login.aspx" />
     <Content Include="Account\Register.aspx" />
     <Content Include="Compania.aspx" />
+    <Content Include="Consulta.aspx" />
+    <Content Include="Socio.aspx" />
+    <Content Include="Socios.aspx" />
     <Content Include="Socio\Consulta.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="Salir.aspx" />
@@ -181,7 +184,28 @@
       <DependentUpon>Compania.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
+    <Compile Include="Consulta.aspx.designer.vb">
+      <DependentUpon>Consulta.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Consulta.aspx.vb">
+      <DependentUpon>Consulta.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="NHelper.vb" />
+    <Compile Include="Socio.aspx.designer.vb">
+      <DependentUpon>Socio.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Socio.aspx.vb">
+      <DependentUpon>Socio.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Socios.aspx.designer.vb">
+      <DependentUpon>Socios.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Socios.aspx.vb">
+      <DependentUpon>Socios.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="Socio\Consulta.aspx.designer.vb">
       <DependentUpon>Consulta.aspx</DependentUpon>
     </Compile>

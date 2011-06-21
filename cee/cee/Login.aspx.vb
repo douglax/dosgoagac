@@ -10,7 +10,10 @@ Public Class Login
         Try
             Dim s As ISession = NHelper.GetCurrentSession
             Dim u As Usuario = s.Get(GetType(Usuario), Login1.UserName)
-            
+            If u Is Nothing Then
+                Login1.FailureText = "Error al ingresar al sistema, verifique su nombre de usuario y contraseña"
+                Return
+            End If
             If u.Passwd.Equals(Login1.Password) Then
                 FormsAuthentication.RedirectFromLoginPage(Login1.UserName, Login1.RememberMeSet)
             Else

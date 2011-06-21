@@ -10,6 +10,7 @@ Public Class NHelper
     Shared Sub New()
         Dim cf As Configuration = New Configuration()
         cf.AddClass(GetType(CeeLib.Usuario))
+        cf.AddClass(GetType(CeeLib.Socio))
         _SessionFactory = cf.Configure.BuildSessionFactory
     End Sub
 

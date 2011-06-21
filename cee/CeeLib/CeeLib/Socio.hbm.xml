@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" namespace="CeeLib" assembly="CeeLib">
+    
+    <class name="Socio">
+        <id name="NoSocio" column="NO_SOCIO">
+            <generator class ="native"/>
+        </id>
+        <property name="Nombre"/>
+        <property name="Paterno"/>
+        <property name="Materno"/>
+        <property name="Email"/>
+        <property name="Telefono"/>
+        <property name="RFC"/>
+        <property name="FechaDeNacimiento" column="FECHA_NAC"/>
+        <property name="Ciudad"/>
+        <property name="Tarifa"/>
+    </class>   
+    
+</hibernate-mapping>

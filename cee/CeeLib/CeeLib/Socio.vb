@@ -3,7 +3,7 @@
 Public Class Socio
 
     Private _NoSocio As Long
-    Public Property NoSocio() As Long
+    Public Overridable Property NoSocio() As Long
         Get
             Return _NoSocio
         End Get
@@ -13,7 +13,7 @@ Public Class Socio
     End Property
 
     Private _Nombre As String
-    Public Property Nombre() As String
+    Public Overridable Property Nombre() As String
         Get
             Return _Nombre
         End Get
@@ -23,7 +23,7 @@ Public Class Socio
     End Property
 
     Private _Paterno As String
-    Public Property Paterno() As String
+    Public Overridable Property Paterno() As String
         Get
             Return _Paterno
         End Get
@@ -33,7 +33,7 @@ Public Class Socio
     End Property
 
     Private _Materno As String
-    Public Property Materno() As String
+    Public Overridable Property Materno() As String
         Get
             Return _Materno
         End Get
@@ -43,7 +43,7 @@ Public Class Socio
     End Property
 
     Private _Compania As Compania
-    Public Property Compania() As Compania
+    Public Overridable Property Compania() As Compania
         Get
             Return _Compania
         End Get
@@ -53,7 +53,7 @@ Public Class Socio
     End Property
 
     Private _Email As String
-    Public Property Email() As String
+    Public Overridable Property Email() As String
         Get
             Return _Email
         End Get
@@ -63,7 +63,7 @@ Public Class Socio
     End Property
 
     Private _Telefono As String
-    Public Property Telefono() As String
+    Public Overridable Property Telefono() As String
         Get
             Return _Telefono
         End Get
@@ -73,7 +73,7 @@ Public Class Socio
     End Property
 
     Private _RFC As String
-    Public Property RFC() As String
+    Public Overridable Property RFC() As String
         Get
             Return _RFC
         End Get
@@ -83,7 +83,7 @@ Public Class Socio
     End Property
 
     Private _FechaDeNacimiento As Date
-    Public Property FechaDeNacimiento() As Date
+    Public Overridable Property FechaDeNacimiento() As Date
         Get
             Return _FechaDeNacimiento
         End Get
@@ -93,7 +93,7 @@ Public Class Socio
     End Property
 
     Private _Ciudad As String
-    Public Property Ciudad() As String
+    Public Overridable Property Ciudad() As String
         Get
             Return _Ciudad
         End Get
@@ -103,7 +103,7 @@ Public Class Socio
     End Property
 
     Private _Agencia As Agencia
-    Public Property Agencia() As Agencia
+    Public Overridable Property Agencia() As Agencia
         Get
             Return _Agencia
         End Get
@@ -113,7 +113,7 @@ Public Class Socio
     End Property
 
     Private _CuartosNoche As IList
-    Public Property CuartosNoche() As IList
+    Public Overridable Property CuartosNoche() As IList
         Get
             If _CuartosNoche Is Nothing Then
                 _CuartosNoche = New ArrayList()
@@ -126,7 +126,7 @@ Public Class Socio
     End Property
 
     Private _Tarifa As Double
-    Public Property Tarifa() As Double
+    Public Overridable Property Tarifa() As Double
         Get
             Return _Tarifa
         End Get
@@ -135,43 +135,41 @@ Public Class Socio
         End Set
     End Property
 
+    Public Overridable Function Edad() As Integer
+        Dim meses As Integer
+        Dim iYears As Integer
+        Dim dYears As Decimal
+        Dim lDayOfBirth As Long
+        Dim lAsOf As Long
+        Dim iBirthMonth As Integer
+        Dim iAsOFMonth As Integer
+        Dim AsOf As Date
 
-    Public ReadOnly Property Edad As Integer
-        Get
-            Dim meses As Integer
-            Dim iYears As Integer
-            Dim dYears As Decimal
-            Dim lDayOfBirth As Long
-            Dim lAsOf As Long
-            Dim iBirthMonth As Integer
-            Dim iAsOFMonth As Integer
-            Dim AsOf As Date
+        AsOf = DateTime.Now
 
-            AsOf = DateTime.Now
+        lDayOfBirth = DatePart(DateInterval.Day, _FechaDeNacimiento)
+        lAsOf = DatePart(DateInterval.Day, AsOf)
 
-            lDayOfBirth = DatePart(DateInterval.Day, _FechaDeNacimiento)
-            lAsOf = DatePart(DateInterval.Day, AsOf)
+        iBirthMonth = DatePart(DateInterval.Month, _FechaDeNacimiento)
+        iAsOFMonth = DatePart(DateInterval.Month, AsOf)
 
-            iBirthMonth = DatePart(DateInterval.Month, _FechaDeNacimiento)
-            iAsOFMonth = DatePart(DateInterval.Month, AsOf)
+        meses = DateDiff(DateInterval.Month, _FechaDeNacimiento, AsOf)
 
-            meses = DateDiff(DateInterval.Month, _FechaDeNacimiento, AsOf)
+        dYears = meses / 12
 
-            dYears = meses / 12
+        iYears = Math.Floor(dYears)
 
-            iYears = Math.Floor(dYears)
-
-            If iBirthMonth = iAsOFMonth Then
-                If lAsOf < lDayOfBirth Then
-                    iYears = iYears - 1
-                End If
+        If iBirthMonth = iAsOFMonth Then
+            If lAsOf < lDayOfBirth Then
+                iYears = iYears - 1
             End If
+        End If
 
-            Return iYears
-        End Get
-    End Property
+        Return iYears
 
-    Public Overrides Function Equals(obj As Object) As Boolean
+    End Function
+
+    Public Overrides Function Equals(ByVal obj As Object) As Boolean
         Try
             Dim o = DirectCast(obj, Socio)
             Return (o._Nombre = Me._NoSocio)

@@ -29,6 +29,7 @@ Public Class Global_asax
 
     Sub Application_End(ByVal sender As Object, ByVal e As EventArgs)
         ' Se desencadena cuando finaliza la aplicación
+        NHelper.CloseSessionFactory()
     End Sub
 
 End Class
