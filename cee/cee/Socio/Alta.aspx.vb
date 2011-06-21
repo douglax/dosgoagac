@@ -9,7 +9,7 @@ Public Class Alta
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         Dim s As ISession = NHelper.GetCurrentSession
         Dim comps As IList(Of CeeLib.Compania) = s.CreateQuery("from Compania").List(Of CeeLib.Compania)()
-        s.Close()
+        NHelper.CloseSession()
         If Not comps Is Nothing Then
             ddl_compania.DataSource = comps
             ddl_compania.DataValueField = "Id"
@@ -129,6 +129,8 @@ Public Class Alta
         Dim s As Socio = oSocio
         Dim sesion As ISession = Nothing
         Try
+            sesion = NHelper.GetCurrentSession()
+            sesion.BeginTransaction()
             s.Nombre = tb_nombre.Text
             s.Paterno = tb_apaterno.Text
             s.Materno = tb_amaterno.Text
@@ -147,12 +149,12 @@ Public Class Alta
             End If
             If club.SelectedIndex = 1 OrElse 2 Then
                 Dim comp As New CeeLib.Compania
-                comp.Id = ddl_compania.SelectedValue
+                Dim id As Long = CType(ddl_compania.SelectedValue, Long)
+                comp = sesion.Get(GetType(CeeLib.Compania), id)
                 comp.Contactos.Add(s)
                 s.Compania = comp
             End If
-            sesion = NHelper.GetCurrentSession()
-            sesion.BeginTransaction()
+
             s = sesion.Merge(s)
             sesion.Transaction.Commit()
             sesion.Close()

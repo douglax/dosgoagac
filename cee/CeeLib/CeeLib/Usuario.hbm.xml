@@ -4,6 +4,8 @@
     <class name="Usuario">
         <id name="Usr" column="user_name"/>
         <property name="Passwd" />
+        
+        
     </class>
     
 </hibernate-mapping>

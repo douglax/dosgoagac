@@ -8,7 +8,12 @@
         
         <property name ="Nombre"/>
         <property name ="Direccion"/>
-        <property name ="Ciudad"/>        
+        <property name ="Ciudad"/>
+
+        <bag name="Contactos" inverse="true" fetch="join">
+            <key column="ID_COMP"/>
+            <one-to-many class="Socio"/>
+        </bag>
         
     </class>
     

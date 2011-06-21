@@ -94,7 +94,9 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Usuario.hbm.xml" />
+    <EmbeddedResource Include="Usuario.hbm.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>

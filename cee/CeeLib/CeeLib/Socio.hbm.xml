@@ -14,6 +14,8 @@
         <property name="FechaDeNacimiento" column="FECHA_NAC"/>
         <property name="Ciudad"/>
         <property name="Tarifa"/>
+
+        <many-to-one name="Compania" column="ID_COMP" class ="Compania"/>
     </class>   
     
 </hibernate-mapping>
