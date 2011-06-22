@@ -1,8 +1,8 @@
 ﻿<%@ Page Language="vb" AutoEventWireup="false" CodeBehind="Consulta.aspx.vb" Inherits="cee.Consulta1" %>
 <html>
 <head>
-    <link rel=StyleSheet href="../cee.css" type="text/css">
-    <script src="../cee.js"></script>
+    <link rel="Stylesheet" href="../cee.css" type="text/css">
+    <script src="../cee.js" type="text/javascript"></script>
 </head>
 <body>
 <table width="100%" height="100%" border="0" cellpadding="0" cellspacing="0">
@@ -43,55 +43,64 @@
                                             <asp:Panel ID="pnl_socio_nombre" runat="server">
                                                 <div class="form-item">
                                                     <asp:Label ID="lbl_socio_nombre_text" runat="server" Text="Nombre:" Width="130" CssClass="consulta-labels"></asp:Label>
-                                                    <asp:Label ID="lbl_socio_nombre_value" runat="server" Width="130" CssClass="labels"></asp:Label>
+                                                    <asp:Label ID="lbl_socio_nombre_value" runat="server" Width="250px" 
+                                                        CssClass="consulta-values"></asp:Label>
                                                 </div>
                                             </asp:Panel>
                                             <asp:Panel ID="pnl_socio_club" runat="server">
                                                 <div class="form-item">
                                                     <asp:Label ID="pnl_socio_club_text" runat="server" Text="Club:" Width="130" CssClass="consulta-labels"></asp:Label>
-                                                    <asp:Label ID="pnl_socio_club_value" runat="server" Width="130" CssClass="labels"></asp:Label>
+                                                    <asp:Label ID="pnl_socio_club_value" runat="server" Width="250px" 
+                                                        CssClass="consulta-values"></asp:Label>
                                                 </div>
                                             </asp:Panel>
                                             <asp:Panel ID="pnl_socio_cumpleanos" runat="server">
                                                 <div class="form-item">
                                                     <asp:Label ID="pnl_socio_cumpleanos_text" runat="server" Text="Cumpleaños:" Width="130" CssClass="consulta-labels"></asp:Label>
-                                                    <asp:Label ID="pnl_socio_cumpleanos_value" runat="server" Width="130" CssClass="labels"></asp:Label>
+                                                    <asp:Label ID="pnl_socio_cumpleanos_value" runat="server" Width="250px" 
+                                                        CssClass="consulta-values"></asp:Label>
                                                 </div>
                                             </asp:Panel>
                                             <asp:Panel ID="pnl_socio_telefono" runat="server">
                                                 <div class="form-item">
                                                     <asp:Label ID="pnl_socio_telefono_text" runat="server" Text="Telefono:" Width="130" CssClass="consulta-labels"></asp:Label>
-                                                    <asp:Label ID="pnl_socio_telefono_value" runat="server" Width="130" CssClass="labels"></asp:Label>
+                                                    <asp:Label ID="pnl_socio_telefono_value" runat="server" Width="250px" 
+                                                        CssClass="consulta-values"></asp:Label>
                                                 </div>
                                             </asp:Panel>
                                             <asp:Panel ID="pnl_socio_ciudad" runat="server">
                                                 <div class="form-item">
                                                     <asp:Label ID="pnl_socio_ciudad_text" runat="server" Text="Ciudad:" Width="130" CssClass="consulta-labels"></asp:Label>
-                                                    <asp:Label ID="pnl_socio_ciudad_value" runat="server" Width="130" CssClass="labels"></asp:Label>
+                                                    <asp:Label ID="pnl_socio_ciudad_value" runat="server" Width="250px" 
+                                                        CssClass="consulta-values"></asp:Label>
                                                 </div>
                                             </asp:Panel>
                                             <asp:Panel ID="pnl_socio_mail" runat="server">
                                                 <div class="form-item">
                                                     <asp:Label ID="pnl_socio_mail_text" runat="server" Text="Mail:" Width="130" CssClass="consulta-labels"></asp:Label>
-                                                    <asp:Label ID="pnl_socio_mail_value" runat="server" Width="130" CssClass="labels"></asp:Label>
+                                                    <asp:Label ID="pnl_socio_mail_value" runat="server" Width="250px" 
+                                                        CssClass="consulta-values"></asp:Label>
                                                 </div>
                                             </asp:Panel>
                                             <asp:Panel ID="pnl_socio_rfc" runat="server">
                                                 <div class="form-item">
                                                     <asp:Label ID="pnl_socio_rfc_text" runat="server" Text="RFC:" Width="130" CssClass="consulta-labels"></asp:Label>
-                                                    <asp:Label ID="pnl_socio_rfc_value" runat="server" Width="130" CssClass="labels"></asp:Label>
+                                                    <asp:Label ID="pnl_socio_rfc_value" runat="server" Width="250px" 
+                                                        CssClass="consulta-values"></asp:Label>
                                                 </div>
                                             </asp:Panel>
                                             <asp:Panel ID="pnl_socio_tarifa" runat="server">
                                                 <div class="form-item">
                                                     <asp:Label ID="pnl_socio_tarifa_text" runat="server" Text="Tarifa:" Width="130" CssClass="consulta-labels"></asp:Label>
-                                                    <asp:Label ID="pnl_socio_tarifa_value" runat="server" Width="130" CssClass="labels"></asp:Label>
+                                                    <asp:Label ID="pnl_socio_tarifa_value" runat="server" Width="250px" 
+                                                        CssClass="consulta-values"></asp:Label>
                                                 </div>
                                             </asp:Panel>
                                             <asp:Panel ID="pnl_socio_agencia" runat="server">
                                                 <div class="form-item">
                                                     <asp:Label ID="pnl_socio_agencia_text" runat="server" Text="Agencia:" Width="130" CssClass="consulta-labels"></asp:Label>
-                                                    <asp:Label ID="pnl_socio_agencia_value" runat="server" Width="130" CssClass="labels"></asp:Label>
+                                                    <asp:Label ID="pnl_socio_agencia_value" runat="server" Width="250px" 
+                                                        CssClass="consulta-values"></asp:Label>
                                                 </div>
                                             </asp:Panel>
                                             <div class="subtitulo">Cuartos Noche:</div>

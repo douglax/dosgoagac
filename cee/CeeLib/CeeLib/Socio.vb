@@ -135,6 +135,16 @@ Public Class Socio
         End Set
     End Property
 
+    Private _Club As Integer
+    Public Overridable Property Club() As Integer
+        Get
+            Return _Club
+        End Get
+        Set(ByVal value As Integer)
+            _Club = value
+        End Set
+    End Property
+
     Public Overridable Function Edad() As Integer
         Dim meses As Integer
         Dim iYears As Integer

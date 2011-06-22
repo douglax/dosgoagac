@@ -14,6 +14,7 @@
         <property name="FechaDeNacimiento" column="FECHA_NAC"/>
         <property name="Ciudad"/>
         <property name="Tarifa"/>
+        <property name="Club"/>
 
         <many-to-one name="Compania" column="ID_COMP" class ="Compania" cascade="all" />
 
