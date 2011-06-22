@@ -142,8 +142,7 @@
                                                 <div class="form-item">
                                                     <asp:Label ID="lbl_compania" runat="server" Text="Compañia:" Width="130" CssClass="labels"></asp:Label>
                                                     <asp:DropDownList ID="ddl_compania" runat="server">
-                                                        <asp:ListItem Text="Coca Cola" Value="01"></asp:ListItem>
-                                                        <asp:ListItem Text="Bimbo" Value="02"></asp:ListItem>
+                                                        
                                                     </asp:DropDownList>
                                                 </div>
                                             </asp:Panel>

@@ -1,7 +1,7 @@
 ﻿Public Class RegistroNoches
 
     Private _Id As Long
-    Public Property Id() As Long
+    Public Overridable Property Id() As Long
         Get
             Return _Id
         End Get
@@ -11,7 +11,7 @@
     End Property
 
     Private _Tipo As Integer
-    Public Property Tipo() As Integer
+    Public Overridable Property Tipo() As Integer
         Get
             Return _Tipo
         End Get
@@ -21,7 +21,7 @@
     End Property
 
     Private _Cantidad As Double
-    Public Property Cantidad() As Double
+    Public Overridable Property Cantidad() As Double
         Get
             Return _Cantidad
         End Get
@@ -31,7 +31,7 @@
     End Property
 
     Private _FechaAlta As Date
-    Public Property FechaAlta() As Date
+    Public Overridable Property FechaAlta() As Date
         Get
             Return _FechaAlta
         End Get
@@ -41,12 +41,22 @@
     End Property
 
     Private _Serie As Integer
-    Public Property Serie() As Integer
+    Public Overridable Property Serie() As Integer
         Get
             Return _Serie
         End Get
         Set(ByVal value As Integer)
             _Serie = value
+        End Set
+    End Property
+
+    Private _Socio As Socio
+    Public Overridable Property Socio() As Socio
+        Get
+            Return _Socio
+        End Get
+        Set(ByVal value As Socio)
+            _Socio = value
         End Set
     End Property
 

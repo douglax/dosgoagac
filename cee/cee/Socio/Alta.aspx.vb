@@ -7,23 +7,24 @@ Public Class Alta
     Private oSocio As New Socio
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-        Dim s As ISession = NHelper.GetCurrentSession
-        Dim comps As IList(Of CeeLib.Compania) = s.CreateQuery("from Compania").List(Of CeeLib.Compania)()
-        NHelper.CloseSession()
-        If Not comps Is Nothing Then
-            ddl_compania.DataSource = comps
-            ddl_compania.DataValueField = "Id"
-            ddl_compania.DataTextField = "Nombre"
-            ddl_compania.DataBind()
-        End If
+       
         If Not Me.IsPostBack Then
             For i As Integer = Now.Year To Now.Year - 100 Step -1
                 Dim anoStr = New ListItem
                 anoStr.Text = i.ToString
                 anoStr.Value = i.ToString
                 Me.ddl_cump_ano.Items.Add(anoStr)
+                
             Next
-
+            Dim s As ISession = NHelper.GetCurrentSession
+            Dim comps As IList(Of CeeLib.Compania) = s.CreateQuery("from Compania").List(Of CeeLib.Compania)()
+            NHelper.CloseSession()
+            If Not comps Is Nothing Then
+                ddl_compania.DataSource = comps
+                ddl_compania.DataValueField = "Id"
+                ddl_compania.DataTextField = "Nombre"
+                ddl_compania.DataBind()
+            End If
             Me.pnl_nombre.Visible = False
             Me.pnl_amaterno.Visible = False
             Me.pnl_apaterno.Visible = False
@@ -153,15 +154,15 @@ Public Class Alta
             End If
             If club.SelectedIndex = 1 OrElse 2 Then
                 Dim comp As New CeeLib.Compania
-                Dim id As Long = CType(ddl_compania.SelectedValue, Long)
-                comp = sesion.Get(GetType(CeeLib.Compania), id)
+                Dim cId As Long = CLng(ddl_compania.SelectedValue)
+                comp = sesion.Get(GetType(CeeLib.Compania), cId)
                 comp.Contactos.Add(s)
                 s.Compania = comp
             End If
 
-            s = sesion.Merge(s)
+            sesion.Save(s)
             sesion.Transaction.Commit()
-            sesion.Close()
+            NHelper.CloseSession()
             If club.SelectedIndex = 3 OrElse 2 Then
                 's.Agencia = tb_agencia.Text
             End If
@@ -180,4 +181,5 @@ Public Class Alta
         End Try
 
     End Sub
+
 End Class

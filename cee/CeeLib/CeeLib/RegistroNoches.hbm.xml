@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" namespace="CeeLib" assembly="CeeLib" default-lazy="true">
+    
+    <class name="RegistroNoches" table="CUARTOS_NOCHE">
+        <id name="Id" column="ID">
+            <generator class ="native"/>
+        </id>
+        <property name="Tipo"/>
+        <property name="Cantidad"/>
+        <property name="FechaAlta" column="FECHA_ALTA"/>
+        <property name="Serie"/>
+        <many-to-one name="Socio" class="Socio" cascade="all" column="SOCIO_ID"/>
+    </class>
+    
+</hibernate-mapping>

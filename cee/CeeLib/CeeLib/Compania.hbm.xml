@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" namespace="CeeLib" assembly="CeeLib">
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" namespace="CeeLib" assembly="CeeLib" default-lazy="true">
     <class name="Compania">
         
         <id name="Id">
@@ -10,7 +10,7 @@
         <property name ="Direccion"/>
         <property name ="Ciudad"/>
 
-        <bag name="Contactos" inverse="true" fetch="join">
+        <bag name="Contactos" inverse="true" cascade="all" >
             <key column="ID_COMP"/>
             <one-to-many class="Socio"/>
         </bag>
