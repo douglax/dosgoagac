@@ -12,4 +12,40 @@ Option Explicit On
 
 
 Partial Public Class Consulta1
+
+    '''<summary>
+    '''pnl_consultar control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents pnl_consultar As Global.System.Web.UI.WebControls.Panel
+
+    '''<summary>
+    '''lbl_consultar control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbl_consultar As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''tb_consultar control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents tb_consultar As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''btn_consultar control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btn_consultar As Global.System.Web.UI.WebControls.Button
 End Class
