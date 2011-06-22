@@ -36,6 +36,7 @@ Public Class Alta
             Me.pnl_agencia.Visible = False
             Me.pnl_guardar.Visible = False
             Me.pnl_compania.Visible = False
+            Me.pnl_resultado.Visible = False
 
             Dim ddlItem0 = New ListItem
             ddlItem0.Text = "Seleccionar..."
@@ -128,6 +129,9 @@ Public Class Alta
     Private Sub btn_guardar_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btn_guardar.Click
         Dim s As Socio = oSocio
         Dim sesion As ISession = Nothing
+
+        Me.pnl_resultado.Visible = True
+
         Try
             sesion = NHelper.GetCurrentSession()
             sesion.BeginTransaction()
@@ -161,16 +165,18 @@ Public Class Alta
             If club.SelectedIndex = 3 OrElse 2 Then
                 's.Agencia = tb_agencia.Text
             End If
-            Lbl_Resultado.ForeColor = Drawing.Color.Green
-            Lbl_Resultado.Text = "Numero de Socio: " & s.NoSocio
+
+            lbl_resultado.ForeColor = Drawing.Color.Green
+            lbl_resultado.Text = "Numero de Socio: " & s.NoSocio
             btn_guardar.Enabled = False
         Catch ex As Exception
             If sesion.Transaction.IsActive Then
                 sesion.Transaction.Rollback()
                 sesion.Close()
             End If
-            Lbl_Resultado.ForeColor = Drawing.Color.Red
-            Lbl_Resultado.Text = "Ocurrio un error al guardar la información: " & ex.Message
+
+            lbl_resultado.ForeColor = Drawing.Color.Red
+            lbl_resultado.Text = "Ocurrio un error al guardar la información: " & ex.Message
         End Try
 
     End Sub

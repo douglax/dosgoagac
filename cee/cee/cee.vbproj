@@ -115,11 +115,17 @@
     <Content Include="Account\ChangePasswordSuccess.aspx" />
     <Content Include="Account\Login.aspx" />
     <Content Include="Account\Register.aspx" />
+    <Content Include="cee.css" />
+    <Content Include="cee.js" />
     <Content Include="Compania.aspx" />
     <Content Include="Compania\Alta.aspx" />
     <Content Include="Compania\Baja.aspx" />
     <Content Include="Compania\Cambio.aspx" />
     <Content Include="Consulta.aspx" />
+    <Content Include="Imagenes\enlace-empresarial.jpg" />
+    <Content Include="Imagenes\enlace-travel.jpg" />
+    <Content Include="Imagenes\enlace.jpg" />
+    <Content Include="Imagenes\logotipo.jpg" />
     <Content Include="Socio.aspx" />
     <Content Include="Socios.aspx" />
     <Content Include="Socio\Consulta.aspx" />
@@ -332,7 +338,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Imagenes\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CeeLib\CeeLib\CeeLib.vbproj">

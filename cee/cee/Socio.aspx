@@ -26,9 +26,11 @@
             <table style="margin: auto;" width="100%" border="0" cellpadding="0" cellspacing="0">
                 <tr>
                     <td>
-                        <div style="padding: 0px 30px 0px 0px;">
+                        <div style="height: 70px; padding: 0px 30px 0px 0px;">
                              <img src="Imagenes/logotipo.jpg" border="0" align="left"/>
                              <img src="Imagenes/enlace.jpg" border="0" align="right"/>
+                             <img src="Imagenes/enlace-empresarial.jpg" border="0" align="right"/>
+                             <img src="Imagenes/enlace-travel.jpg" border="0" align="right"/>
                         </div>
                     </td>
                 </tr>

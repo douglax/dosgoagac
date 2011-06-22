@@ -11,9 +11,11 @@
             <table style="margin: auto;" width="100%" border="0" cellpadding="0" cellspacing="0">
                 <tr>
                     <td>
-                        <div style="padding: 0px 30px 0px 0px;">
+                        <div style="height: 70px; padding: 0px 30px 0px 0px;">
                              <img src="../Imagenes/logotipo.jpg" border="0" align="left"/>
                              <img src="../Imagenes/enlace.jpg" border="0" align="right"/>
+                             <img src="../Imagenes/enlace-empresarial.jpg" border="0" align="right"/>
+                             <img src="../Imagenes/enlace-travel.jpg" border="0" align="right"/>
                         </div>
                     </td>
                 </tr>
@@ -162,8 +164,13 @@
                                                     <asp:Button ID="btn_guardar" runat="server" Text="Guardar" />
                                                 </div>
                                             </asp:Panel>
+                                            <asp:Panel ID="pnl_resultado" runat="server">
+                                                <div class="form-item-btn">
+                                                    <asp:Label ID="lbl_resultado" runat="server" Font-Bold="True" ForeColor="#33CC33" Font-Size="12pt"></asp:Label>
+                                                    <div class="link" onmouseover="linkItemOver(this)" onmouseout="linkItemOut(this)" onclick="menuItemClick('Alta.aspx')">Click Aqui para Nuevo Registro de Socio</div>
+                                                </div>
+                                            </asp:Panel>
                                         </div>
-                                        <asp:Label ID="Lbl_Resultado" runat="server" Font-Bold="True" ForeColor="#33CC33"></asp:Label>
                                     </form>
                                 </div>
                             </div>

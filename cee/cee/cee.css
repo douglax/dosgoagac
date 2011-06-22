@@ -6,3 +6,5 @@
 .form-item {padding: 2px 10px 2px 10px;}
 .form-item-btn {padding: 20px 0px 20px 0px; text-align: center;}
 .labels {text-align: right; font: normal 12pt tahoma;}
+.link {font: normal 10pt tahoma; color: #888888; cursor: pointer; padding: 5px 15px 5px 15px;}
+.link-over {font: normal 10pt tahoma; color: #444444; cursor: pointer; padding: 5px 15px 5px 15px;}

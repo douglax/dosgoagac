@@ -374,11 +374,20 @@ Partial Public Class Alta
     Protected WithEvents btn_guardar As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
-    '''Lbl_Resultado control.
+    '''pnl_resultado control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents Lbl_Resultado As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents pnl_resultado As Global.System.Web.UI.WebControls.Panel
+
+    '''<summary>
+    '''lbl_resultado control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbl_resultado As Global.System.Web.UI.WebControls.Label
 End Class
