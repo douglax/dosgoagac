@@ -14,6 +14,87 @@ Option Explicit On
 Partial Public Class Consulta1
 
     '''<summary>
+    '''lbl_page_title control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbl_page_title As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''grp_busqueda control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents grp_busqueda As Global.System.Web.UI.WebControls.Panel
+
+    '''<summary>
+    '''pnl_busqueda control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents pnl_busqueda As Global.System.Web.UI.WebControls.Panel
+
+    '''<summary>
+    '''lbl_busqueda control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbl_busqueda As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''tb_busqueda control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents tb_busqueda As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''btn_busqueda control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btn_busqueda As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''pnl_resultados control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents pnl_resultados As Global.System.Web.UI.WebControls.Panel
+
+    '''<summary>
+    '''dg_resultados control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents dg_resultados As Global.System.Web.UI.WebControls.GridView
+
+    '''<summary>
+    '''grp_consultar control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents grp_consultar As Global.System.Web.UI.WebControls.Panel
+
+    '''<summary>
     '''pnl_consultar control.
     '''</summary>
     '''<remarks>
@@ -48,6 +129,15 @@ Partial Public Class Consulta1
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btn_consultar As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''btn_consultar_popup control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btn_consultar_popup As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
     '''pnl_socio_nombre control.

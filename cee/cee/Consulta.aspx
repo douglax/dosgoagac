@@ -23,28 +23,50 @@
                     <td>
                         <div style="height: 150px; background: #eeeeee; font: normal 9pt tahoma; border-top: 1px #dddddd solid; border-bottom: 1px #dddddd solid; padding: 30px 40px 30px 80px; position: relative;">
                             <div style="width: 220px; float: left;">
-                                <div class="menu-item-selected">Consulta</div>
+                                <div class="menu-item-selected" onclick="menuItemClick('Consulta.aspx')">Consulta</div>
                                 <div class="menu-item" onmouseover="menuItemOver(this)" onmouseout="menuItemOut(this)" onclick="menuItemClick('Socios.aspx')">Socios</div>
                                 <div class="menu-item" onmouseover="menuItemOver(this)" onmouseout="menuItemOut(this)" onclick="menuItemClick('Compania.aspx')">Compañias</div>
                                 <div class="menu-item" onmouseover="menuItemOver(this)" onmouseout="menuItemOut(this)" onclick="menuItemClick('Salir.aspx')">Salir...</div>
                             </div>
                             <div style="width: 500px; height: 550px; background: #ffffff; border: 1px #cccccc solid; position: absolute; top: -200px; left: 320px; padding: 2px;">
-                                <div class="titulo">Consulta</div>
+                                <div class="titulo"><asp:Label ID="lbl_page_title" runat="server" Text="Consulta"></asp:Label></div>
                                 <div class="contenido">
                                     <form runat="server">
                                         <div class="form-items">
+                                        <asp:Panel ID="grp_busqueda" runat="server" Visible="false">
+                                            <asp:Panel ID="pnl_busqueda" runat="server">
+                                                <div class="form-item">
+                                                    <asp:Label ID="lbl_busqueda" runat="server" Text="Nombre o Compañia:" Width="130" CssClass="labels"></asp:Label>
+                                                    <asp:TextBox ID="tb_busqueda" runat="server"></asp:TextBox>
+                                                    <asp:Button ID="btn_busqueda" runat="server" Text="Buscar" />
+                                                </div>
+                                            </asp:Panel>
+                                            <asp:Panel ID="pnl_resultados" runat="server">
+                                                <div class="subtitulo">Socios:</div>
+                                                <div class="form-item">
+                                                    <asp:GridView ID="dg_resultados" runat="server">                             
+                                                        <Columns>
+                                                            <asp:BoundField HeaderText="Cantidad" />
+                                                            <asp:BoundField HeaderText="Fecha" />
+                                                            <asp:BoundField HeaderText="Serie" />
+                                                        </Columns>
+                                                    </asp:GridView>
+                                                </div>
+                                            </asp:Panel>
+                                        </asp:Panel>
+                                        <asp:Panel ID="grp_consultar" runat="server">
                                             <asp:Panel ID="pnl_consultar" runat="server">
                                                 <div class="form-item">
                                                     <asp:Label ID="lbl_consultar" runat="server" Text="Numero de Socio:" Width="130" CssClass="labels"></asp:Label>
                                                     <asp:TextBox ID="tb_consultar" runat="server"></asp:TextBox>
                                                     <asp:Button ID="btn_consultar" runat="server" Text="Consultar" />
+                                                    <asp:Button ID="btn_consultar_popup" runat="server" runat="server" Text="..." />
                                                 </div>
                                             </asp:Panel>
                                             <asp:Panel ID="pnl_socio_nombre" runat="server">
                                                 <div class="form-item">
                                                     <asp:Label ID="lbl_socio_nombre_text" runat="server" Text="Nombre:" Width="130" CssClass="consulta-labels"></asp:Label>
-                                                    <asp:Label ID="lbl_socio_nombre_value" runat="server" Width="250px" 
-                                                        CssClass="consulta-values"></asp:Label>
+                                                    <asp:Label ID="lbl_socio_nombre_value" runat="server" Width="250px" CssClass="consulta-values"></asp:Label>
                                                 </div>
                                             </asp:Panel>
                                             <asp:Panel ID="pnl_socio_club" runat="server">
@@ -103,8 +125,8 @@
                                                         CssClass="consulta-values"></asp:Label>
                                                 </div>
                                             </asp:Panel>
-                                            <div class="subtitulo">Cuartos Noche:</div>
                                             <asp:Panel ID="pnl_puntos" runat="server">
+                                                <div class="subtitulo">Cuartos Noche:</div>
                                                 <div class="form-item">
                                                     <asp:GridView ID="dg_puntos" runat="server">                             
                                                         <Columns>
@@ -115,6 +137,7 @@
                                                     </asp:GridView>
                                                 </div>
                                             </asp:Panel>
+                                        </asp:Panel>
                                         </div>
                                     </form>
                                 </div>

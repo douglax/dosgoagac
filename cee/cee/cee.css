@@ -7,7 +7,9 @@
 .form-item {padding: 2px 10px 2px 10px;}
 .form-item-btn {padding: 20px 0px 20px 0px; text-align: center;}
 .labels {text-align: right; font: normal 12pt tahoma;}
+.labels-busqueda {text-align: right; font: normal 10pt tahoma;}
 .link {font: normal 10pt tahoma; color: #888888; cursor: pointer; padding: 5px 15px 5px 15px;}
 .link-over {font: normal 10pt tahoma; color: #444444; cursor: pointer; padding: 5px 15px 5px 15px;}
 .consulta-labels {text-align: right; font: normal 10pt tahoma;}
 .consulta-values {text-align: left; font: normal 10pt tahoma;}
+.busqueda {width: 480px; height: 300px; background: #f5f5f5; border: 1px #e5e5e5 solid; position: absolute; top: 75px; left: 10px;}

@@ -32,4 +32,10 @@ Public Class Consulta1
         pnl_socio_tarifa_value.Text = FormatCurrency(soc.Tarifa)
         'pnl_socio_agencia_text.Text = soc.Agencia.Nombre 
     End Sub
+
+    Protected Sub btn_consultar_popup_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btn_consultar_popup.Click
+        Me.grp_consultar.Visible = False
+        Me.grp_busqueda.Visible = True
+        Me.lbl_page_title.Text = Me.lbl_page_title.Text & " > Busqueda por Nombre o Compañia"
+    End Sub
 End Class
