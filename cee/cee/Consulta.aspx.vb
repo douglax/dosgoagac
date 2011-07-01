@@ -3,7 +3,17 @@ Public Class Consulta1
     Inherits System.Web.UI.Page
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-
+        If Not Page.IsPostBack Then
+            Dim s As ISession = NHelper.GetCurrentSession
+            ddl_Companias.DataSource = s.CreateQuery("From Compania c order by c.Nombre").List()
+            ddl_Companias.DataTextField = "Nombre"
+            ddl_Companias.DataValueField = "Id"
+            ddl_Companias.DataBind()
+            NHelper.CloseSession()
+        End If
+        If tb_consultar.Text.Length <= 0 Then
+            tb_consultar.Text = Request.QueryString("id_socio")
+        End If
     End Sub
 
     Protected Sub btn_consultar_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btn_consultar.Click
@@ -38,4 +48,29 @@ Public Class Consulta1
         Me.grp_busqueda.Visible = True
         Me.lbl_page_title.Text = Me.lbl_page_title.Text & " > Busqueda por Nombre o Compañia"
     End Sub
+
+    Protected Sub btn_busqueda_Click(sender As Object, e As EventArgs) Handles btn_busqueda.Click
+        Dim qry As String
+        qry = "select s from Socio s where s.Paterno like ? and s.Materno like ? and s.Nombre like ?"
+        Dim s As ISession = NHelper.GetCurrentSession()
+        Dim paterno As String = "%" & tb_buscar_paterno.Text & "%"
+        Dim materno As String = "%" & tb_buscar_materno.Text & "%"
+        Dim nombre As String = "%" & tb_buscar_nombre.Text & "%"
+        Dim res As IList = s.CreateQuery(qry).SetString(0, paterno).SetString(1, materno).SetString(2, nombre).List()
+        dg_resultados.DataSource = res
+        dg_resultados.DataBind()
+
+        NHelper.CloseSession()
+
+    End Sub
+
+    Protected Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        Dim s As ISession = NHelper.GetCurrentSession
+        Dim id As Long = ddl_Companias.SelectedValue()
+        Dim c As CeeLib.Compania = s.Get(Of CeeLib.Compania)(id)
+        dg_resultados.DataSource = c.Contactos
+        dg_resultados.DataBind()
+    End Sub
+
+    
 End Class

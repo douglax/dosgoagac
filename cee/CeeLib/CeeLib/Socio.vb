@@ -179,6 +179,12 @@ Public Class Socio
 
     End Function
 
+    Public Overridable ReadOnly Property NombreCompleto()
+        Get
+            Return _Nombre & " " & _Paterno & " " & _Materno
+        End Get
+    End Property
+
     Public Overrides Function Equals(ByVal obj As Object) As Boolean
         Try
             Dim o = DirectCast(obj, Socio)

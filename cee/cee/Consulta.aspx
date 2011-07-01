@@ -36,19 +36,28 @@
                                         <asp:Panel ID="grp_busqueda" runat="server" Visible="false">
                                             <asp:Panel ID="pnl_busqueda" runat="server">
                                                 <div class="form-item">
-                                                    <asp:Label ID="lbl_busqueda" runat="server" Text="Nombre o Compañia:" Width="130" CssClass="labels"></asp:Label>
-                                                    <asp:TextBox ID="tb_busqueda" runat="server"></asp:TextBox>
-                                                    <asp:Button ID="btn_busqueda" runat="server" Text="Buscar" />
+                                                    <asp:TextBox ID="tb_buscar_paterno" runat="server"></asp:TextBox>&nbsp;
+                                                    <asp:TextBox ID="tb_buscar_materno" runat="server"></asp:TextBox>&nbsp;
+                                                    <asp:TextBox ID="tb_buscar_nombre" runat="server"></asp:TextBox>&nbsp;
+                                                    <asp:Button ID="btn_busqueda" runat="server" Text="Buscar" />&nbsp;
+                                                </div>
+                                                <div class="form-item">
+                                                    <asp:Label ID="Label1" runat="server" Text="Compañía" Width="130px" 
+                                                        CssClass="labels"></asp:Label>
+                                                    <asp:DropDownList ID="ddl_Companias" runat="server"></asp:DropDownList>
+                                                    <asp:Button ID="Button1" runat="server" Text="Buscar" />
                                                 </div>
                                             </asp:Panel>
                                             <asp:Panel ID="pnl_resultados" runat="server">
                                                 <div class="subtitulo">Socios:</div>
                                                 <div class="form-item">
-                                                    <asp:GridView ID="dg_resultados" runat="server">                             
+                                                    <asp:GridView ID="dg_resultados" runat="server" AutoGenerateColumns="False" 
+                                                        Width="354px">                             
                                                         <Columns>
-                                                            <asp:BoundField HeaderText="Cantidad" />
-                                                            <asp:BoundField HeaderText="Fecha" />
-                                                            <asp:BoundField HeaderText="Serie" />
+                                                            <asp:HyperLinkField DataNavigateUrlFields="NoSocio" 
+                                                                DataNavigateUrlFormatString="consulta.aspx?id_socio={0}" 
+                                                                DataTextField="NoSocio" HeaderText="No. de Socio" />
+                                                            <asp:BoundField DataField="NombreCompleto" HeaderText="Nombre" />
                                                         </Columns>
                                                     </asp:GridView>
                                                 </div>
@@ -126,7 +135,9 @@
                                                 </div>
                                             </asp:Panel>
                                             <asp:Panel ID="pnl_puntos" runat="server">
-                                                <div class="subtitulo">Cuartos Noche:</div>
+                                                <div class="subtitulo">Cuartos Noche:<asp:Button ID="Button2" runat="server" 
+                                                        BorderColor="#CC3300" BorderStyle="Solid" Text="Agregar..." />
+                                                </div>
                                                 <div class="form-item">
                                                     <asp:GridView ID="dg_puntos" runat="server">                             
                                                         <Columns>
