@@ -148,6 +148,16 @@
                                                     </asp:GridView>
                                                 </div>
                                             </asp:Panel>
+                                            <asp:Panel ID="Panel1" runat="server">
+                                                <div class="subtitulo">Agregar puntos para el socio</div>
+                                                <div class="form-item">
+                                                    <asp:Label ID="Label2" runat="server" Text="Tipo"></asp:Label>
+                                                    <asp:DropDownList ID="DropDownList1" runat="server">
+                                                        <asp:ListItem Text="Puntos" Value="1"></asp:ListItem>
+                                                        <asp:ListItem Text="Pesos" Value="2"></asp:ListItem>
+                                                    </asp:DropDownList>
+                                                </div>
+                                            </asp:Panel>
                                         </asp:Panel>
                                         </div>
                                     </form>
