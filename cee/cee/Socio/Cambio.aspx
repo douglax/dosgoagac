@@ -39,15 +39,15 @@
                                                     <div class="form-item">
                                                         <div class="form-item-nombre">
                                                             <asp:Label ID="lbl_busqueda_nombre" runat="server" Text="Nombre:" Width="125" CssClass="labels-busqueda"></asp:Label>
-                                                            <asp:TextBox ID="tb_busqueda_nombre" runat="server" Width="125"></asp:TextBox>
+                                                            <asp:TextBox ID="tb_buscar_nombre" runat="server" Width="125"></asp:TextBox>
                                                         </div>
                                                         <div class="form-item-nombre">
                                                             <asp:Label ID="lbl_busqueda_paterno" runat="server" Text="Paterno:" Width="125" CssClass="labels-busqueda"></asp:Label>
-                                                            <asp:TextBox ID="tb_busqueda_paterno" runat="server" Width="125"></asp:TextBox>
+                                                            <asp:TextBox ID="tb_buscar_paterno" runat="server" Width="125"></asp:TextBox>
                                                         </div>
                                                         <div class="form-item-nombre">
                                                             <asp:Label ID="lbl_busqueda_materno" runat="server" Text="Materno:" Width="125" CssClass="labels-busqueda"></asp:Label>
-                                                            <asp:TextBox ID="tb_busqueda_materno" runat="server" Width="125"></asp:TextBox>
+                                                            <asp:TextBox ID="tb_buscar_materno" runat="server" Width="125"></asp:TextBox>
                                                         </div>
                                                         <div class="form-item-btn">
                                                             <asp:Button ID="btn_busqueda" runat="server" Text="Buscar" />
@@ -57,11 +57,13 @@
                                                 <asp:Panel ID="pnl_resultados" runat="server">
                                                     <div class="subtitulo">Socios:</div>
                                                     <div class="form-item">
-                                                        <asp:GridView ID="dg_resultados" runat="server">                             
+                                                        <asp:GridView ID="dg_resultados" runat="server" AutoGenerateColumns="False" 
+                                                            Width="314px">                             
                                                             <Columns>
-                                                                <asp:BoundField HeaderText="Id" />
-                                                                <asp:BoundField HeaderText="Socio" />
-                                                                <asp:BoundField HeaderText="Compania" />
+                                                                <asp:HyperLinkField DataNavigateUrlFields="NoSocio" 
+                                                                    DataNavigateUrlFormatString="Cambio.aspx?id_socio={0}" DataTextField="NoSocio" 
+                                                                    HeaderText="No. de Socio" />
+                                                                <asp:BoundField HeaderText="Nombre" DataField="NombreCompleto" />
                                                             </Columns>
                                                         </asp:GridView>
                                                     </div>
@@ -81,14 +83,15 @@
                                                 <asp:Panel ID="pnl_club" runat="server">
                                                     <div class="form-item">
                                                         <asp:Label ID="lbl_club" runat="server" Text="Club:" Width="130" CssClass="labels"></asp:Label>
-                                                        <asp:DropDownList ID="club" runat="server" AutoPostBack="True"></asp:DropDownList>
+                                                        <asp:DropDownList ID="club" runat="server" AutoPostBack="True">
+                                                            <asp:ListItem Text="Club Enlace" Value="1"></asp:ListItem>
+                                                            <asp:ListItem Text="Club Enlace Empresarial" Value="2"></asp:ListItem>
+                                                            <asp:ListItem Text="Enlace Travel Club" Value="3"></asp:ListItem>
+                                                            
+                                                        </asp:DropDownList>
                                                     </div>
                                                 </asp:Panel>
-                                                <asp:Panel ID="pnl_seleccionar" runat="server">
-                                                    <div class="form-item">
-                                                        Seleccionar un club por favor!...
-                                                    </div>
-                                                </asp:Panel>
+                                                
                                                 <asp:Panel ID="pnl_nombre" runat="server">
                                                     <div class="form-item">
                                                         <asp:Label ID="lbl_nombre" runat="server" Text="Nombre:" Width="130" CssClass="labels"></asp:Label>
@@ -111,15 +114,15 @@
                                                     <div class="form-item">
                                                         <asp:Label ID="lbl_cumpleanos" runat="server" Text="Cumpleaños:" Width="130" CssClass="labels"></asp:Label>
                                                         <asp:DropDownList ID="ddl_cump_dia" runat="server">
-                                                            <asp:ListItem Text="01" Value="01"></asp:ListItem>
-                                                            <asp:ListItem Text="02" Value="02"></asp:ListItem>
-                                                            <asp:ListItem Text="03" Value="03"></asp:ListItem>
-                                                            <asp:ListItem Text="04" Value="04"></asp:ListItem>
-                                                            <asp:ListItem Text="05" Value="05"></asp:ListItem>
-                                                            <asp:ListItem Text="06" Value="06"></asp:ListItem>
-                                                            <asp:ListItem Text="07" Value="07"></asp:ListItem>
-                                                            <asp:ListItem Text="08" Value="08"></asp:ListItem>
-                                                            <asp:ListItem Text="09" Value="09"></asp:ListItem>
+                                                            <asp:ListItem Text="01" Value="1"></asp:ListItem>
+                                                            <asp:ListItem Text="02" Value="2"></asp:ListItem>
+                                                            <asp:ListItem Text="03" Value="3"></asp:ListItem>
+                                                            <asp:ListItem Text="04" Value="4"></asp:ListItem>
+                                                            <asp:ListItem Text="05" Value="5"></asp:ListItem>
+                                                            <asp:ListItem Text="06" Value="6"></asp:ListItem>
+                                                            <asp:ListItem Text="07" Value="7"></asp:ListItem>
+                                                            <asp:ListItem Text="08" Value="8"></asp:ListItem>
+                                                            <asp:ListItem Text="09" Value="9"></asp:ListItem>
                                                             <asp:ListItem Text="10" Value="10"></asp:ListItem>
                                                             <asp:ListItem Text="11" Value="11"></asp:ListItem>
                                                             <asp:ListItem Text="12" Value="12"></asp:ListItem>
@@ -144,15 +147,15 @@
                                                             <asp:ListItem Text="31" Value="31"></asp:ListItem>
                                                         </asp:DropDownList>
                                                         <asp:DropDownList ID="ddl_cump_mes" runat="server">
-                                                            <asp:ListItem Text="Enero" Value="01"></asp:ListItem>
-                                                            <asp:ListItem Text="Febrero" Value="02"></asp:ListItem>
-                                                            <asp:ListItem Text="Marzo" Value="03"></asp:ListItem>
-                                                            <asp:ListItem Text="Abril" Value="04"></asp:ListItem>
-                                                            <asp:ListItem Text="Mayo" Value="05"></asp:ListItem>
-                                                            <asp:ListItem Text="Junio" Value="06"></asp:ListItem>
-                                                            <asp:ListItem Text="Julio" Value="07"></asp:ListItem>
-                                                            <asp:ListItem Text="Agosto" Value="08"></asp:ListItem>
-                                                            <asp:ListItem Text="Septiembre" Value="09"></asp:ListItem>
+                                                            <asp:ListItem Text="Enero" Value="1"></asp:ListItem>
+                                                            <asp:ListItem Text="Febrero" Value="2"></asp:ListItem>
+                                                            <asp:ListItem Text="Marzo" Value="3"></asp:ListItem>
+                                                            <asp:ListItem Text="Abril" Value="4"></asp:ListItem>
+                                                            <asp:ListItem Text="Mayo" Value="5"></asp:ListItem>
+                                                            <asp:ListItem Text="Junio" Value="6"></asp:ListItem>
+                                                            <asp:ListItem Text="Julio" Value="7"></asp:ListItem>
+                                                            <asp:ListItem Text="Agosto" Value="8"></asp:ListItem>
+                                                            <asp:ListItem Text="Septiembre" Value="9"></asp:ListItem>
                                                             <asp:ListItem Text="Octubre" Value="10"></asp:ListItem>
                                                             <asp:ListItem Text="Noviembre" Value="11"></asp:ListItem>
                                                             <asp:ListItem Text="Diciembre" Value="12"></asp:ListItem>
@@ -207,6 +210,12 @@
                                                 <asp:Panel ID="pnl_modificar" runat="server">
                                                     <div class="form-item-btn">
                                                         <asp:Button ID="btn_modificar" runat="server" Text="Modificar" />
+                                                    </div>
+                                                </asp:Panel>
+                                                <asp:Panel ID="pnl_resultado" runat="server">
+                                                    <div class="form-item-btn">
+                                                        <asp:Label ID="lbl_resultado" runat="server" Font-Bold="True" ForeColor="#33CC33" Font-Size="12pt"></asp:Label>
+                                                        
                                                     </div>
                                                 </asp:Panel>
                                             </asp:Panel>

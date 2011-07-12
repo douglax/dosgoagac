@@ -17,12 +17,15 @@ Public Class Consulta1
     End Sub
 
     Protected Sub btn_consultar_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btn_consultar.Click
+        If tb_consultar.Text.Length = 0 Then
+            Return
+        End If
         Dim s As ISession = NHelper.GetCurrentSession
         Dim id As Long = CLng(tb_consultar.Text)
 
         Dim soc As CeeLib.Socio = s.Get(GetType(CeeLib.Socio), id)
         If soc Is Nothing Then
-            MsgBox("No se encontro ningun socio con el numero " & id, MsgBoxStyle.Critical)
+
             Return
         End If
         lbl_socio_nombre_value.Text = soc.Nombre & " " & soc.Paterno & " " & soc.Materno
