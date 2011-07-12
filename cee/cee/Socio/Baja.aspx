@@ -37,9 +37,21 @@
                                             <asp:Panel ID="grp_busqueda" runat="server" Visible="false">
                                                 <asp:Panel ID="pnl_busqueda" runat="server">
                                                     <div class="form-item">
-                                                        <asp:Label ID="lbl_busqueda" runat="server" Text="Socio:" Width="130" CssClass="labels"></asp:Label>
-                                                        <asp:TextBox ID="tb_busqueda" runat="server"></asp:TextBox>
-                                                        <asp:Button ID="btn_busqueda" runat="server" Text="Buscar" />
+                                                        <div class="form-item-nombre">
+                                                            <asp:Label ID="lbl_busqueda_nombre" runat="server" Text="Nombre:" Width="125" CssClass="labels-busqueda"></asp:Label>
+                                                            <asp:TextBox ID="tb_busqueda_nombre" runat="server" Width="125"></asp:TextBox>
+                                                        </div>
+                                                        <div class="form-item-nombre">
+                                                            <asp:Label ID="lbl_busqueda_paterno" runat="server" Text="Paterno:" Width="125" CssClass="labels-busqueda"></asp:Label>
+                                                            <asp:TextBox ID="tb_busqueda_paterno" runat="server" Width="125"></asp:TextBox>
+                                                        </div>
+                                                        <div class="form-item-nombre">
+                                                            <asp:Label ID="lbl_busqueda_materno" runat="server" Text="Materno:" Width="125" CssClass="labels-busqueda"></asp:Label>
+                                                            <asp:TextBox ID="tb_busqueda_materno" runat="server" Width="125"></asp:TextBox>
+                                                        </div>
+                                                        <div class="form-item-btn">
+                                                            <asp:Button ID="btn_busqueda" runat="server" Text="Buscar" />
+                                                        </div>
                                                     </div>
                                                 </asp:Panel>
                                                 <asp:Panel ID="pnl_resultados" runat="server">

@@ -53,9 +53,9 @@ Public Class Consulta1
         Dim qry As String
         qry = "select s from Socio s where s.Paterno like ? and s.Materno like ? and s.Nombre like ?"
         Dim s As ISession = NHelper.GetCurrentSession()
-        Dim paterno As String = "%" & tb_buscar_paterno.Text & "%"
-        Dim materno As String = "%" & tb_buscar_materno.Text & "%"
-        Dim nombre As String = "%" & tb_buscar_nombre.Text & "%"
+        Dim paterno As String = "%" & tb_busqueda_paterno.Text & "%"
+        Dim materno As String = "%" & tb_busqueda_materno.Text & "%"
+        Dim nombre As String = "%" & tb_busqueda_nombre.Text & "%"
         Dim res As IList = s.CreateQuery(qry).SetString(0, paterno).SetString(1, materno).SetString(2, nombre).List()
         dg_resultados.DataSource = res
         dg_resultados.DataBind()
@@ -73,4 +73,9 @@ Public Class Consulta1
     End Sub
 
     
+    Protected Sub btn_puntos_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btn_puntos.Click
+
+        Me.pnl_cuarto_noche.Visible = True
+
+    End Sub
 End Class

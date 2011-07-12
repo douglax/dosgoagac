@@ -36,10 +36,21 @@
                                         <asp:Panel ID="grp_busqueda" runat="server" Visible="false">
                                             <asp:Panel ID="pnl_busqueda" runat="server">
                                                 <div class="form-item">
-                                                    <asp:TextBox ID="tb_buscar_paterno" runat="server"></asp:TextBox>&nbsp;
-                                                    <asp:TextBox ID="tb_buscar_materno" runat="server"></asp:TextBox>&nbsp;
-                                                    <asp:TextBox ID="tb_buscar_nombre" runat="server"></asp:TextBox>&nbsp;
-                                                    <asp:Button ID="btn_busqueda" runat="server" Text="Buscar" />&nbsp;
+                                                    <div class="form-item-nombre">
+                                                        <asp:Label ID="lbl_busqueda_nombre" runat="server" Text="Nombre:" Width="125" CssClass="labels-busqueda"></asp:Label>
+                                                        <asp:TextBox ID="tb_busqueda_nombre" runat="server" Width="125"></asp:TextBox>
+                                                    </div>
+                                                    <div class="form-item-nombre">
+                                                        <asp:Label ID="lbl_busqueda_paterno" runat="server" Text="Paterno:" Width="125" CssClass="labels-busqueda"></asp:Label>
+                                                        <asp:TextBox ID="tb_busqueda_paterno" runat="server" Width="125"></asp:TextBox>
+                                                    </div>
+                                                    <div class="form-item-nombre">
+                                                        <asp:Label ID="lbl_busqueda_materno" runat="server" Text="Materno:" Width="125" CssClass="labels-busqueda"></asp:Label>
+                                                        <asp:TextBox ID="tb_busqueda_materno" runat="server" Width="125"></asp:TextBox>
+                                                    </div>
+                                                    <div class="form-item-btn">
+                                                        <asp:Button ID="btn_busqueda" runat="server" Text="Buscar" />
+                                                    </div>
                                                 </div>
                                                 <div class="form-item">
                                                     <asp:Label ID="Label1" runat="server" Text="Compañía" Width="130px" 
@@ -135,8 +146,8 @@
                                                 </div>
                                             </asp:Panel>
                                             <asp:Panel ID="pnl_puntos" runat="server">
-                                                <div class="subtitulo">Cuartos Noche:<asp:Button ID="Button2" runat="server" 
-                                                        BorderColor="#CC3300" BorderStyle="Solid" Text="Agregar..." />
+                                                <div class="subtitulo">
+                                                    Cuartos Noche:<asp:Button ID="btn_puntos" runat="server" Text=" + " />
                                                 </div>
                                                 <div class="form-item">
                                                     <asp:GridView ID="dg_puntos" runat="server">                             
@@ -148,14 +159,12 @@
                                                     </asp:GridView>
                                                 </div>
                                             </asp:Panel>
-                                            <asp:Panel ID="Panel1" runat="server">
+                                            <asp:Panel ID="pnl_cuarto_noche" runat="server" Visible="false">
                                                 <div class="subtitulo">Agregar puntos para el socio</div>
                                                 <div class="form-item">
-                                                    <asp:Label ID="Label2" runat="server" Text="Tipo"></asp:Label>
-                                                    <asp:DropDownList ID="DropDownList1" runat="server">
-                                                        <asp:ListItem Text="Puntos" Value="1"></asp:ListItem>
-                                                        <asp:ListItem Text="Pesos" Value="2"></asp:ListItem>
-                                                    </asp:DropDownList>
+                                                    <asp:Label ID="lbl_cantidad_cuartos" runat="server" Text="Cuartos Noche:" Width="130" CssClass="consulta-labels"></asp:Label>
+                                                    <asp:TextBox ID="tb_cantidad_cuartos" runat="server"></asp:TextBox>
+                                                    <asp:Button ID="btn_cantidad_cuartos" runat="server" Text="Agregar" />
                                                 </div>
                                             </asp:Panel>
                                         </asp:Panel>

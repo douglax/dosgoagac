@@ -41,22 +41,58 @@ Partial Public Class Baja
     Protected WithEvents pnl_busqueda As Global.System.Web.UI.WebControls.Panel
 
     '''<summary>
-    '''lbl_busqueda control.
+    '''lbl_busqueda_nombre control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lbl_busqueda As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents lbl_busqueda_nombre As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''tb_busqueda control.
+    '''tb_busqueda_nombre control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents tb_busqueda As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents tb_busqueda_nombre As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''lbl_busqueda_paterno control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbl_busqueda_paterno As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''tb_busqueda_paterno control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents tb_busqueda_paterno As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''lbl_busqueda_materno control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbl_busqueda_materno As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''tb_busqueda_materno control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents tb_busqueda_materno As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''btn_busqueda control.
