@@ -5,7 +5,6 @@
     <script src="cee.js"></script>
 </head>
 <body>
-    <form id="form1" runat="server">
 <table width="100%" height="100%" border="0" cellpadding="0" cellspacing="0">
     <tr>
         <td style="vertical-align: middle;">
@@ -37,6 +36,5 @@
         </td>
     </tr>
 </table>
-    </form>
 </body>
 </html>

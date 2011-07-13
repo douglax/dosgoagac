@@ -24,7 +24,7 @@
                         <div style="height: 150px; background: #eeeeee; font: normal 9pt tahoma; border-top: 1px #dddddd solid; border-bottom: 1px #dddddd solid; padding: 30px 40px 30px 80px; position: relative;">
                             <div style="width: 220px; float: left;">
                                 <div class="menu-title">Socios</div>
-                                <div class="menu-item-selected">Alta</div>
+                                <div class="menu-item-selected" onclick="menuItemClick('Alta.aspx')">Alta</div>
                                 <div class="menu-item" onmouseover="menuItemOver(this)" onmouseout="menuItemOut(this)" onclick="menuItemClick('Cambio.aspx')">Modificar</div>
                                 <div class="menu-item" onmouseover="menuItemOver(this)" onmouseout="menuItemOut(this)" onclick="menuItemClick('Baja.aspx')">Baja</div>
                                 <div class="menu-item" onmouseover="menuItemOver(this)" onmouseout="menuItemOut(this)" onclick="menuItemClick('../Default.aspx')">Regresar...</div>
@@ -46,19 +46,22 @@
                                             <asp:Panel ID="pnl_nombre" runat="server">
                                                 <div class="form-item">
                                                     <asp:Label ID="lbl_nombre" runat="server" Text="Nombre:" Width="130" CssClass="labels"></asp:Label>
-                                                    <asp:TextBox ID="tb_nombre" runat="server"></asp:TextBox>
+                                                    <asp:TextBox ID="tb_nombre" runat="server" ValidationGroup="Name_Group"></asp:TextBox>
+                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="*" ControlToValidate="tb_nombre" ValidationGroup="Name_Group" CssClass="validacion"></asp:RequiredFieldValidator>
                                                 </div>
                                             </asp:Panel>
                                             <asp:Panel ID="pnl_apaterno" runat="server">
                                                 <div class="form-item">
                                                     <asp:Label ID="lbl_apaterno" runat="server" Text="Apellido Paterno:" Width="130" CssClass="labels"></asp:Label>
-                                                    <asp:TextBox ID="tb_apaterno" runat="server"></asp:TextBox>
+                                                    <asp:TextBox ID="tb_apaterno" runat="server" ValidationGroup="Name_Group"></asp:TextBox>
+                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="*" ControlToValidate="tb_apaterno" ValidationGroup="Name_Group" CssClass="validacion"></asp:RequiredFieldValidator>
                                                 </div>
                                             </asp:Panel>
                                             <asp:Panel ID="pnl_amaterno" runat="server">
                                                 <div class="form-item">
                                                     <asp:Label ID="lbl_amaterno" runat="server" Text="Apellido Materno:" Width="130" CssClass="labels"></asp:Label>
-                                                    <asp:TextBox ID="tb_amaterno" runat="server"></asp:TextBox>
+                                                    <asp:TextBox ID="tb_amaterno" runat="server" ValidationGroup="Name_Group"></asp:TextBox>
+                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="*" ControlToValidate="tb_amaterno" ValidationGroup="Name_Group" CssClass="validacion"></asp:RequiredFieldValidator>
                                                 </div>
                                             </asp:Panel>
                                             <asp:Panel ID="pnl_cumpleanos" runat="server">
@@ -117,50 +120,54 @@
                                             <asp:Panel ID="pnl_telefono" runat="server">
                                                 <div class="form-item">
                                                     <asp:Label ID="lbl_telefono" runat="server" Text="Telefono:" Width="130" CssClass="labels"></asp:Label>
-                                                    <asp:TextBox ID="tb_telefono" runat="server"></asp:TextBox>
+                                                    <asp:TextBox ID="tb_telefono" runat="server" ValidationGroup="Name_Group"></asp:TextBox>
+                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ErrorMessage="*" ControlToValidate="tb_telefono" ValidationGroup="Name_Group" CssClass="validacion"></asp:RequiredFieldValidator>
                                                 </div>
                                             </asp:Panel>
                                             <asp:Panel ID="pnl_ciudad" runat="server">
                                                 <div class="form-item">
                                                     <asp:Label ID="lbl_ciudad" runat="server" Text="Ciudad:" Width="130" CssClass="labels"></asp:Label>
-                                                    <asp:TextBox ID="tb_ciudad" runat="server"></asp:TextBox>
+                                                    <asp:TextBox ID="tb_ciudad" runat="server" ValidationGroup="Name_Group"></asp:TextBox>
+                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ErrorMessage="*" ControlToValidate="tb_ciudad" ValidationGroup="Name_Group" CssClass="validacion"></asp:RequiredFieldValidator>
                                                 </div>
                                             </asp:Panel>
                                             <asp:Panel ID="pnl_correo" runat="server">
                                                 <div class="form-item">
                                                     <asp:Label ID="lbl_correo" runat="server" Text="Email:" Width="130" CssClass="labels"></asp:Label>
-                                                    <asp:TextBox ID="tb_correo" runat="server"></asp:TextBox>
+                                                    <asp:TextBox ID="tb_correo" runat="server" ValidationGroup="Name_Group"></asp:TextBox>
+                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ErrorMessage="*" ControlToValidate="tb_correo" ValidationGroup="Name_Group" CssClass="validacion"></asp:RequiredFieldValidator>
                                                 </div>
                                             </asp:Panel>
                                             <asp:Panel ID="pnl_rfc" runat="server">
                                                 <div class="form-item">
                                                     <asp:Label ID="lbl_rfc" runat="server" Text="RFC:" Width="130" CssClass="labels"></asp:Label>
-                                                    <asp:TextBox ID="tb_rfc" runat="server"></asp:TextBox>
+                                                    <asp:TextBox ID="tb_rfc" runat="server" ValidationGroup="Name_Group"></asp:TextBox>
+                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ErrorMessage="*" ControlToValidate="tb_rfc" ValidationGroup="Name_Group" CssClass="validacion"></asp:RequiredFieldValidator>
                                                 </div>
                                             </asp:Panel>
                                             <asp:Panel ID="pnl_compania" runat="server">
                                                 <div class="form-item">
                                                     <asp:Label ID="lbl_compania" runat="server" Text="Compañia:" Width="130" CssClass="labels"></asp:Label>
-                                                    <asp:DropDownList ID="ddl_compania" runat="server">
-                                                        
-                                                    </asp:DropDownList>
+                                                    <asp:DropDownList ID="ddl_compania" runat="server"></asp:DropDownList>
                                                 </div>
                                             </asp:Panel>
                                             <asp:Panel ID="pnl_tarifa" runat="server">
                                                 <div class="form-item">
                                                     <asp:Label ID="lbl_tarifa" runat="server" Text="Tarifa:" Width="130" CssClass="labels"></asp:Label>
-                                                    <asp:TextBox ID="tb_tarifa" runat="server"></asp:TextBox>
+                                                    <asp:TextBox ID="tb_tarifa" runat="server" ValidationGroup="Name_Group"></asp:TextBox>
+                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server" ErrorMessage="*" ControlToValidate="tb_tarifa" ValidationGroup="Name_Group" CssClass="validacion"></asp:RequiredFieldValidator>
                                                 </div>
                                             </asp:Panel>
                                             <asp:Panel ID="pnl_agencia" runat="server">
                                                 <div class="form-item">
                                                     <asp:Label ID="lbl_agencia" runat="server" Text="Agencia de Viajes:" Width="130" CssClass="labels"></asp:Label>
-                                                    <asp:TextBox ID="tb_agencia" runat="server"></asp:TextBox>
+                                                    <asp:TextBox ID="tb_agencia" runat="server" ValidationGroup="Name_Group"></asp:TextBox>
+                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator9" runat="server" ErrorMessage="*" ControlToValidate="tb_agencia" ValidationGroup="Name_Group" CssClass="validacion"></asp:RequiredFieldValidator>
                                                 </div>
                                             </asp:Panel>
                                             <asp:Panel ID="pnl_guardar" runat="server">
                                                 <div class="form-item-btn">
-                                                    <asp:Button ID="btn_guardar" runat="server" Text="Guardar" />
+                                                    <asp:Button ID="btn_guardar" runat="server" Text="Guardar" ValidationGroup="Name_Group"/>
                                                 </div>
                                             </asp:Panel>
                                             <asp:Panel ID="pnl_resultado" runat="server">

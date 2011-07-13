@@ -13,3 +13,6 @@ function linkItemOut(item) {
 function menuItemClick(url) {
     location.href = url;
 }
+function checkFormFields(form) {
+    
+}

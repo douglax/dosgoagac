@@ -41,6 +41,15 @@ Partial Public Class Alta1
     Protected WithEvents tb_nombre As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
+    '''RequiredFieldValidator4 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents RequiredFieldValidator4 As Global.System.Web.UI.WebControls.RequiredFieldValidator
+
+    '''<summary>
     '''pnl_direccion control.
     '''</summary>
     '''<remarks>
@@ -68,6 +77,15 @@ Partial Public Class Alta1
     Protected WithEvents tb_direccion As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
+    '''RequiredFieldValidator1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents RequiredFieldValidator1 As Global.System.Web.UI.WebControls.RequiredFieldValidator
+
+    '''<summary>
     '''pnl_ciudad control.
     '''</summary>
     '''<remarks>
@@ -93,6 +111,15 @@ Partial Public Class Alta1
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents tb_ciudad As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''RequiredFieldValidator2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents RequiredFieldValidator2 As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
     '''pnl_guardar control.

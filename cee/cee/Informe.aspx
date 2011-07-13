@@ -1,4 +1,4 @@
-﻿<%@ Page Language="vb" AutoEventWireup="false" CodeBehind="Default.aspx.vb" Inherits="cee._Default"%>
+﻿<%@ Page Language="vb" AutoEventWireup="false" CodeBehind="Informe.aspx.vb" Inherits="cee.Informe" %>
 <html>
 <head>
     <link rel=StyleSheet href="cee.css" type="text/css">
@@ -38,5 +38,3 @@
 </table>
 </body>
 </html>
-
-

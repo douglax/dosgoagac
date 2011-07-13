@@ -122,6 +122,15 @@ Partial Public Class Cambio1
     Protected WithEvents tb_consultar As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
+    '''RequiredFieldValidator4 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents RequiredFieldValidator4 As Global.System.Web.UI.WebControls.RequiredFieldValidator
+
+    '''<summary>
     '''btn_consultar control.
     '''</summary>
     '''<remarks>
