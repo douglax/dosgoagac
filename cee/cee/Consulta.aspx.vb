@@ -44,6 +44,10 @@ Public Class Consulta1
         pnl_socio_rfc_value.Text = soc.RFC
         pnl_socio_tarifa_value.Text = FormatCurrency(soc.Tarifa)
         'pnl_socio_agencia_text.Text = soc.Agencia.Nombre 
+        HiddenField1.Value = soc.NoSocio
+        dg_puntos.DataSource = soc.CuartosNoche
+        dg_puntos.DataBind()
+        NHelper.CloseSession()
     End Sub
 
     Protected Sub btn_consultar_popup_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btn_consultar_popup.Click
@@ -77,8 +81,53 @@ Public Class Consulta1
 
     
     Protected Sub btn_puntos_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btn_puntos.Click
-
         Me.pnl_cuarto_noche.Visible = True
+    End Sub
+
+    Protected Sub btn_cantidad_cuartos_Click(sender As Object, e As EventArgs) Handles btn_cantidad_cuartos.Click
+        If tb_cantidad_cuartos.Text.Length = 0 Then
+            Return
+        End If
+        Dim cn As New CeeLib.RegistroNoches()
+        cn.Cantidad = CDbl(tb_cantidad_cuartos.Text)
+        cn.FechaAlta = Now()
+        Dim s As ISession = NHelper.GetCurrentSession
+        cn.Socio = s.Get(GetType(CeeLib.Socio), CLng(HiddenField1.Value))
+        cn.Socio.CuartosNoche.Add(cn)
+        If cn.Socio.Club = 3 Then
+            cn.Tipo = 2
+        Else
+            cn.Tipo = 1
+        End If
+        s.BeginTransaction()
+        s.Save(cn)
+        s.Transaction.Commit()
+        dg_puntos.DataSource = cn.Socio.CuartosNoche
+        dg_puntos.DataMember = "Id"
+        dg_puntos.DataBind()
+        NHelper.CloseSession()
+        pnl_cuarto_noche.Visible = False
+        tb_cantidad_cuartos.Text = ""
+    End Sub
+
+    Private Sub dg_puntos_RowDeleting(sender As Object, e As System.Web.UI.WebControls.GridViewDeleteEventArgs) Handles dg_puntos.RowDeleting
+        Dim s As ISession = NHelper.GetCurrentSession
+        Try
+            Dim soc As CeeLib.Socio = s.Get(GetType(CeeLib.Socio), CLng(HiddenField1.Value))
+            Dim cn As CeeLib.RegistroNoches = soc.CuartosNoche.Item(e.RowIndex)
+            soc.CuartosNoche.Remove(cn)
+            s.BeginTransaction()
+            s.Delete(cn)
+            s.Transaction.Commit()
+            NHelper.CloseSession()
+            dg_puntos.DataSource = soc.CuartosNoche
+            dg_puntos.DataBind()
+        Catch ex As Exception
+            If s.Transaction.IsActive Then s.Transaction.Rollback()
+            lbl_resultado.Text = "Ocurrio un error: " & ex.Message
+        End Try
 
     End Sub
+
+    
 End Class

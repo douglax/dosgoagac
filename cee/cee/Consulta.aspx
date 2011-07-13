@@ -33,6 +33,7 @@
                                 <div class="titulo"><asp:Label ID="lbl_page_title" runat="server" Text="Consulta"></asp:Label></div>
                                 <div class="contenido">
                                     <form runat="server">
+                                        <asp:HiddenField ID="HiddenField1" runat="server" />
                                         <div class="form-items">
                                         <asp:Panel ID="grp_busqueda" runat="server" Visible="false">
                                             <asp:Panel ID="pnl_busqueda" runat="server">
@@ -64,12 +65,16 @@
                                                 <div class="subtitulo">Socios:</div>
                                                 <div class="form-item">
                                                     <asp:GridView ID="dg_resultados" runat="server" AutoGenerateColumns="False" 
-                                                        Width="354px">                             
+                                                        Width="398px">                             
                                                         <Columns>
                                                             <asp:HyperLinkField DataNavigateUrlFields="NoSocio" 
                                                                 DataNavigateUrlFormatString="consulta.aspx?id_socio={0}" 
-                                                                DataTextField="NoSocio" HeaderText="No. de Socio" />
-                                                            <asp:BoundField DataField="NombreCompleto" HeaderText="Nombre" />
+                                                                DataTextField="NoSocio" HeaderText="No. de Socio" >
+                                                            <ItemStyle HorizontalAlign="Center" />
+                                                            </asp:HyperLinkField>
+                                                            <asp:BoundField DataField="NombreCompleto" HeaderText="Nombre" >
+                                                            <ItemStyle HorizontalAlign="Center" />
+                                                            </asp:BoundField>
                                                         </Columns>
                                                     </asp:GridView>
                                                 </div>
@@ -146,26 +151,41 @@
                                                         CssClass="consulta-values"></asp:Label>
                                                 </div>
                                             </asp:Panel>
-                                            <asp:Panel ID="pnl_puntos" runat="server">
-                                                <div class="subtitulo">
-                                                    Cuartos Noche:<asp:Button ID="btn_puntos" runat="server" Text=" + " />
-                                                </div>
-                                                <div class="form-item">
-                                                    <asp:GridView ID="dg_puntos" runat="server">                             
-                                                        <Columns>
-                                                            <asp:BoundField HeaderText="Cantidad" />
-                                                            <asp:BoundField HeaderText="Fecha" />
-                                                            <asp:BoundField HeaderText="Serie" />
-                                                        </Columns>
-                                                    </asp:GridView>
-                                                </div>
-                                            </asp:Panel>
                                             <asp:Panel ID="pnl_cuarto_noche" runat="server" Visible="false">
                                                 <div class="subtitulo">Agregar puntos para el socio</div>
                                                 <div class="form-item">
                                                     <asp:Label ID="lbl_cantidad_cuartos" runat="server" Text="Cuartos Noche:" Width="130" CssClass="consulta-labels"></asp:Label>
                                                     <asp:TextBox ID="tb_cantidad_cuartos" runat="server"></asp:TextBox>
                                                     <asp:Button ID="btn_cantidad_cuartos" runat="server" Text="Agregar" />
+                                                </div>
+                                            </asp:Panel>
+                                            <asp:Panel ID="pnl_puntos" runat="server">
+                                                <div class="subtitulo">
+                                                    Cuartos Noche:<asp:Button ID="btn_puntos" runat="server" Text=" + " />
+                                                </div>
+                                                <div class="form-item">
+                                                    <asp:GridView ID="dg_puntos" runat="server" AutoGenerateColumns="False" 
+                                                        Width="397px">                             
+                                                        <Columns>
+                                                            <asp:BoundField HeaderText="Cantidad" DataField="Cantidad" >
+                                                            <ItemStyle HorizontalAlign="Center" />
+                                                            </asp:BoundField>
+                                                            <asp:BoundField HeaderText="Fecha de Registro" DataField="FechaAlta" 
+                                                                DataFormatString="{0:D}" >
+                                                            <ItemStyle HorizontalAlign="Center" />
+                                                            </asp:BoundField>
+                                                            <asp:CommandField ButtonType="Button" HeaderText="Borrar" 
+                                                                ShowDeleteButton="True">
+                                                            <ItemStyle HorizontalAlign="Center" />
+                                                            </asp:CommandField>
+                                                        </Columns>
+                                                    </asp:GridView>
+                                                </div>
+                                            </asp:Panel>
+                                            <asp:Panel ID="pnl_resultado" runat="server">
+                                                <div class="form-item-btn">
+                                                    <asp:Label ID="lbl_resultado" runat="server" Font-Bold="True" ForeColor="#33CC33" Font-Size="12pt"></asp:Label>
+                                                    
                                                 </div>
                                             </asp:Panel>
                                         </asp:Panel>
@@ -180,5 +200,6 @@
         </td>
     </tr>
 </table>
+
 </body>
 </html>

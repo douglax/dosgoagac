@@ -18,7 +18,7 @@
 
         <many-to-one name="Compania" column="ID_COMP" class ="Compania" cascade="all" />
 
-        <bag name="CuartosNoche" inverse="true" fetch="join">
+        <bag name="CuartosNoche" inverse="true" fetch="join" cascade="all">
             <key column="SOCIO_ID"/>
             <one-to-many class ="RegistroNoches"/>
         </bag>
