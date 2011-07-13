@@ -84,8 +84,9 @@
                                             <asp:Panel ID="pnl_consultar" runat="server">
                                                 <div class="form-item">
                                                     <asp:Label ID="lbl_consultar" runat="server" Text="Numero de Socio:" Width="130" CssClass="labels"></asp:Label>
-                                                    <asp:TextBox ID="tb_consultar" runat="server"></asp:TextBox>
-                                                    <asp:Button ID="btn_consultar" runat="server" Text="Consultar" />
+                                                    <asp:TextBox ID="tb_consultar" runat="server" ValidationGroup="Name_Group"></asp:TextBox>
+                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="*" ControlToValidate="tb_consultar" ValidationGroup="Name_Group" CssClass="validacion"></asp:RequiredFieldValidator>
+                                                    <asp:Button ID="btn_consultar" runat="server" Text="Consultar" ValidationGroup="Name_Group"/>
                                                     <asp:Button ID="btn_consultar_popup" runat="server" runat="server" Text="..." />
                                                 </div>
                                             </asp:Panel>
@@ -155,8 +156,9 @@
                                                 <div class="subtitulo">Agregar puntos para el socio</div>
                                                 <div class="form-item">
                                                     <asp:Label ID="lbl_cantidad_cuartos" runat="server" Text="Cuartos Noche:" Width="130" CssClass="consulta-labels"></asp:Label>
-                                                    <asp:TextBox ID="tb_cantidad_cuartos" runat="server"></asp:TextBox>
-                                                    <asp:Button ID="btn_cantidad_cuartos" runat="server" Text="Agregar" />
+                                                    <asp:TextBox ID="tb_cantidad_cuartos" runat="server" ValidationGroup="Name_Group"></asp:TextBox>
+                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="*" ControlToValidate="tb_cantidad_cuartos" ValidationGroup="Name_Group" CssClass="validacion"></asp:RequiredFieldValidator>
+                                                    <asp:Button ID="btn_cantidad_cuartos" runat="server" Text="Agregar" ValidationGroup="Name_Group"/>
                                                 </div>
                                             </asp:Panel>
                                             <asp:Panel ID="pnl_puntos" runat="server">
