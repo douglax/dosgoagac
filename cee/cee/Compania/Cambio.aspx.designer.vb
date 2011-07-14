@@ -158,42 +158,6 @@ Partial Public Class Cambio1
     Protected WithEvents grp_modificar As Global.System.Web.UI.WebControls.Panel
 
     '''<summary>
-    '''pnl_club control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents pnl_club As Global.System.Web.UI.WebControls.Panel
-
-    '''<summary>
-    '''lbl_club control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lbl_club As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''club control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents club As Global.System.Web.UI.WebControls.DropDownList
-
-    '''<summary>
-    '''pnl_seleccionar control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents pnl_seleccionar As Global.System.Web.UI.WebControls.Panel
-
-    '''<summary>
     '''pnl_nombre control.
     '''</summary>
     '''<remarks>
@@ -221,130 +185,49 @@ Partial Public Class Cambio1
     Protected WithEvents tb_nombre As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''pnl_apaterno control.
+    '''RequiredFieldValidator1 control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents pnl_apaterno As Global.System.Web.UI.WebControls.Panel
+    Protected WithEvents RequiredFieldValidator1 As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
-    '''lbl_apaterno control.
+    '''pnl_direccion control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lbl_apaterno As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents pnl_direccion As Global.System.Web.UI.WebControls.Panel
 
     '''<summary>
-    '''tb_apaterno control.
+    '''lbl_direccion control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents tb_apaterno As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents lbl_direccion As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''pnl_amaterno control.
+    '''tb_direccion control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents pnl_amaterno As Global.System.Web.UI.WebControls.Panel
+    Protected WithEvents tb_direccion As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''lbl_amaterno control.
+    '''RequiredFieldValidator2 control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lbl_amaterno As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''tb_amaterno control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents tb_amaterno As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
-    '''pnl_cumpleanos control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents pnl_cumpleanos As Global.System.Web.UI.WebControls.Panel
-
-    '''<summary>
-    '''lbl_cumpleanos control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lbl_cumpleanos As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''ddl_cump_dia control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents ddl_cump_dia As Global.System.Web.UI.WebControls.DropDownList
-
-    '''<summary>
-    '''ddl_cump_mes control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents ddl_cump_mes As Global.System.Web.UI.WebControls.DropDownList
-
-    '''<summary>
-    '''ddl_cump_ano control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents ddl_cump_ano As Global.System.Web.UI.WebControls.DropDownList
-
-    '''<summary>
-    '''pnl_telefono control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents pnl_telefono As Global.System.Web.UI.WebControls.Panel
-
-    '''<summary>
-    '''lbl_telefono control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lbl_telefono As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''tb_telefono control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents tb_telefono As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents RequiredFieldValidator2 As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
     '''pnl_ciudad control.
@@ -374,155 +257,29 @@ Partial Public Class Cambio1
     Protected WithEvents tb_ciudad As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''pnl_correo control.
+    '''RequiredFieldValidator3 control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents pnl_correo As Global.System.Web.UI.WebControls.Panel
+    Protected WithEvents RequiredFieldValidator3 As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
-    '''lbl_correo control.
+    '''pnl_guardar control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lbl_correo As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents pnl_guardar As Global.System.Web.UI.WebControls.Panel
 
     '''<summary>
-    '''tb_correo control.
+    '''btn_guardar control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents tb_correo As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
-    '''pnl_rfc control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents pnl_rfc As Global.System.Web.UI.WebControls.Panel
-
-    '''<summary>
-    '''lbl_rfc control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lbl_rfc As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''tb_rfc control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents tb_rfc As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
-    '''pnl_compania control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents pnl_compania As Global.System.Web.UI.WebControls.Panel
-
-    '''<summary>
-    '''lbl_compania control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lbl_compania As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''ddl_compania control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents ddl_compania As Global.System.Web.UI.WebControls.DropDownList
-
-    '''<summary>
-    '''pnl_tarifa control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents pnl_tarifa As Global.System.Web.UI.WebControls.Panel
-
-    '''<summary>
-    '''lbl_tarifa control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lbl_tarifa As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''tb_tarifa control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents tb_tarifa As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
-    '''pnl_agencia control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents pnl_agencia As Global.System.Web.UI.WebControls.Panel
-
-    '''<summary>
-    '''lbl_agencia control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lbl_agencia As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''tb_agencia control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents tb_agencia As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
-    '''pnl_modificar control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents pnl_modificar As Global.System.Web.UI.WebControls.Panel
-
-    '''<summary>
-    '''btn_modificar control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btn_modificar As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents btn_guardar As Global.System.Web.UI.WebControls.Button
 End Class

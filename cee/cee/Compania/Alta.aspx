@@ -55,12 +55,12 @@
                                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="*" ControlToValidate="tb_ciudad" ValidationGroup="Name_Group" CssClass="validacion"></asp:RequiredFieldValidator>
                                                 </div>
                                             </asp:Panel>
+                                            <asp:Panel ID="pnl_guardar" runat="server">
+                                                <div class="form-item-btn">
+                                                    <asp:Button ID="btn_guardar" runat="server" Text="Guardar" ValidationGroup="Name_Group"/>
+                                                </div>
+                                            </asp:Panel>
                                         </div>
-                                        <asp:Panel ID="pnl_guardar" runat="server">
-                                            <div class="form-item-btn">
-                                                <asp:Button ID="btn_guardar" runat="server" Text="Guardar" ValidationGroup="Name_Group"/>
-                                            </div>
-                                        </asp:Panel>
                                         <div>
                                             <asp:Label ID="lblResultado" runat="server" Font-Bold="True" ForeColor="#33CC33"></asp:Label>
                                         </div>
