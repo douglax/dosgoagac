@@ -248,6 +248,15 @@ Partial Public Class Cambio
     Protected WithEvents tb_nombre As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
+    '''RequiredFieldValidator9 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents RequiredFieldValidator9 As Global.System.Web.UI.WebControls.RequiredFieldValidator
+
+    '''<summary>
     '''pnl_apaterno control.
     '''</summary>
     '''<remarks>
@@ -275,6 +284,15 @@ Partial Public Class Cambio
     Protected WithEvents tb_apaterno As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
+    '''RequiredFieldValidator1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents RequiredFieldValidator1 As Global.System.Web.UI.WebControls.RequiredFieldValidator
+
+    '''<summary>
     '''pnl_amaterno control.
     '''</summary>
     '''<remarks>
@@ -300,6 +318,15 @@ Partial Public Class Cambio
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents tb_amaterno As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''RequiredFieldValidator2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents RequiredFieldValidator2 As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
     '''pnl_cumpleanos control.
@@ -374,6 +401,15 @@ Partial Public Class Cambio
     Protected WithEvents tb_telefono As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
+    '''RequiredFieldValidator3 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents RequiredFieldValidator3 As Global.System.Web.UI.WebControls.RequiredFieldValidator
+
+    '''<summary>
     '''pnl_ciudad control.
     '''</summary>
     '''<remarks>
@@ -399,6 +435,15 @@ Partial Public Class Cambio
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents tb_ciudad As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''RequiredFieldValidator5 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents RequiredFieldValidator5 As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
     '''pnl_correo control.
@@ -428,6 +473,15 @@ Partial Public Class Cambio
     Protected WithEvents tb_correo As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
+    '''RequiredFieldValidator6 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents RequiredFieldValidator6 As Global.System.Web.UI.WebControls.RequiredFieldValidator
+
+    '''<summary>
     '''pnl_rfc control.
     '''</summary>
     '''<remarks>
@@ -453,6 +507,15 @@ Partial Public Class Cambio
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents tb_rfc As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''RequiredFieldValidator7 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents RequiredFieldValidator7 As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
     '''pnl_compania control.
@@ -509,6 +572,15 @@ Partial Public Class Cambio
     Protected WithEvents tb_tarifa As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
+    '''RequiredFieldValidator8 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents RequiredFieldValidator8 As Global.System.Web.UI.WebControls.RequiredFieldValidator
+
+    '''<summary>
     '''pnl_agencia control.
     '''</summary>
     '''<remarks>
@@ -534,6 +606,15 @@ Partial Public Class Cambio
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents tb_agencia As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''RequiredFieldValidator10 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents RequiredFieldValidator10 As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
     '''pnl_modificar control.

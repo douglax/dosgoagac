@@ -21,7 +21,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <div style="height: 150px; background: #eeeeee; font: normal 9pt tahoma; border-top: 1px #dddddd solid; border-bottom: 1px #dddddd solid; padding: 30px 40px 30px 80px; position: relative;">
+                        <div class="menu-bg-default">
                             <div style="width: 220px; float: left;">
                                 <div class="menu-title">Compañia</div>
                                 <div class="menu-item" onmouseover="menuItemOver(this)" onmouseout="menuItemOut(this)" onclick="menuItemClick('Compania/Alta.aspx')">Alta</div>

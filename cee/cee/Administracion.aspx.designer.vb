@@ -11,7 +11,7 @@ Option Strict On
 Option Explicit On
 
 
-Partial Public Class _Default
+Partial Public Class Administracion
 
     '''<summary>
     '''menu_items control.
@@ -21,13 +21,4 @@ Partial Public Class _Default
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents menu_items As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-
-    '''<summary>
-    '''menu_item_admin control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents menu_item_admin As Global.System.Web.UI.HtmlControls.HtmlGenericControl
 End Class

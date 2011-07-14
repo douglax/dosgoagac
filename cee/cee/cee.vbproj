@@ -115,6 +115,7 @@
     <Content Include="Account\ChangePasswordSuccess.aspx" />
     <Content Include="Account\Login.aspx" />
     <Content Include="Account\Register.aspx" />
+    <Content Include="Administracion.aspx" />
     <Content Include="cee.css" />
     <Content Include="cee.js" />
     <Content Include="Compania.aspx" />
@@ -141,6 +142,8 @@
     <Content Include="Scripts\jquery-1.4.1-vsdoc.js" />
     <Content Include="Scripts\jquery-1.4.1.js" />
     <Content Include="Scripts\jquery-1.4.1.min.js" />
+    <Content Include="Administracion\Alta.aspx" />
+    <Content Include="Administracion\Baja.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -185,6 +188,13 @@
     </Compile>
     <Compile Include="Account\Register.aspx.vb">
       <DependentUpon>Register.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Administracion.aspx.designer.vb">
+      <DependentUpon>Administracion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Administracion.aspx.vb">
+      <DependentUpon>Administracion.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="Compania.aspx.designer.vb">
@@ -321,6 +331,20 @@
     <Compile Include="Socio\Cambio.aspx.vb">
       <DependentUpon>Cambio.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Administracion\Alta.aspx.designer.vb">
+      <DependentUpon>Alta.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Administracion\Alta.aspx.vb">
+      <DependentUpon>Alta.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Administracion\Baja.aspx.designer.vb">
+      <DependentUpon>Baja.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Administracion\Baja.aspx.vb">
+      <DependentUpon>Baja.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>

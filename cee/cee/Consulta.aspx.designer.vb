@@ -14,7 +14,26 @@ Option Explicit On
 Partial Public Class Consulta1
 
     '''<summary>
-    '''Control lbl_page_title.
+    '''lbl_page_title control.
+    '''menu_items control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents menu_items As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
+    '''menu_item_admin control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents menu_item_admin As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
+    '''lbl_page_title control.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
