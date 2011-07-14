@@ -4,7 +4,7 @@
     <class name="Usuario">
         <id name="Usr" column="user_name"/>
         <property name="Passwd" />
-        
+        <many-to-one name="Hotel" column="ID_HOTEL" class ="Hotel"/>
         
     </class>
     

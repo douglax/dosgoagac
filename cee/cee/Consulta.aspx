@@ -65,7 +65,7 @@
                                                 <div class="subtitulo">Socios:</div>
                                                 <div class="form-item">
                                                     <asp:GridView ID="dg_resultados" runat="server" AutoGenerateColumns="False" 
-                                                        Width="398px">                             
+                                                        Width="475px">                             
                                                         <Columns>
                                                             <asp:HyperLinkField DataNavigateUrlFields="NoSocio" 
                                                                 DataNavigateUrlFormatString="consulta.aspx?id_socio={0}" 
@@ -152,6 +152,17 @@
                                                         CssClass="consulta-values"></asp:Label>
                                                 </div>
                                             </asp:Panel>
+
+                                            <asp:Panel ID="Panel1" runat="server" Visible="true">
+                                                <div class="subtitulo">Tipo de Socio</div>
+                                                <div class="form-item">
+                                                    <asp:Label ID="Lbl_Tipo" runat="server" Width="473px" Font-Bold="True" 
+                                                        Font-Size="Medium"></asp:Label>
+                                                    
+                                                    
+                                                </div>
+                                            </asp:Panel>
+
                                             <asp:Panel ID="pnl_cuarto_noche" runat="server" Visible="false">
                                                 <div class="subtitulo">Agregar puntos para el socio</div>
                                                 <div class="form-item">
@@ -167,15 +178,16 @@
                                                 </div>
                                                 <div class="form-item">
                                                     <asp:GridView ID="dg_puntos" runat="server" AutoGenerateColumns="False" 
-                                                        Width="397px">                             
+                                                        Width="472px" AllowPaging="True" PageSize="4" Font-Size="Small">                             
                                                         <Columns>
                                                             <asp:BoundField HeaderText="Cantidad" DataField="Cantidad" >
                                                             <ItemStyle HorizontalAlign="Center" />
                                                             </asp:BoundField>
                                                             <asp:BoundField HeaderText="Fecha de Registro" DataField="FechaAlta" 
-                                                                DataFormatString="{0:D}" >
+                                                                DataFormatString="{0:yyyy-MM-dd}" >
                                                             <ItemStyle HorizontalAlign="Center" />
                                                             </asp:BoundField>
+                                                            <asp:BoundField DataField="Hotel" HeaderText="Registra" />
                                                             <asp:CommandField ButtonType="Button" HeaderText="Borrar" 
                                                                 ShowDeleteButton="True">
                                                             <ItemStyle HorizontalAlign="Center" />

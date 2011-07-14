@@ -185,6 +185,41 @@ Public Class Socio
         End Get
     End Property
 
+    Public Overridable Function TipoDeSocio() As String
+        Dim tipo As String = ""
+
+        Select Case _Club
+            Case 2
+                If TotalPuntos() >= 50 And TotalPuntos() <= 150 Then
+                    tipo = "Enlace Premium: Bonificación del 5%"
+                ElseIf TotalPuntos() >= 151 And TotalPuntos() <= 300 Then
+                    tipo = "Enlace Platino: Bonificación del 7%"
+                ElseIf TotalPuntos() >= 301 Then
+                    tipo = "Enlace Platino: Bonificación del 10%"
+                End If
+            Case 1
+                If TotalPuntos() >= 60 And TotalPuntos() <= 299 Then
+                    tipo = "Socio Clásico"
+                ElseIf TotalPuntos() >= 300 And TotalPuntos() <= 599 Then
+                    tipo = "Socio Oro"
+                ElseIf TotalPuntos() >= 600 Then
+                    tipo = "Socio Diamante"
+                End If
+            Case 3
+                Dim money As Double = TotalPuntos() * 10
+                tipo = "Bonificacìón de " & FormatCurrency(money)
+        End Select
+        Return tipo
+    End Function
+
+    Private Function TotalPuntos() As Integer
+        Dim total As Integer = 0
+        For Each cn As RegistroNoches In _CuartosNoche
+            total += cn.Cantidad
+        Next
+        Return total
+    End Function
+
     Public Overrides Function Equals(ByVal obj As Object) As Boolean
         Try
             Dim o = DirectCast(obj, Socio)

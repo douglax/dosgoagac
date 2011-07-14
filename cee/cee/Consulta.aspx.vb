@@ -43,6 +43,7 @@ Public Class Consulta1
         pnl_socio_mail_value.Text = soc.Email
         pnl_socio_rfc_value.Text = soc.RFC
         pnl_socio_tarifa_value.Text = FormatCurrency(soc.Tarifa)
+        Lbl_Tipo.Text = soc.TipoDeSocio
         'pnl_socio_agencia_text.Text = soc.Agencia.Nombre 
         HiddenField1.Value = soc.NoSocio
         dg_puntos.DataSource = soc.CuartosNoche
@@ -88,10 +89,13 @@ Public Class Consulta1
         If tb_cantidad_cuartos.Text.Length = 0 Then
             Return
         End If
+
         Dim cn As New CeeLib.RegistroNoches()
         cn.Cantidad = CDbl(tb_cantidad_cuartos.Text)
         cn.FechaAlta = Now()
         Dim s As ISession = NHelper.GetCurrentSession
+        Dim u As CeeLib.Usuario = s.Get(GetType(CeeLib.Usuario), NHelper.UserName)
+        cn.Hotel = u.Hotel
         cn.Socio = s.Get(GetType(CeeLib.Socio), CLng(HiddenField1.Value))
         cn.Socio.CuartosNoche.Add(cn)
         If cn.Socio.Club = 3 Then
@@ -103,11 +107,23 @@ Public Class Consulta1
         s.Save(cn)
         s.Transaction.Commit()
         dg_puntos.DataSource = cn.Socio.CuartosNoche
+        Lbl_Tipo.Text = cn.Socio.TipoDeSocio
         dg_puntos.DataMember = "Id"
         dg_puntos.DataBind()
         NHelper.CloseSession()
         pnl_cuarto_noche.Visible = False
         tb_cantidad_cuartos.Text = ""
+    End Sub
+
+    Private Sub dg_puntos_PageIndexChanging(sender As Object, e As System.Web.UI.WebControls.GridViewPageEventArgs) Handles dg_puntos.PageIndexChanging
+
+        Dim s As ISession = NHelper.GetCurrentSession
+        Dim soc As CeeLib.Socio = s.Get(GetType(CeeLib.Socio), CLng(HiddenField1.Value))
+        dg_puntos.PageIndex = e.NewPageIndex
+        dg_puntos.DataSource = soc.CuartosNoche
+        dg_puntos.DataBind()
+        NHelper.CloseSession()
+
     End Sub
 
     Private Sub dg_puntos_RowDeleting(sender As Object, e As System.Web.UI.WebControls.GridViewDeleteEventArgs) Handles dg_puntos.RowDeleting
@@ -129,5 +145,4 @@ Public Class Consulta1
 
     End Sub
 
-    
 End Class

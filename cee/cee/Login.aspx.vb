@@ -20,6 +20,7 @@ Public Class Login
                 Login1.FailureText = "Error al ingresar al sistema, verifique su nombre de usuario y contraseña"
             End If
             s.Close()
+            NHelper.UserName = u.Usr
         Catch ex As Exception
             Login1.FailureText = "Hubo un error al tratar de ingresar al sistema: " & ex.Message
             System.Console.WriteLine(ex.Message)
