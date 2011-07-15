@@ -17,7 +17,7 @@ Public Class Alta
                 
             Next
             Dim s As ISession = NHelper.GetCurrentSession
-            Dim comps As IList(Of CeeLib.Compania) = s.CreateQuery("from Compania").List(Of CeeLib.Compania)()
+            Dim comps As IList(Of CeeLib.Compania) = s.CreateQuery("from Compania c order by c.Nombre").List(Of CeeLib.Compania)()
             NHelper.CloseSession()
             If Not comps Is Nothing Then
                 ddl_compania.DataSource = comps

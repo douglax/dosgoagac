@@ -58,7 +58,7 @@
                                                     <div class="subtitulo">Socios:</div>
                                                     <div class="form-item">
                                                         <asp:GridView ID="dg_resultados" runat="server" AutoGenerateColumns="False" 
-                                                            Width="314px">                             
+                                                            Width="472px">                             
                                                             <Columns>
                                                                 <asp:HyperLinkField DataNavigateUrlFields="NoSocio" DataNavigateUrlFormatString="Cambio.aspx?id_socio={0}" DataTextField="NoSocio" HeaderText="No. de Socio" />
                                                                 <asp:BoundField HeaderText="Nombre" DataField="NombreCompleto" />
