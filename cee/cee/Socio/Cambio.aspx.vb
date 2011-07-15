@@ -128,7 +128,17 @@ Public Class Cambio
         Dim res As IList = s.CreateQuery(qry).SetString(0, paterno).SetString(1, materno).SetString(2, nombre).List()
         dg_resultados.DataSource = res
         dg_resultados.DataBind()
+        If res.Count = 0 Then
 
+            Me.lbl_resultado.ForeColor = Drawing.Color.Red
+            Me.lbl_resultado.Text = "No se encontraron resultados!..."
+
+        Else
+
+            Me.lbl_resultado.ForeColor = Drawing.Color.Green
+            Me.lbl_resultado.Text = ""
+
+        End If
         NHelper.CloseSession()
     End Sub
 End Class

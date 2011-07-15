@@ -216,11 +216,11 @@
                                                         <asp:Button ID="btn_modificar" runat="server" Text="Modificar"  ValidationGroup="Name_Group"/>
                                                     </div>
                                                 </asp:Panel>
-                                                <asp:Panel ID="pnl_resultado" runat="server">
-                                                    <div class="form-item-btn">
-                                                        <asp:Label ID="lbl_resultado" runat="server" Font-Bold="True" ForeColor="#33CC33" Font-Size="12pt"></asp:Label>
-                                                    </div>
-                                                </asp:Panel>
+                                            </asp:Panel>
+                                            <asp:Panel ID="pnl_resultado" runat="server">
+                                                <div class="form-item-btn">
+                                                    <asp:Label ID="lbl_resultado" runat="server" Font-Bold="True" ForeColor="#33CC33" Font-Size="12pt"></asp:Label>
+                                                </div>
                                             </asp:Panel>
                                         </div>
                                     </form>

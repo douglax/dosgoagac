@@ -25,6 +25,17 @@ Public Class Cambio1
         If Not res Is Nothing Then
             dg_resultados.DataSource = res
             dg_resultados.DataBind()
+            If res.Count = 0 Then
+
+                Me.lblResultado.ForeColor = Drawing.Color.Red
+                Me.lblResultado.Text = "No se encontraron resultados!..."
+
+            Else
+
+                Me.lblResultado.ForeColor = Drawing.Color.Green
+                Me.lblResultado.Text = ""
+
+            End If
         End If
     End Sub
 

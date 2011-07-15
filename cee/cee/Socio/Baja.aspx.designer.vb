@@ -120,4 +120,22 @@ Partial Public Class Baja
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents dg_resultados As Global.System.Web.UI.WebControls.GridView
+
+    '''<summary>
+    '''pnl_resultado control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents pnl_resultado As Global.System.Web.UI.WebControls.Panel
+
+    '''<summary>
+    '''lbl_resultado control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbl_resultado As Global.System.Web.UI.WebControls.Label
 End Class
