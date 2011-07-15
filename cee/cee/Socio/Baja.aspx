@@ -34,7 +34,7 @@
                                 <div class="contenido">
                                     <form id="Form1" runat="server">
                                         <div class="form-items">
-                                            <asp:Panel ID="grp_busqueda" runat="server" Visible="false">
+                                            <asp:Panel ID="grp_busqueda" runat="server">
                                                 <asp:Panel ID="pnl_busqueda" runat="server">
                                                     <div class="form-item">
                                                         <div class="form-item-nombre">
@@ -54,8 +54,8 @@
                                                         </div>
                                                     </div>
                                                 </asp:Panel>
-                                                <asp:Panel ID="pnl_resultados" runat="server">
-                                                    <div class="subtitulo">Socios:</div>
+                                                <asp:Panel ID="pnl_resultados" runat="server" Visible="false">
+                                                    <div class="subtitulo">Resultados:</div>
                                                     <div class="form-item">
                                                         <asp:GridView ID="dg_resultados" runat="server">                             
                                                             <Columns>
@@ -64,17 +64,6 @@
                                                                 <asp:BoundField HeaderText="Compania" />
                                                             </Columns>
                                                         </asp:GridView>
-                                                    </div>
-                                                </asp:Panel>
-                                            </asp:Panel>
-                                            <asp:Panel ID="grp_consultar" runat="server">
-                                                <asp:Panel ID="pnl_consultar" runat="server">
-                                                    <div class="form-item">
-                                                        <asp:Label ID="lbl_consultar" runat="server" Text="Numero de Socio:" Width="130" CssClass="labels"></asp:Label>
-                                                        <asp:TextBox ID="tb_consultar" runat="server" ValidationGroup="Name_Group"></asp:TextBox>
-                                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ErrorMessage="*" ControlToValidate="tb_consultar" ValidationGroup="Name_Group" CssClass="validacion"></asp:RequiredFieldValidator>
-                                                        <asp:Button ID="btn_consultar" runat="server" Text="Consultar" ValidationGroup="Name_Group"/>
-                                                        <asp:Button ID="btn_consultar_popup" runat="server" runat="server" Text="..." />
                                                     </div>
                                                 </asp:Panel>
                                             </asp:Panel>

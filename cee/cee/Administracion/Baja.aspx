@@ -31,7 +31,36 @@
                             <div style="width: 500px; height: 550px; background: #ffffff; border: 1px #cccccc solid; position: absolute; top: -200px; left: 320px; padding: 2px;">
                                 <div class="titulo">Baja Usuario</div>
                                 <div class="contenido">
-                                    ...
+                                    <form id="Form1" runat="server">
+                                        <div class="form-items">
+                                            <asp:Panel ID="grp_busqueda" runat="server">
+                                                <asp:Panel ID="pnl_busqueda" runat="server">
+                                                    <div class="form-item">
+                                                        <div class="form-item-nombre">
+                                                            <asp:Label ID="lbl_busqueda_usuario" runat="server" Text="Usuario:" Width="125" CssClass="labels-busqueda"></asp:Label>
+                                                            <asp:TextBox ID="tb_busqueda_usuario" runat="server" Width="250" ValidationGroup="Name_Group"></asp:TextBox>
+                                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="*" ControlToValidate="tb_busqueda_usuario" ValidationGroup="Name_Group" CssClass="validacion"></asp:RequiredFieldValidator>
+                                                        </div>
+                                                        <div class="form-item-btn">
+                                                            <asp:Button ID="btn_busqueda" runat="server" Text="Buscar" ValidationGroup="Name_Group"/>
+                                                        </div>
+                                                    </div>
+                                                </asp:Panel>
+                                                <asp:Panel ID="pnl_resultados" runat="server" Visible="false">
+                                                    <div class="subtitulo">Resultados:</div>
+                                                    <div class="form-item">
+                                                        <asp:GridView ID="dg_resultados" runat="server">                             
+                                                            <Columns>
+                                                                <asp:BoundField HeaderText="Id" />
+                                                                <asp:BoundField HeaderText="Socio" />
+                                                                <asp:BoundField HeaderText="Compania" />
+                                                            </Columns>
+                                                        </asp:GridView>
+                                                    </div>
+                                                </asp:Panel>
+                                            </asp:Panel>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>

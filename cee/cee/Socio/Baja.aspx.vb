@@ -5,8 +5,8 @@
 
     End Sub
 
-    Protected Sub btn_consultar_popup_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btn_consultar_popup.Click
-        Me.grp_consultar.Visible = False
-        Me.grp_busqueda.Visible = True
+    Protected Sub btn_busqueda_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btn_busqueda.Click
+        Me.pnl_resultados.Visible = True
     End Sub
+
 End Class
