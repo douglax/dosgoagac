@@ -1,6 +1,8 @@
 ﻿Imports System.Data.SqlClient
 Imports NHibernate
 Imports CeeLib
+Imports System.Security.Cryptography
+Imports System.Text
 
 Public Class Login
     Inherits System.Web.UI.Page
@@ -14,7 +16,7 @@ Public Class Login
                 Login1.FailureText = "Error al ingresar al sistema, verifique su nombre de usuario y contraseña"
                 Return
             End If
-            If u.Passwd.Equals(Login1.Password) Then
+            If Decrypt(u.Passwd).Equals(Login1.Password) Then
                 FormsAuthentication.RedirectFromLoginPage(Login1.UserName, Login1.RememberMeSet)
             Else
                 Login1.FailureText = "Error al ingresar al sistema, verifique su nombre de usuario y contraseña"
@@ -27,4 +29,13 @@ Public Class Login
         End Try
 
     End Sub
+
+    Private Function Decrypt(val As String) As String
+        Dim textBytes, encTextBytes As Byte()
+        Dim rsa As New RSACryptoServiceProvider()
+        Dim encoder As New UTF8Encoding()
+        textBytes = Convert.FromBase64String(val)
+        encTextBytes = rsa.Decrypt(textBytes, True)
+        Return encoder.GetString(encTextBytes)
+    End Function
 End Class

@@ -49,7 +49,8 @@
                                             <asp:Panel ID="pnl_apaterno" runat="server">
                                                 <div class="form-item">
                                                     <asp:Label ID="lbl_contrasena" runat="server" Text="Contraseña:" Width="130" CssClass="labels"></asp:Label>
-                                                    <asp:TextBox ID="tb_contrasena" runat="server" ValidationGroup="Name_Group"></asp:TextBox>
+                                                    <asp:TextBox ID="tb_contrasena" runat="server" ValidationGroup="Name_Group" 
+                                                        TextMode="Password"></asp:TextBox>
                                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="*" ControlToValidate="tb_contrasena" ValidationGroup="Name_Group" CssClass="validacion"></asp:RequiredFieldValidator>
                                                 </div>
                                             </asp:Panel>
