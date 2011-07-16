@@ -16,7 +16,7 @@ Public Class Login
                 Login1.FailureText = "Error al ingresar al sistema, verifique su nombre de usuario y contraseña"
                 Return
             End If
-            If Decrypt(u.Passwd).Equals(Login1.Password) Then
+            If u.Passwd.Equals(Login1.Password) Then
                 FormsAuthentication.RedirectFromLoginPage(Login1.UserName, Login1.RememberMeSet)
             Else
                 Login1.FailureText = "Error al ingresar al sistema, verifique su nombre de usuario y contraseña"
