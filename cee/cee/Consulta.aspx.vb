@@ -164,4 +164,8 @@ Public Class Consulta1
 
     End Sub
 
+    Private Sub LoadData(id As Long)
+
+    End Sub
+
 End Class
