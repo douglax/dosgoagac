@@ -16,8 +16,11 @@ Public Class Alta
                 Me.ddl_cump_ano.Items.Add(anoStr)
                 
             Next
+
             Dim s As ISession = NHelper.GetCurrentSession
             Dim comps As IList(Of CeeLib.Compania) = s.CreateQuery("from Compania c order by c.Nombre").List(Of CeeLib.Compania)()
+            Dim estado As IList(Of CeeLib.Estado) = s.CreateQuery("From Estado e order by e.Nombre").List(Of CeeLib.Estado)()
+
             NHelper.CloseSession()
             If Not comps Is Nothing Then
                 ddl_compania.DataSource = comps
@@ -25,6 +28,13 @@ Public Class Alta
                 ddl_compania.DataTextField = "Nombre"
                 ddl_compania.DataBind()
             End If
+
+            ddl_estado.DataSource = estado
+            ddl_estado.DataTextField = "Nombre"
+            ddl_estado.DataValueField = "Id"
+            ddl_estado.DataBind()
+            ddl_estado.Items.Insert(0, "Seleccione...")
+
             Me.pnl_nombre.Visible = False
             Me.pnl_amaterno.Visible = False
             Me.pnl_apaterno.Visible = False
@@ -38,6 +48,7 @@ Public Class Alta
             Me.pnl_guardar.Visible = False
             Me.pnl_compania.Visible = False
             Me.pnl_resultado.Visible = False
+            pnl_estado.Visible = False
 
             Dim ddlItem0 = New ListItem
             ddlItem0.Text = "Seleccionar..."
@@ -80,6 +91,7 @@ Public Class Alta
                 Me.pnl_agencia.Visible = False
                 Me.pnl_guardar.Visible = False
                 Me.pnl_compania.Visible = False
+                pnl_estado.Visible = False
             Case 1
                 Me.pnl_seleccionar.Visible = False
                 Me.pnl_nombre.Visible = True
@@ -94,6 +106,7 @@ Public Class Alta
                 Me.pnl_agencia.Visible = False
                 Me.pnl_guardar.Visible = True
                 Me.pnl_compania.Visible = True
+                pnl_estado.Visible = True
             Case 2
                 Me.pnl_seleccionar.Visible = False
                 Me.pnl_nombre.Visible = True
@@ -108,6 +121,7 @@ Public Class Alta
                 Me.pnl_agencia.Visible = False
                 Me.pnl_guardar.Visible = True
                 Me.pnl_compania.Visible = True
+                pnl_estado.Visible = True
             Case 3
                 Me.pnl_seleccionar.Visible = False
                 Me.pnl_nombre.Visible = True
@@ -122,6 +136,7 @@ Public Class Alta
                 Me.pnl_agencia.Visible = True
                 Me.pnl_guardar.Visible = True
                 Me.pnl_compania.Visible = False
+                pnl_estado.Visible = True
         End Select
 
 
@@ -146,7 +161,7 @@ Public Class Alta
             Dim mes As Integer = CInt(ddl_cump_mes.SelectedValue)
             Dim anio As Integer = CInt(ddl_cump_ano.SelectedValue)
             s.FechaDeNacimiento = New Date(anio, mes, dia)
-            s.Ciudad = tb_ciudad.Text
+            s.Ciudad = sesion.Get(Of Ciudad)(CLng(ddl_ciudad.SelectedValue))
             s.Email = tb_correo.Text
             If tb_tarifa.Text.Length > 0 Then
                 If IsNumeric(tb_tarifa.Text) Then
@@ -183,4 +198,19 @@ Public Class Alta
 
     End Sub
 
+    Protected Sub ddl_estado_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ddl_estado.SelectedIndexChanged
+        If ddl_estado.SelectedIndex > 0 Then
+            Dim id As Long = ddl_estado.SelectedValue
+            Dim s As ISession = NHelper.GetCurrentSession()
+            Dim ciudad As IList = _
+                s.CreateQuery("From Ciudad c where c.Estado.Id = ?").SetInt64(0, id).List()
+            ddl_ciudad.DataSource = ciudad
+            ddl_ciudad.DataTextField = "Nombre"
+            ddl_ciudad.DataValueField = "Id"
+            ddl_ciudad.DataBind()
+            NHelper.CloseSession()
+        Else
+            ddl_ciudad.Items.Clear()
+        End If
+    End Sub
 End Class

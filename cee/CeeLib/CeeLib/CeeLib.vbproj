@@ -65,7 +65,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Agencia.vb" />
+    <Compile Include="Ciudad.vb" />
     <Compile Include="Compania.vb" />
+    <Compile Include="Estado.vb" />
     <Compile Include="Hotel.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
@@ -123,6 +125,10 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Hotel.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ciudad.hbm.xml" />
+    <EmbeddedResource Include="Estado.hbm.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

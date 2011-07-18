@@ -12,7 +12,7 @@
         <property name="Telefono"/>
         <property name="RFC"/>
         <property name="FechaDeNacimiento" column="FECHA_NAC"/>
-        <property name="Ciudad"/>
+        <many-to-one name="Ciudad" column="CIUDAD"/>
         <property name="Tarifa"/>
         <property name="Club"/>
 

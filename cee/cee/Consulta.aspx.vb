@@ -21,6 +21,7 @@ Public Class Consulta1
         End If
         If tb_consultar.Text.Length <= 0 Then
             tb_consultar.Text = Request.QueryString("id_socio")
+            LoadData(CLng(Request.QueryString("id_socio")))
         End If
     End Sub
 
@@ -28,35 +29,8 @@ Public Class Consulta1
         If tb_consultar.Text.Length = 0 Then
             Return
         End If
-        Dim s As ISession = NHelper.GetCurrentSession
-        Dim id As Long = CLng(tb_consultar.Text)
+        LoadData(CLng(tb_consultar.Text))
 
-        Dim soc As CeeLib.Socio = s.Get(GetType(CeeLib.Socio), id)
-        If soc Is Nothing Then
-
-            Return
-        End If
-        lbl_socio_nombre_value.Text = soc.Nombre & " " & soc.Paterno & " " & soc.Materno
-        Select Case soc.Club
-            Case 1
-                pnl_socio_club_value.Text = "Club Enlace"
-            Case 2
-                pnl_socio_club_value.Text = "Club Enlace Empresarial"
-            Case 3
-                pnl_socio_club_value.Text = "Enlace Travel Club"
-        End Select
-        pnl_socio_cumpleanos_value.Text = soc.FechaDeNacimiento.ToString("D")
-        pnl_socio_telefono_value.Text = soc.Telefono
-        pnl_socio_ciudad_value.Text = soc.Ciudad
-        pnl_socio_mail_value.Text = soc.Email
-        pnl_socio_rfc_value.Text = soc.RFC
-        pnl_socio_tarifa_value.Text = FormatCurrency(soc.Tarifa)
-        Lbl_Tipo.Text = soc.TipoDeSocio
-        'pnl_socio_agencia_text.Text = soc.Agencia.Nombre 
-        HiddenField1.Value = soc.NoSocio
-        dg_puntos.DataSource = soc.CuartosNoche
-        dg_puntos.DataBind()
-        NHelper.CloseSession()
     End Sub
 
     Protected Sub btn_consultar_popup_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btn_consultar_popup.Click
@@ -165,7 +139,33 @@ Public Class Consulta1
     End Sub
 
     Private Sub LoadData(id As Long)
+        Dim s As ISession = NHelper.GetCurrentSession
 
+        Dim soc As CeeLib.Socio = s.Get(GetType(CeeLib.Socio), id)
+        If soc Is Nothing Then
+            Return
+        End If
+        lbl_socio_nombre_value.Text = soc.Nombre & " " & soc.Paterno & " " & soc.Materno
+        Select Case soc.Club
+            Case 1
+                pnl_socio_club_value.Text = "Club Enlace"
+            Case 2
+                pnl_socio_club_value.Text = "Club Enlace Empresarial"
+            Case 3
+                pnl_socio_club_value.Text = "Enlace Travel Club"
+        End Select
+        pnl_socio_cumpleanos_value.Text = soc.FechaDeNacimiento.ToString("D")
+        pnl_socio_telefono_value.Text = soc.Telefono
+        pnl_socio_ciudad_value.Text = soc.Ciudad.Nombre
+        pnl_socio_mail_value.Text = soc.Email
+        pnl_socio_rfc_value.Text = soc.RFC
+        pnl_socio_tarifa_value.Text = FormatCurrency(soc.Tarifa)
+        Lbl_Tipo.Text = soc.TipoDeSocio
+        'pnl_socio_agencia_text.Text = soc.Agencia.Nombre 
+        HiddenField1.Value = soc.NoSocio
+        dg_puntos.DataSource = soc.CuartosNoche
+        dg_puntos.DataBind()
+        NHelper.CloseSession()
     End Sub
 
 End Class

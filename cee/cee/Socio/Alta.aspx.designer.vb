@@ -230,6 +230,42 @@ Partial Public Class Alta
     Protected WithEvents RequiredFieldValidator4 As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
+    '''Control pnl_estado.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents pnl_estado As Global.System.Web.UI.WebControls.Panel
+
+    '''<summary>
+    '''Control lbl_estado.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents lbl_estado As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''Control ddl_estado.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents ddl_estado As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
+    '''Control RequiredFieldValidator10.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents RequiredFieldValidator10 As Global.System.Web.UI.WebControls.RequiredFieldValidator
+
+    '''<summary>
     '''Control pnl_ciudad.
     '''</summary>
     '''<remarks>
@@ -248,13 +284,13 @@ Partial Public Class Alta
     Protected WithEvents lbl_ciudad As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''Control tb_ciudad.
+    '''Control ddl_ciudad.
     '''</summary>
     '''<remarks>
     '''Campo generado automáticamente.
     '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
     '''</remarks>
-    Protected WithEvents tb_ciudad As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents ddl_ciudad As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
     '''Control RequiredFieldValidator5.

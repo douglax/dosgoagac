@@ -15,6 +15,9 @@ Public Class NHelper
         cf.AddClass(GetType(CeeLib.Compania))
         cf.AddClass(GetType(CeeLib.RegistroNoches))
         cf.AddClass(GetType(CeeLib.Hotel))
+        cf.AddClass(GetType(CeeLib.Estado))
+        cf.AddClass(GetType(CeeLib.Ciudad))
+
         _SessionFactory = cf.Configure.BuildSessionFactory
     End Sub
 

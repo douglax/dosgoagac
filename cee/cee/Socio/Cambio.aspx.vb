@@ -14,6 +14,7 @@ Public Class Cambio
             Next
             Dim s As ISession = NHelper.GetCurrentSession
             Dim comps As IList(Of CeeLib.Compania) = s.CreateQuery("from Compania").List(Of CeeLib.Compania)()
+            Dim estado As IList = s.CreateQuery("From Estado e order by e.Nombre").List()
             NHelper.CloseSession()
             If Not comps Is Nothing Then
                 ddl_compania.DataSource = comps
@@ -21,8 +22,17 @@ Public Class Cambio
                 ddl_compania.DataTextField = "Nombre"
                 ddl_compania.DataBind()
             End If
+            With ddl_estado
+                .DataSource = estado
+                .DataTextField = "Nombre"
+                .DataValueField = "Id"
+                .DataBind()
+            End With
             If tb_consultar.Text.Length <= 0 Then
                 tb_consultar.Text = Request.QueryString("id_socio")
+                If tb_consultar.Text.Length > 0 Then
+                    LoadData(CLng(tb_consultar.Text))
+                End If
             End If
         End If
     End Sub
@@ -44,7 +54,7 @@ Public Class Cambio
             Dim mes As Integer = CInt(ddl_cump_mes.SelectedValue)
             Dim anio As Integer = CInt(ddl_cump_ano.SelectedValue)
             s.FechaDeNacimiento = New Date(anio, mes, dia)
-            s.Ciudad = tb_ciudad.Text
+            s.Ciudad = sesion.Get(Of Ciudad)(CLng(ddl_ciudad.SelectedValue))
             s.Email = tb_correo.Text
             If tb_tarifa.Text.Length > 0 Then
                 If IsNumeric(tb_tarifa.Text) Then
@@ -85,37 +95,7 @@ Public Class Cambio
         If tb_consultar.Text.Length = 0 Then
             Return
         End If
-        Dim s As ISession = NHelper.GetCurrentSession
-        Dim id As Long = CLng(tb_consultar.Text)
-        Dim soc As CeeLib.Socio = s.Get(GetType(CeeLib.Socio), id)
-        If soc Is Nothing Then
-
-            Return
-        End If
-        tb_nombre.Text = soc.Nombre
-        tb_apaterno.Text = soc.Paterno
-        tb_amaterno.Text = soc.Materno
-        club.SelectedValue = soc.Club
-        ddl_cump_dia.SelectedValue = soc.FechaDeNacimiento.Day.ToString
-        ddl_cump_mes.SelectedValue = soc.FechaDeNacimiento.Month.ToString
-        ddl_cump_ano.SelectedValue = soc.FechaDeNacimiento.Year.ToString
-        ddl_compania.SelectedValue = soc.Compania.Id
-        tb_telefono.Text = soc.Telefono
-        tb_ciudad.Text = soc.Ciudad
-        tb_correo.Text = soc.Email
-        tb_rfc.Text = soc.RFC
-        tb_tarifa.Text = soc.Tarifa
-        NHelper.CloseSession()
-        grp_modificar.Visible = True
-        If soc.Club = 3 Then
-            pnl_compania.Visible = False
-            pnl_agencia.Visible = True
-            pnl_tarifa.Visible = False
-        Else
-            pnl_compania.Visible = True
-            pnl_agencia.Visible = False
-            pnl_tarifa.Visible = True
-        End If
+        LoadData(CLng(tb_consultar.Text))
     End Sub
 
     Protected Sub btn_busqueda_Click(sender As Object, e As EventArgs) Handles btn_busqueda.Click
@@ -140,5 +120,47 @@ Public Class Cambio
 
         End If
         NHelper.CloseSession()
+    End Sub
+
+    Private Sub LoadData(id As Long)
+        Dim s As ISession = NHelper.GetCurrentSession
+        Dim soc As CeeLib.Socio = s.Get(GetType(CeeLib.Socio), id)
+        If soc Is Nothing Then
+            Return
+        End If
+        tb_nombre.Text = soc.Nombre
+        tb_apaterno.Text = soc.Paterno
+        tb_amaterno.Text = soc.Materno
+        club.SelectedValue = soc.Club
+        ddl_cump_dia.SelectedValue = soc.FechaDeNacimiento.Day.ToString
+        ddl_cump_mes.SelectedValue = soc.FechaDeNacimiento.Month.ToString
+        ddl_cump_ano.SelectedValue = soc.FechaDeNacimiento.Year.ToString
+        ddl_compania.SelectedValue = soc.Compania.Id
+        ddl_estado.SelectedValue = soc.Ciudad.Estado.Id
+        With ddl_ciudad
+            .DataSource = _
+                s.CreateQuery("From Ciudad c where c.Estado.Id = ?").SetInt64(0, _
+                    soc.Ciudad.Estado.Id).List()
+            .DataTextField = "Nombre"
+            .DataValueField = "Id"
+            .DataBind()
+            .SelectedValue = soc.Ciudad.Id
+        End With
+        tb_telefono.Text = soc.Telefono
+        'tb_ciudad.Text = soc.Ciudad
+        tb_correo.Text = soc.Email
+        tb_rfc.Text = soc.RFC
+        tb_tarifa.Text = soc.Tarifa
+        NHelper.CloseSession()
+        grp_modificar.Visible = True
+        If soc.Club = 3 Then
+            pnl_compania.Visible = False
+            pnl_agencia.Visible = True
+            pnl_tarifa.Visible = False
+        Else
+            pnl_compania.Visible = True
+            pnl_agencia.Visible = False
+            pnl_tarifa.Visible = True
+        End If
     End Sub
 End Class
