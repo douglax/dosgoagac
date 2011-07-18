@@ -46,7 +46,6 @@
         Me.cld_bg_final.Visible = True
     End Sub
 
-    
     Protected Sub cld_selector_inicio_SelectionChanged(ByVal sender As Object, ByVal e As EventArgs) Handles cld_selector_inicio.SelectionChanged
         Me.cld_bg_inicio.Visible = False
         Me.cld_bg_final.Visible = False

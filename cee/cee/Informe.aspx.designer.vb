@@ -113,6 +113,15 @@ Partial Public Class Informe
     Protected WithEvents club As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
+    '''v_club control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents v_club As Global.System.Web.UI.WebControls.RequiredFieldValidator
+
+    '''<summary>
     '''pnl_periodo_inicio control.
     '''</summary>
     '''<remarks>
@@ -140,13 +149,13 @@ Partial Public Class Informe
     Protected WithEvents tb_periodo_inicio As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''RequiredFieldValidator1 control.
+    '''v_tb_periodo_inicio control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents RequiredFieldValidator1 As Global.System.Web.UI.WebControls.RequiredFieldValidator
+    Protected WithEvents v_tb_periodo_inicio As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
     '''btn_periodo_inicio control.
@@ -185,13 +194,13 @@ Partial Public Class Informe
     Protected WithEvents tb_periodo_final As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''RequiredFieldValidator2 control.
+    '''v_tb_periodo_final control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents RequiredFieldValidator2 As Global.System.Web.UI.WebControls.RequiredFieldValidator
+    Protected WithEvents v_tb_periodo_final As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
     '''btn_peridodo_final control.
@@ -210,13 +219,4 @@ Partial Public Class Informe
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents pnl_informe As Global.System.Web.UI.WebControls.Panel
-
-    '''<summary>
-    '''btn_informe control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btn_informe As Global.System.Web.UI.WebControls.Button
 End Class

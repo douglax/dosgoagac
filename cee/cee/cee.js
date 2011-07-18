@@ -16,3 +16,37 @@ function menuItemClick(url) {
 function checkFormFields(form) {
     
 }
+function sendForm(form) {
+    var btn = Ext.get(form);
+    var form = btn.findParent("form", document.body, true);
+    var formItems = form.query("[class=form_item]");
+    var isFormReady = true;
+    var params = {};
+    Ext.each(formItems, function (item) {
+        var validator = Ext.getDom("v_" + item.id);
+        switch (item.tagName) {
+            case 'SELECT':
+                if (item.selectedIndex == 0) {
+                    validator.style.visibility = "visible";
+                    isFormReady = false;
+                } else {
+                    params[item.id] = item.selectedIndex;
+                }
+                break;
+            case 'INPUT':
+                if (item.type == "text") {
+                    if (item.value == "") {
+                        validator.style.visibility = "visible";
+                        isFormReady = false;
+                    } else {
+                        params[item.id] = item.value;
+                    }
+                }
+                break;
+        }
+    });
+    if (isFormReady) {
+        params = Ext.urlEncode(params);
+        window.open("Informe-Resultados.aspx?" + params, "_blank");
+    }
+}

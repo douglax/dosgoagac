@@ -127,7 +127,9 @@
     <Content Include="Imagenes\enlace-travel.jpg" />
     <Content Include="Imagenes\enlace.jpg" />
     <Content Include="Imagenes\logotipo.jpg" />
+    <Content Include="Informe-Resultados.aspx" />
     <Content Include="Informe.aspx" />
+    <Content Include="Scripts\ext-core.js" />
     <Content Include="Socio.aspx" />
     <Content Include="Socios.aspx" />
     <Content Include="Socio\Consulta.aspx" />
@@ -231,6 +233,13 @@
     <Compile Include="Consulta.aspx.vb">
       <DependentUpon>Consulta.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Informe-Resultados.aspx.designer.vb">
+      <DependentUpon>Informe-Resultados.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Informe-Resultados.aspx.vb">
+      <DependentUpon>Informe-Resultados.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="Informe.aspx.designer.vb">
       <DependentUpon>Informe.aspx</DependentUpon>

@@ -2,6 +2,7 @@
 <html>
 <head>
     <link rel=StyleSheet href="cee.css" type="text/css">
+    <script src="Scripts/ext-core.js"></script>
     <script src="cee.js"></script>
 </head>
 <body>
@@ -45,28 +46,29 @@
                                                 <asp:Panel ID="pnl_club" runat="server">
                                                     <div class="form-item">
                                                         <asp:Label ID="labelClub" runat="server" Text="Club:" Width="130" CssClass="labels"></asp:Label>
-                                                        <asp:DropDownList ID="club" runat="server" AutoPostBack="True"></asp:DropDownList>
+                                                        <asp:DropDownList ID="club" runat="server" AutoPostBack="True" CssClass="form_item"></asp:DropDownList>
+                                                         <asp:RequiredFieldValidator ID="v_club" runat="server" ErrorMessage="*" ControlToValidate="club" ValidationGroup="Name_Group" CssClass="validacion"></asp:RequiredFieldValidator>
                                                     </div>
                                                 </asp:Panel>
                                                 <asp:Panel ID="pnl_periodo_inicio" runat="server">
                                                     <div class="form-item">
                                                         <asp:Label ID="lbl_periodo_inicio" runat="server" Text="Periodo Inicio:" Width="125" CssClass="labels"></asp:Label>
-                                                        <asp:TextBox ID="tb_periodo_inicio" runat="server" Width="100" ValidationGroup="Name_Group"></asp:TextBox>
-                                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="*" ControlToValidate="tb_periodo_inicio" ValidationGroup="Name_Group" CssClass="validacion"></asp:RequiredFieldValidator>
+                                                        <asp:TextBox ID="tb_periodo_inicio" runat="server" Width="100" ValidationGroup="Name_Group" CssClass="form_item"></asp:TextBox>
+                                                        <asp:RequiredFieldValidator ID="v_tb_periodo_inicio" runat="server" ErrorMessage="*" ControlToValidate="tb_periodo_inicio" ValidationGroup="Name_Group" CssClass="validacion"></asp:RequiredFieldValidator>
                                                         <asp:Button ID="btn_periodo_inicio" runat="server" Text="..." />
                                                     </div>
                                                 </asp:Panel>
                                                 <asp:Panel ID="pnl_periodo_final" runat="server">
                                                     <div class="form-item">
                                                         <asp:Label ID="lbl_periodo_final" runat="server" Text="Periodo Fin:" Width="125" CssClass="labels"></asp:Label>
-                                                        <asp:TextBox ID="tb_periodo_final" runat="server" Width="100" ValidationGroup="Name_Group"></asp:TextBox>
-                                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="*" ControlToValidate="tb_periodo_final" ValidationGroup="Name_Group" CssClass="validacion"></asp:RequiredFieldValidator>
+                                                        <asp:TextBox ID="tb_periodo_final" runat="server" Width="100" ValidationGroup="Name_Group" CssClass="form_item"></asp:TextBox>
+                                                        <asp:RequiredFieldValidator ID="v_tb_periodo_final" runat="server" ErrorMessage="*" ControlToValidate="tb_periodo_final" ValidationGroup="Name_Group" CssClass="validacion"></asp:RequiredFieldValidator>
                                                         <asp:Button ID="btn_peridodo_final" runat="server" Text="..." />
                                                     </div>
                                                 </asp:Panel>
                                                 <asp:Panel ID="pnl_informe" runat="server">
                                                     <div class="form-item-btn">
-                                                        <asp:Button ID="btn_informe" runat="server" Text="Mostrar Informe..." ValidationGroup="Name_Group"/>
+                                                        <input type="button" ID="btn_informe" value="Mostrar Informe..." onclick="sendForm(this)"/>
                                                     </div>
                                                 </asp:Panel>
                                             </asp:Panel>
