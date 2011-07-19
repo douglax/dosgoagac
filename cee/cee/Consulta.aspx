@@ -100,11 +100,13 @@
                                             </asp:Panel>
                                             <asp:Panel ID="pnl_socio_club" runat="server">
                                                 <div class="form-item">
-                                                    <asp:Label ID="pnl_socio_club_text" runat="server" Text="Club:" Width="130" CssClass="consulta-labels"></asp:Label>
+                                                    <asp:Label ID="pnl_socio_club_text" runat="server" Text="Club:" Width="130px" 
+                                                        CssClass="consulta-labels" Font-Bold="True"></asp:Label>
                                                     <asp:Label ID="pnl_socio_club_value" runat="server" Width="250px" 
-                                                        CssClass="consulta-values"></asp:Label>
+                                                        CssClass="consulta-values" Font-Bold="True"></asp:Label>
                                                 </div>
                                             </asp:Panel>
+                                            
                                             <asp:Panel ID="pnl_socio_cumpleanos" runat="server">
                                                 <div class="form-item">
                                                     <asp:Label ID="pnl_socio_cumpleanos_text" runat="server" Text="Cumpleaños:" Width="130" CssClass="consulta-labels"></asp:Label>
@@ -140,6 +142,14 @@
                                                         CssClass="consulta-values"></asp:Label>
                                                 </div>
                                             </asp:Panel>
+                                            <asp:Panel ID="pnl_compania" runat="server">
+                                                <div class="form-item">
+                                                    <asp:Label ID="Label2" runat="server" Text="Compañia:" Width="130px" 
+                                                        CssClass="consulta-labels"></asp:Label>
+                                                    <asp:Label ID="pnl_compania_text" runat="server" Width="250px" 
+                                                        CssClass="consulta-values"></asp:Label>
+                                                </div>
+                                            </asp:Panel>
                                             <asp:Panel ID="pnl_socio_tarifa" runat="server">
                                                 <div class="form-item">
                                                     <asp:Label ID="pnl_socio_tarifa_text" runat="server" Text="Tarifa:" Width="130" CssClass="consulta-labels"></asp:Label>
@@ -147,7 +157,7 @@
                                                         CssClass="consulta-values"></asp:Label>
                                                 </div>
                                             </asp:Panel>
-                                            <asp:Panel ID="pnl_socio_agencia" runat="server">
+                                            <asp:Panel ID="pnl_socio_agencia" runat="server" Visible="false" >
                                                 <div class="form-item">
                                                     <asp:Label ID="pnl_socio_agencia_text" runat="server" Text="Agencia:" Width="130" CssClass="consulta-labels"></asp:Label>
                                                     <asp:Label ID="pnl_socio_agencia_value" runat="server" Width="250px" 
@@ -158,7 +168,7 @@
                                             <asp:Panel ID="Panel1" runat="server" Visible="true">
                                                 <div class="subtitulo">Tipo de Socio</div>
                                                 <div class="form-item">
-                                                    <asp:Label ID="Lbl_Tipo" runat="server" Width="473px" Font-Bold="True" 
+                                                    <asp:Label ID="Lbl_Tipo" runat="server" Width="486px" Font-Bold="True" 
                                                         Font-Size="Medium"></asp:Label>
                                                     
                                                     

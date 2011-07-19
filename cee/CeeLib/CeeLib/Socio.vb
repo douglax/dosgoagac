@@ -212,13 +212,30 @@ Public Class Socio
         Return tipo
     End Function
 
-    Private Function TotalPuntos() As Integer
+    Public Overridable Function TotalPuntos() As Integer
         Dim total As Integer = 0
         For Each cn As RegistroNoches In _CuartosNoche
             total += cn.Cantidad
         Next
         Return total
     End Function
+
+    Public Overridable ReadOnly Property ClubDesc As String
+        Get
+            Dim clb As String = ""
+            Select Case _Club
+                Case 1
+                    clb = "Enlace Club"
+                Case 2
+                    clb = "Club Enlace Empresarial"
+                Case 3
+                    clb = "Enlace Travel Club"
+            End Select
+
+            Return clb
+
+        End Get
+    End Property
 
     Public Overrides Function Equals(ByVal obj As Object) As Boolean
         Try
