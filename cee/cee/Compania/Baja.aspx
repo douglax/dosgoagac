@@ -49,11 +49,13 @@
                                                 <asp:Panel ID="pnl_resultados" runat="server" Visible="false">
                                                     <div class="subtitulo">Resultados:</div>
                                                     <div class="form-item">
-                                                        <asp:GridView ID="dg_resultados" runat="server">                             
+                                                        <asp:GridView ID="dg_resultados" runat="server" AutoGenerateColumns="False" Width="474px">                             
                                                             <Columns>
-                                                                <asp:BoundField HeaderText="Id" />
-                                                                <asp:BoundField HeaderText="Socio" />
-                                                                <asp:BoundField HeaderText="Compania" />
+                                                                <asp:BoundField HeaderText="Id" DataField="id"/>
+                                                                <asp:BoundField HeaderText="Compania" DataField="nombre"/>
+                                                                <asp:CommandField ButtonType="Button" ShowDeleteButton="True">
+                                                                    <ItemStyle HorizontalAlign="Center" />
+                                                                </asp:CommandField>
                                                             </Columns>
                                                         </asp:GridView>
                                                     </div>
