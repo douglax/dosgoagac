@@ -32,4 +32,25 @@ Public Class Baja
         NHelper.CloseSession()
     End Sub
 
+    Private Sub dg_resultados_RowDeleting(sender As Object, e As System.Web.UI.WebControls.GridViewDeleteEventArgs) Handles dg_resultados.RowDeleting
+        Dim row As GridViewRow = dg_resultados.Rows(e.RowIndex)
+        Dim id As Long = CLng(row.Cells(0).Text)
+        Dim s As ISession = NHelper.GetCurrentSession
+        Try
+            Dim soc As CeeLib.Socio = s.Get(Of CeeLib.Socio)(id)
+            s.BeginTransaction()
+            s.Delete(soc)
+            s.Transaction.Commit()
+            NHelper.CloseSession()
+            lbl_resultado.ForeColor = Drawing.Color.Green
+            lbl_resultado.Text = "Socio dado de baja con éxito"
+            btn_busqueda_Click(Nothing, Nothing)
+        Catch ex As Exception
+            If s.Transaction.IsActive Then s.Transaction.Rollback()
+            lbl_resultado.ForeColor = Drawing.Color.Red
+            lbl_resultado.Text = "Ocurrio un error al dar de baja el socio: " & ex.Message
+        End Try
+
+    End Sub
+
 End Class
