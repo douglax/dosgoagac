@@ -43,15 +43,21 @@
                                                 <div class="form-item">
                                                     <asp:Label ID="lbl_usuario" runat="server" Text="Usuario:" Width="130" CssClass="labels"></asp:Label>
                                                     <asp:TextBox ID="tb_usuario" runat="server" ValidationGroup="Name_Group"></asp:TextBox>
-                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="*" ControlToValidate="tb_usuario" ValidationGroup="Name_Group" CssClass="validacion"></asp:RequiredFieldValidator>
+                                                    <asp:RequiredFieldValidator ID="v_tb_usuario" runat="server" ErrorMessage="*" ControlToValidate="tb_usuario" ValidationGroup="Name_Group" CssClass="validacion"></asp:RequiredFieldValidator>
                                                 </div>
                                             </asp:Panel>
-                                            <asp:Panel ID="pnl_apaterno" runat="server">
+                                            <asp:Panel ID="pnl_contrasena" runat="server">
                                                 <div class="form-item">
                                                     <asp:Label ID="lbl_contrasena" runat="server" Text="Contraseña:" Width="130" CssClass="labels"></asp:Label>
-                                                    <asp:TextBox ID="tb_contrasena" runat="server" ValidationGroup="Name_Group" 
-                                                        TextMode="Password"></asp:TextBox>
-                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="*" ControlToValidate="tb_contrasena" ValidationGroup="Name_Group" CssClass="validacion"></asp:RequiredFieldValidator>
+                                                    <asp:TextBox ID="tb_contrasena" runat="server" ValidationGroup="Name_Group" TextMode="Password"></asp:TextBox>
+                                                    <asp:RequiredFieldValidator ID="v_tb_contrasena" runat="server" ErrorMessage="*" ControlToValidate="tb_contrasena" ValidationGroup="Name_Group" CssClass="validacion"></asp:RequiredFieldValidator>
+                                                </div>
+                                            </asp:Panel>
+                                            <asp:Panel ID="pnl_confirmacion" runat="server">
+                                                <div class="form-item">
+                                                    <asp:Label ID="lbl_confirmacion" runat="server" Text="Confirmar:" Width="130" CssClass="labels"></asp:Label>
+                                                    <asp:TextBox ID="tb_confirmacion" runat="server" ValidationGroup="Name_Group" TextMode="Password"></asp:TextBox>
+                                                    <asp:RequiredFieldValidator ID="v_tb_confirmacion" runat="server" ErrorMessage="*" ControlToValidate="tb_contrasena" ValidationGroup="Name_Group" CssClass="validacion"></asp:RequiredFieldValidator>
                                                 </div>
                                             </asp:Panel>
                                             <asp:Panel ID="pnl_guardar" runat="server">
@@ -59,6 +65,9 @@
                                                     <asp:Button ID="btn_guardar" runat="server" Text="Guardar" ValidationGroup="Name_Group"/>
                                                 </div>
                                             </asp:Panel>
+                                            <center>
+                                                <asp:Label ID="lbl_aviso" runat="server"></asp:Label>
+                                            </center>
                                         </div>
                                     </form>
                                 </div>

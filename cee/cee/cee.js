@@ -14,7 +14,10 @@ function menuItemClick(url) {
     location.href = url;
 }
 function checkFormFields(form) {
-    
+
+}
+function nav(o) {
+    window.open(o.url, o.tipo);
 }
 function sendForm(form) {
     var btn = Ext.get(form);
