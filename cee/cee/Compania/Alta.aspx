@@ -48,11 +48,19 @@
                                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="*" ControlToValidate="tb_direccion" ValidationGroup="Name_Group" CssClass="validacion"></asp:RequiredFieldValidator>
                                                 </div>
                                             </asp:Panel>
+                                            <asp:Panel ID="pnl_estado" runat="server">
+                                                <div class="form-item">
+                                                    <asp:Label ID="Label1" runat="server" Text="Estado:" Width="130" CssClass="labels"></asp:Label>
+                                                    <asp:DropDownList ID="ddl_estado" runat="server" Width="248px" 
+                                                        ValidationGroup="Name_Group" AutoPostBack="True"></asp:DropDownList>
+                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="*" ControlToValidate="ddl_estado" ValidationGroup="Name_Group" CssClass="validacion"></asp:RequiredFieldValidator>
+                                                </div>
+                                            </asp:Panel>
                                             <asp:Panel ID="pnl_ciudad" runat="server">
                                                 <div class="form-item">
                                                     <asp:Label ID="lbl_ciudad" runat="server" Text="Ciudad:" Width="130" CssClass="labels"></asp:Label>
-                                                    <asp:TextBox ID="tb_ciudad" runat="server" Width="248px" ValidationGroup="Name_Group"></asp:TextBox>
-                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="*" ControlToValidate="tb_ciudad" ValidationGroup="Name_Group" CssClass="validacion"></asp:RequiredFieldValidator>
+                                                    <asp:DropDownList ID="ddl_ciudad" runat="server" Width="248px" ValidationGroup="Name_Group"></asp:DropDownList>
+                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="*" ControlToValidate="ddl_ciudad" ValidationGroup="Name_Group" CssClass="validacion"></asp:RequiredFieldValidator>
                                                 </div>
                                             </asp:Panel>
                                             <asp:Panel ID="pnl_guardar" runat="server">

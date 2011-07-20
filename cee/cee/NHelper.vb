@@ -49,6 +49,7 @@ Public Class NHelper
 
         Return currentSession
 
+
     End Function
 
     Public Shared Sub CloseSession()

@@ -46,7 +46,7 @@ Public Class Cambio1
         If Not comp Is Nothing Then
             tb_nombre.Text = comp.Nombre
             tb_direccion.Text = comp.Direccion
-            tb_ciudad.Text = comp.Ciudad
+            tb_ciudad.Text = comp.Ciudad.Nombre
             grp_modificar.Visible = True
             lblResultado.Text = ""
             HiddenField1.Value = comp.Id.ToString
@@ -69,7 +69,7 @@ Public Class Cambio1
             Dim comp As CeeLib.Compania = s.Get(GetType(CeeLib.Compania), CLng(HiddenField1.Value))
             comp.Nombre = tb_nombre.Text
             comp.Direccion = tb_direccion.Text
-            comp.Ciudad = tb_ciudad.Text
+            'comp.Ciudad = tb_ciudad.Text
             s.BeginTransaction()
             s.Update(comp)
             s.Transaction.Commit()

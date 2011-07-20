@@ -164,6 +164,7 @@ Public Class Consulta1
             pnl_socio_tarifa_value.Text = FormatCurrency(soc.Tarifa)
             pnl_compania_text.Text = soc.Compania.Nombre
             Lbl_Tipo.Text = soc.TipoDeSocio & ": " & soc.TotalPuntos & " Puntos "
+            pnl_sivale_text.Text = soc.CtaSiVale
             If soc.Club = 3 Then
                 'pnl_socio_agencia_text.Text = soc.Agencia.Nombre
                 pnl_socio_agencia.Visible = True

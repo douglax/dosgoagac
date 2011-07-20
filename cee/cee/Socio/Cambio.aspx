@@ -211,6 +211,12 @@
                                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server" ErrorMessage="*" ControlToValidate="tb_tarifa" ValidationGroup="Name_Group" CssClass="validacion"></asp:RequiredFieldValidator>
                                                     </div>
                                                 </asp:Panel>
+                                                <asp:Panel ID="pnl_sivale" runat="server">
+                                                <div class="form-item">
+                                                    <asp:Label ID="Label2" runat="server" Text="Cta de Sí vale:" Width="130" CssClass="labels"></asp:Label>
+                                                    <asp:TextBox ID="tb_sivale" runat="server" ValidationGroup="Name_Group"></asp:TextBox>
+                                                </div>
+                                            </asp:Panel>
                                                 <asp:Panel ID="pnl_agencia" runat="server">
                                                     <div class="form-item">
                                                         <asp:Label ID="lbl_agencia" runat="server" Text="Agencia de Viajes:" Width="130" CssClass="labels"></asp:Label>

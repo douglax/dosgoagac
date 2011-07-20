@@ -68,7 +68,7 @@ Public Class Cambio
                 comp.Contactos.Add(s)
                 s.Compania = comp
             End If
-
+            s.CtaSiVale = tb_sivale.Text
             sesion.Update(s)
             sesion.Transaction.Commit()
             NHelper.CloseSession()
@@ -151,6 +151,7 @@ Public Class Cambio
         tb_correo.Text = soc.Email
         tb_rfc.Text = soc.RFC
         tb_tarifa.Text = soc.Tarifa
+        tb_sivale.Text = soc.CtaSiVale
         NHelper.CloseSession()
         grp_modificar.Visible = True
         If soc.Club = 3 Then

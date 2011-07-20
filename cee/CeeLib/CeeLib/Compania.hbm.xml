@@ -6,9 +6,9 @@
             <generator class ="native"/>
         </id>
         
-        <property name ="Nombre"/>
-        <property name ="Direccion"/>
-        <property name ="Ciudad"/>
+        <property name = "Nombre"/>
+        <property name = "Direccion"/>
+        <many-to-one name="Ciudad" column="CIUDAD"/>
 
         <bag name="Contactos" inverse="true" cascade="all" >
             <key column="ID_COMP"/>

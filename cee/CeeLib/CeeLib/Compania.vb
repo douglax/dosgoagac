@@ -30,12 +30,12 @@
         End Set
     End Property
 
-    Private _Ciudad As String
-    Public Overridable Property Ciudad() As String
+    Private _Ciudad As Ciudad
+    Public Overridable Property Ciudad() As Ciudad
         Get
             Return _Ciudad
         End Get
-        Set(ByVal value As String)
+        Set(ByVal value As Ciudad)
             _Ciudad = value
         End Set
     End Property

@@ -15,6 +15,7 @@
         <many-to-one name="Ciudad" column="CIUDAD"/>
         <property name="Tarifa"/>
         <property name="Club"/>
+        <property name="CtaSiVale" column="CTA_SIVALE"/>
 
         <many-to-one name="Compania" column="ID_COMP" class ="Compania" />
         

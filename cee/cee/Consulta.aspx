@@ -159,6 +159,13 @@
                                                         CssClass="consulta-values"></asp:Label>
                                                 </div>
                                             </asp:Panel>
+                                            <asp:Panel ID="pnl_sivale" runat="server">
+                                                <div class="form-item">
+                                                    <asp:Label ID="Label3" runat="server" Text="Cta Sí vale:" Width="130" CssClass="consulta-labels"></asp:Label>
+                                                    <asp:Label ID="pnl_sivale_text" runat="server" Width="250px" 
+                                                        CssClass="consulta-values"></asp:Label>
+                                                </div>
+                                            </asp:Panel>
                                             <asp:Panel ID="pnl_socio_agencia" runat="server" Visible="false" >
                                                 <div class="form-item">
                                                     <asp:Label ID="pnl_socio_agencia_text" runat="server" Text="Agencia:" Width="130" CssClass="consulta-labels"></asp:Label>

@@ -49,6 +49,7 @@ Public Class Alta
             Me.pnl_compania.Visible = False
             Me.pnl_resultado.Visible = False
             pnl_estado.Visible = False
+            pnl_sivale.Visible = False
 
             Dim ddlItem0 = New ListItem
             ddlItem0.Text = "Seleccionar..."
@@ -92,6 +93,7 @@ Public Class Alta
                 Me.pnl_guardar.Visible = False
                 Me.pnl_compania.Visible = False
                 pnl_estado.Visible = False
+                pnl_sivale.Visible = False
             Case 1
                 Me.pnl_seleccionar.Visible = False
                 Me.pnl_nombre.Visible = True
@@ -107,6 +109,7 @@ Public Class Alta
                 Me.pnl_guardar.Visible = True
                 Me.pnl_compania.Visible = True
                 pnl_estado.Visible = True
+                pnl_sivale.Visible = True
             Case 2
                 Me.pnl_seleccionar.Visible = False
                 Me.pnl_nombre.Visible = True
@@ -122,6 +125,7 @@ Public Class Alta
                 Me.pnl_guardar.Visible = True
                 Me.pnl_compania.Visible = True
                 pnl_estado.Visible = True
+                pnl_sivale.Visible = True
             Case 3
                 Me.pnl_seleccionar.Visible = False
                 Me.pnl_nombre.Visible = True
@@ -137,6 +141,7 @@ Public Class Alta
                 Me.pnl_guardar.Visible = True
                 Me.pnl_compania.Visible = False
                 pnl_estado.Visible = True
+                pnl_sivale.Visible = True
         End Select
 
 
@@ -175,7 +180,7 @@ Public Class Alta
                 comp.Contactos.Add(s)
                 s.Compania = comp
             End If
-
+            s.CtaSiVale = tb_sivale.Text
             sesion.Save(s)
             sesion.Transaction.Commit()
             NHelper.CloseSession()

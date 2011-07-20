@@ -145,6 +145,16 @@ Public Class Socio
         End Set
     End Property
 
+    Private _CtaSiVale As String
+    Public Overridable Property CtaSiVale() As String
+        Get
+            Return _CtaSiVale
+        End Get
+        Set(ByVal value As String)
+            _CtaSiVale = value
+        End Set
+    End Property
+
     Public Overridable Function Edad() As Integer
         Dim meses As Integer
         Dim iYears As Integer
@@ -191,11 +201,11 @@ Public Class Socio
         Select Case _Club
             Case 2
                 If TotalPuntos() >= 50 And TotalPuntos() <= 150 Then
-                    tipo = "Enlace Premium: Bonificación del 5%"
+                    tipo = "Enlace Oro: Bonificación del 5%"
                 ElseIf TotalPuntos() >= 151 And TotalPuntos() <= 300 Then
                     tipo = "Enlace Platino: Bonificación del 7%"
                 ElseIf TotalPuntos() >= 301 Then
-                    tipo = "Enlace Platino: Bonificación del 10%"
+                    tipo = "Enlace Premium: Bonificación del 10%"
                 End If
             Case 1
                 If TotalPuntos() >= 60 And TotalPuntos() <= 299 Then
