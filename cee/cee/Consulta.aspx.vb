@@ -74,6 +74,7 @@ Public Class Consulta1
         Me.pnl_cuarto_noche.Visible = True
         If Me.Request.QueryString("club") = 2 Then
             Me.pnl_tarifa.Visible = True
+            tb_tarifa.Text = pnl_socio_tarifa_value.Text
         Else
             Me.pnl_tarifa.Visible = False
         End If
@@ -97,11 +98,14 @@ Public Class Consulta1
         Else
             cn.Tipo = 1
         End If
+        If cn.Socio.Club = 2 Then
+            cn.Tarifa = CDbl(tb_tarifa.Text)
+        End If
         s.BeginTransaction()
         s.Save(cn)
         s.Transaction.Commit()
         dg_puntos.DataSource = cn.Socio.CuartosNoche
-        Lbl_Tipo.Text = cn.Socio.TipoDeSocio
+        Lbl_Tipo.Text = cn.Socio.TipoDeSocio & ": " & cn.Socio.TotalPuntos & " Puntos "
         dg_puntos.DataMember = "Id"
         dg_puntos.DataBind()
         NHelper.CloseSession()

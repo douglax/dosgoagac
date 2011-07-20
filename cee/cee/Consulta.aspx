@@ -232,6 +232,10 @@
                                                             <asp:BoundField HeaderText="Cantidad" DataField="Cantidad" >
                                                             <ItemStyle HorizontalAlign="Center" />
                                                             </asp:BoundField>
+                                                            <asp:BoundField DataField="Tarifa" DataFormatString="{0:C}" HeaderText="Tarifa" 
+                                                                NullDisplayText="No Aplica">
+                                                            <ItemStyle HorizontalAlign="Center" />
+                                                            </asp:BoundField>
                                                             <asp:BoundField HeaderText="Fecha de Registro" DataField="FechaAlta" 
                                                                 DataFormatString="{0:yyyy-MM-dd}" >
                                                             <ItemStyle HorizontalAlign="Center" />

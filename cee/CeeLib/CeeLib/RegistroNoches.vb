@@ -70,7 +70,17 @@
         End Set
     End Property
 
-    Public Overrides Function Equals(obj As Object) As Boolean
+    Private _Tarifa As Double
+    Public Overridable Property Tarifa() As Double
+        Get
+            Return _Tarifa
+        End Get
+        Set(ByVal value As Double)
+            _Tarifa = value
+        End Set
+    End Property
+
+    Public Overrides Function Equals(ByVal obj As Object) As Boolean
         Try
             Dim o = DirectCast(obj, RegistroNoches)
             Return (o.Id = Me._Id)

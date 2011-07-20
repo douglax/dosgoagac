@@ -9,6 +9,7 @@
         <property name="Cantidad"/>
         <property name="FechaAlta" column="FECHA_ALTA"/>
         <property name="Serie"/>
+        <property name="Tarifa"/>
         <many-to-one name="Socio" class="Socio" column="SOCIO_ID"/>
         <many-to-one name="Hotel" column="ID_HOTEL" class ="Hotel"/>
     </class>
