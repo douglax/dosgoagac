@@ -31,10 +31,12 @@
                                 <div class="menu-item" onmouseover="menuItemOver(this)" onmouseout="menuItemOut(this)" onclick="nav({url: 'http://www.sivale.com.mx/', tipo: '_blank'})"><img src="Imagenes/sivale-logo.png" border="0"></div>
                                 <div class="menu-item" onmouseover="menuItemOver(this)" onmouseout="menuItemOut(this)" onclick="menuItemClick('Salir.aspx')">Salir...</div>
                             </div>
-                            <div style="width: 500px; height: 550px; background: #ffffff; border: 1px #cccccc solid; position: absolute; top: -200px; left: 320px; padding: 2px;">
+                            <table border="0" cellpadding="0" cellspacing="0">
+                                                        <tr>
+                                                            <td style="width: 500px; background: #ffffff; border: 1px #cccccc solid; position: absolute; top: -200px; left: 320px; padding: 2px;">
                                 <div class="titulo"><asp:Label ID="lbl_page_title" runat="server" Text="Consulta"></asp:Label></div>
                                 <div class="contenido">
-                                    <form runat="server">
+                                    <form id="frm_consulta" runat="server">
                                         <asp:HiddenField ID="HiddenField1" runat="server" />
                                         <div class="form-items">
                                         <asp:Panel ID="grp_busqueda" runat="server" Visible="false">
@@ -86,9 +88,9 @@
                                             <asp:Panel ID="pnl_consultar" runat="server">
                                                 <div class="form-item">
                                                     <asp:Label ID="lbl_consultar" runat="server" Text="Numero de Socio:" Width="130" CssClass="labels"></asp:Label>
-                                                    <asp:TextBox ID="tb_consultar" runat="server" ValidationGroup="Name_Group"></asp:TextBox>
-                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="*" ControlToValidate="tb_consultar" ValidationGroup="Name_Group" CssClass="validacion"></asp:RequiredFieldValidator>
-                                                    <asp:Button ID="btn_consultar" runat="server" Text="Consultar" ValidationGroup="Name_Group"/>
+                                                    <asp:TextBox ID="tb_consultar" runat="server" ValidationGroup="v_grp_consultar"></asp:TextBox>
+                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="*" ControlToValidate="tb_consultar" ValidationGroup="v_grp_consultar" CssClass="validacion"></asp:RequiredFieldValidator>
+                                                    <asp:Button ID="btn_consultar" runat="server" Text="Consultar" ValidationGroup="v_grp_consultar"/>
                                                     <asp:Button ID="btn_consultar_popup" runat="server" runat="server" Text="..." />
                                                 </div>
                                             </asp:Panel>
@@ -168,20 +170,48 @@
                                             <asp:Panel ID="Panel1" runat="server" Visible="true">
                                                 <div class="subtitulo">Tipo de Socio</div>
                                                 <div class="form-item">
-                                                    <asp:Label ID="Lbl_Tipo" runat="server" Width="486px" Font-Bold="True" 
-                                                        Font-Size="Medium"></asp:Label>
-                                                    
-                                                    
+                                                    <asp:Label ID="Lbl_Tipo" runat="server" Width="486px" Font-Bold="True" Font-Size="Medium"></asp:Label>
                                                 </div>
                                             </asp:Panel>
 
                                             <asp:Panel ID="pnl_cuarto_noche" runat="server" Visible="false">
                                                 <div class="subtitulo">Agregar puntos para el socio</div>
                                                 <div class="form-item">
-                                                    <asp:Label ID="lbl_cantidad_cuartos" runat="server" Text="Cuartos Noche:" Width="130" CssClass="consulta-labels"></asp:Label>
-                                                    <asp:TextBox ID="tb_cantidad_cuartos" runat="server" ValidationGroup="Name_Group"></asp:TextBox>
-                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="*" ControlToValidate="tb_cantidad_cuartos" ValidationGroup="Name_Group" CssClass="validacion"></asp:RequiredFieldValidator>
-                                                    <asp:Button ID="btn_cantidad_cuartos" runat="server" Text="Agregar" ValidationGroup="Name_Group"/>
+                                                    <table border="0" cellpadding="0" cellspacing="0">
+                                                        <tr>
+                                                            <td>
+                                                                <div style="width: 180px;">
+                                                                    <div>
+                                                                        <asp:Label ID="lbl_cantidad_cuartos" runat="server" Text="Cuartos Noche:" Width="130" CssClass="labels-busqueda"></asp:Label>
+                                                                    </div>
+                                                                    <div>
+                                                                        <asp:TextBox ID="tb_cantidad_cuartos" runat="server" ValidationGroup="v_grp_cuartos"></asp:TextBox>
+                                                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="*" ControlToValidate="tb_cantidad_cuartos" ValidationGroup="v_grp_cuartos" CssClass="validacion"></asp:RequiredFieldValidator>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <asp:Panel ID="pnl_tarifa" runat="server" Visible="false">
+                                                                <div style="width: 180px;">
+                                                                    <div>
+                                                                        <asp:Label ID="lbl_tarifa" runat="server" Text="Tarifa:" Width="130" CssClass="labels-busqueda"></asp:Label>
+                                                                    </div>
+                                                                    <div>
+                                                                        <asp:TextBox ID="tb_tarifa" runat="server" ValidationGroup="v_grp_cuartos"></asp:TextBox>
+                                                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="*" ControlToValidate="tb_tarifa" ValidationGroup="v_grp_cuartos" CssClass="validacion"></asp:RequiredFieldValidator>
+                                                                    </div>
+                                                                </div>
+                                                                </asp:Panel>
+                                                            </td>
+                                                            <td>
+                                                                <div style="width: 130px;">
+                                                                    <div>
+                                                                        <asp:Button ID="btn_cantidad_cuartos" runat="server" Text="Agregar" ValidationGroup="v_grp_cuartos"/>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
                                                 </div>
                                             </asp:Panel>
                                             <asp:Panel ID="pnl_puntos" runat="server">
@@ -217,7 +247,9 @@
                                         </div>
                                     </form>
                                 </div>
-                            </div>
+                            </td>
+                            </tr>
+                            </table>
                         </div>
                     </td>
                 </tr>

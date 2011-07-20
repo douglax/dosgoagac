@@ -4,6 +4,8 @@ Public Class Consulta1
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
+        Me.lbl_resultado.Text = ""
+
         Dim administrador As Boolean
         administrador = True
         If administrador Then
@@ -30,7 +32,7 @@ Public Class Consulta1
             Return
         End If
         LoadData(CLng(tb_consultar.Text))
-
+        Me.pnl_cuarto_noche.Visible = False
     End Sub
 
     Protected Sub btn_consultar_popup_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btn_consultar_popup.Click
@@ -70,6 +72,11 @@ Public Class Consulta1
     
     Protected Sub btn_puntos_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btn_puntos.Click
         Me.pnl_cuarto_noche.Visible = True
+        If Me.Request.QueryString("club") = 2 Then
+            Me.pnl_tarifa.Visible = True
+        Else
+            Me.pnl_tarifa.Visible = False
+        End If
     End Sub
 
     Protected Sub btn_cantidad_cuartos_Click(sender As Object, e As EventArgs) Handles btn_cantidad_cuartos.Click
@@ -122,9 +129,9 @@ Public Class Consulta1
             s.BeginTransaction()
             s.Delete(cn)
             s.Transaction.Commit()
-            NHelper.CloseSession()
             dg_puntos.DataSource = soc.CuartosNoche
             dg_puntos.DataBind()
+            NHelper.CloseSession()
         Catch ex As Exception
             If s.Transaction.IsActive Then s.Transaction.Rollback()
             lbl_resultado.Text = "Ocurrio un error: " & ex.Message
@@ -148,6 +155,7 @@ Public Class Consulta1
                 Case 3
                     pnl_socio_club_value.Text = "Enlace Travel Club"
             End Select
+            Me.frm_consulta.Action = "?club=" & soc.Club
             pnl_socio_cumpleanos_value.Text = soc.FechaDeNacimiento.ToString("D")
             pnl_socio_telefono_value.Text = soc.Telefono
             pnl_socio_ciudad_value.Text = soc.Ciudad.Nombre
