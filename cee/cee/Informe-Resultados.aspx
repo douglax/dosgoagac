@@ -1,6 +1,7 @@
 ﻿<%@ Page Language="vb" AutoEventWireup="false" CodeBehind="Informe-Resultados.aspx.vb" Inherits="cee.Informe_Resultados" %>
 <html>
 <head>
+    <title id="pg_title" runat="server"></title>
     <link rel=StyleSheet href="cee.css" type="text/css">
     <script src="cee.js"></script>
 </head>
@@ -24,11 +25,28 @@
                 </tr>
                 <tr>
                     <td class="contenido">
+                        <table width="100%" height="100%" border="0" cellpadding="0" cellspacing="0"><tr><td style="vertical-align: top;">
                         <form id="form1" runat="server">
-                            <asp:GridView ID="GridView1" runat="server">
+                            <asp:GridView ID="dg_resultados" runat="server" ShowFooter="True" AutoGenerateColumns="False" Width="100%">
+                                <Columns>
+                                    <asp:BoundField DataField="Compania" HeaderText="Compañía">
+                                    <ItemStyle HorizontalAlign="Center" />
+                                    </asp:BoundField>
+                                    <asp:BoundField HeaderText="Tarifa" DataField="Tarifa" DataFormatString="{0:C}">
+                                    <ItemStyle HorizontalAlign="Right" />
+                                    </asp:BoundField>
+                                    <asp:BoundField HeaderText="Cuartos Noche" DataField="Cantidad">
+                                    <ItemStyle HorizontalAlign="Center" />
+                                    </asp:BoundField>
+                                    <asp:BoundField HeaderText="Total" DataField="Total" DataFormatString="{0:C}">
+                                    <ItemStyle HorizontalAlign="Right" />
+                                    </asp:BoundField>
+                                </Columns>
+                                <FooterStyle BackColor="#FFFF66" />
                             </asp:GridView>
                         </form>
-                    </dt>
+                        </td></tr></table>
+                    </td>
                 </tr>
             </table>
         </td>

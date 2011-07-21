@@ -80,6 +80,18 @@
         End Set
     End Property
 
+    Public Overridable ReadOnly Property Compania() As String
+        Get
+            Return _Socio.Compania.Nombre
+        End Get
+    End Property
+
+    Public Overridable ReadOnly Property Total() As Double
+        Get
+            Return Tarifa * Cantidad
+        End Get
+    End Property
+
     Public Overrides Function Equals(ByVal obj As Object) As Boolean
         Try
             Dim o = DirectCast(obj, RegistroNoches)

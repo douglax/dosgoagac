@@ -14,6 +14,15 @@ Option Explicit On
 Partial Public Class Informe_Resultados
 
     '''<summary>
+    '''pg_title control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents pg_title As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
     '''lbl_tipo control.
     '''</summary>
     '''<remarks>
@@ -50,11 +59,11 @@ Partial Public Class Informe_Resultados
     Protected WithEvents form1 As Global.System.Web.UI.HtmlControls.HtmlForm
 
     '''<summary>
-    '''GridView1 control.
+    '''dg_resultados control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents GridView1 As Global.System.Web.UI.WebControls.GridView
+    Protected WithEvents dg_resultados As Global.System.Web.UI.WebControls.GridView
 End Class
