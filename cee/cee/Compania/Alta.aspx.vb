@@ -38,6 +38,8 @@ Public Class Alta1
             End If
             lblResultado.ForeColor = Drawing.Color.Red
             lblResultado.Text = "Ocurrio un error al registrar la información: " & ex.Message
+        Finally
+            NHelper.CloseSession()
         End Try
 
     End Sub

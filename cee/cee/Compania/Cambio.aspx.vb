@@ -3,6 +3,16 @@ Public Class Cambio1
     Inherits System.Web.UI.Page
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+        If Not Page.IsPostBack Then
+            Dim s As ISession = NHelper.GetCurrentSession()
+            With ddl_estado
+                .DataSource = s.CreateQuery("From Estado").List()
+                .DataTextField = "Nombre"
+                .DataValueField = "Id"
+                .DataBind()
+            End With
+            NHelper.CloseSession()
+        End If
         If tb_consultar.Text.Length <= 0 Then
             tb_consultar.Text = Request.QueryString("id")
             If tb_consultar.Text.Length > 0 Then
@@ -37,30 +47,51 @@ Public Class Cambio1
 
             End If
         End If
+        NHelper.CloseSession()
     End Sub
 
     Private Sub LoadData(id As Long)
 
         Dim s As ISession = NHelper.GetCurrentSession
-        Dim comp As CeeLib.Compania = s.Get(GetType(CeeLib.Compania), id)
-        If Not comp Is Nothing Then
-            tb_nombre.Text = comp.Nombre
-            tb_direccion.Text = comp.Direccion
-            tb_ciudad.Text = comp.Ciudad.Nombre
-            grp_modificar.Visible = True
-            lblResultado.Text = ""
-            HiddenField1.Value = comp.Id.ToString
-        Else
-            grp_modificar.Visible = False
-            HiddenField1.Value = ""
-            lblResultado.Text = "La búsqueda no genero ningún resultado"
-        End If
-        NHelper.CloseSession()
+        Try
+            Dim comp As CeeLib.Compania = s.Get(GetType(CeeLib.Compania), id)
+            If Not comp Is Nothing Then
+                tb_nombre.Text = comp.Nombre
+                tb_direccion.Text = comp.Direccion
+
+                grp_modificar.Visible = True
+                lblResultado.Text = ""
+                HiddenField1.Value = comp.Id.ToString
+                ddl_estado.SelectedValue = comp.Ciudad.Estado.Id
+                With ddl_ciudad
+                    .DataSource = _
+                        s.CreateQuery("From Ciudad c where c.Estado.Id = ?").SetInt64(0, _
+                            comp.Ciudad.Estado.Id).List()
+                    .DataTextField = "Nombre"
+                    .DataValueField = "Id"
+                    .DataBind()
+                    .SelectedValue = comp.Ciudad.Id
+                End With
+            Else
+                grp_modificar.Visible = False
+                HiddenField1.Value = ""
+                lblResultado.Text = "La búsqueda no genero ningún resultado"
+            End If
+            NHelper.CloseSession()
+        Catch ex As Exception
+            lblResultado.ForeColor = Drawing.Color.Red
+            lblResultado.Text = "Ocurrio un error al realizar la consulta: " & ex.Message
+        End Try
 
     End Sub
 
     Protected Sub btn_consultar_Click(sender As Object, e As EventArgs) Handles btn_consultar.Click
-        LoadData(CLng(tb_consultar.Text))
+        Try
+            LoadData(CLng(tb_consultar.Text))
+        Catch ex As Exception
+            lblResultado.ForeColor = Drawing.Color.Red
+            lblResultado.Text = "Ocurrio un error al realizar la consulta: " & ex.Message
+        End Try
     End Sub
 
     Protected Sub btn_guardar_Click(sender As Object, e As EventArgs) Handles btn_guardar.Click
@@ -69,14 +100,17 @@ Public Class Cambio1
             Dim comp As CeeLib.Compania = s.Get(GetType(CeeLib.Compania), CLng(HiddenField1.Value))
             comp.Nombre = tb_nombre.Text
             comp.Direccion = tb_direccion.Text
-            'comp.Ciudad = tb_ciudad.Text
+            comp.Ciudad = s.Get(Of CeeLib.Ciudad)(CLng(ddl_ciudad.SelectedValue))
             s.BeginTransaction()
             s.Update(comp)
             s.Transaction.Commit()
+            lblResultado.ForeColor = Drawing.Color.Green
             lblResultado.Text = "La información se guardo exitosamente"
         Catch ex As Exception
             If s.Transaction.IsActive Then s.Transaction.Rollback()
             lblResultado.Text = "Ocurrio un error al guardar la información: " & ex.Message
+        Finally
+            NHelper.CloseSession()
         End Try
 
     End Sub
