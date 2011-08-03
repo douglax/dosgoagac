@@ -30,6 +30,7 @@ Public Class Cambio
             End With
             If tb_consultar.Text.Length <= 0 Then
                 tb_consultar.Text = Request.QueryString("id_socio")
+
                 If tb_consultar.Text.Length > 0 Then
                     LoadData(CLng(tb_consultar.Text))
                 End If

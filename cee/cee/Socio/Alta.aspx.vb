@@ -51,6 +51,11 @@ Public Class Alta
             Me.pnl_resultado.Visible = False
             pnl_estado.Visible = False
             pnl_sivale.Visible = False
+            pnl_facebook.Visible = False
+            pnl_twitter.Visible = False
+            pnl_sexo.Visible = False
+            pnl_estado_civil.Visible = False
+            pnl_gustos.Visible = False
 
             Dim ddl_contacto_1 = New ListItem
             ddl_contacto_1.Text = "Seleccionar"
@@ -93,6 +98,11 @@ Public Class Alta
 
     Private Sub club_SelectedIndexChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles club.SelectedIndexChanged
 
+        pnl_facebook.Visible = True
+        pnl_twitter.Visible = True
+        pnl_sexo.Visible = True
+        pnl_estado_civil.Visible = True
+        pnl_gustos.Visible = True
         Select Case Me.club.SelectedItem.Value
             Case 0
                 Me.pnl_seleccionar.Visible = True
@@ -111,6 +121,11 @@ Public Class Alta
                 Me.pnl_compania.Visible = False
                 pnl_estado.Visible = False
                 pnl_sivale.Visible = False
+                pnl_facebook.Visible = False
+                pnl_twitter.Visible = False
+                pnl_sexo.Visible = False
+                pnl_estado_civil.Visible = False
+                pnl_gustos.Visible = False
             Case 1
                 Me.pnl_seleccionar.Visible = False
                 Me.pnl_contacto.Visible = False

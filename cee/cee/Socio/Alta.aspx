@@ -3,6 +3,13 @@
 <head>
     <link rel=StyleSheet href="../cee.css" type="text/css">
     <script src="../cee.js"></script>
+    <style type="text/css">
+        .style1
+        {
+            width: 19px;
+            height: 19px;
+        }
+    </style>
 </head>
 <body>
 <table width="100%" height="100%" border="0" cellpadding="0" cellspacing="0">
@@ -148,6 +155,52 @@
                                                     <asp:Label ID="lbl_correo" runat="server" Text="Email:" Width="130" CssClass="labels"></asp:Label>
                                                     <asp:TextBox ID="tb_correo" runat="server" ValidationGroup="Name_Group"></asp:TextBox>
                                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ErrorMessage="*" ControlToValidate="tb_correo" ValidationGroup="Name_Group" CssClass="validacion"></asp:RequiredFieldValidator>
+                                                </div>
+                                            </asp:Panel>
+                                            <asp:Panel ID="pnl_facebook" runat="server">
+                                                <div class="form-item">
+                                                    <asp:Label ID="lbl_facebook" runat="server" Text="Cta de Facebook:" Width="130" CssClass="labels"></asp:Label>
+                                                    <asp:TextBox ID="tb_facebook" runat="server" ValidationGroup="Name_Group"></asp:TextBox>
+                                                    <img alt="Facebook" class="style1" 
+                                                        src="../Imagenes/ico_facebook_off.gif" />
+                                                </div>
+                                            </asp:Panel>
+                                            <asp:Panel ID="pnl_twitter" runat="server">
+                                                <div class="form-item">
+                                                    <asp:Label ID="lbl_twitter" runat="server" Text="Cta de Twitter:" Width="130" CssClass="labels"></asp:Label>
+                                                    <asp:TextBox ID="tb_twitter" runat="server" ValidationGroup="Name_Group"></asp:TextBox>
+                                                    <img alt="Twitter" class="style1" 
+                                                        src="../Imagenes/ico_twitter_off.gif" />
+                                                </div>
+                                            </asp:Panel>
+                                            <asp:Panel ID="pnl_gustos" runat="server">
+                                                <div class="form-item">
+                                                    <asp:Label ID="lbl_gustos" runat="server" Text="Pasatiempos o Hobbies:" Width="130" CssClass="labels"></asp:Label>
+                                                    <asp:TextBox ID="tb_gustos" runat="server" ValidationGroup="Name_Group" 
+                                                        Height="45px" TextMode="MultiLine" Width="344px"></asp:TextBox>
+                                                </div>
+                                            </asp:Panel>
+                                            <asp:Panel ID="pnl_sexo" runat="server">
+                                                <div class="form-item">
+                                                    <asp:Label ID="lbl_sexo" runat="server" Text="Sexo:" 
+                                                        Width="130px" CssClass="labels"></asp:Label>
+                                                    <asp:DropDownList ID="ddl_sexo" runat="server" 
+                                                        ValidationGroup="Name_Group">
+                                                        <asp:ListItem Value="H">Hombre</asp:ListItem>
+                                                        <asp:ListItem Value="M">Mujer</asp:ListItem>
+                                                    </asp:DropDownList>
+                                                </div>
+                                            </asp:Panel>
+                                            <asp:Panel ID="pnl_estado_civil" runat="server">
+                                                <div class="form-item">
+                                                    <asp:Label ID="lbl_estado_civil" runat="server" Text="Estado Civil:" 
+                                                        Width="130px" CssClass="labels"></asp:Label>
+                                                    <asp:DropDownList ID="tb_estado_civil" runat="server" 
+                                                        ValidationGroup="Name_Group">
+                                                        <asp:ListItem Value="S">Soltero</asp:ListItem>
+                                                        <asp:ListItem Value="C">Casado</asp:ListItem>
+                                                        <asp:ListItem Value="D">Divorciado</asp:ListItem>
+                                                    </asp:DropDownList>
                                                 </div>
                                             </asp:Panel>
                                             <asp:Panel ID="pnl_rfc" runat="server">

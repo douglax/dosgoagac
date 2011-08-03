@@ -126,6 +126,8 @@
     <Content Include="Imagenes\enlace-empresarial.jpg" />
     <Content Include="Imagenes\enlace-travel.jpg" />
     <Content Include="Imagenes\enlace.jpg" />
+    <Content Include="Imagenes\ico_facebook_off.gif" />
+    <Content Include="Imagenes\ico_twitter_off.gif" />
     <Content Include="Imagenes\logotipo.jpg" />
     <Content Include="Imagenes\sivale-logo.png" />
     <Content Include="Informe-Resultados.aspx" />

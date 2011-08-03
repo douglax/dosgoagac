@@ -155,6 +155,56 @@ Public Class Socio
         End Set
     End Property
 
+    Private _CtaFacebook As String
+    Public Overridable Property CtaFacebook() As String
+        Get
+            Return _CtaFacebook
+        End Get
+        Set(ByVal value As String)
+            _CtaFacebook = value
+        End Set
+    End Property
+
+    Private _CtaTwitter As String
+    Public Overridable Property CtaTwitter() As String
+        Get
+            Return _CtaTwitter
+        End Get
+        Set(ByVal value As String)
+            _CtaTwitter = value
+        End Set
+    End Property
+
+    Private _Sexo As String
+    Public Overridable Property Sexo() As String
+        Get
+            Return _Sexo
+        End Get
+        Set(ByVal value As String)
+            _Sexo = value
+        End Set
+    End Property
+
+    Private _EdoCivil As String
+    Public Overridable Property EdoCivil() As String
+        Get
+            Return _EdoCivil
+        End Get
+        Set(ByVal value As String)
+            _EdoCivil = value
+        End Set
+    End Property
+
+    Private _Gustos As String
+    Public Overridable Property Gustos() As String
+        Get
+            Return _Gustos
+        End Get
+        Set(ByVal value As String)
+            _Gustos = value
+        End Set
+    End Property
+
     Public Overridable Function Edad() As Integer
         Dim meses As Integer
         Dim iYears As Integer

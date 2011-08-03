@@ -11,6 +11,11 @@
         <property name="Email"/>
         <property name="Telefono"/>
         <property name="RFC"/>
+        <property name="CtaFacebook" column ="CTA_FACE"/>
+        <property name="CtaTwitter" column ="CTA_TWITTER"/>
+        <property name="Sexo"/>
+        <property name="EdoCivil" column ="EDO_CIVIL"/>
+        <property name="Gustos" column ="PASATIEMPOS"/>
         <property name="FechaDeNacimiento" column="FECHA_NAC"/>
         <many-to-one name="Ciudad" column="CIUDAD"/>
         <property name="Tarifa"/>

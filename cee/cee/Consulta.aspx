@@ -3,6 +3,15 @@
 <head>
     <link rel="Stylesheet" href="../cee.css" type="text/css">
     <script src="../cee.js" type="text/javascript"></script>
+    <style type="text/css">
+        .style1
+        {
+            width: 19px;
+            height: 19px;
+        }
+        .consulta-values
+        {}
+    </style>
 </head>
 <body>
 <table width="100%" height="100%" border="0" cellpadding="0" cellspacing="0">
@@ -141,6 +150,26 @@
                                                 <div class="form-item">
                                                     <asp:Label ID="pnl_socio_rfc_text" runat="server" Text="RFC:" Width="130" CssClass="consulta-labels"></asp:Label>
                                                     <asp:Label ID="pnl_socio_rfc_value" runat="server" Width="250px" 
+                                                        CssClass="consulta-values"></asp:Label>
+                                                </div>
+                                            </asp:Panel>
+                                            <asp:Panel ID="pnl_face" runat="server">
+                                                <div class="form-item">
+                                                    
+                                                        <asp:Label ID="Label4" runat="server" Width="130px" 
+                                                        CssClass="consulta-values"><img alt="Facebook" 
+                                                        src="Imagenes/ico_facebook_off.gif" /></asp:Label>
+                                                    <asp:Label ID="pnl_face_text" runat="server" Width="247px" 
+                                                        CssClass="consulta-values"></asp:Label>
+                                                </div>
+                                            </asp:Panel>
+                                            <asp:Panel ID="pnl_twitter" runat="server">
+                                                <div class="form-item">
+                                                    
+                                                        <asp:Label ID="Label5" runat="server" Width="130px" 
+                                                        CssClass="consulta-values"><img alt="Facebook" 
+                                                        src="Imagenes/ico_twitter_off.gif" /></asp:Label>
+                                                    <asp:Label ID="pnl_twitter_text" runat="server" Width="247px" 
                                                         CssClass="consulta-values"></asp:Label>
                                                 </div>
                                             </asp:Panel>
