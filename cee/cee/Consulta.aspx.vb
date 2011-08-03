@@ -159,6 +159,20 @@ Public Class Consulta1
                 Case 3
                     pnl_socio_club_value.Text = "Enlace Travel Club"
             End Select
+            Select Case soc.Sexo
+                Case "H"
+                    pnl_sexo_text.Text = "Hombre"
+                Case "M"
+                    pnl_sexo_text.Text = "Mujer"
+            End Select
+            Select Case soc.EdoCivil
+                Case "C"
+                    pnl_edo_civil_text.Text = "Casado(a)"
+                Case "S"
+                    pnl_edo_civil_text.Text = "Soltero(a)"
+                Case "D"
+                    pnl_edo_civil_text.Text = "Divorciado(a)"
+            End Select
             Me.frm_consulta.Action = "?club=" & soc.Club
             pnl_socio_cumpleanos_value.Text = soc.FechaDeNacimiento.ToString("D")
             pnl_socio_telefono_value.Text = soc.Telefono
@@ -169,6 +183,9 @@ Public Class Consulta1
             pnl_compania_text.Text = soc.Compania.Nombre
             Lbl_Tipo.Text = soc.TipoDeSocio & ": " & soc.TotalPuntos & " Puntos "
             pnl_sivale_text.Text = soc.CtaSiVale
+            pnl_face_text.Text = soc.CtaFacebook
+            pnl_twitter_text.Text = soc.CtaTwitter
+            pnl_gustos_text.Text = soc.Gustos
             If soc.Club = 3 Then
                 'pnl_socio_agencia_text.Text = soc.Agencia.Nombre
                 pnl_socio_agencia.Visible = True

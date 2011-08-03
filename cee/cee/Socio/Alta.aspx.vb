@@ -228,6 +228,11 @@ Public Class Alta
                 s.Compania = comp
             End If
             s.CtaSiVale = tb_sivale.Text
+            s.CtaFacebook = tb_facebook.Text
+            s.CtaTwitter = tb_twitter.Text
+            s.Gustos = tb_gustos.Text
+            s.Sexo = ddl_sexo.SelectedValue
+            s.EdoCivil = ddl_estado_civil.SelectedValue
             sesion.Save(s)
             sesion.Transaction.Commit()
             NHelper.CloseSession()

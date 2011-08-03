@@ -195,7 +195,7 @@
                                                 <div class="form-item">
                                                     <asp:Label ID="lbl_estado_civil" runat="server" Text="Estado Civil:" 
                                                         Width="130px" CssClass="labels"></asp:Label>
-                                                    <asp:DropDownList ID="tb_estado_civil" runat="server" 
+                                                    <asp:DropDownList ID="ddl_estado_civil" runat="server" 
                                                         ValidationGroup="Name_Group">
                                                         <asp:ListItem Value="S">Soltero</asp:ListItem>
                                                         <asp:ListItem Value="C">Casado</asp:ListItem>

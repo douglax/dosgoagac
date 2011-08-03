@@ -153,13 +153,29 @@
                                                         CssClass="consulta-values"></asp:Label>
                                                 </div>
                                             </asp:Panel>
+                                            <asp:Panel ID="pnl_sexo" runat="server">
+                                                <div class="form-item">
+                                                    <asp:Label ID="Label6" runat="server" Text="Sexo:" Width="130px" 
+                                                        CssClass="consulta-labels"></asp:Label>
+                                                    <asp:Label ID="pnl_sexo_text" runat="server" Width="250px" 
+                                                        CssClass="consulta-values"></asp:Label>
+                                                </div>
+                                            </asp:Panel>
+                                            <asp:Panel ID="pnl_edo_civil" runat="server">
+                                                <div class="form-item">
+                                                    <asp:Label ID="Label7" runat="server" Text="Edo. Civil:" Width="130px" 
+                                                        CssClass="consulta-labels"></asp:Label>
+                                                    <asp:Label ID="pnl_edo_civil_text" runat="server" Width="250px" 
+                                                        CssClass="consulta-values"></asp:Label>
+                                                </div>
+                                            </asp:Panel>
                                             <asp:Panel ID="pnl_face" runat="server">
                                                 <div class="form-item">
                                                     
                                                         <asp:Label ID="Label4" runat="server" Width="130px" 
                                                         CssClass="consulta-values"><img alt="Facebook" 
                                                         src="Imagenes/ico_facebook_off.gif" /></asp:Label>
-                                                    <asp:Label ID="pnl_face_text" runat="server" Width="247px" 
+                                                    <asp:Label ID="pnl_face_text" runat="server" Width="250px" 
                                                         CssClass="consulta-values"></asp:Label>
                                                 </div>
                                             </asp:Panel>
@@ -169,10 +185,11 @@
                                                         <asp:Label ID="Label5" runat="server" Width="130px" 
                                                         CssClass="consulta-values"><img alt="Facebook" 
                                                         src="Imagenes/ico_twitter_off.gif" /></asp:Label>
-                                                    <asp:Label ID="pnl_twitter_text" runat="server" Width="247px" 
+                                                    <asp:Label ID="pnl_twitter_text" runat="server" Width="250px" 
                                                         CssClass="consulta-values"></asp:Label>
                                                 </div>
                                             </asp:Panel>
+                                            
                                             <asp:Panel ID="pnl_compania" runat="server">
                                                 <div class="form-item">
                                                     <asp:Label ID="Label2" runat="server" Text="Compañia:" Width="130px" 
@@ -185,6 +202,14 @@
                                                 <div class="form-item">
                                                     <asp:Label ID="pnl_socio_tarifa_text" runat="server" Text="Tarifa:" Width="130" CssClass="consulta-labels"></asp:Label>
                                                     <asp:Label ID="pnl_socio_tarifa_value" runat="server" Width="250px" 
+                                                        CssClass="consulta-values"></asp:Label>
+                                                </div>
+                                            </asp:Panel>
+                                            <asp:Panel ID="pnl_gustos" runat="server">
+                                                <div class="form-item">
+                                                    <asp:Label ID="Label8" runat="server" Text="Hobbies:" Width="130px" 
+                                                        CssClass="consulta-labels"></asp:Label>
+                                                    <asp:Label ID="pnl_gustos_text" runat="server" Width="250px" 
                                                         CssClass="consulta-values"></asp:Label>
                                                 </div>
                                             </asp:Panel>
