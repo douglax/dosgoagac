@@ -36,7 +36,7 @@
                                 <div class="menu-item" onmouseover="menuItemOver(this)" onmouseout="menuItemOut(this)" onclick="menuItemClick('Baja.aspx')">Baja</div>
                                 <div class="menu-item" onmouseover="menuItemOver(this)" onmouseout="menuItemOut(this)" onclick="menuItemClick('../Default.aspx')">Regresar...</div>
                             </div>
-                            <div style="width: 500px; height: 550px; background: #ffffff; border: 1px #cccccc solid; position: absolute; top: -200px; left: 320px; padding: 2px;">
+                            <div style="width: 500px; height: 670px; background: #ffffff; border: 1px #cccccc solid; position: absolute; top: -250px; left: 320px; padding: 2px;">
                                 <div class="titulo">Alta Socio</div>
                                 <div class="contenido">
                                     <form runat="server">

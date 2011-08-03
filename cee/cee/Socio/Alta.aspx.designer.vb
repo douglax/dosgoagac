@@ -338,142 +338,142 @@ Partial Public Class Alta
     Protected WithEvents RequiredFieldValidator6 As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
-    '''Control pnl_facebook.
+    '''pnl_facebook control.
     '''</summary>
     '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents pnl_facebook As Global.System.Web.UI.WebControls.Panel
 
     '''<summary>
-    '''Control lbl_facebook.
+    '''lbl_facebook control.
     '''</summary>
     '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lbl_facebook As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''Control tb_facebook.
+    '''tb_facebook control.
     '''</summary>
     '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents tb_facebook As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''Control pnl_twitter.
+    '''pnl_twitter control.
     '''</summary>
     '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents pnl_twitter As Global.System.Web.UI.WebControls.Panel
 
     '''<summary>
-    '''Control lbl_twitter.
+    '''lbl_twitter control.
     '''</summary>
     '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lbl_twitter As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''Control tb_twitter.
+    '''tb_twitter control.
     '''</summary>
     '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents tb_twitter As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''Control pnl_gustos.
+    '''pnl_gustos control.
     '''</summary>
     '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents pnl_gustos As Global.System.Web.UI.WebControls.Panel
 
     '''<summary>
-    '''Control lbl_gustos.
+    '''lbl_gustos control.
     '''</summary>
     '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lbl_gustos As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''Control tb_gustos.
+    '''tb_gustos control.
     '''</summary>
     '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents tb_gustos As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''Control pnl_sexo.
+    '''pnl_sexo control.
     '''</summary>
     '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents pnl_sexo As Global.System.Web.UI.WebControls.Panel
 
     '''<summary>
-    '''Control lbl_sexo.
+    '''lbl_sexo control.
     '''</summary>
     '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lbl_sexo As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''Control ddl_sexo.
+    '''ddl_sexo control.
     '''</summary>
     '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ddl_sexo As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
-    '''Control pnl_estado_civil.
+    '''pnl_estado_civil control.
     '''</summary>
     '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents pnl_estado_civil As Global.System.Web.UI.WebControls.Panel
 
     '''<summary>
-    '''Control lbl_estado_civil.
+    '''lbl_estado_civil control.
     '''</summary>
     '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lbl_estado_civil As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''Control tb_estado_civil.
+    '''tb_estado_civil control.
     '''</summary>
     '''<remarks>
-    '''Campo generado automáticamente.
-    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents tb_estado_civil As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
-    '''Control pnl_rfc.
+    '''pnl_rfc control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
