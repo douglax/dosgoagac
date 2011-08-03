@@ -41,6 +41,13 @@
                                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ErrorMessage="*" ControlToValidate="tb_nombre" ValidationGroup="Name_Group" CssClass="validacion"></asp:RequiredFieldValidator>
                                                 </div>
                                             </asp:Panel>
+                                            <asp:Panel ID="pnl_giro" runat="server">
+                                                <div class="form-item">
+                                                    <asp:Label ID="lbl_giro" runat="server" Text="Giro:" Width="130" CssClass="labels"></asp:Label>
+                                                    <asp:TextBox ID="tb_giro" runat="server" Width="248px" ValidationGroup="Name_Group"></asp:TextBox>
+                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ErrorMessage="*" ControlToValidate="tb_giro" ValidationGroup="Name_Group" CssClass="validacion"></asp:RequiredFieldValidator>
+                                                </div>
+                                            </asp:Panel>
                                             <asp:Panel ID="pnl_direccion" runat="server">
                                                 <div class="form-item">
                                                     <asp:Label ID="lbl_direccion" runat="server" Text="Direccion:" Width="130" CssClass="labels"></asp:Label>

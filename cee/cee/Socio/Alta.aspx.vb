@@ -35,6 +35,7 @@ Public Class Alta
             ddl_estado.DataBind()
             ddl_estado.Items.Insert(0, "Seleccione...")
 
+            Me.pnl_contacto.Visible = False
             Me.pnl_nombre.Visible = False
             Me.pnl_amaterno.Visible = False
             Me.pnl_apaterno.Visible = False
@@ -50,6 +51,21 @@ Public Class Alta
             Me.pnl_resultado.Visible = False
             pnl_estado.Visible = False
             pnl_sivale.Visible = False
+
+            Dim ddl_contacto_1 = New ListItem
+            ddl_contacto_1.Text = "Seleccionar"
+            ddl_contacto_1.Value = "0"
+            Me.ddl_contacto.Items.Add(ddl_contacto_1)
+
+            Dim ddl_contacto_2 = New ListItem
+            ddl_contacto_2.Text = "Principal"
+            ddl_contacto_2.Value = "1"
+            Me.ddl_contacto.Items.Add(ddl_contacto_2)
+
+            Dim ddl_contacto_3 = New ListItem
+            ddl_contacto_3.Text = "Adicional"
+            ddl_contacto_3.Value = "2"
+            Me.ddl_contacto.Items.Add(ddl_contacto_3)
 
             Dim ddlItem0 = New ListItem
             ddlItem0.Text = "Seleccionar..."
@@ -80,6 +96,7 @@ Public Class Alta
         Select Case Me.club.SelectedItem.Value
             Case 0
                 Me.pnl_seleccionar.Visible = True
+                Me.pnl_contacto.Visible = False
                 Me.pnl_nombre.Visible = False
                 Me.pnl_amaterno.Visible = False
                 Me.pnl_apaterno.Visible = False
@@ -96,6 +113,7 @@ Public Class Alta
                 pnl_sivale.Visible = False
             Case 1
                 Me.pnl_seleccionar.Visible = False
+                Me.pnl_contacto.Visible = False
                 Me.pnl_nombre.Visible = True
                 Me.pnl_amaterno.Visible = True
                 Me.pnl_apaterno.Visible = True
@@ -108,10 +126,17 @@ Public Class Alta
                 Me.pnl_agencia.Visible = False
                 Me.pnl_guardar.Visible = True
                 Me.pnl_compania.Visible = True
+                If Request.QueryString("CompaniaId") <> "" Then
+                    Me.ddl_compania.SelectedValue = Request.QueryString("CompaniaId")
+                End If
                 pnl_estado.Visible = True
                 pnl_sivale.Visible = True
             Case 2
                 Me.pnl_seleccionar.Visible = False
+                If Request.QueryString("ContactoId") <> "" Then
+                    Me.pnl_contacto.Visible = True
+                    Me.ddl_contacto.SelectedValue = Request.QueryString("ContactoId")
+                End If
                 Me.pnl_nombre.Visible = True
                 Me.pnl_amaterno.Visible = True
                 Me.pnl_apaterno.Visible = True
@@ -124,10 +149,17 @@ Public Class Alta
                 Me.pnl_agencia.Visible = False
                 Me.pnl_guardar.Visible = True
                 Me.pnl_compania.Visible = True
+                If Request.QueryString("CompaniaId") <> "" Then
+                    Me.ddl_compania.SelectedValue = Request.QueryString("CompaniaId")
+                End If
                 pnl_estado.Visible = True
                 pnl_sivale.Visible = True
             Case 3
                 Me.pnl_seleccionar.Visible = False
+                If Request.QueryString("ContactoId") <> "" Then
+                    Me.pnl_contacto.Visible = True
+                    Me.ddl_contacto.SelectedValue = Request.QueryString("ContactoId")
+                End If
                 Me.pnl_nombre.Visible = True
                 Me.pnl_amaterno.Visible = True
                 Me.pnl_apaterno.Visible = True

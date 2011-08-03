@@ -157,6 +157,13 @@
                                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ErrorMessage="*" ControlToValidate="tb_rfc" ValidationGroup="Name_Group" CssClass="validacion"></asp:RequiredFieldValidator>
                                                 </div>
                                             </asp:Panel>
+                                            <asp:Panel ID="pnl_contacto" runat="server">
+                                                <div class="form-item">
+                                                    <asp:Label ID="lbl_contacto" runat="server" Text="Contacto:" Width="130" CssClass="labels"></asp:Label>
+                                                    <asp:DropDownList ID="ddl_contacto" runat="server" ValidationGroup="Name_Group"></asp:DropDownList>
+                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator11" runat="server" ErrorMessage="*" ControlToValidate="ddl_contacto" ValidationGroup="Name_Group" CssClass="validacion"></asp:RequiredFieldValidator>
+                                                </div>
+                                            </asp:Panel>
                                             <asp:Panel ID="pnl_compania" runat="server">
                                                 <div class="form-item">
                                                     <asp:Label ID="lbl_compania" runat="server" Text="Compañia:" Width="130" CssClass="labels"></asp:Label>
