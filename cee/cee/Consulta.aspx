@@ -171,22 +171,14 @@
                                             </asp:Panel>
                                             <asp:Panel ID="pnl_face" runat="server">
                                                 <div class="form-item">
-                                                    
-                                                        <asp:Label ID="Label4" runat="server" Width="130px" 
-                                                        CssClass="consulta-values"><img alt="Facebook" 
-                                                        src="Imagenes/ico_facebook_off.gif" /></asp:Label>
-                                                    <asp:Label ID="pnl_face_text" runat="server" Width="250px" 
-                                                        CssClass="consulta-values"></asp:Label>
+                                                    <asp:Label ID="Label4" runat="server" Width="130px" CssClass="consulta-values"><img alt="Facebook" src="Imagenes/ico_facebook_off.gif" align="right"/></asp:Label>
+                                                    <asp:Label ID="pnl_face_text" runat="server" Width="250px" CssClass="consulta-values"></asp:Label>
                                                 </div>
                                             </asp:Panel>
                                             <asp:Panel ID="pnl_twitter" runat="server">
                                                 <div class="form-item">
-                                                    
-                                                        <asp:Label ID="Label5" runat="server" Width="130px" 
-                                                        CssClass="consulta-values"><img alt="Facebook" 
-                                                        src="Imagenes/ico_twitter_off.gif" /></asp:Label>
-                                                    <asp:Label ID="pnl_twitter_text" runat="server" Width="250px" 
-                                                        CssClass="consulta-values"></asp:Label>
+                                                    <asp:Label ID="Label5" runat="server" Width="130px" CssClass="consulta-values"><img alt="Facebook" src="Imagenes/ico_twitter_off.gif" align="right"/></asp:Label>
+                                                    <asp:Label ID="pnl_twitter_text" runat="server" Width="250px" CssClass="consulta-values"></asp:Label>
                                                 </div>
                                             </asp:Panel>
                                             
