@@ -59,11 +59,29 @@ Partial Public Class Informe_Resultados
     Protected WithEvents form1 As Global.System.Web.UI.HtmlControls.HtmlForm
 
     '''<summary>
-    '''dg_resultados control.
+    '''dg_resultados_1 control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents dg_resultados As Global.System.Web.UI.WebControls.GridView
+    Protected WithEvents dg_resultados_1 As Global.System.Web.UI.WebControls.GridView
+
+    '''<summary>
+    '''dg_resultados_2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents dg_resultados_2 As Global.System.Web.UI.WebControls.GridView
+
+    '''<summary>
+    '''dg_resultados_3 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents dg_resultados_3 As Global.System.Web.UI.WebControls.GridView
 End Class

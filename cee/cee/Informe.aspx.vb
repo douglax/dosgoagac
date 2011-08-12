@@ -16,6 +16,7 @@
             ddlItem0.Text = "Seleccionar..."
             ddlItem0.Value = "0"
             Me.club.Items.Add(ddlItem0)
+            Me.ddl_tipo.Items.Add(ddlItem0)
 
             Dim ddlItem1 = New ListItem
             ddlItem1.Text = "Enlace"
@@ -31,6 +32,16 @@
             ddlItem3.Text = "Travel"
             ddlItem3.Value = "3"
             Me.club.Items.Add(ddlItem3)
+
+            Dim ddlItemTipo1 = New ListItem
+            ddlItemTipo1.Text = "Carga de Saldos"
+            ddlItemTipo1.Value = "1"
+            Me.ddl_tipo.Items.Add(ddlItemTipo1)
+
+            Dim ddlItemTipo2 = New ListItem
+            ddlItemTipo2.Text = "Puntos"
+            ddlItemTipo2.Value = "2"
+            Me.ddl_tipo.Items.Add(ddlItemTipo2)
 
         End If
 

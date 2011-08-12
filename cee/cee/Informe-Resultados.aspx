@@ -27,19 +27,41 @@
                     <td class="contenido">
                         <table width="100%" height="100%" border="0" cellpadding="0" cellspacing="0"><tr><td style="vertical-align: top;">
                         <form id="form1" runat="server">
-                            <asp:GridView ID="dg_resultados" runat="server" ShowFooter="True" AutoGenerateColumns="False" Width="100%">
+                            <asp:GridView ID="dg_resultados_1" runat="server" ShowFooter="True" AutoGenerateColumns="False" Width="100%">
                                 <Columns>
                                     <asp:BoundField DataField="Compania" HeaderText="Compañía">
-                                    <ItemStyle HorizontalAlign="Center" />
+                                        <ItemStyle HorizontalAlign="Center" />
                                     </asp:BoundField>
                                     <asp:BoundField HeaderText="Tarifa" DataField="Tarifa" DataFormatString="{0:C}">
-                                    <ItemStyle HorizontalAlign="Right" />
+                                        <ItemStyle HorizontalAlign="Right" />
                                     </asp:BoundField>
                                     <asp:BoundField HeaderText="Cuartos Noche" DataField="Cantidad">
-                                    <ItemStyle HorizontalAlign="Center" />
+                                        <ItemStyle HorizontalAlign="Center" />
                                     </asp:BoundField>
                                     <asp:BoundField HeaderText="Total" DataField="Total" DataFormatString="{0:C}">
-                                    <ItemStyle HorizontalAlign="Right" />
+                                        <ItemStyle HorizontalAlign="Right" />
+                                    </asp:BoundField>
+                                </Columns>
+                                <FooterStyle BackColor="#FFFF66" />
+                            </asp:GridView>
+                            <asp:GridView ID="dg_resultados_2" runat="server" ShowFooter="True" AutoGenerateColumns="False" Width="100%">
+                                <Columns>
+                                    <asp:BoundField DataField="Compania" HeaderText="Compañía">
+                                        <ItemStyle HorizontalAlign="Center" />
+                                    </asp:BoundField>
+                                    <asp:BoundField HeaderText="Cuartos Noche" DataField="Cantidad">
+                                        <ItemStyle HorizontalAlign="Center" />
+                                    </asp:BoundField>
+                                </Columns>
+                                <FooterStyle BackColor="#FFFF66" />
+                            </asp:GridView>
+                            <asp:GridView ID="dg_resultados_3" runat="server" ShowFooter="True" AutoGenerateColumns="False" Width="100%">
+                                <Columns>
+                                    <asp:BoundField DataField="Compania" HeaderText="Compañía">
+                                        <ItemStyle HorizontalAlign="Center" />
+                                    </asp:BoundField>
+                                    <asp:BoundField HeaderText="Cuartos Noche" DataField="Cantidad">
+                                        <ItemStyle HorizontalAlign="Center" />
                                     </asp:BoundField>
                                 </Columns>
                                 <FooterStyle BackColor="#FFFF66" />

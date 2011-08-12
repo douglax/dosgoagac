@@ -53,7 +53,7 @@
                                                 </asp:Panel>
                                                 <asp:Panel ID="pnl_periodo_inicio" runat="server">
                                                     <div class="form-item">
-                                                        <asp:Label ID="lbl_periodo_inicio" runat="server" Text="Periodo Inicio:" Width="125" CssClass="labels"></asp:Label>
+                                                        <asp:Label ID="lbl_periodo_inicio" runat="server" Text="Periodo Inicio:" Width="132" CssClass="labels"></asp:Label>
                                                         <asp:TextBox ID="tb_periodo_inicio" runat="server" Width="100" ValidationGroup="Name_Group" CssClass="form_item"></asp:TextBox>
                                                         <asp:RequiredFieldValidator ID="v_tb_periodo_inicio" runat="server" ErrorMessage="*" ControlToValidate="tb_periodo_inicio" ValidationGroup="Name_Group" CssClass="validacion"></asp:RequiredFieldValidator>
                                                         <asp:Button ID="btn_periodo_inicio" runat="server" Text="..." />
@@ -61,10 +61,17 @@
                                                 </asp:Panel>
                                                 <asp:Panel ID="pnl_periodo_final" runat="server">
                                                     <div class="form-item">
-                                                        <asp:Label ID="lbl_periodo_final" runat="server" Text="Periodo Fin:" Width="125" CssClass="labels"></asp:Label>
+                                                        <asp:Label ID="lbl_periodo_final" runat="server" Text="Periodo Fin:" Width="132" CssClass="labels"></asp:Label>
                                                         <asp:TextBox ID="tb_periodo_final" runat="server" Width="100" ValidationGroup="Name_Group" CssClass="form_item"></asp:TextBox>
                                                         <asp:RequiredFieldValidator ID="v_tb_periodo_final" runat="server" ErrorMessage="*" ControlToValidate="tb_periodo_final" ValidationGroup="Name_Group" CssClass="validacion"></asp:RequiredFieldValidator>
                                                         <asp:Button ID="btn_peridodo_final" runat="server" Text="..." />
+                                                    </div>
+                                                </asp:Panel>
+                                                <asp:Panel ID="pnl_tipo" runat="server">
+                                                    <div class="form-item">
+                                                        <asp:Label ID="lbl_tipo" runat="server" Text="Tipo:" Width="130" CssClass="labels"></asp:Label>
+                                                        <asp:DropDownList ID="ddl_tipo" runat="server" AutoPostBack="True" CssClass="form_item"></asp:DropDownList>
+                                                        <asp:RequiredFieldValidator ID="v_ddl_tipo" runat="server" ErrorMessage="*" ControlToValidate="ddl_tipo" ValidationGroup="Name_Group" CssClass="validacion"></asp:RequiredFieldValidator>
                                                     </div>
                                                 </asp:Panel>
                                                 <asp:Panel ID="pnl_informe" runat="server">

@@ -212,6 +212,42 @@ Partial Public Class Informe
     Protected WithEvents btn_peridodo_final As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
+    '''pnl_tipo control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents pnl_tipo As Global.System.Web.UI.WebControls.Panel
+
+    '''<summary>
+    '''lbl_tipo control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbl_tipo As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''ddl_tipo control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ddl_tipo As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
+    '''RequiredFieldValidator1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents RequiredFieldValidator1 As Global.System.Web.UI.WebControls.RequiredFieldValidator
+
+    '''<summary>
     '''pnl_informe control.
     '''</summary>
     '''<remarks>
