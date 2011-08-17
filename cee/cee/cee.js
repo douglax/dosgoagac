@@ -53,3 +53,8 @@ function sendForm(form) {
         window.open("Informe-Resultados.aspx?" + params, "_blank");
     }
 }
+
+function OpenChild() {
+    var winSettings = "center:yes;resizable:no;dialogHeight:300px";
+    var myArgs = window.showModalDialog("/Alta.aspx", null, winSettings);
+}

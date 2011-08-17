@@ -197,7 +197,7 @@ Public Class Alta
     Private Sub btn_guardar_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btn_guardar.Click
         Dim s As Socio = oSocio
         Dim sesion As ISession = Nothing
-
+        checar_repetido()
         Me.pnl_resultado.Visible = True
 
         Try
@@ -269,5 +269,16 @@ Public Class Alta
         Else
             ddl_ciudad.Items.Clear()
         End If
+    End Sub
+    Private Sub checar_repetido()
+        Dim s As ISession = Nothing
+        Try
+            Dim qry As String = _
+                "From Socio s where s.Nombre like ? and s.Paterno like ? and s.Materno like ? " & _
+                "Order by s.Paterno"
+           
+        Catch ex As Exception
+
+        End Try
     End Sub
 End Class
