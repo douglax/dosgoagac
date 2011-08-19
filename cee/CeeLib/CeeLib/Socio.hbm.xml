@@ -21,6 +21,7 @@
         <property name="Tarifa"/>
         <property name="Club"/>
         <property name="CtaSiVale" column="CTA_SIVALE"/>
+        <property name="IdHotel" column="ID_HOTEL_REGISTRA"/>
 
         <many-to-one name="Compania" column="ID_COMP" class ="Compania" />
         

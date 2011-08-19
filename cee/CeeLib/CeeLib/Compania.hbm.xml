@@ -8,6 +8,8 @@
         
         <property name = "Nombre"/>
         <property name = "Direccion"/>
+        <property name = "EsAgencia"/>
+        
         <many-to-one name="Ciudad" column="CIUDAD"/>
 
         <bag name="Contactos" inverse="true" cascade="all" >

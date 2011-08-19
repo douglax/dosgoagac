@@ -1,7 +1,7 @@
 ﻿Imports NHibernate
 Imports System.Security.Cryptography
 Imports System.Text
-
+Imports CeeLib
 Public Class Alta2
     Inherits System.Web.UI.Page
 
@@ -28,7 +28,7 @@ Public Class Alta2
                 Dim usr As New CeeLib.Usuario()
                 usr.Hotel = hotel
                 usr.Usr = tb_usuario.Text
-                usr.Passwd = Encrypt(tb_contrasena.Text)
+                usr.Passwd = Encrypt.Encriptar(tb_contrasena.Text)
                 s.BeginTransaction()
                 s.Save(usr)
                 s.Transaction.Commit()
@@ -44,16 +44,5 @@ Public Class Alta2
         End If
         Me.lbl_aviso.Text = msg
     End Sub
-
-    Private Function Encrypt(val As String) As String
-        Dim textBytes, encTextBytes As Byte()
-        Dim rsa As New RSACryptoServiceProvider()
-        Dim encoder As New UTF8Encoding()
-        textBytes = encoder.GetBytes(val)
-        encTextBytes = rsa.Encrypt(textBytes, True)
-        Return Convert.ToBase64String(encTextBytes)
-    End Function
-
-    
 
 End Class

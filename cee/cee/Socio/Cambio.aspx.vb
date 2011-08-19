@@ -15,6 +15,8 @@ Public Class Cambio
             Dim s As ISession = NHelper.GetCurrentSession
             Dim comps As IList(Of CeeLib.Compania) = s.CreateQuery("from Compania").List(Of CeeLib.Compania)()
             Dim estado As IList = s.CreateQuery("From Estado e order by e.Nombre").List()
+            Dim ags As IList(Of CeeLib.Compania) = s.CreateQuery("from Compania c where c.EsAgencia = true").List(Of CeeLib.Compania)()
+
             NHelper.CloseSession()
             If Not comps Is Nothing Then
                 ddl_compania.DataSource = comps
@@ -24,6 +26,12 @@ Public Class Cambio
             End If
             With ddl_estado
                 .DataSource = estado
+                .DataTextField = "Nombre"
+                .DataValueField = "Id"
+                .DataBind()
+            End With
+            With ddl_agencia
+                .DataSource = ags
                 .DataTextField = "Nombre"
                 .DataValueField = "Id"
                 .DataBind()
@@ -70,12 +78,17 @@ Public Class Cambio
                 s.Compania = comp
             End If
             s.CtaSiVale = tb_sivale.Text
+            If s.Club = 3 Then
+                s.Compania = sesion.Get(Of CeeLib.Compania)(CLng(ddl_agencia.SelectedValue))
+            End If
+            s.CtaFacebook = tb_facebook.Text
+            s.CtaTwitter = tb_twitter.Text
+            s.Gustos = tb_gustos.Text
+            s.Sexo = ddl_sexo.SelectedValue
+            s.EdoCivil = ddl_estado_civil.SelectedValue
             sesion.Update(s)
             sesion.Transaction.Commit()
             NHelper.CloseSession()
-            If club.SelectedIndex = 3 OrElse 2 Then
-                's.Agencia = tb_agencia.Text
-            End If
             lbl_resultado.Text = "La información del socio se actualizó con éxito"
         Catch ex As Exception
             If sesion.Transaction.IsActive Then
@@ -153,16 +166,24 @@ Public Class Cambio
         tb_rfc.Text = soc.RFC
         tb_tarifa.Text = soc.Tarifa
         tb_sivale.Text = soc.CtaSiVale
-        NHelper.CloseSession()
+        tb_facebook.Text = soc.CtaFacebook
+        tb_twitter.Text = soc.CtaTwitter
+        tb_gustos.Text = soc.Gustos
+        ddl_sexo.SelectedValue = soc.Sexo
+        ddl_estado_civil.SelectedValue = soc.EdoCivil
         grp_modificar.Visible = True
         If soc.Club = 3 Then
             pnl_compania.Visible = False
             pnl_agencia.Visible = True
             pnl_tarifa.Visible = False
+            pnl_agencia.Visible = True
+            ddl_agencia.SelectedValue = CStr(soc.Compania.Id)
         Else
             pnl_compania.Visible = True
             pnl_agencia.Visible = False
             pnl_tarifa.Visible = True
+            pnl_agencia.Visible = False
         End If
+        NHelper.CloseSession()
     End Sub
 End Class

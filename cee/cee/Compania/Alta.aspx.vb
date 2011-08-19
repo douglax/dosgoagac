@@ -24,6 +24,7 @@ Public Class Alta1
         Dim s As ISession = Nothing
         c.Nombre = tb_nombre.Text
         c.Direccion = tb_direccion.Text
+        c.EsAgencia = ChkAgencia.Checked
         Try
             s = NHelper.GetCurrentSession
             c.Ciudad = s.Get(Of Ciudad)(CLng(ddl_ciudad.SelectedValue))
@@ -32,6 +33,10 @@ Public Class Alta1
             s.Transaction.Commit()
             lblResultado.ForeColor = Drawing.Color.Green
             lblResultado.Text = "Compañía registrada"
+            Dim liga As String = "<a href='../Socio/Alta.aspx?CompaniaId={0}&ContactoId={1}'>"
+            liga += "Agregar contacto principal</a>"
+            liga = String.Format(liga, c.Id, 1)
+            LblLigaContacto.Text = liga
         Catch ex As Exception
             If s.Transaction.IsActive Then
                 s.Transaction.Rollback()

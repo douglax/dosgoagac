@@ -123,6 +123,7 @@
     <Content Include="Compania\Baja.aspx" />
     <Content Include="Compania\Cambio.aspx" />
     <Content Include="Consulta.aspx" />
+    <Content Include="Denegada.aspx" />
     <Content Include="Imagenes\enlace-empresarial.jpg" />
     <Content Include="Imagenes\enlace-travel.jpg" />
     <Content Include="Imagenes\enlace.jpg" />
@@ -133,6 +134,8 @@
     <Content Include="Informe-Resultados.aspx" />
     <Content Include="Informe.aspx" />
     <Content Include="Scripts\ext-core.js" />
+    <Content Include="Scripts\jquery-1.6.2.min.js" />
+    <Content Include="Scripts\jquery-ui-1.8.15.custom.min.js" />
     <Content Include="Socio.aspx" />
     <Content Include="Socios.aspx" />
     <Content Include="Socio\Consulta.aspx" />
@@ -141,6 +144,7 @@
     <Content Include="Socio\Alta.aspx" />
     <Content Include="Socio\Baja.aspx" />
     <Content Include="Socio\Cambio.aspx" />
+    <Content Include="Socio\Verificar_Duplicados.aspx" />
     <Content Include="Styles\Site.css" />
     <Content Include="Login.aspx" />
     <Content Include="Global.asax" />
@@ -236,6 +240,13 @@
     <Compile Include="Consulta.aspx.vb">
       <DependentUpon>Consulta.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Denegada.aspx.designer.vb">
+      <DependentUpon>Denegada.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Denegada.aspx.vb">
+      <DependentUpon>Denegada.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="Informe-Resultados.aspx.designer.vb">
       <DependentUpon>Informe-Resultados.aspx</DependentUpon>
@@ -356,6 +367,13 @@
     </Compile>
     <Compile Include="Administracion\Baja.aspx.vb">
       <DependentUpon>Baja.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Socio\Verificar_Duplicados.aspx.designer.vb">
+      <DependentUpon>Verificar_Duplicados.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Socio\Verificar_Duplicados.aspx.vb">
+      <DependentUpon>Verificar_Duplicados.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
   </ItemGroup>

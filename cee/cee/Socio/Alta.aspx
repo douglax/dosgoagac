@@ -1,8 +1,9 @@
 ﻿<%@ Page Language="vb" AutoEventWireup="false" CodeBehind="Alta.aspx.vb" Inherits="cee.Alta" %>
 <html>
 <head>
-    <link rel=StyleSheet href="../cee.css" type="text/css">
-    <script src="../cee.js"></script>
+    <title>Alta de Socios</title>
+    <link rel="Stylesheet" href="../cee.css" type="text/css"></link>
+    <script type="text/javascript" src="../cee.js"></script>
     <style type="text/css">
         .style1
         {
@@ -239,8 +240,7 @@
                                             <asp:Panel ID="pnl_agencia" runat="server">
                                                 <div class="form-item">
                                                     <asp:Label ID="lbl_agencia" runat="server" Text="Agencia de Viajes:" Width="130" CssClass="labels"></asp:Label>
-                                                    <asp:TextBox ID="tb_agencia" runat="server" ValidationGroup="Name_Group"></asp:TextBox>
-                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator9" runat="server" ErrorMessage="*" ControlToValidate="tb_agencia" ValidationGroup="Name_Group" CssClass="validacion"></asp:RequiredFieldValidator>
+                                                    <asp:DropDownList ID="ddl_agencia" runat="server" ValidationGroup="Name_Group"></asp:DropDownList>
                                                 </div>
                                             </asp:Panel>
                                             <asp:Panel ID="pnl_guardar" runat="server">
@@ -265,5 +265,6 @@
         </td>
     </tr>
 </table>
+
 </body>
 </html>

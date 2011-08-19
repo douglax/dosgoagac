@@ -191,6 +191,52 @@
                                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ErrorMessage="*" ControlToValidate="tb_correo" ValidationGroup="Name_Group" CssClass="validacion"></asp:RequiredFieldValidator>
                                                     </div>
                                                 </asp:Panel>
+                                                <asp:Panel ID="pnl_facebook" runat="server">
+                                                <div class="form-item">
+                                                    <asp:Label ID="lbl_facebook" runat="server" Text="Cta de Facebook:" Width="130" CssClass="labels"></asp:Label>
+                                                    <asp:TextBox ID="tb_facebook" runat="server" ValidationGroup="Name_Group"></asp:TextBox>
+                                                    <img alt="Facebook" class="style1" 
+                                                        src="../Imagenes/ico_facebook_off.gif" />
+                                                </div>
+                                            </asp:Panel>
+                                            <asp:Panel ID="pnl_twitter" runat="server">
+                                                <div class="form-item">
+                                                    <asp:Label ID="lbl_twitter" runat="server" Text="Cta de Twitter:" Width="130" CssClass="labels"></asp:Label>
+                                                    <asp:TextBox ID="tb_twitter" runat="server" ValidationGroup="Name_Group"></asp:TextBox>
+                                                    <img alt="Twitter" class="style1" 
+                                                        src="../Imagenes/ico_twitter_off.gif" />
+                                                </div>
+                                            </asp:Panel>
+                                            <asp:Panel ID="pnl_gustos" runat="server">
+                                                <div class="form-item">
+                                                    <asp:Label ID="lbl_gustos" runat="server" Text="Pasatiempos o Hobbies:" Width="130" CssClass="labels"></asp:Label>
+                                                    <asp:TextBox ID="tb_gustos" runat="server" ValidationGroup="Name_Group" 
+                                                        Height="45px" TextMode="MultiLine" Width="344px"></asp:TextBox>
+                                                </div>
+                                            </asp:Panel>
+                                            <asp:Panel ID="pnl_sexo" runat="server">
+                                                <div class="form-item">
+                                                    <asp:Label ID="lbl_sexo" runat="server" Text="Sexo:" 
+                                                        Width="130px" CssClass="labels"></asp:Label>
+                                                    <asp:DropDownList ID="ddl_sexo" runat="server" 
+                                                        ValidationGroup="Name_Group">
+                                                        <asp:ListItem Value="H">Hombre</asp:ListItem>
+                                                        <asp:ListItem Value="M">Mujer</asp:ListItem>
+                                                    </asp:DropDownList>
+                                                </div>
+                                            </asp:Panel>
+                                            <asp:Panel ID="pnl_estado_civil" runat="server">
+                                                <div class="form-item">
+                                                    <asp:Label ID="lbl_estado_civil" runat="server" Text="Estado Civil:" 
+                                                        Width="130px" CssClass="labels"></asp:Label>
+                                                    <asp:DropDownList ID="ddl_estado_civil" runat="server" 
+                                                        ValidationGroup="Name_Group">
+                                                        <asp:ListItem Value="S">Soltero</asp:ListItem>
+                                                        <asp:ListItem Value="C">Casado</asp:ListItem>
+                                                        <asp:ListItem Value="D">Divorciado</asp:ListItem>
+                                                    </asp:DropDownList>
+                                                </div>
+                                            </asp:Panel>
                                                 <asp:Panel ID="pnl_rfc" runat="server">
                                                     <div class="form-item">
                                                         <asp:Label ID="lbl_rfc" runat="server" Text="RFC:" Width="130" CssClass="labels"></asp:Label>
@@ -220,8 +266,7 @@
                                                 <asp:Panel ID="pnl_agencia" runat="server">
                                                     <div class="form-item">
                                                         <asp:Label ID="lbl_agencia" runat="server" Text="Agencia de Viajes:" Width="130" CssClass="labels"></asp:Label>
-                                                        <asp:TextBox ID="tb_agencia" runat="server" ValidationGroup="Name_Group"></asp:TextBox>
-                                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator10" runat="server" ErrorMessage="*" ControlToValidate="tb_agencia" ValidationGroup="Name_Group" CssClass="validacion"></asp:RequiredFieldValidator>
+                                                        <asp:DropDownList ID="ddl_agencia" runat="server" ValidationGroup="Name_Group"></asp:DropDownList>
                                                     </div>
                                                 </asp:Panel>
                                                 <asp:Panel ID="pnl_modificar" runat="server">

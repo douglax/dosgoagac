@@ -58,7 +58,7 @@
                                                     <div class="subtitulo">Resultados:</div>
                                                     <div class="form-item">
                                                         <asp:GridView ID="dg_resultados" runat="server" AutoGenerateColumns="False" 
-                                                            Font-Size="Small" Width="474px">                             
+                                                            Font-Size="Small" Width="474px" AllowPaging="True" PageSize="11">                             
                                                             <Columns>
                                                                 <asp:BoundField HeaderText="Id" DataField="NoSocio" />
                                                                 <asp:BoundField HeaderText="Socio" DataField="NombreCompleto" />

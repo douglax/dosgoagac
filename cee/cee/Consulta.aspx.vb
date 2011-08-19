@@ -129,6 +129,14 @@ Public Class Consulta1
         Try
             Dim soc As CeeLib.Socio = s.Get(GetType(CeeLib.Socio), CLng(HiddenField1.Value))
             Dim cn As CeeLib.RegistroNoches = soc.CuartosNoche.Item(e.RowIndex)
+            Dim u As CeeLib.Usuario = s.Get(Of CeeLib.Usuario)(NHelper.UserName)
+            If u.Hotel.Id > 1 Then
+                If u.Hotel.Id <> cn.Hotel.Id Then
+                    Response.Redirect("Denegada.aspx")
+                    NHelper.CloseSession()
+                    Exit Sub
+                End If
+            End If
             soc.CuartosNoche.Remove(cn)
             s.BeginTransaction()
             s.Delete(cn)
@@ -181,13 +189,14 @@ Public Class Consulta1
             pnl_socio_rfc_value.Text = soc.RFC
             pnl_socio_tarifa_value.Text = FormatCurrency(soc.Tarifa)
             pnl_compania_text.Text = soc.Compania.Nombre
-            Lbl_Tipo.Text = soc.TipoDeSocio & ": " & soc.TotalPuntos & " Puntos "
+            Lbl_Tipo.Text = soc.TipoDeSocio & " " & soc.TotalPuntos & " Puntos "
+            If soc.Club = 2 Then Lbl_Tipo.Text += "<br/>" + soc.Compania.CalcularTipoCompania + " Puntos totales de la compañia: " & soc.Compania.CalcularPuntos()
             pnl_sivale_text.Text = soc.CtaSiVale
             pnl_face_text.Text = soc.CtaFacebook
             pnl_twitter_text.Text = soc.CtaTwitter
             pnl_gustos_text.Text = soc.Gustos
             If soc.Club = 3 Then
-                'pnl_socio_agencia_text.Text = soc.Agencia.Nombre
+                pnl_socio_agencia_value.Text = soc.Compania.Nombre
                 pnl_socio_agencia.Visible = True
                 pnl_compania.Visible = False
                 pnl_socio_tarifa.Visible = False

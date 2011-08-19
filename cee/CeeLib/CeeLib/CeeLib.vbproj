@@ -67,6 +67,7 @@
     <Compile Include="Agencia.vb" />
     <Compile Include="Ciudad.vb" />
     <Compile Include="Compania.vb" />
+    <Compile Include="Encrypt.vb" />
     <Compile Include="Estado.vb" />
     <Compile Include="Hotel.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />

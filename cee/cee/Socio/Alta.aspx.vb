@@ -189,15 +189,23 @@ Public Class Alta
                 Me.pnl_compania.Visible = False
                 pnl_estado.Visible = True
                 pnl_sivale.Visible = True
+                Dim s As ISession = NHelper.GetCurrentSession()
+                Dim ags As IList(Of CeeLib.Compania) = s.CreateQuery( _
+                    "from Compania c where c.EsAgencia = true").List(Of CeeLib.Compania)()
+                With ddl_agencia
+                    .DataSource = ags
+                    .DataTextField = "Nombre"
+                    .DataValueField = "Id"
+                    .DataBind()
+                End With
+                NHelper.CloseSession()
         End Select
-
-
     End Sub
 
     Private Sub btn_guardar_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btn_guardar.Click
         Dim s As Socio = oSocio
         Dim sesion As ISession = Nothing
-        checar_repetido()
+        'checar_repetido()
         Me.pnl_resultado.Visible = True
 
         Try
@@ -209,6 +217,8 @@ Public Class Alta
             s.RFC = tb_rfc.Text
             s.Telefono = tb_telefono.Text
             s.Club = club.SelectedIndex
+            Dim u As CeeLib.Usuario = sesion.Get(GetType(CeeLib.Usuario), NHelper.UserName)
+            s.IdHotel = u.Hotel.Id
             Dim dia As Integer = CInt(ddl_cump_dia.SelectedValue)
             Dim mes As Integer = CInt(ddl_cump_mes.SelectedValue)
             Dim anio As Integer = CInt(ddl_cump_ano.SelectedValue)
@@ -233,13 +243,12 @@ Public Class Alta
             s.Gustos = tb_gustos.Text
             s.Sexo = ddl_sexo.SelectedValue
             s.EdoCivil = ddl_estado_civil.SelectedValue
+            If club.SelectedIndex = 3 Then
+                s.Compania = sesion.Get(Of CeeLib.Compania)(CLng(ddl_agencia.SelectedValue))
+            End If
             sesion.Save(s)
             sesion.Transaction.Commit()
             NHelper.CloseSession()
-            If club.SelectedIndex = 3 OrElse 2 Then
-                's.Agencia = tb_agencia.Text
-            End If
-
             lbl_resultado.ForeColor = Drawing.Color.Green
             lbl_resultado.Text = "Numero de Socio: " & s.NoSocio
             btn_guardar.Enabled = False
@@ -248,11 +257,9 @@ Public Class Alta
                 sesion.Transaction.Rollback()
                 sesion.Close()
             End If
-
             lbl_resultado.ForeColor = Drawing.Color.Red
             lbl_resultado.Text = "Ocurrio un error al guardar la información: " & ex.Message
         End Try
-
     End Sub
 
     Protected Sub ddl_estado_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ddl_estado.SelectedIndexChanged
@@ -274,11 +281,20 @@ Public Class Alta
         Dim s As ISession = Nothing
         Try
             Dim qry As String = _
-                "From Socio s where s.Nombre like ? and s.Paterno like ? and s.Materno like ? " & _
+                "From Socio s where s.Paterno like ? and s.Materno like ? and s.Nombre like ? " & _
                 "Order by s.Paterno"
-           
-        Catch ex As Exception
 
+            Dim paterno As String = "%" & tb_apaterno.Text & "%"
+            Dim materno As String = "%" & tb_amaterno.Text & "%"
+            Dim nombre As String = "%" & tb_nombre.Text & "%"
+            Dim res As IList = s.CreateQuery(qry).SetString(0, paterno).SetString(1, materno).SetString(2, nombre).List()
+            If res.Count > 0 Then
+                Response.Redirect("Verificar_Duplicados")
+                NHelper.CloseSession()
+                Exit Sub
+            End If
+        Catch ex As Exception
+            lbl_resultado.Text = "Ocurrio un error: " & ex.Message
         End Try
     End Sub
 End Class

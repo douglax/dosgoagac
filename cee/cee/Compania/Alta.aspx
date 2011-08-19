@@ -70,6 +70,12 @@
                                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="*" ControlToValidate="ddl_ciudad" ValidationGroup="Name_Group" CssClass="validacion"></asp:RequiredFieldValidator>
                                                 </div>
                                             </asp:Panel>
+                                            <asp:Panel ID="pnl_agencia" runat="server">
+                                                <div class="form-item">
+                                                    <asp:Label ID="Label2" runat="server" Text="Agencia de Viajes:" Width="130" CssClass="labels"></asp:Label>
+                                                    <asp:CheckBox ID="ChkAgencia" runat="server" Width="248px" ValidationGroup="Name_Group"></asp:CheckBox>
+                                                </div>
+                                            </asp:Panel>
                                             <asp:Panel ID="pnl_guardar" runat="server">
                                                 <div class="form-item-btn">
                                                     <asp:Button ID="btn_guardar" runat="server" Text="Guardar" ValidationGroup="Name_Group"/>
@@ -77,7 +83,11 @@
                                             </asp:Panel>
                                         </div>
                                         <div>
-                                            <asp:Label ID="lblResultado" runat="server" Font-Bold="True" ForeColor="#33CC33"></asp:Label>
+                                            <asp:Label ID="lblResultado" runat="server" Font-Bold="True" 
+                                                ForeColor="#33CC33" Font-Size="Medium"></asp:Label>
+                                        </div>
+                                        <div>
+                                            <asp:Label ID="LblLigaContacto" runat="server" Font-Bold="True" ForeColor="#33CC33"></asp:Label>
                                         </div>
                                     </form>
                                 </div>
