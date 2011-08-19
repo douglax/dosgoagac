@@ -86,6 +86,18 @@
         End Get
     End Property
 
+    Public Overridable ReadOnly Property NombreCompleto() As String
+        Get
+            Return _Socio.NombreCompleto
+        End Get
+    End Property
+
+    Public Overridable ReadOnly Property CtaSiVale() As String
+        Get
+            Return _Socio.CtaSiVale
+        End Get
+    End Property
+
     Public Overridable ReadOnly Property Total() As Double
         Get
             Return Tarifa * Cantidad

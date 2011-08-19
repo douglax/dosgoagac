@@ -4,52 +4,60 @@ Public Class Informe_Resultados
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
+        Dim dg_resultados = Nothing
         Dim club As Integer = Me.Request.QueryString("club")
         Dim inicio As Date = Me.Request.QueryString("tb_periodo_inicio")
         Dim fin As Date = Me.Request.QueryString("tb_periodo_final")
         Dim tipo As Integer = Me.Request.QueryString("ddl_tipo")
 
         Dim qry As String
-        qry = "select s from RegistroNoches s where s.Socio.Club = ? and s.FechaAlta between ? and ?"
-        Dim s As ISession = NHelper.GetCurrentSession()
-        Dim res As IList = s.CreateQuery(qry).SetInt32(0, club).SetDateTime(1, inicio).SetDateTime(2, fin).List()
+        qry = "SELECT S.CTA_SIVALE, S.NO_SOCIO, (S.NOMBRE || ' ' || S.PATERNO || ' ' || S.MATERNO) AS NOMBRE_COMPLETO, SUM(CN.CANTIDAD) AS CANTIDAD FROM SOCIO S INNER JOIN CUARTOS_NOCHE CN ON S.NO_SOCIO = CN.SOCIO_ID WHERE S.CLUB = '" & club & "' AND CN.FECHA_ALTA BETWEEN '2011-01-01' AND '2011-12-01' GROUP BY S.NO_SOCIO"
 
         Select Case club
             Case 1
                 Me.lbl_tipo.Text = "'Club Enlace' "
                 Select Case tipo
                     Case 1
-
+                        dg_resultados = dg_resultados_3
                     Case 2
-                        dg_resultados_2.DataSource = res
-                        dg_resultados_2.DataBind()
+                        dg_resultados = dg_resultados_2
                 End Select
             Case 2
                 Me.lbl_tipo.Text = "'Club Enlace Empresaria' "
                 Select Case tipo
                     Case 1
-
+                        dg_resultados = dg_resultados_3
                     Case 2
-                        dg_resultados_1.DataSource = res
-                        dg_resultados_1.DataBind()
+                        qry = "SELECT FROM COMPANIA"
+                        dg_resultados = dg_resultados_1
                 End Select
             Case 3
                 Me.lbl_tipo.Text = "'Club Enlace Travel' "
                 Select Case tipo
                     Case 1
-
+                        dg_resultados = dg_resultados_3
                     Case 2
-                        dg_resultados_2.DataSource = res
-                        dg_resultados_2.DataBind()
+                        dg_resultados = dg_resultados_2
                 End Select
         End Select
+
+        If Not dg_resultados Is Nothing Then
+
+            Dim s As ISession = NHelper.GetCurrentSession()
+            Dim da As System.Data.IDataAdapter = New SQLite.SQLiteDataAdapter(qry, DirectCast(s.Connection, SQLite.SQLiteConnection))
+            Dim ds As New DataSet
+            da.Fill(ds)
+
+            dg_resultados.DataSource = ds.Tables(0)
+            dg_resultados.DataBind()
+
+            NHelper.CloseSession()
+
+        End If
 
         Me.pg_title.InnerText = Me.lbl_tipo.Text & " " & inicio & " - " & fin
         Me.lbl_periodo_inicio.Text = inicio & " - "
         Me.lbl_periodo_termino.Text = fin
-
-        NHelper.CloseSession()
-
 
     End Sub
 

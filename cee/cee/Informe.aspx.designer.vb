@@ -239,13 +239,13 @@ Partial Public Class Informe
     Protected WithEvents ddl_tipo As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
-    '''RequiredFieldValidator1 control.
+    '''v_ddl_tipo control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents RequiredFieldValidator1 As Global.System.Web.UI.WebControls.RequiredFieldValidator
+    Protected WithEvents v_ddl_tipo As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
     '''pnl_informe control.

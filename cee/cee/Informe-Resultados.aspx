@@ -46,10 +46,10 @@
                             </asp:GridView>
                             <asp:GridView ID="dg_resultados_2" runat="server" ShowFooter="True" AutoGenerateColumns="False" Width="100%">
                                 <Columns>
-                                    <asp:BoundField DataField="Compania" HeaderText="Compañía">
+                                    <asp:BoundField HeaderText="Empleado" DataField="NOMBRE_COMPLETO">
                                         <ItemStyle HorizontalAlign="Center" />
                                     </asp:BoundField>
-                                    <asp:BoundField HeaderText="Cuartos Noche" DataField="Cantidad">
+                                    <asp:BoundField HeaderText="Cuartos Noche" DataField="CANTIDAD">
                                         <ItemStyle HorizontalAlign="Center" />
                                     </asp:BoundField>
                                 </Columns>
@@ -57,10 +57,10 @@
                             </asp:GridView>
                             <asp:GridView ID="dg_resultados_3" runat="server" ShowFooter="True" AutoGenerateColumns="False" Width="100%">
                                 <Columns>
-                                    <asp:BoundField DataField="Compania" HeaderText="Compañía">
+                                    <asp:BoundField HeaderText="Empleado" DataField="NOMBRE_COMPLETO">
                                         <ItemStyle HorizontalAlign="Center" />
                                     </asp:BoundField>
-                                    <asp:BoundField HeaderText="Cuartos Noche" DataField="Cantidad">
+                                    <asp:BoundField HeaderText="Numero de Tarjeta" DataField="CTA_SIVALE">
                                         <ItemStyle HorizontalAlign="Center" />
                                     </asp:BoundField>
                                 </Columns>
