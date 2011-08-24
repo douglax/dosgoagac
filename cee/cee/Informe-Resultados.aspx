@@ -29,16 +29,19 @@
                         <form id="form1" runat="server">
                             <asp:GridView ID="dg_resultados_1" runat="server" ShowFooter="True" AutoGenerateColumns="False" Width="100%">
                                 <Columns>
-                                    <asp:BoundField DataField="Compania" HeaderText="Compañía">
+                                    <asp:BoundField DataField="COMPANIA" HeaderText="Compañía">
                                         <ItemStyle HorizontalAlign="Center" />
                                     </asp:BoundField>
-                                    <asp:BoundField HeaderText="Tarifa" DataField="Tarifa" DataFormatString="{0:C}">
+                                    <asp:BoundField DataField="NOMBRE_COMPLETO" HeaderText="Contacto">
+                                        <ItemStyle HorizontalAlign="Center" />
+                                    </asp:BoundField>
+                                    <asp:BoundField HeaderText="Tarifa" DataField="TARIFA" DataFormatString="{0:C}">
                                         <ItemStyle HorizontalAlign="Right" />
                                     </asp:BoundField>
-                                    <asp:BoundField HeaderText="Cuartos Noche" DataField="Cantidad">
+                                    <asp:BoundField HeaderText="Cuartos Noche" DataField="CANTIDAD">
                                         <ItemStyle HorizontalAlign="Center" />
                                     </asp:BoundField>
-                                    <asp:BoundField HeaderText="Total" DataField="Total" DataFormatString="{0:C}">
+                                    <asp:BoundField HeaderText="Total" DataField="TOTAL" DataFormatString="{0:C}">
                                         <ItemStyle HorizontalAlign="Right" />
                                     </asp:BoundField>
                                 </Columns>

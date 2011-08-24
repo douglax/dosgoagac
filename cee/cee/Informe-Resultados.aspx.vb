@@ -11,7 +11,6 @@ Public Class Informe_Resultados
         Dim tipo As Integer = Me.Request.QueryString("ddl_tipo")
 
         Dim qry As String
-        qry = "SELECT S.CTA_SIVALE, S.NO_SOCIO, (S.NOMBRE || ' ' || S.PATERNO || ' ' || S.MATERNO) AS NOMBRE_COMPLETO, SUM(CN.CANTIDAD) AS CANTIDAD FROM SOCIO S INNER JOIN CUARTOS_NOCHE CN ON S.NO_SOCIO = CN.SOCIO_ID WHERE S.CLUB = '" & club & "' AND CN.FECHA_ALTA BETWEEN '2011-01-01' AND '2011-12-01' GROUP BY S.NO_SOCIO"
 
         Select Case club
             Case 1
@@ -20,6 +19,7 @@ Public Class Informe_Resultados
                     Case 1
                         dg_resultados = dg_resultados_3
                     Case 2
+                        qry = "SELECT S.NO_SOCIO, (S.NOMBRE || ' ' || S.PATERNO || ' ' || S.MATERNO) AS NOMBRE_COMPLETO, SUM(CN.CANTIDAD) AS CANTIDAD FROM SOCIO S INNER JOIN CUARTOS_NOCHE CN ON S.NO_SOCIO = CN.SOCIO_ID WHERE S.CLUB = '" & club & "' AND CN.FECHA_ALTA BETWEEN '2011-01-01' AND '2011-12-01' GROUP BY S.NO_SOCIO"
                         dg_resultados = dg_resultados_2
                 End Select
             Case 2
@@ -28,7 +28,7 @@ Public Class Informe_Resultados
                     Case 1
                         dg_resultados = dg_resultados_3
                     Case 2
-                        qry = "SELECT FROM COMPANIA"
+                        qry = "SELECT CN.ID, C.NOMBRE AS COMPANIA, (S.NOMBRE || ' ' || S.PATERNO || ' ' || S.MATERNO) AS NOMBRE_COMPLETO, CN.TARIFA, CN.CANTIDAD, (CN.TARIFA * CN.CANTIDAD) AS TOTAL FROM COMPANIA C INNER JOIN SOCIO S ON C.ID = S.ID_COMP INNER JOIN CUARTOS_NOCHE CN ON S.NO_SOCIO = CN.SOCIO_ID WHERE S.CLUB = '" & club & "' AND CN.FECHA_ALTA BETWEEN '2011-01-01' AND '2011-12-01' ORDER BY COMPANIA"
                         dg_resultados = dg_resultados_1
                 End Select
             Case 3
@@ -37,6 +37,7 @@ Public Class Informe_Resultados
                     Case 1
                         dg_resultados = dg_resultados_3
                     Case 2
+                        qry = "SELECT S.NO_SOCIO, (S.NOMBRE || ' ' || S.PATERNO || ' ' || S.MATERNO) AS NOMBRE_COMPLETO, SUM(CN.CANTIDAD) AS CANTIDAD FROM SOCIO S INNER JOIN CUARTOS_NOCHE CN ON S.NO_SOCIO = CN.SOCIO_ID WHERE S.CLUB = '" & club & "' AND CN.FECHA_ALTA BETWEEN '2011-01-01' AND '2011-12-01' GROUP BY S.NO_SOCIO"
                         dg_resultados = dg_resultados_2
                 End Select
         End Select
