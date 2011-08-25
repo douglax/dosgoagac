@@ -275,6 +275,7 @@
                                                     <asp:GridView ID="dg_puntos" runat="server" AutoGenerateColumns="False" 
                                                         Width="472px" AllowPaging="True" PageSize="4" Font-Size="Small">                             
                                                         <Columns>
+                                                            <asp:BoundField DataField="Id" HeaderText="Ref" />
                                                             <asp:BoundField HeaderText="Cantidad" DataField="Cantidad" >
                                                             <ItemStyle HorizontalAlign="Center" />
                                                             </asp:BoundField>

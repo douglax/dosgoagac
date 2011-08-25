@@ -4,7 +4,7 @@
         <id name="Id">
             <generator class="native"/>
         </id>
-        <property name="Nombre"/>
-        <many-to-one name="Estado" column="ID_ESTADO"/>
+        <property name="Nombre" column="NOM_MUN"/>
+        <many-to-one name="Estado" column="CVE_ENT"/>
     </class>
 </hibernate-mapping>
