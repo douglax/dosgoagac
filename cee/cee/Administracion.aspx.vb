@@ -6,7 +6,7 @@ Public Class Administracion
         Dim s As ISession = Nothing
         Try
             s = NHelper.GetCurrentSession()
-            Dim u As CeeLib.Usuario = s.Get(Of CeeLib.Usuario)(NHelper.UserName)
+            Dim u As CeeLib.Usuario = s.Get(Of CeeLib.Usuario)(Session.Item("user").ToString)
             If u.Hotel.Id <> 1 Then
                 Response.Redirect("Denegada.aspx")
             End If

@@ -217,7 +217,7 @@ Public Class Alta
             s.RFC = tb_rfc.Text
             s.Telefono = tb_telefono.Text
             s.Club = club.SelectedIndex
-            Dim u As CeeLib.Usuario = sesion.Get(GetType(CeeLib.Usuario), NHelper.UserName)
+            Dim u As CeeLib.Usuario = sesion.Get(GetType(CeeLib.Usuario), Session.Item("user").ToString)
             s.IdHotel = u.Hotel.Id
             Dim dia As Integer = CInt(ddl_cump_dia.SelectedValue)
             Dim mes As Integer = CInt(ddl_cump_mes.SelectedValue)

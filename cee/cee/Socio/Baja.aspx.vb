@@ -55,7 +55,7 @@ Public Class Baja
         Dim s As ISession = NHelper.GetCurrentSession
         Try
             Dim soc As CeeLib.Socio = s.Get(Of CeeLib.Socio)(id)
-            Dim u As CeeLib.Usuario = s.Get(GetType(CeeLib.Usuario), NHelper.UserName)
+            Dim u As CeeLib.Usuario = s.Get(GetType(CeeLib.Usuario), Session.Item("user").ToString)
             If u.Hotel.Id > 1 Then
                 If soc.IdHotel <> u.Hotel.Id Then
                     Response.Redirect("../Denegada.aspx")

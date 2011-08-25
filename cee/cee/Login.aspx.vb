@@ -18,12 +18,13 @@ Public Class Login
             End If
             Console.WriteLine(Encrypt.Encriptar("admin"))
             If Encrypt.Desencriptar(u.Passwd).Equals(Login1.Password) Then
+                Session.Add("user", Login1.UserName)
                 FormsAuthentication.RedirectFromLoginPage(Login1.UserName, Login1.RememberMeSet)
             Else
                 Login1.FailureText = "Error al ingresar al sistema, verifique su nombre de usuario y contraseña"
             End If
             s.Close()
-            NHelper.UserName = u.Usr
+
         Catch ex As Exception
             Login1.FailureText = "Hubo un error al tratar de ingresar al sistema: " & ex.Message
             System.Console.WriteLine(ex.Message)

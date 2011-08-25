@@ -6,8 +6,7 @@ Imports System.Reflection
 Public Class NHelper
     Private Shared CurrentSessionKey As String = "nhibernate.current_session"
     Private Shared _SessionFactory As ISessionFactory
-    Private Shared _UserName As String
-
+   
     Shared Sub New()
         Dim cf As Configuration = New Configuration()
         cf.AddClass(GetType(CeeLib.Usuario))
@@ -27,16 +26,6 @@ Public Class NHelper
             Return _SessionFactory
         End Get
     End Property
-
-    Public Shared Property UserName() As String
-        Get
-            Return _UserName
-        End Get
-        Set(ByVal value As String)
-            _UserName = value
-        End Set
-    End Property
-
 
     Public Shared Function GetCurrentSession() As ISession
         Dim context As HttpContext = HttpContext.Current

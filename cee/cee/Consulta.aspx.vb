@@ -89,7 +89,7 @@ Public Class Consulta1
         cn.Cantidad = CDbl(tb_cantidad_cuartos.Text)
         cn.FechaAlta = Now()
         Dim s As ISession = NHelper.GetCurrentSession
-        Dim u As CeeLib.Usuario = s.Get(GetType(CeeLib.Usuario), NHelper.UserName)
+        Dim u As CeeLib.Usuario = s.Get(GetType(CeeLib.Usuario), Session.Item("user").ToString)
         cn.Hotel = u.Hotel
         cn.Socio = s.Get(GetType(CeeLib.Socio), CLng(HiddenField1.Value))
         cn.Socio.CuartosNoche.Add(cn)
@@ -129,7 +129,7 @@ Public Class Consulta1
         Try
             Dim soc As CeeLib.Socio = s.Get(GetType(CeeLib.Socio), CLng(HiddenField1.Value))
             Dim cn As CeeLib.RegistroNoches = soc.CuartosNoche.Item(e.RowIndex)
-            Dim u As CeeLib.Usuario = s.Get(Of CeeLib.Usuario)(NHelper.UserName)
+            Dim u As CeeLib.Usuario = s.Get(Of CeeLib.Usuario)(Session.Item("user").ToString)
             If u.Hotel.Id > 1 Then
                 If u.Hotel.Id <> cn.Hotel.Id Then
                     Response.Redirect("Denegada.aspx")
