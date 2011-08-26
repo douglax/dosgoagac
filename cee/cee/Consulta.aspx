@@ -42,7 +42,7 @@
                             </div>
                             <table border="0" cellpadding="0" cellspacing="0">
                                                         <tr>
-                                                            <td style="width: 500px; background: #ffffff; border: 1px #cccccc solid; position: absolute; top: -200px; left: 320px; padding: 2px;">
+                                                            <td style="width: 500px; background: #ffffff; border: 1px #cccccc solid; position: absolute; top: -230px; left: 320px; padding: 2px;">
                                 <div class="titulo"><asp:Label ID="lbl_page_title" runat="server" Text="Consulta"></asp:Label></div>
                                 <div class="contenido">
                                     <form id="frm_consulta" runat="server">

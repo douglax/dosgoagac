@@ -60,10 +60,16 @@
                             </asp:GridView>
                             <asp:GridView ID="dg_resultados_3" runat="server" ShowFooter="True" AutoGenerateColumns="False" Width="100%">
                                 <Columns>
+                                    <asp:BoundField HeaderText="Hotel" DataField="HOTEL">
+                                        <ItemStyle HorizontalAlign="Center" />
+                                    </asp:BoundField>
                                     <asp:BoundField HeaderText="Empleado" DataField="NOMBRE_COMPLETO">
                                         <ItemStyle HorizontalAlign="Center" />
                                     </asp:BoundField>
                                     <asp:BoundField HeaderText="Numero de Tarjeta" DataField="CTA_SIVALE">
+                                        <ItemStyle HorizontalAlign="Center" />
+                                    </asp:BoundField>
+                                    <asp:BoundField HeaderText="Total" DataField="TOTAL">
                                         <ItemStyle HorizontalAlign="Center" />
                                     </asp:BoundField>
                                 </Columns>
