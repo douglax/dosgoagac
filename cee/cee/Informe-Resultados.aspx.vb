@@ -20,7 +20,7 @@ Public Class Informe_Resultados
                         qry = "SELECT (S.NOMBRE + ' ' + S.PATERNO + ' ' + S.MATERNO) AS NOMBRE_COMPLETO, S.CTA_SIVALE, H.NOMBRE AS HOTEL, (CN.CANTIDAD * H.MONTO_ENLACE) AS TOTAL FROM CUARTOS_NOCHE CN INNER JOIN HOTEL H ON CN.ID_HOTEL = H.ID INNER JOIN SOCIO S ON CN.SOCIO_ID = S.NO_SOCIO WHERE S.CLUB = '" & club & "' AND CN.FECHA_ALTA BETWEEN convert(datetime, '" & inicio.ToString("dd/MM/yyyy") & "', 103) AND convert(datetime, '" & fin.ToString("dd/MM/yyyy") & "', 103)"
                         dg_resultados = dg_resultados_3
                     Case 2
-                        qry = "SELECT S.NO_SOCIO, (S.NOMBRE + ' ' + S.PATERNO + ' ' + S.MATERNO) AS NOMBRE_COMPLETO, SUM(CN.CANTIDAD) AS CANTIDAD FROM SOCIO S INNER JOIN CUARTOS_NOCHE CN ON S.NO_SOCIO = CN.SOCIO_ID WHERE S.CLUB = '" & club & "' AND CN.FECHA_ALTA BETWEEN convert(datetime, '" & inicio.ToString("dd/MM/yyyy") & "', 103) AND convert(datetime, '" & fin.ToString("dd/MM/yyyy") & "', 103) GROUP BY S.NO_SOCIO"
+                        qry = "SELECT S.NO_SOCIO, (S.NOMBRE + ' ' + S.PATERNO + ' ' + S.MATERNO) AS NOMBRE_COMPLETO, SUM(CN.CANTIDAD) AS CANTIDAD FROM SOCIO S INNER JOIN CUARTOS_NOCHE CN ON S.NO_SOCIO = CN.SOCIO_ID WHERE S.CLUB = '" & club & "' AND CN.FECHA_ALTA BETWEEN convert(datetime, '" & inicio.ToString("dd/MM/yyyy") & "', 103) AND convert(datetime, '" & fin.ToString("dd/MM/yyyy") & "', 103) GROUP BY S.NO_SOCIO, S.NOMBRE, S.PATERNO, S.MATERNO"
                         dg_resultados = dg_resultados_2
                 End Select
             Case 2
@@ -37,10 +37,10 @@ Public Class Informe_Resultados
                 Me.lbl_tipo.Text = "'Club Enlace Travel' "
                 Select Case tipo
                     Case 1
-                        qry = ""
+                        qry = "SELECT (S.NOMBRE + ' ' + S.PATERNO + ' ' + S.MATERNO) AS NOMBRE_COMPLETO, S.CTA_SIVALE, H.NOMBRE AS HOTEL, (CN.CANTIDAD * 10) AS TOTAL FROM CUARTOS_NOCHE CN INNER JOIN HOTEL H ON CN.ID_HOTEL = H.ID INNER JOIN SOCIO S ON CN.SOCIO_ID = S.NO_SOCIO WHERE S.CLUB = '" & club & "' AND CN.FECHA_ALTA BETWEEN convert(datetime, '" & inicio.ToString("dd/MM/yyyy") & "', 103) AND convert(datetime, '" & fin.ToString("dd/MM/yyyy") & "', 103)"
                         dg_resultados = dg_resultados_3
                     Case 2
-                        qry = "SELECT S.NO_SOCIO, (S.NOMBRE + ' ' + S.PATERNO + ' ' + S.MATERNO) AS NOMBRE_COMPLETO, SUM(CN.CANTIDAD) AS CANTIDAD FROM SOCIO S INNER JOIN CUARTOS_NOCHE CN ON S.NO_SOCIO = CN.SOCIO_ID WHERE S.CLUB = '" & club & "' AND CN.FECHA_ALTA BETWEEN convert(datetime, '" & inicio.ToString("dd/MM/yyyy") & "', 103) AND convert(datetime, '" & fin.ToString("dd/MM/yyyy") & "', 103) GROUP BY S.NO_SOCIO"
+                        qry = "SELECT S.NO_SOCIO, (S.NOMBRE + ' ' + S.PATERNO + ' ' + S.MATERNO) AS NOMBRE_COMPLETO, SUM(CN.CANTIDAD) AS CANTIDAD FROM SOCIO S INNER JOIN CUARTOS_NOCHE CN ON S.NO_SOCIO = CN.SOCIO_ID WHERE S.CLUB = '" & club & "' AND CN.FECHA_ALTA BETWEEN convert(datetime, '" & inicio.ToString("dd/MM/yyyy") & "', 103) AND convert(datetime, '" & fin.ToString("dd/MM/yyyy") & "', 103) GROUP BY S.NO_SOCIO, S.NOMBRE, S.PATERNO, S.MATERNO"
                         dg_resultados = dg_resultados_2
                 End Select
         End Select
