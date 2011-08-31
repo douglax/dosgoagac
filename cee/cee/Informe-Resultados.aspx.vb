@@ -24,11 +24,11 @@ Public Class Informe_Resultados
                         dg_resultados = dg_resultados_2
                 End Select
             Case 2
-                Me.lbl_tipo.Text = "'Club Enlace Empresaria' "
+                Me.lbl_tipo.Text = "'Club Enlace Empresarial' "
                 Select Case tipo
                     Case 1
-                        qry = ""
-                        dg_resultados = dg_resultados_3
+                        qry = "SELECT C.ID, C.NOMBRE AS COMPANIA, S.CTA_SIVALE, SUM(CN.CANTIDAD) AS CUARTOS_NOCHE FROM CUARTOS_NOCHE CN INNER JOIN SOCIO S ON CN.SOCIO_ID = S.NO_SOCIO INNER JOIN COMPANIA C ON S.ID_COMP = C.ID GROUP BY C.ID, C.NOMBRE, S.CTA_SIVALE"
+                        dg_resultados = dg_resultados_4
                     Case 2
                         qry = "SELECT CN.ID, C.NOMBRE AS COMPANIA, (S.NOMBRE + ' ' + S.PATERNO + ' ' + S.MATERNO) AS NOMBRE_COMPLETO, CN.TARIFA, CN.CANTIDAD, (CN.TARIFA * CN.CANTIDAD) AS TOTAL FROM COMPANIA C INNER JOIN SOCIO S ON C.ID = S.ID_COMP INNER JOIN CUARTOS_NOCHE CN ON S.NO_SOCIO = CN.SOCIO_ID WHERE S.CLUB = '" & club & "' AND CN.FECHA_ALTA BETWEEN convert(datetime, '" & inicio.ToString("dd/MM/yyyy") & "', 103) AND convert(datetime, '" & fin.ToString("dd/MM/yyyy") & "', 103) ORDER BY COMPANIA"
                         dg_resultados = dg_resultados_1

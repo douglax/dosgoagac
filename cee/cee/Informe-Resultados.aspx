@@ -75,6 +75,20 @@
                                 </Columns>
                                 <FooterStyle BackColor="#FFFF66" />
                             </asp:GridView>
+                            <asp:GridView ID="dg_resultados_4" runat="server" ShowFooter="True" AutoGenerateColumns="False" Width="100%">
+                                <Columns>
+                                    <asp:BoundField HeaderText="Compania" DataField="COMPANIA">
+                                        <ItemStyle HorizontalAlign="Center" />
+                                    </asp:BoundField>
+                                    <asp:BoundField HeaderText="Numero de Tarjeta" DataField="CTA_SIVALE">
+                                        <ItemStyle HorizontalAlign="Center" />
+                                    </asp:BoundField>
+                                    <asp:BoundField HeaderText="Cuartos Noche" DataField="CUARTOS_NOCHE">
+                                        <ItemStyle HorizontalAlign="Center" />
+                                    </asp:BoundField>
+                                </Columns>
+                                <FooterStyle BackColor="#FFFF66" />
+                            </asp:GridView>
                         </form>
                         </td></tr></table>
                     </td>

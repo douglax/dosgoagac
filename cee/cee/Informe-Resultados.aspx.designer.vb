@@ -84,4 +84,13 @@ Partial Public Class Informe_Resultados
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents dg_resultados_3 As Global.System.Web.UI.WebControls.GridView
+
+    '''<summary>
+    '''dg_resultados_4 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents dg_resultados_4 As Global.System.Web.UI.WebControls.GridView
 End Class
