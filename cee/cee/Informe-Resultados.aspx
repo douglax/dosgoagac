@@ -80,10 +80,22 @@
                                     <asp:BoundField HeaderText="Compania" DataField="COMPANIA">
                                         <ItemStyle HorizontalAlign="Center" />
                                     </asp:BoundField>
+                                    <asp:BoundField HeaderText="Socio" DataField="NOMBRE_COMPLETO">
+                                        <ItemStyle HorizontalAlign="Center" />
+                                    </asp:BoundField>
+                                    <asp:BoundField HeaderText="Tipo de Contacto" DataField="CONTACTO">
+                                        <ItemStyle HorizontalAlign="Center" />
+                                    </asp:BoundField>
                                     <asp:BoundField HeaderText="Numero de Tarjeta" DataField="CTA_SIVALE">
                                         <ItemStyle HorizontalAlign="Center" />
                                     </asp:BoundField>
                                     <asp:BoundField HeaderText="Cuartos Noche" DataField="CUARTOS_NOCHE">
+                                        <ItemStyle HorizontalAlign="Center" />
+                                    </asp:BoundField>
+                                    <asp:BoundField HeaderText="Tarifa" DataField="TARIFA">
+                                        <ItemStyle HorizontalAlign="Center" />
+                                    </asp:BoundField>
+                                    <asp:BoundField HeaderText="Total" DataField="TOTAL">
                                         <ItemStyle HorizontalAlign="Center" />
                                     </asp:BoundField>
                                 </Columns>
