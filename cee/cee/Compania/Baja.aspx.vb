@@ -31,7 +31,7 @@ Public Class Baja1
     End Sub
 
     Private Sub dg_resultados_RowDeleting(ByVal sender As Object, ByVal e As System.Web.UI.WebControls.GridViewDeleteEventArgs) Handles dg_resultados.RowDeleting
-        MsgBox(Me.dg_resultados.Rows(e.RowIndex).Cells(0).Text)
+
     End Sub
 
 End Class

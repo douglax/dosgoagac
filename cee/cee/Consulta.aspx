@@ -1,8 +1,8 @@
 ﻿<%@ Page Language="vb" AutoEventWireup="false" CodeBehind="Consulta.aspx.vb" Inherits="cee.Consulta1" %>
 <html>
 <head>
-    <link rel="Stylesheet" href="../cee.css" type="text/css">
-    <script src="../cee.js" type="text/javascript"></script>
+    <link rel="Stylesheet" href="cee.css" type="text/css">
+    <script src="cee.js" type="text/javascript"></script>
     <style type="text/css">
         .style1
         {

@@ -106,6 +106,8 @@ Public Class Consulta1
         s.Transaction.Commit()
         dg_puntos.DataSource = cn.Socio.CuartosNoche
         Lbl_Tipo.Text = cn.Socio.TipoDeSocio & ": " & cn.Socio.TotalPuntos & " Puntos "
+        If cn.Socio.Club = 2 Then Lbl_Tipo.Text += "<br/>" + cn.Socio.Compania.CalcularTipoCompania + " Puntos totales de la compañia: " & cn.Socio.Compania.CalcularPuntos()
+
         dg_puntos.DataMember = "Id"
         dg_puntos.DataBind()
         NHelper.CloseSession()
@@ -128,7 +130,8 @@ Public Class Consulta1
         Dim s As ISession = NHelper.GetCurrentSession
         Try
             Dim soc As CeeLib.Socio = s.Get(GetType(CeeLib.Socio), CLng(HiddenField1.Value))
-            Dim cn As CeeLib.RegistroNoches = soc.CuartosNoche.Item(e.RowIndex)
+            Dim id As Long = CLng(dg_puntos.Rows(e.RowIndex).Cells(0).Text)
+            Dim cn As CeeLib.RegistroNoches = s.Get(GetType(CeeLib.RegistroNoches), id)
             Dim u As CeeLib.Usuario = s.Get(Of CeeLib.Usuario)(Session.Item("user").ToString)
             If u.Hotel.Id > 1 Then
                 If u.Hotel.Id <> cn.Hotel.Id Then
